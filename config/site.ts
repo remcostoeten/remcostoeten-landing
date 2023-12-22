@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "Remco Stoeten - Snippets and blogs for remcostoeten.com",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "This is an app containing various snippets, guides, and productivity scripts I use personally or for my job. The site is maintained via Markdown.mdx and powered by Nextra, which is a static site generator built with NextJS and TypeScript.    ",
   mainNav: [
     {
       title: "Home",
@@ -11,8 +11,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    github: "https://github.com/remcostoeten",
+    docs: "https://snippets.remcostoeten.com",
   },
 }

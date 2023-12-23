@@ -1,9 +1,9 @@
 import * as React from "react"
 import Link from "next/link"
 
-import { NavItem } from "@/types/nav"
-import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { NavItem } from "@/core/types/nav"
+import { siteConfig } from "@/core/config/site"
+import { cn } from "@/core/lib/utils"
 import { Icons } from "@/components/icons"
 
 interface MainNavProps {

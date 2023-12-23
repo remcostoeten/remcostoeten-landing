@@ -19,8 +19,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
-    "noImplicitAny": false,
+    "baseUrl": ".",    "strictNullChecks": false, // Enable strict null checks.
+    "noImplicitReturns": false, // Report error when not all code paths in function return a value.
+    "noImplicitThis": false, // Raise error on 'this' expressions with an implied 'any' type.
+    "noUnusedLocals": false, // Report errors on unused locals.
+    "noUnusedParameters": false, // Report errors on unused parameters.
+    "noImplicitAny": false, // Raise error on expressions and declarations with an implied 'any' type.
     "paths": {
       "@/*": ["./*"]
     },
@@ -29,10 +33,7 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
-
-

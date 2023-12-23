@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/react";
+import ShellLayout from "@/components/layout/shell";
 
 export const metadata: Metadata = {
   title: {
@@ -44,16 +45,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
             )}
           >
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <div className="relative flex min-h-screen flex-col">
-                <SiteHeader />
-                <div className="flex-1">{children}</div>
-              </div>
+              <ShellLayout header={<SiteHeader />}>
+                <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
+              </ShellLayout>
               <TailwindIndicator />
             </ThemeProvider>
-            <Analytics />
           </body>
-        </html>
-      </HydrationOverlay>
+        </html >
+      </HydrationOverlay >
     </>
   )
 }

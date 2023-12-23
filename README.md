@@ -1,22 +1,7 @@
-# next-template
+## blog.remcostoeten.com
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+A blog which eventually should replace snippet.remcostoeten.com (nextra). Build with NextJS, TypeScript, Prisma (MySQL).
 
-## Usage
+Initial goal: fully working markdown file based blog. No database, no admin panel, just markdown files.
 
-```bash
-npx create-next-app -e https://github.com/shadcn/next-template
-```
-
-## Features
-
-- Next.js 13 App Directory
-- Radix UI Primitives
-- Tailwind CSS
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Tailwind CSS class sorting, merging and linting.
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+Long term goal: a custom admin dashboard to opperate CRUD-like actions and managing blogposts.

@@ -23,8 +23,8 @@ const navigationMenu = [
 
 export function SiteHeader() {
   return (
-    <aside className="min-h-screen w-64 text-accent ">
-      <div className="mb-6 flex items-center space-x-4 ">
+    <aside className="min-h-screen text-accent ">
+      <div className="mb-6 flex flex-col gap-2 ">
         <Image src='/remco-avatar-compressed.webp' alt="Remco Stoeten" width={50} height={50} className="rounded-full" />
         <div>
           <div className="font-bold text-white">Remco Stoeten</div>

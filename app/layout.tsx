@@ -5,7 +5,7 @@ import NextTopLoader from 'nextjs-toploader';
 
 import { siteConfig } from "@/core/config/site";
 import { fontSans } from "@/core/lib/fonts";
-import { cn } from "@/core/lib/utils";
+  import { cn } from "@/core/lib/utils";
 import { SiteHeader } from "@/components/site-header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";

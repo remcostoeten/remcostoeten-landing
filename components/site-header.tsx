@@ -19,36 +19,39 @@ const navigationMenu = [
 
 export function SiteHeader() {
   return (
-    <aside className="min-h-screen text-accent ">
-      <div className="mb-6 flex flex-col gap-2 ">
+    <aside className="flex min-h-screen flex-col  text-accent">
+      <div className="flex flex-col gap-2.5 text-xl ">
         <Image src='/remco-avatar-compressed.webp' alt="Remco Stoeten" width={50} height={50} className="rounded-full" />
-        <div>
+        <div className="">
           <div className="font-bold text-white">Remco Stoeten</div>
           <div className="text-sm text-gray-400">@remcosoeten</div>
         </div>
       </div>
-      <div className="mb-6 flex items-center">
-        <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
-        <span className="text-sm">Open for collabs!</span>
-        <div className="ml-auto">
-          <ThemeToggle />
+      <div className="mb-6 flex grow flex-col ">
+        <div className="mb-6 flex items-center">
+          <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
+          <span className="text-sm">Open for collabs!</span>
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
         </div>
+        <ul className="grow">
+          {navigationMenu.map((navItem, index) => (
+            <Link key={index} className="mb-4 flex items-center text-accent"
+              href={navItem.label === "Home" ? "/" : `/${navItem.label.toLowerCase()}`}>
+              <>
+                {navItem.icon && <navItem.icon className="mr-2" />}
+                <span>{navItem.label}</span>
+                {index < navigationMenu.length - 1 && <ChevronRightIcon className="ml-auto" />}
+              </>
+            </Link>
+          ))}
+        </ul>
       </div>
-      <ul>
-        {navigationMenu.map((navItem, index) => (
-          <Link key={index} className="mb-4 flex items-center text-accent"
-            href={navItem.label === "Home" ? "/" : `/${navItem.label.toLowerCase()}`}>
-            <>
-              {navItem.icon && <navItem.icon className="mr-2" />}
-              <span>{navItem.label}</span>
-              {index < navigationMenu.length - 1 && <ChevronRightIcon className="ml-auto" />}
-            </>
-          </Link>
-        ))}
-      </ul>
+
       {/* <CommandPrompt /> */}
       <p className="mb-6 flex items-center">
-        with ❤ by remco stoeten
+        With ❤ by remco stoeten
       </p>
     </aside>
   );

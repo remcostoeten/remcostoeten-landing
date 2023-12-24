@@ -1,12 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { siteConfig } from "@/core/config/site";
-import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
-import { MainNav } from "@/components/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Badge } from "./ui/badge";
 import { ChevronRightIcon } from "lucide-react";
+import CommandPrompt from "./menu/CommandPrompt";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
@@ -20,7 +17,6 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-
 export function SiteHeader() {
   return (
     <aside className="min-h-screen text-accent ">
@@ -32,31 +28,28 @@ export function SiteHeader() {
         </div>
       </div>
       <div className="mb-6 flex items-center">
-        <span className="animation-pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
-        <span className="ml-2 text-sm">Open for collabs!</span>
+        <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
+        <span className="text-sm">Open for collabs!</span>
         <div className="ml-auto">
           <ThemeToggle />
         </div>
       </div>
-      <nav className="mb-6">
-        <ul>
-          {navigationMenu.map((navItem, index) => (
-            <li key={index} className=" mb-4 flex items-center text-accent">
+      <ul>
+        {navigationMenu.map((navItem, index) => (
+          <Link key={index} className="mb-4 flex items-center text-accent"
+            href={navItem.label === "Home" ? "/" : `/${navItem.label.toLowerCase()}`}>
+            <>
               {navItem.icon && <navItem.icon className="mr-2" />}
               <span>{navItem.label}</span>
               {index < navigationMenu.length - 1 && <ChevronRightIcon className="ml-auto" />}
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className="mb-6 flex items-center justify-start">
-        <Icons.terminal className="mr-2" />
-        <span className="grow">cmd + k</span>
-        <Badge variant="secondary">AI Powered</Badge>
-      </div>
-      <div className="mb-6 flex items-center">
-        <span className="ml-2">with ❤ by remco stoeten</span>
-      </div>
+            </>
+          </Link>
+        ))}
+      </ul>
+      {/* <CommandPrompt /> */}
+      <p className="mb-6 flex items-center">
+        with ❤ by remco stoeten
+      </p>
     </aside>
   );
 }

@@ -3,11 +3,10 @@ import { unstable_cache } from "next/cache";
 import prisma from "@/core/lib/prisma";
 
 export const getViews = async (slug: string) => {
-    return await unstable_cache(
+    const cachedValue = await unstable_cache(
         async () => {
             const views = await prisma.views.findUnique({ where: { slug } });
-
-            return views?.count.toString();
+            return views?.count ? views.count.toString() : '0';
         },
         [slug],
         {
@@ -15,4 +14,10 @@ export const getViews = async (slug: string) => {
             tags: [slug],
         },
     )();
+
+    if (cachedValue === undefined) {
+        throw new Error('Cache is empty and fetch failed');
+    }
+
+    return cachedValue;
 };

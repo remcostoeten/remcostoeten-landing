@@ -1,0 +1,43 @@
+---
+title: "Remap keyboard keys on PopOS (ubuntu) and probably other distros?"
+publishedAt: "24-12-2023"
+summary: "Keyboard broken again? Remap it!"
+image: "/static/blog/why-i-have-started-octocake/banner.png"
+blurDataURL: "L4SijYogNx_29aaf0K%L~pxuInRk"
+---
+
+<Image
+  src="/static/blog/why-i-have-started-octocake/banner.png"
+  width="1200"
+  height="627"
+  alt="Octocake"
+  placeholder="blur"
+  blurDataURL="L4SijYogNx_29aaf0K%L~pxuInRk"
+  priority
+/>
+
+## How to remap keys on PopOS (ubuntu) and probably other distros?
+
+[xmodmap][xmopdmap-link] is needed here for the remapping. So go ahead and snap, sudo-apt or whatever you need to install it. Don't you dare to use a appimage or something like that.
+
+```bash
+sudo apt-get install xmodmap
+```
+
+### Remapping
+
+Remaps are stored in a config file called `.Xmodmap` in your home directory. If it doesn't exist, create it. with `touch ~/.Xmodmap`. or just go ahead and `vim ~/.Xmodmap`. This will not work with nano, heck I suggest you find another tutorial if you use nano. <small>how to quit vi....</small>
+
+Inside the file you can do your config magic. In this example I will remap the right shift to the right arrow ke which is done like so:
+
+```bash
+clear shift
+keycode 62 = Right NoSymbol Right
+add shift = Shift_R
+```
+
+As you see you need the keycode which is easily opbtained through running `xev` in your terminal and there will appear a small gui which prints out some magic when pressed. For other syntax refer to xmodmap docs.
+
+`!:wq` and reload the config with `xmodmap ~/.Xmodmap` and you are done.
+
+[xmopdmap-link]: https://manpages.ubuntu.com/manpages/trusty/man1/xmodmap.1.html

@@ -1,6 +1,7 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
+import NextTopLoader from 'nextjs-toploader';
 
 import { siteConfig } from "@/core/config/site"
 import { fontSans } from "@/core/lib/fonts"
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               fontSans.variable
             )}
           >
+            <NextTopLoader color="green" />
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <ShellLayout header={<SiteHeader />}>
                 <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>

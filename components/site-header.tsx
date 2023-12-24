@@ -38,17 +38,18 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
-      <nav className="mb-6">
-        <ul>
-          {navigationMenu.map((navItem, index) => (
-            <li key={index} className=" mb-4 flex items-center text-accent">
+      <ul>
+        {navigationMenu.map((navItem, index) => (
+          <Link key={index} className="mb-4 flex items-center text-accent"
+            href={navItem.label === "Home" ? "/" : `/${navItem.label.toLowerCase()}`}>
+            <>
               {navItem.icon && <navItem.icon className="mr-2" />}
               <span>{navItem.label}</span>
               {index < navigationMenu.length - 1 && <ChevronRightIcon className="ml-auto" />}
-            </li>
-          ))}
-        </ul>
-      </nav>
+            </>
+          </Link>
+        ))}
+      </ul>
       <div className="mb-6 flex items-center justify-start">
         <Icons.terminal className="mr-2" />
         <span className="grow">cmd + k</span>
@@ -57,6 +58,6 @@ export function SiteHeader() {
       <div className="mb-6 flex items-center">
         <span className="ml-2">with ❤ by remco stoeten</span>
       </div>
-    </aside>
+    </aside >
   );
 }

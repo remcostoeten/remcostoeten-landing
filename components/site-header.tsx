@@ -4,6 +4,7 @@ import { Icons } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ChevronRightIcon } from "lucide-react";
 import CommandPrompt from "./menu/CommandPrompt";
+import LoginLink from "./menu/LoginLink";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
@@ -46,6 +47,7 @@ export function SiteHeader() {
               </>
             </Link>
           ))}
+          <LoginLink />
         </ul>
       </div>
 

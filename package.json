@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "bun prisma generate && bun contentlayer build && next build",
+    "build-old": "next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

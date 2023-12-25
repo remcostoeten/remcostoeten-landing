@@ -24,6 +24,8 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
     children,
     ...restProps
 }) => {
+    const Element = motion.div;
+
     const animationProps = {
         initial: { opacity: initialOpacity, x, y, scale },
         animate: {
@@ -40,8 +42,24 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
     };
 
     return (
-        <motion.div {...animationProps} className={className} {...restProps}>
+        <Element {...animationProps} className={className} {...restProps}>
             {children}
-        </motion.div>
+        </Element>
     );
 };
+
+/**
+ * An animated element component that can be used with various HTML elements.
+ *
+ * @example
+ * // Example 1: Using AnimatedElement with a heading
+ * <AnimatedElement as="h1" initialOpacity={0} duration={1} ease="EASE_OUT">
+ *   Animated Heading
+ * </AnimatedElement>
+ *
+ * @example
+ * // Example 2: Using AnimatedElement with a paragraph
+ * <AnimatedElement as="p" initialOpacity={0} duration={0.8} delay={0.2} x={10}>
+ *   Animated paragraph with a slight delay and horizontal movement.
+ * </AnimatedElement>
+ */

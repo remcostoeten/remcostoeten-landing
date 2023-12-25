@@ -1,12 +1,21 @@
-import * as React from "react"
-import { cn } from "@/core/lib/utils"
+// components/ui/Input.tsx
+import * as React from 'react';
+import { cn } from '@/core/lib/utils';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   showSearchContent?: boolean;
+  onSearch?: (query: string) => void;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, showSearchContent, ...props }, ref) => {
+  ({ className, type, showSearchContent, onSearch, ...props }, ref) => {
+    const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
+      const query = event.currentTarget.value;
+      if (onSearch) {
+        onSearch(query);
+      }
+    };
+
     return (
       <div className="relative">
         {!showSearchContent && (
@@ -21,13 +30,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
         )}
         {showSearchContent && (
-          <input type={type} placeholder="Search for whatever your ❤️ desires" className="flex shrink grow basis-[0%] flex-col items-stretch justify-center self-stretch overflow-hidden text-ellipsis rounded-lg border
-            border-solid px-4 py-3 text-base leading-6 text-zinc-500 shadow-sm placeholder:text-[16px] max-md:max-w-full"/>
+          <input
+            type={type}
+            placeholder="Search for whatever your ❤️ desires"
+            className="flex shrink grow basis-[0%] flex-col items-stretch justify-center self-stretch overflow-hidden text-ellipsis rounded-lg border
+            border-solid px-4 py-3 text-base leading-6 text-zinc-500 shadow-sm placeholder:text-[16px] max-md:max-w-full"
+            onChange={handleSearch}
+          />
         )}
       </div>
-    )
+    );
   }
-)
-Input.displayName = "Input"
+);
 
-export { Input }
+Input.displayName = 'Input';
+
+export { Input };

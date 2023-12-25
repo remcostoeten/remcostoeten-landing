@@ -6,4 +6,8 @@
     & aside {
         display: none;
     }
+
+    & .error-svg svg {
+        max-width: 75vw !important;
+    }
 }

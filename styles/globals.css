@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @import './theme.css';
+@Import './generics.css';
 @import './animations.css';
+@import './error.css';
 
 @layer base {
   :root {

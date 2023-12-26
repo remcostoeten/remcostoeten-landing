@@ -62,4 +62,4 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
  * <AnimatedElement as="p" initialOpacity={0} duration={0.8} delay={0.2} x={10}>
  *   Animated paragraph with a slight delay and horizontal movement.
  * </AnimatedElement>
- */
+*/

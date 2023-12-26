@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 const NotFound = () => {
     const [searchQuery, setSearchQuery] = useState('');
-
     const handleSearch = (query: string) => {
         setSearchQuery(query);
         console.log('Searching for:', query);
@@ -15,6 +14,9 @@ const NotFound = () => {
 
     useEffect(() => {
         document.body.classList.add('error-page');
+        return () => {
+            document.body.classList.remove('error-page');
+        };
     }, []);
 
     return (

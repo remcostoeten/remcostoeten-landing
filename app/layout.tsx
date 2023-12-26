@@ -5,12 +5,19 @@ import NextTopLoader from 'nextjs-toploader';
 
 import { siteConfig } from "@/core/config/site";
 import { fontSans } from "@/core/lib/fonts";
-  import { cn } from "@/core/lib/utils";
+import { cn } from "@/core/lib/utils";
 import { SiteHeader } from "@/components/site-header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import ShellLayout from "@/components/layout/shell";
 import { LayoutProps } from "@/core/types/global";
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+}
 
 export const metadata: Metadata = {
   title: {
@@ -18,10 +25,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",

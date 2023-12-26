@@ -1,5 +1,5 @@
 'use client'
-import { m, HTMLMotionProps } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { BEZIER_CURVES, BezierCurve } from '@/core/lib/bezier-curves';
 
 interface AnimatedElementProps extends HTMLMotionProps<'div'> {
@@ -24,7 +24,7 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
     children,
     ...restProps
 }) => {
-    const Element = m.div;
+    const Element = motion.div;
 
     const animationProps = {
         initial: { opacity: initialOpacity, x, y, scale },
@@ -62,4 +62,4 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
  * <AnimatedElement as="p" initialOpacity={0} duration={0.8} delay={0.2} x={10}>
  *   Animated paragraph with a slight delay and horizontal movement.
  * </AnimatedElement>
-*/
+ */

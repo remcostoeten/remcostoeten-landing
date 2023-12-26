@@ -33,7 +33,7 @@ const NotFound = () => {
                     <AnimatedElement initialOpacity={0} duration={0.6} delay={0.2} className="flex grow flex-col items-stretch pr-8 max-md:mx-auto max-md:mt-10 max-md:max-w-full max-md:pr-5">
                         <div className="text-base font-semibold leading-6 text-neutral-300 max-md:max-w-full">404 error</div>
                         <AnimatedElement initialOpacity={0} duration={0.4} delay={0.4} className="mt-3 text-6xl font-semibold leading-[72px] tracking-tighter text-neutral-100 max-md:max-w-full max-md:text-4xl">Under maintenance</AnimatedElement>
-                        <AnimatedElement initialOpacity={0} duration={0.6} delay={0.6} className="mt-6 max-w-[480px] text-xl leading-8 text-neutral-400 max-md:max-w-full">Sorry, the page you are looking for doesn&apos;t exist or has been moved. Try searching our site or going back <Link className='underline' href='/'>home</Link></AnimatedElement>{" "}
+                        <AnimatedElement initialOpacity={0} duration={0.6} delay={0.6} className="mt-6 max-w-[480px] text-xl leading-8 text-neutral-400 max-md:max-w-full">Sorry, the page you are looking for doesn&apos;t exist or has been moved. Try searching our site</AnimatedElement>{" "}
                         <div className="mt-12 flex items-stretch justify-between gap-4 max-md:mt-10 max-md:max-w-full max-md:flex-wrap">
                             <AnimatedElement initialOpacity={0} duration={0.8} delay={0.65}>
                                 <Input showSearchContent onSearch={handleSearch} />

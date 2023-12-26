@@ -1,11 +1,15 @@
 'use client';
-
 import { useEffect, useState } from "react";
 import { Icons } from "../icons";
 import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "../ui/alert-dialog";
 import { Badge } from "../ui/badge";
+import { signIn, signOut } from 'next-auth/react';
 
-export default function LoginLink() {
+interface LoginLinkProps {
+    user: any;
+}
+
+export default function LoginLink({ user }: LoginLinkProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -35,8 +39,25 @@ export default function LoginLink() {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete your account
-                            and remove your data from our servers.
+                            <span className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                {user ? (
+                                    <button
+                                        className={`${'flex w-full px-4 py-2 text-sm text-gray-700'
+                                            }`}
+                                        onClick={() => signOut()}
+                                    >
+                                        Sign out
+                                    </button>
+                                ) : (
+                                    <button
+                                        className={`${'flex w-full px-4 py-2 text-sm text-gray-700'
+                                            }`}
+                                        onClick={() => signIn('github')}
+                                    >
+                                        Sign in
+                                    </button>
+                                )}
+                            </span>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

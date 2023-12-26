@@ -37,3 +37,7 @@ yarn-error.log*
 
 # Ignore postgress-auth-starter folder
 postgress-auth-starter/
+
+
+# vercel
+.vercel

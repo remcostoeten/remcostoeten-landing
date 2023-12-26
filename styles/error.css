@@ -1,0 +1,6 @@
+@media (max-width: 640px) {
+    .error-contained {
+        max-width: 80vw !important;
+        margin: 0 !important;
+    }
+}

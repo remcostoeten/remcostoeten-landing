@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "bash compress-images.sh",
     "build": "bun prisma generate && bun contentlayer build && next build",
     "build-old": "next build",
     "start": "next start",

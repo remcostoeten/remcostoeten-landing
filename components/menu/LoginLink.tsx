@@ -4,6 +4,8 @@ import { Icons } from "../icons";
 import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "../ui/alert-dialog";
 import { Badge } from "../ui/badge";
 import { signIn, signOut } from 'next-auth/react';
+import { CredentialsForm } from "../auth/CredentialsForm";
+import { CredentialsSignInButton, GithubSignInButton } from "../auth/AuthButtons";
 
 interface LoginLinkProps {
     user: any;
@@ -39,7 +41,9 @@ export default function LoginLink({ user }: LoginLinkProps) {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            <span className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <GithubSignInButton />
+                            <CredentialsForm />
+                            <span className="ring-opacity-5/5 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black focus:outline-none">
                                 {user ? (
                                     <button
                                         className={`${'flex w-full px-4 py-2 text-sm text-gray-700'
@@ -58,6 +62,7 @@ export default function LoginLink({ user }: LoginLinkProps) {
                                     </button>
                                 )}
                             </span>
+                            <CredentialsSignInButton />
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

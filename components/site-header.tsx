@@ -3,8 +3,9 @@ import Image from "next/image";
 import { Icons } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ChevronRightIcon } from "lucide-react";
-import CommandPrompt from "./menu/CommandPrompt";
 import LoginLink from "./menu/LoginLink";
+import { useSession } from 'next-auth/react';
+import { auth } from "@/core/lib/auth";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
@@ -18,20 +19,27 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-export default function SiteHeader() {
+export default async function SiteHeader() {
+  const session = auth();
   return (
-    <aside className="flex min-h-screen flex-col  text-accent">
+    <aside className="flex min-h-screen flex-col text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">
         <Image src='/remco-avatar-compressed.webp' alt="Remco Stoeten" width={50} height={50} className="rounded-full" />
         <div className="">
           <div className="font-bold text-white">Remco Stoeten</div>
           <div className="text-sm text-gray-400">@remcosoeten</div>
         </div>
+        {(await session)?.user ? (
+          <div className="flex items-center">
+            <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
+            <span className="text-sm">Open for collabs!</span>
+          </div>
+        ) : null}
       </div>
-      <div className="mb-6 flex grow flex-col ">
+      <div className="mb-6 flex grow flex-col">
         <div className="mb-6 flex items-center">
-          <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
-          <span className="text-sm">Open for collabs!</span>
+          <span className={session ? 'work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400' : 'mr-2 h-2 w-2 rounded-full bg-red-400'} />
+          <span className="text-sm">{session ? 'Open for collabs!' : 'Not logged in'}</span>
           <div className="ml-auto">
             <ThemeToggle />
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 export function GoogleSignInButton() {
     const handleClick = () => {
@@ -45,6 +45,17 @@ export function CredentialsSignInButton() {
         >
             {/* <Image src={githubLogo} alt="Github Logo" width={20} height={20} /> */}
             <span className="ml-4">Continue with Email</span>
+        </button>
+    );
+}
+
+export function SignOut() {
+    return (
+        <button
+            onClick={() => signOut()}
+            className="focus:shadow-outline mt-4 flex h-14 w-full items-center justify-center rounded-lg border-2 border-black bg-white px-6 text-xl font-semibold text-black transition-colors duration-300 hover:bg-slate-200"
+        >
+            <span className="ml-4">Sign Out</span>
         </button>
     );
 }

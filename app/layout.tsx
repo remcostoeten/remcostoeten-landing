@@ -11,6 +11,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import ShellLayout from "@/components/layout/shell";
 import { LayoutProps } from "@/core/types/global";
+import Nav from "@/components/auth/Nav";
 
 export const viewport = {
   themeColor: [
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <NextTopLoader color="#2dd4bf" height={5} />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ShellLayout header={<SiteHeader />}>
+              <Nav />
               <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
             </ShellLayout>
             <TailwindIndicator />

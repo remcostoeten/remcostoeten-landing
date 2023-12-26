@@ -2,6 +2,27 @@
     animation: pulser 2s cubic-bezier(0.565, 0.84, 0.44, 1) infinite;
 }
 
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
 @keyframes pulser {
     0% {
         -webkit-transform: scale(0.95);

@@ -18,7 +18,7 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-export function SiteHeader() {
+export default function SiteHeader() {
   return (
     <aside className="flex min-h-screen flex-col  text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">

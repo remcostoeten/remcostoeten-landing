@@ -1,18 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+
+import { useEffect, useState } from "react";
 import { Icons } from "../icons";
+import { AlertDialogHeader, AlertDialogFooter, AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogTitle, AlertDialogDescription, AlertDialogCancel, AlertDialogAction } from "../ui/alert-dialog";
 import { Badge } from "../ui/badge";
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger
-} from "../ui/alert-dialog";
 
 export default function LoginLink() {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +26,7 @@ export default function LoginLink() {
             <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
                 <AlertDialogTrigger className='flex w-full items-center justify-between'>
                     <div className='flex grow items-center gap-2'>
-                        <Icons.shortcut className="mr-2" />
+                        <Icons.code className="mr-2" />
                         <span className="">cmd + k</span>
                     </div>
                     <Badge variant="secondary" className='justify-end'>Login</Badge>

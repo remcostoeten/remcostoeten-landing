@@ -2,13 +2,35 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Postgres vercel
+
+
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
 }
 
+// End Postgres vercel
+
+
+
+// MySQL planetscale
+// datasource db {
+  // provider     = "mysql"
+  // url          = env("DATABASE_URL")
+  // relationMode = "prisma"
+// }
+// End MySQL planetscale
 model views {
   slug  String @id @db.VarChar(128)
   count BigInt @default(1)
+}
+
+
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
 }

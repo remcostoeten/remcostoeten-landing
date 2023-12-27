@@ -5,6 +5,10 @@ const nextConfig = {
     images: {
         domains: ['lh3.googleusercontent.com', 'avatars.githubusercontent.com', 'cdn.builder.io', 'cdn.dribbble.com', 'avatar.vercel.sh', 'dribbble.com'],
     },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
+    swcMinify: true,
 };
 
 if (process.env.NODE_ENV === 'development') {

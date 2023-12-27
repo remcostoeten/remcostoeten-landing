@@ -1,4 +1,5 @@
 import NextAuth, { User } from 'next-auth';
+import Google from 'next-auth/providers/google';
 import GitHub from 'next-auth/providers/github';
 import Email from 'next-auth/providers/email';
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -16,6 +17,10 @@ export const {
     GitHub({
       clientId: process.env.OAUTH_CLIENT_KEY as string,
       clientSecret: process.env.OAUTH_CLIENT_SECRET as string
+    }),
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
     CredentialsProvider({
       name: "Sign in",

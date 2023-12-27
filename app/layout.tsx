@@ -11,7 +11,8 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import ShellLayout from "@/components/layout/shell";
 import { LayoutProps } from "@/core/types/global";
-import Nav from "@/components/auth/Nav";
+import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/sonner";
 
 export const viewport = {
   themeColor: [
@@ -35,25 +36,27 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <HydrationOverlay>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "body-gradient min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <NextTopLoader color="#2dd4bf" height={5} />
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ShellLayout header={<SiteHeader />}>
-              <Nav />
-              <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
-            </ShellLayout>
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
-      </html>
-    </HydrationOverlay>
+    <SessionProvider>
+      <HydrationOverlay>
+        <html lang="en" suppressHydrationWarning>
+          <head />
+          <body
+            className={cn(
+              "body-gradient min-h-screen bg-background font-sans antialiased",
+              fontSans.variable
+            )}
+          >
+            <NextTopLoader color="#2dd4bf" height={5} />
+            <ThemeProvider attribute="clas s" defaultTheme="system" enableSystem>
+              <ShellLayout header={<SiteHeader />}>
+                <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
+                <Toaster />
+              </ShellLayout>
+              <TailwindIndicator />
+            </ThemeProvider>
+          </body>
+        </html>
+      </HydrationOverlay>
+    </SessionProvider>
   )
 }

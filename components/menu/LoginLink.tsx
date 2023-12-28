@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Icons } from "../icons";
 import { Badge } from "../ui/badge";
 import {
@@ -13,6 +13,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger
 } from "../ui/alert-dialog";
+import AuthForm from '@/auth/AuthForm';
 
 export default function LoginLink() {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,8 +45,7 @@ export default function LoginLink() {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete your account
-                            and remove your data from our servers.
+                            <AuthForm type='login' />
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

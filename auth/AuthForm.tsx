@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from 'sonner';
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import LoadingDots from "../effects/LoadingDots";
-export default function Form({ type }: { type: "login" | "register" }) {
+import LoadingDots from "@/components/effects/LoadingDots";
+export default function AuthForm({ type }: { type: "login" | "register" }) {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -20,14 +19,11 @@ export default function Form({ type }: { type: "login" | "register" }) {
                         redirect: false,
                         email: e.currentTarget.email.value,
                         password: e.currentTarget.password.value,
+                        // @ts-ignore
                     }).then(({ error }) => {
-                        setLoading(false);
                         if (error) {
-                            toast.error(`Login failed: ${error}`);
-                            console.log(`Login error: ${error}`);
+                            setLoading(false);
                         } else {
-                            toast.success('Login successful');
-                            console.log('Login successful');
                             router.refresh();
                             router.push("/protected");
                         }
@@ -45,15 +41,11 @@ export default function Form({ type }: { type: "login" | "register" }) {
                     }).then(async (res) => {
                         setLoading(false);
                         if (res.status === 200) {
-                            toast.success('Registration successful');
-                            console.log('Registration successful');
                             setTimeout(() => {
                                 router.push("/login");
                             }, 2000);
                         } else {
                             const { error } = await res.json();
-                            toast.error(`Registration failed: ${error}`);
-                            console.log(`Registration error: ${error}`);
                         }
                     });
                 }

@@ -1,12 +1,11 @@
 'use client';
 
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 import { toast } from "sonner"
 export default function Form() {
-  const router = useRouter();
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const router = useRouter(); const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const response = await signIn('credentials', {
@@ -19,7 +18,11 @@ export default function Form() {
       toast('Something went wrong');
     }
 
+
     if (response?.ok) {
+      const session = await getSession();
+      console.log(session); // This will log the session data to the console
+
       toast('Welcome back!');
       router.push('/');
       router.refresh();

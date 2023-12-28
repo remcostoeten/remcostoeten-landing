@@ -2,6 +2,9 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Postgres vercel
+
+
 datasource db {
   provider = "postgresql"
   url = env("POSTGRES_PRISMA_URL") // uses connection pooling
@@ -17,4 +20,11 @@ model User {
 model views {
   slug  String @id @db.VarChar(128)
   count BigInt @default(1)
+}
+
+
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
 }

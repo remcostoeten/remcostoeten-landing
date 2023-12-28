@@ -21,6 +21,7 @@ const handler = NextAuth({
         const user = response.rows[0];
 
         if (user) {
+          console.log('dwadwa')
           return {
             id: user.id,
             email: user.email,

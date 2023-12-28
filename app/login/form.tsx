@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
-
+import { toast } from "sonner"
 export default function Form() {
   const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -15,8 +15,12 @@ export default function Form() {
       redirect: false,
     });
 
-    console.log({ response });
-    if (!response?.error) {
+    if (response?.error) {
+      toast('Something went wrong');
+    }
+
+    if (response?.ok) {
+      toast('Welcome back!');
       router.push('/');
       router.refresh();
     }
@@ -24,7 +28,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 mx-auto max-w-md mt-10"
+      className="mx-auto mt-10 flex max-w-md flex-col gap-2"
     >
       <input
         name="email"

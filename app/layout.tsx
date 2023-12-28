@@ -11,6 +11,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import ShellLayout from "@/components/layout/shell";
 import { LayoutProps } from "@/core/types/global";
+import { Toaster } from "@/components/ui/sonner";
 
 export const viewport = {
   themeColor: [
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ShellLayout header={<SiteHeader />}>
               <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
+              <Toaster />
             </ShellLayout>
             <TailwindIndicator />
           </ThemeProvider>

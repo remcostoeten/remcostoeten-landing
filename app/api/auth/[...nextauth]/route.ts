@@ -1,13 +1,13 @@
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { sql } from '@vercel/postgres';
+import { sql } from "@vercel/postgres"
+import NextAuth from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 const handler = NextAuth({
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   providers: [
     CredentialsProvider({
@@ -17,21 +17,21 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         const response = await sql`
-        SELECT * FROM users WHERE email=${credentials?.email}`;
-        const user = response.rows[0];
+        SELECT * FROM users WHERE email=${credentials?.email}`
+        const user = response.rows[0]
 
         if (user) {
-          console.log('dwadwa')
+          console.log("dwadwa")
           return {
             id: user.id,
             email: user.email,
-          };
+          }
         }
 
-        return null;
+        return null
       },
     }),
   ],
-});
+})
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }

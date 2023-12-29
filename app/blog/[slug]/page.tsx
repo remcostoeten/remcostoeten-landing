@@ -1,27 +1,29 @@
-import { allBlogs } from "contentlayer/generated";
-import dayjs from "dayjs";
-import Blog from "./blog";
-import { redirect } from "next/navigation";
-import { Metadata } from "next";
-import { revalidateTag } from "next/cache";
-import ShareViaTwitter, { baseUrl } from "@/components/blog/ShareViaTwitter";
-import prisma from "@/core/lib/prisma";
-import { getViews } from "@/core/lib/fetcher";
+import { Metadata } from "next"
+import { revalidateTag } from "next/cache"
+import { redirect } from "next/navigation"
+import { allBlogs } from "contentlayer/generated"
+import dayjs from "dayjs"
+
+import { getViews } from "@/core/lib/fetcher"
+import prisma from "@/core/lib/prisma"
+import ShareViaTwitter, { baseUrl } from "@/components/blog/ShareViaTwitter"
+
+import Blog from "./blog"
 
 export const generateMetadata = ({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string }
 }): Metadata | undefined => {
-  const slug = params?.slug;
+  const slug = params?.slug
 
-  const post = allBlogs.find((post) => post.slug === slug);
+  const post = allBlogs.find((post) => post.slug === slug)
 
   if (!post) {
-    return;
+    return
   }
 
-  const ogImage = `${baseUrl}/og?title=${post.title}`;
+  const ogImage = `${baseUrl}/og?title=${post.title}`
 
   return {
     title: post.title,
@@ -45,26 +47,26 @@ export const generateMetadata = ({
       description: post.summary,
       images: [ogImage],
     },
-  };
-};
+  }
+}
 
 const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
-  const slug = params?.slug;
+  const slug = params?.slug
 
-  const post = allBlogs.find((post) => post.slug === slug);
+  const post = allBlogs.find((post) => post.slug === slug)
 
   await prisma.views.upsert({
     where: { slug: slug },
     create: { slug: slug },
     update: { count: { increment: 1 } },
-  });
+  })
 
-  revalidateTag(slug);
+  revalidateTag(slug)
 
-  const views = await getViews(slug);
+  const views = await getViews(slug)
 
   if (!post) {
-    return redirect("/404");
+    return redirect("/404")
   }
 
   return (
@@ -77,8 +79,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
 
           <div className="text-sm md:flex md:w-full md:justify-between">
             <p>
-              Remco Stoeten /{" "}
-              {dayjs(post.publishedAt).format("D MMNN, YYYY")}
+              Remco Stoeten / {dayjs(post.publishedAt).format("D MMNN, YYYY")}
             </p>
 
             <p>
@@ -95,7 +96,7 @@ const BlogDetailsPage = async ({ params }: { params: { slug: string } }) => {
         </footer>
       </article>
     </main>
-  );
-};
+  )
+}
 
-export default BlogDetailsPage;
+export default BlogDetailsPage

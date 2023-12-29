@@ -1,30 +1,30 @@
-import Link from "next/link";
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps } from "next/image"
+import Link from "next/link"
 
 const CustomLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-    const href = props.href;
-    const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
+  const href = props.href
+  const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"))
 
-    if (isInternalLink) {
-        return (
-            <Link {...props} href={href}>
-                {props.children}
-            </Link>
-        );
-    }
+  if (isInternalLink) {
+    return (
+      <Link {...props} href={href}>
+        {props.children}
+      </Link>
+    )
+  }
 
-    return <a target="_blank" rel="noopener noreferrer" {...props} />;
-};
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
+}
 
 const CustomImage = ({ alt, ...props }: ImageProps) => (
-    <div className="flex">
-        <Image alt={alt} className="rounded-lg" {...props} />
-    </div>
-);
+  <div className="flex">
+    <Image alt={alt} className="rounded-lg" {...props} />
+  </div>
+)
 
 const MDXComponents = {
-    a: CustomLink,
-    Image: CustomImage,
-};
+  a: CustomLink,
+  Image: CustomImage,
+}
 
-export default MDXComponents;
+export default MDXComponents

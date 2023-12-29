@@ -1,9 +1,8 @@
-import type { MDXComponents } from 'mdx/types'
 // NOTE use ESM/CommonJS compat import here until resolved: https://github.com/facebook/react/issues/11503
-import React from 'react'
+import React from "react"
+import type { MDXComponents } from "mdx/types"
 // NOTE use ESM/CommonJS compat import here until resolved: https://github.com/facebook/react/issues/11503
-import ReactDOM from 'react-dom'
-
+import ReactDOM from "react-dom"
 
 // NOTE This cjs-import workaround above is needed since there was a "breaking change"
 // on the import/export level from React v17 to v18.
@@ -13,16 +12,22 @@ import ReactDOM from 'react-dom'
 // import * as _jsx_runtime from 'react/jsx-runtime'
 
 type MDXContentProps = {
-    [props: string]: unknown
-    components?: MDXComponents
+  [props: string]: unknown
+  components?: MDXComponents
 }
 
-export const getMDXComponent = (code: string, globals: Record<string, unknown> = {}): React.FC<MDXContentProps> => {
-    const scope = { React, ReactDOM, ...globals }
-    const fn = new Function(...Object.keys(scope), code)
-    return fn(...Object.values(scope)).default
+export const getMDXComponent = (
+  code: string,
+  globals: Record<string, unknown> = {}
+): React.FC<MDXContentProps> => {
+  const scope = { React, ReactDOM, ...globals }
+  const fn = new Function(...Object.keys(scope), code)
+  return fn(...Object.values(scope)).default
 }
 
-export const useMDXComponent = (code: string, globals: Record<string, unknown> = {}) => {
-    return React.useMemo(() => getMDXComponent(code, globals), [code, globals])
+export const useMDXComponent = (
+  code: string,
+  globals: Record<string, unknown> = {}
+) => {
+  return React.useMemo(() => getMDXComponent(code, globals), [code, globals])
 }

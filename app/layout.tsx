@@ -1,17 +1,17 @@
-import "@/styles/globals.css";
-import { Metadata } from "next";
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
-import NextTopLoader from 'nextjs-toploader';
+import "@/styles/globals.css"
+import { Metadata } from "next"
+import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
+import NextTopLoader from "nextjs-toploader"
 
-import { siteConfig } from "@/core/config/site";
-import { fontSans } from "@/core/lib/fonts";
-import { cn } from "@/core/lib/utils";
-import { SiteHeader } from "@/components/site-header";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
-import ShellLayout from "@/components/layout/shell";
-import { LayoutProps } from "@/core/types/global";
-import { Toaster } from "@/components/ui/sonner";
+import { LayoutProps } from "@/core/types/global"
+import { siteConfig } from "@/core/config/site"
+import { fontSans } from "@/core/lib/fonts"
+import { cn } from "@/core/lib/utils"
+import { Toaster } from "@/components/ui/sonner"
+import ShellLayout from "@/components/layout/shell"
+import { SiteHeader } from "@/components/site-header"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const viewport = {
   themeColor: [
@@ -47,7 +47,9 @@ export default function RootLayout({ children }: LayoutProps) {
           <NextTopLoader color="#2dd4bf" height={5} />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <ShellLayout header={<SiteHeader />}>
-              <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
+              <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">
+                {children}
+              </div>
               <Toaster />
             </ShellLayout>
             <TailwindIndicator />

@@ -1,23 +1,24 @@
 // @ts-nocheck
-import { unstable_cache } from "next/cache";
-import prisma from "@/core/lib/prisma";
+import { unstable_cache } from "next/cache"
+
+import prisma from "@/core/lib/prisma"
 
 export const getViews = async (slug: string) => {
-    const cachedValue = await unstable_cache(
-        async () => {
-            const views = await prisma.views.findUnique({ where: { slug } });
-            return views?.count ? views.count.toString() : '0';
-        },
-        [slug],
-        {
-            revalidate: 1,
-            tags: [slug],
-        },
-    )();
-
-    if (cachedValue === undefined) {
-        throw new Error('Cache is empty and fetch failed');
+  const cachedValue = await unstable_cache(
+    async () => {
+      const views = await prisma.views.findUnique({ where: { slug } })
+      return views?.count ? views.count.toString() : "0"
+    },
+    [slug],
+    {
+      revalidate: 1,
+      tags: [slug],
     }
+  )()
 
-    return cachedValue;
-};
+  if (cachedValue === undefined) {
+    throw new Error("Cache is empty and fetch failed")
+  }
+
+  return cachedValue
+}

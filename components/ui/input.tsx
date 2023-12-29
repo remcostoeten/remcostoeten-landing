@@ -1,20 +1,22 @@
 // components/ui/Input.tsx
-import * as React from 'react';
-import { cn } from '@/core/lib/utils';
+import * as React from "react"
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  showSearchContent?: boolean;
-  onSearch?: (query: string) => void;
+import { cn } from "@/core/lib/utils"
+
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  showSearchContent?: boolean
+  onSearch?: (query: string) => void
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, showSearchContent, onSearch, ...props }, ref) => {
     const handleSearch = (event: React.FormEvent<HTMLInputElement>) => {
-      const query = event.currentTarget.value;
+      const query = event.currentTarget.value
       if (onSearch) {
-        onSearch(query);
+        onSearch(query)
       }
-    };
+    }
 
     return (
       <div className="relative">
@@ -39,10 +41,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
         )}
       </div>
-    );
+    )
   }
-);
+)
 
-Input.displayName = 'Input';
+Input.displayName = "Input"
 
-export { Input };
+export { Input }

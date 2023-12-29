@@ -1,18 +1,18 @@
-import { NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { NextResponse } from "next/server"
+import { sql } from "@vercel/postgres"
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
-    console.log({ email, password });
+    const { email, password } = await request.json()
+    console.log({ email, password })
 
     const response = await sql`
       INSERT INTO users (email, password)
       VALUES (${email}, ${password})
-    `;
+    `
   } catch (e) {
-    console.log('dwdwdw');
+    console.log("dwdwdw")
   }
 
-  return NextResponse.json({ message: 'success' });
+  return NextResponse.json({ message: "success" })
 }

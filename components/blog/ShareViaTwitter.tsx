@@ -1,18 +1,19 @@
-import React from "react";
-import { Icons } from "../icons";
+import React from "react"
 
-export const baseUrl = "https://remcostoeten.com";
+import { Icons } from "../icons"
+
+export const baseUrl = "https://remcostoeten.com"
 
 const ShareViaTwitter = ({
   title,
   slug,
   type,
 }: {
-  title: string;
-  slug: string;
-  type: "blog" | "guides";
+  title: string
+  slug: string
+  type: "blog" | "guides"
 }) => {
-  const tweetShareURL = `https://twitter.com/intent/tweet?text=Check out: ${title}&url=${baseUrl}/${type}/${slug}%0D%0A&via=ImadAtyat`;
+  const tweetShareURL = `https://twitter.com/intent/tweet?text=Check out: ${title}&url=${baseUrl}/${type}/${slug}%0D%0A&via=ImadAtyat`
 
   return (
     <a
@@ -27,7 +28,7 @@ const ShareViaTwitter = ({
         Share via Twitter
       </span>
     </a>
-  );
-};
+  )
+}
 
-export default ShareViaTwitter;
+export default ShareViaTwitter

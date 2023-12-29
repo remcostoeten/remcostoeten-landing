@@ -1,11 +1,12 @@
-import BlogPost from "@/components/blog/BlogPost";
-import { pick } from "contentlayer/client";
-import { allBlogs } from "contentlayer/generated";
-import { Metadata } from "next";
+import { Metadata } from "next"
+import { pick } from "contentlayer/client"
+import { allBlogs } from "contentlayer/generated"
+
+import BlogPost from "@/components/blog/BlogPost"
 
 export const metadata: Metadata = {
   title: "Blog",
-};
+}
 
 const BlogPage = () => {
   const posts = allBlogs
@@ -17,12 +18,12 @@ const BlogPage = () => {
         "publishedAt",
         "image",
         "blurDataURL",
-      ]),
+      ])
     )
     .sort(
       (a, b) =>
-        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
-    );
+        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+    )
 
   return (
     <main className="main-container">
@@ -36,7 +37,7 @@ const BlogPage = () => {
         </div>
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default BlogPage;
+export default BlogPage

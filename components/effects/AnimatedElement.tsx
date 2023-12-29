@@ -1,54 +1,56 @@
-'use client'
-import { motion, HTMLMotionProps } from 'framer-motion';
-import { BEZIER_CURVES, BezierCurve } from '@/core/lib/bezier-curves';
+"use client"
 
-interface AnimatedElementProps extends HTMLMotionProps<'div'> {
-    opacity?: number;
-    duration?: number;
-    delay?: number;
-    ease?: keyof typeof BEZIER_CURVES | BezierCurve;
-    x?: number;
-    y?: number;
-    scale?: number;
-    className?: string;
-    children?: React.ReactNode;
+import { HTMLMotionProps, motion } from "framer-motion"
+
+import { BEZIER_CURVES, BezierCurve } from "@/core/lib/bezier-curves"
+
+interface AnimatedElementProps extends HTMLMotionProps<"div"> {
+  opacity?: number
+  duration?: number
+  delay?: number
+  ease?: keyof typeof BEZIER_CURVES | BezierCurve
+  x?: number
+  y?: number
+  scale?: number
+  className?: string
+  children?: React.ReactNode
 }
 
 export default function AnimatedElement({
-    opacity = 0,
-    duration = 0.5,
-    delay = 0,
-    ease = 'EASE_IN',
-    x = 0,
-    y = 0,
-    scale = 1,
-    className,
-    children,
-    ...restProps
+  opacity = 0,
+  duration = 0.5,
+  delay = 0,
+  ease = "EASE_IN",
+  x = 0,
+  y = 0,
+  scale = 1,
+  className,
+  children,
+  ...restProps
 }: AnimatedElementProps) {
-    const Element = motion.div;
+  const Element = motion.div
 
-    const animationProps = {
-        initial: { opacity: opacity, x, y, scale },
-        animate: {
-            opacity: 1,
-            x,
-            y,
-            scale,
-            transition: {
-                duration,
-                delay,
-                ease: typeof ease === 'string' ? BEZIER_CURVES[ease] : ease
-            }
-        },
-    };
+  const animationProps = {
+    initial: { opacity: opacity, x, y, scale },
+    animate: {
+      opacity: 1,
+      x,
+      y,
+      scale,
+      transition: {
+        duration,
+        delay,
+        ease: typeof ease === "string" ? BEZIER_CURVES[ease] : ease,
+      },
+    },
+  }
 
-    return (
-        <Element {...animationProps} className={className} {...restProps}>
-            {children}
-        </Element>
-    );
-};
+  return (
+    <Element {...animationProps} className={className} {...restProps}>
+      {children}
+    </Element>
+  )
+}
 /**
  * An animated element component that can be used with various HTML elements.
  *

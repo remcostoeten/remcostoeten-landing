@@ -3,7 +3,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 import { BEZIER_CURVES, BezierCurve } from '@/core/lib/bezier-curves';
 
 interface AnimatedElementProps extends HTMLMotionProps<'div'> {
-    initialOpacity?: number;
+    opacity?: number;
     duration?: number;
     delay?: number;
     ease?: keyof typeof BEZIER_CURVES | BezierCurve;
@@ -13,7 +13,7 @@ interface AnimatedElementProps extends HTMLMotionProps<'div'> {
 }
 
 export const AnimatedElement: React.FC<AnimatedElementProps> = ({
-    initialOpacity = 0,
+    opacity = 0,
     duration = 0.5,
     delay = 0,
     ease = 'EASE_IN',
@@ -27,7 +27,7 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
     const Element = motion.div;
 
     const animationProps = {
-        initial: { opacity: initialOpacity, x, y, scale },
+        initial: { opacity: opacity, x, y, scale },
         animate: {
             opacity: 1,
             x,

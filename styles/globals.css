@@ -67,6 +67,19 @@
   }
 }
 
+::-webkit-scrollbar {
+  @apply w-1;
+}
+
+::-webkit-scrollbar-track {
+  @apply rounded-[3px] bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-[3px] border-2 border-neutral-300 bg-neutral-600 dark:bg-neutral-400;
+}
+
+
 .work-pulse {
   position: relative;
   -webkit-box-sizing: content-box;

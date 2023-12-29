@@ -1,14 +1,11 @@
 import Image from "next/image"
-import Link from "next/link"
-import { ChevronRightIcon } from "lucide-react"
 
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import CommandPrompt from "./menu/CommandPrompt"
 import LoginLink from "./menu/LoginLink"
 import Seperator from "./Seperator"
-
+import MenuItem from "./menu/MenuItem"
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
   // { label: "Dashboard", icon: Icons.layoutGrid },
@@ -21,7 +18,7 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-export function SiteHeader() {
+export default function SiteHeader() {
   return (
     <aside className="flex min-h-[97vh] flex-col  text-blacktheme dark:text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">
@@ -45,26 +42,16 @@ export function SiteHeader() {
             <ThemeToggle />
           </div>
         </div>
-        <Seperator spacing="24" />
+        <Seperator spacing="12px" />
         <ul className="grow">
           {navigationMenu.map((navItem, index) => (
-            <Link
+            <MenuItem
               key={index}
-              className="mb-4 flex items-center text-blacktheme dark:text-accent"
-              href={
-                navItem.label === "Home"
-                  ? "/"
-                  : `/${navItem.label.toLowerCase()}`
-              }
-            >
-              <>
-                {navItem.icon && <navItem.icon className="mr-2" />}
-                <span>{navItem.label}</span>
-                {index < navigationMenu.length - 1 && (
-                  <ChevronRightIcon className="ml-auto" />
-                )}
-              </>
-            </Link>
+              title={navItem.label}
+              href={navItem.label === 'Home' ? '/' : `/${navItem.label.toLowerCase()}`}
+              icon={navItem.icon ? <navItem.icon /> : null}
+              isExternal={false}
+            />
           ))}
           <LoginLink />
         </ul>

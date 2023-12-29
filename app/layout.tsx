@@ -47,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps) {
             )}
           >
             <NextTopLoader color="#2dd4bf" height={5} />
-            <ThemeProvider attribute="clas s" defaultTheme="system" enableSystem>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <ShellLayout header={<SiteHeader />}>
                 <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">{children}</div>
                 <Toaster />

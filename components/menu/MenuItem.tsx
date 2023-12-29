@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
@@ -7,6 +6,8 @@ import { BsArrowRightShort as ExternalLinkIcon } from 'react-icons/bs';
 import React from 'react';
 import { MenuContext } from '@/core/context/MenuContext';
 import { MenuItemProps } from '@/core/types/menu';
+import clsx from '@/core/lib/clsx';
+
 const MenuItem = ({
     title,
     href,

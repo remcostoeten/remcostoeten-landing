@@ -10,9 +10,11 @@ interface AnimatedElementProps extends HTMLMotionProps<'div'> {
     x?: number;
     y?: number;
     scale?: number;
+    className?: string;
+    children?: React.ReactNode;
 }
 
-export const AnimatedElement: React.FC<AnimatedElementProps> = ({
+export default function AnimatedElement({
     opacity = 0,
     duration = 0.5,
     delay = 0,
@@ -23,7 +25,7 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
     className,
     children,
     ...restProps
-}) => {
+}: AnimatedElementProps) {
     const Element = motion.div;
 
     const animationProps = {
@@ -47,7 +49,6 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
         </Element>
     );
 };
-
 /**
  * An animated element component that can be used with various HTML elements.
  *

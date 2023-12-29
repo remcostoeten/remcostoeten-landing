@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { Combobox, Dialog, Transition } from '@headlessui/react';
-import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { Fragment, useContext, useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import {
 } from 'react-icons/bi';
 import { HiOutlineChat as AiIcon } from 'react-icons/hi';
 import { useDebounce } from 'usehooks-ts';
-
+import clsx from '@/core/lib/clsx';
 
 import { CommandPaletteContext } from '@/common/context/CommandPaletteContext';
 import useIsMobile from '@/common/hooks/useIsMobile';

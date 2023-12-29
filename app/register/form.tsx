@@ -18,7 +18,7 @@ export default function Form() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 mx-auto max-w-md mt-10"
+      className="mx-auto mt-10 flex max-w-md flex-col gap-2"
     >
       <input
         name="email"

@@ -1,14 +1,13 @@
-import { getServerSession } from 'next-auth';
-import Form from './form';
-import { redirect } from 'next/navigation';
+// import s from 'next-auth';
+// import Form from './form';
+// import { redirect } from 'next/navigation';
 
-export default async function LoginPage() {
-  const session = await getServerSession();
-  if (session) {
-    redirect('/');
-  }
-  return <Form />;
-}
+// export default async function LoginPage() {
+//     const session = getServerSession();
+//     if (session) {
+//         redirect('/');
+//     }
+//     return <Form />;
 import Form from "@/components/auth/form";
 import Image from "next/image";
 import Link from "next/link";

@@ -36,7 +36,7 @@ export const {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
 
-        const dbUser = await prisma.user.findFirst({
+        const dbUser = await prisma.users?.findFirst({
           where: { email: credentials.email },
         });
 

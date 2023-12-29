@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build-full": "lint:fix && prisma generate && contentlayer build && next build",
+    "build-full": "rm -rf node_modules .next && bun i &&  prisma generate && contentlayer build && lint:fix && prettier --write \"**/*.{ts,tsx,mdx}\" --cache &&   next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

@@ -41,3 +41,4 @@ postgress-auth-starter/
 
 # vercel
 .vercel
+.env*.local

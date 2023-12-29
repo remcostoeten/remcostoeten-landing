@@ -5,7 +5,7 @@ import { MenuContext } from "@/core/context/MenuContext"
 import { BsArrowRightShort as ExternalLinkIcon } from "react-icons/bs"
 
 import { MenuItemProps } from "@/core/types/menu"
-import clsx from "@/core/lib/clsx"
+import { clsx } from "@/core/lib/clsx"
 
 const MenuItem = ({
   title,
@@ -22,11 +22,10 @@ const MenuItem = ({
   const isHashLink = href === "#"
   const router = useRouter()
 
-  const activeClasses = `flex font-sora items-center gap-2 py-2 px-4 text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 hover:dark:text-neutral-300 rounded-lg group ${
-    router.pathname === href
-      ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:!text-neutral-200"
-      : "hover:dark:lg:bg-neutral-800 hover:dark:!text-neutral-300 hover:lg:bg-neutral-200 hover:lg:rounded-lg lg:hover:scale-105 lg:transition-all lg:duration-300"
-  }`
+  const acti1veClasses = `flex font-sora items-center gap-2 py-2 px-4 text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 hover:dark:text-neutral-300 rounded-lg group ${router.pathname === href
+    ? "bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:!text-neutral-200"
+    : "hover:dark:lg:bg-neutral-800 hover:dark:!text-neutral-300 hover:lg:bg-neutral-200 hover:lg:rounded-lg lg:hover:scale-105 lg:transition-all lg:duration-300"
+    }`
 
   const handleClick = () => {
     hideNavbar()
@@ -42,7 +41,7 @@ const MenuItem = ({
   }
 
   const elementProps = {
-    className: `${activeClasses} ${className}`,
+    className: `${acti1veClasses} ${className}`,
     onClick: handleClick,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,

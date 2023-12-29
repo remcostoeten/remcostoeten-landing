@@ -17,6 +17,8 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         accent: "var(--accent)",
+        blacktheme: '#121212',
+        blackthemealternative: '#0c0a09w',
         ring: "hsl(var(--ring))",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",

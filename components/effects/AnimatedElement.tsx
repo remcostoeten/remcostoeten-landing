@@ -1,12 +1,12 @@
 'use client'
 import { motion, HTMLMotionProps } from 'framer-motion';
-import { BEZIER_CURVES, BezierCurve } from '@/core/lib/bezier-curves';
+import { BEZIER_CURVES } from '@/core/lib/bezier-curves';
 
 interface AnimatedElementProps extends HTMLMotionProps<'div'> {
     initialOpacity?: number;
     duration?: number;
     delay?: number;
-    ease?: keyof typeof BEZIER_CURVES | BezierCurve;
+    ease?: keyof typeof BEZIER_CURVES;
     x?: number;
     y?: number;
     scale?: number;

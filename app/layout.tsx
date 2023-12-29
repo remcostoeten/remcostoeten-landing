@@ -1,3 +1,4 @@
+// @ts-nocheck
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";

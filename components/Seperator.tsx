@@ -17,13 +17,16 @@ export default function Seperator({
   spacing = "0",
   className = "",
 }: SeperatorProps) {
-  const bgColor = fade ? `linear-gradient(to right, transparent, ${color}, transparent)` : color;
+  const bgColor = fade
+    ? `linear-gradient(to right, transparent, ${color}, transparent)`
+    : color
   return (
-    <hr className={`bg- h-0.5 border-t-0${bgColor} opacity-${opacity} dark:opacity-50 ${className}`}
+    <hr
+      className={`bg- h-0.5 border-t-0${bgColor} opacity-${opacity} dark:opacity-50 ${className}`}
       style={{
         width: width,
-        marginTop: spacing + 'px',
-        marginBottom: spacing + 'px'
+        marginTop: spacing + "px",
+        marginBottom: spacing + "px",
       }}
     />
   )

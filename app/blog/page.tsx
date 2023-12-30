@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Blog",
 }
 
-const BlogPage = () => {
+export default function BlogPage() {
   const posts = allBlogs
     .map((post) =>
       pick(post, [
@@ -39,5 +39,3 @@ const BlogPage = () => {
     </main>
   )
 }
-
-export default BlogPage

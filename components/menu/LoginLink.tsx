@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Icons } from "../icons";
 import { Badge } from "../ui/badge";
 import {
-    AlertDialog, AlertDialogContent, AlertDialogTrigger
+    AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger
 } from "../ui/alert-dialog";
 import { Label } from '@radix-ui/react-label';
 import { signIn } from 'next-auth/react';
@@ -39,6 +39,7 @@ export default function LoginLink() {
                     <Badge variant="secondary" className='justify-end'>{isSignup ? 'Sign Up' : 'Login'}</Badge>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <Card>
                         <CardHeader className="space-y-1">
                             <CardTitle className="text-2xl">{isSignup ? 'Create an account' : 'Sign in'}</CardTitle>
@@ -85,7 +86,7 @@ export default function LoginLink() {
                                     </>
                                 ) : (
                                     <>
-                                        <span>Don't have an account? </span>
+                                        <span>Don&apos;t have an account? </span>
                                         <span
                                             onClick={() => setIsSignup(!isSignup)}
                                             className="cursor-pointer underline"
@@ -93,7 +94,9 @@ export default function LoginLink() {
                                             Sign up
                                         </span>
                                     </>
-                                )}                            </span></CardFooter>
+                                )}
+                            </span>
+                        </CardFooter>
                     </Card>
 
                 </AlertDialogContent>

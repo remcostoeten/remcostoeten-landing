@@ -58,7 +58,11 @@ export default function SiteHeader() {
       </div>
 
       {/* <CommandPrompt /> */}
-      <p className="mb-6 flex items-center">With ❤ by remco stoeten</p>
+      <p className="mb-6 flex items-center">
+        With
+        <span className="mx-1 animate-pulse">❤</span>
+        by remco stoetens
+      </p>
     </aside>
   )
 }

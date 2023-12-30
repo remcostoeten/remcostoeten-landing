@@ -9,7 +9,7 @@ import { fontSans } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import ShellLayout from "@/components/layout/shell"
-import { SiteHeader } from "@/components/site-header"
+import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 

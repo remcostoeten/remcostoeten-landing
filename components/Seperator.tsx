@@ -6,16 +6,25 @@ type SeperatorProps = {
   color?: string
   opacity?: string
   className?: string
+  spacing?: string
 }
 
 export default function Seperator({
-  width,
-  fade,
-  color,
-  opacity,
-  className,
+  width = "100%",
+  fade = false,
+  color = "dark:neutral-100 neutral-800",
+  opacity = "100",
+  spacing = "0",
+  className = "",
 }: SeperatorProps) {
+  const bgColor = fade ? `linear-gradient(to right, transparent, ${color}, transparent)` : color;
   return (
-    <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+    <hr className={`bg- h-0.5 border-t-0${bgColor} opacity-${opacity} dark:opacity-50 ${className}`}
+      style={{
+        width: width,
+        marginTop: spacing + 'px',
+        marginBottom: spacing + 'px'
+      }}
+    />
   )
 }

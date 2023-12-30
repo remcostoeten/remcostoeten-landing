@@ -1,13 +1,11 @@
 import Image from "next/image"
-import Link from "next/link"
-import { ChevronRightIcon } from "lucide-react"
 
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import CommandPrompt from "./menu/CommandPrompt"
 import LoginLink from "./menu/LoginLink"
-
+import Seperator from "./Seperator"
+import MenuItem from "./menu/MenuItem"
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
   // { label: "Dashboard", icon: Icons.layoutGrid },
@@ -20,9 +18,9 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-export function SiteHeader() {
+export default function SiteHeader() {
   return (
-    <aside className="flex min-h-screen flex-col  text-accent">
+    <aside className="flex min-h-[97vh] flex-col  text-blacktheme dark:text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">
         <Image
           src="/remco-avatar-compressed.webp"
@@ -31,45 +29,40 @@ export function SiteHeader() {
           height={50}
           className="rounded-full"
         />
-        <div className="">
-          <div className="font-bold text-white">Remco Stoeten</div>
-          <div className="text-sm text-gray-400">@remcosoeten</div>
+        <div className="mb-3">
+          <div className="font-bold text-blacktheme dark:text-white">Remco Stoeten</div>
+          <div className="text-sm text-blacktheme   dark:text-gray-400">@remcosoeten</div>
         </div>
       </div>
       <div className="mb-6 flex grow flex-col ">
-        <div className="mb-6 flex items-center">
+        <div className="mb- flex items-center">
           <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
           <span className="text-sm">Open for collabs!</span>
           <div className="ml-auto">
             <ThemeToggle />
           </div>
         </div>
+        <Seperator spacing="12px" />
         <ul className="grow">
           {navigationMenu.map((navItem, index) => (
-            <Link
+            <MenuItem
               key={index}
-              className="mb-4 flex items-center text-accent"
-              href={
-                navItem.label === "Home"
-                  ? "/"
-                  : `/${navItem.label.toLowerCase()}`
-              }
-            >
-              <>
-                {navItem.icon && <navItem.icon className="mr-2" />}
-                <span>{navItem.label}</span>
-                {index < navigationMenu.length - 1 && (
-                  <ChevronRightIcon className="ml-auto" />
-                )}
-              </>
-            </Link>
+              title={navItem.label}
+              href={navItem.label === 'Home' ? '/' : `/${navItem.label.toLowerCase()}`}
+              icon={navItem.icon ? <navItem.icon /> : null}
+              isExternal={false}
+            />
           ))}
           <LoginLink />
         </ul>
       </div>
 
       {/* <CommandPrompt /> */}
-      <p className="mb-6 flex items-center">With ❤ by remco stoeten</p>
+      <p className="mb-6 flex items-center">
+        With
+        <span className="mx-1 animate-pulse">❤</span>
+        by remco stoetens
+      </p>
     </aside>
   )
 }

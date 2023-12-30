@@ -69,7 +69,7 @@ export default function SiteHeader() {
       <p className="mb-6 flex items-center">
         With
         <span className="mx-1 animate-pulse">❤</span>
-        by remco stoetens
+        by remco stoeten
       </p>{" "}
     </aside>
   )

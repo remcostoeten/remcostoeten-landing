@@ -3,9 +3,10 @@ import Image from "next/image"
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import LoginLink from "./menu/LoginLink"
 import Seperator from "./Seperator"
+import LoginLink from "./menu/LoginLink"
 import MenuItem from "./menu/MenuItem"
+
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
   // { label: "Dashboard", icon: Icons.layoutGrid },
@@ -20,7 +21,7 @@ const navigationMenu = [
 
 export default function SiteHeader() {
   return (
-    <aside className="flex min-h-[97vh] flex-col  text-blacktheme dark:text-accent">
+    <aside className="hidden min-h-[97vh]  flex-col text-blacktheme sm:flex dark:text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">
         <Image
           src="/remco-avatar-compressed.webp"
@@ -30,8 +31,12 @@ export default function SiteHeader() {
           className="rounded-full"
         />
         <div className="mb-3">
-          <div className="font-bold text-blacktheme dark:text-white">Remco Stoeten</div>
-          <div className="text-sm text-blacktheme   dark:text-gray-400">@remcosoeten</div>
+          <div className="font-bold text-blacktheme dark:text-white">
+            Remco Stoeten
+          </div>
+          <div className="text-sm text-blacktheme   dark:text-gray-400">
+            @remcosoeten
+          </div>
         </div>
       </div>
       <div className="mb-6 flex grow flex-col ">
@@ -48,7 +53,11 @@ export default function SiteHeader() {
             <MenuItem
               key={index}
               title={navItem.label}
-              href={navItem.label === 'Home' ? '/' : `/${navItem.label.toLowerCase()}`}
+              href={
+                navItem.label === "Home"
+                  ? "/"
+                  : `/${navItem.label.toLowerCase()}`
+              }
               icon={navItem.icon ? <navItem.icon /> : null}
               isExternal={false}
             />
@@ -56,13 +65,12 @@ export default function SiteHeader() {
           <LoginLink />
         </ul>
       </div>
-
       {/* <CommandPrompt /> */}
       <p className="mb-6 flex items-center">
         With
         <span className="mx-1 animate-pulse">❤</span>
         by remco stoetens
-      </p>
+      </p>{" "}
     </aside>
   )
 }

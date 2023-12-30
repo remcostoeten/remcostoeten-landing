@@ -36,7 +36,15 @@ const BlogPost = ({ slug, title, publishedAt, image, blurDataURL }: Props) => {
               priority
             />
           </div>
-        ) : null}
+        ) : (
+          <Image
+            src="/placeholder.jpg"
+            width="1200"
+            height="627"
+            alt={title}
+            className="rounded-lg"
+          />
+        )}
 
         <div className="space-y-2">
           <h3 className="title-hover text-xl font-semibold">{title}</h3>

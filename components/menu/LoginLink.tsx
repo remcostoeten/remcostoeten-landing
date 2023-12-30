@@ -88,7 +88,7 @@ export default function LoginLink() {
                 <Input id="password" type="password" />
               </div>
             </CardContent>
-            <CardFooter className=" flex flex-col items-start gap-2">
+            <CardFooter className="flex flex-col items-start gap-2">
               <Button className="w-full">
                 {isSignup ? "Create account" : "Sign in"}
               </Button>

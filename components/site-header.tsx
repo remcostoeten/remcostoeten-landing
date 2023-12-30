@@ -20,7 +20,7 @@ const navigationMenu = [
 
 export default function SiteHeader() {
   return (
-    <aside className="flex min-h-[97vh] flex-col  text-blacktheme dark:text-accent">
+    <aside className="hidden min-h-[97vh]  flex-col text-blacktheme sm:flex dark:text-accent">
       <div className="flex flex-col gap-2.5 text-xl ">
         <Image
           src="/remco-avatar-compressed.webp"
@@ -62,7 +62,6 @@ export default function SiteHeader() {
         With
         <span className="mx-1 animate-pulse">❤</span>
         by remco stoetens
-      </p>
-    </aside>
+      </p>    </aside>
   )
 }

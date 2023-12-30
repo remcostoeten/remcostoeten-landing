@@ -49,7 +49,11 @@ export const generateMetadata = ({
     },
   }
 }
-export default async function BlogDetailsPage({ params }: { params: { slug: string } }) {
+export default async function BlogDetailsPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
   const slug = params?.slug
 
   const post = allBlogs.find((post) => post.slug === slug)

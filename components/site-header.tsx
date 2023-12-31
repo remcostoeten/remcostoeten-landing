@@ -12,6 +12,7 @@ const navigationMenu = [
   // { label: "Dashboard", icon: Icons.layoutGrid },
   // { label: "Projects", icon: Icons.code },
   { label: "Blog", icon: Icons.code },
+  { label: "Issues", icon: Icons.todo },
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },

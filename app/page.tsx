@@ -1,39 +1,37 @@
-import Link from "next/link"
+import { Shell } from '@/components/(table)/shell';
+import { TasksTableShell } from '@/components/(table)/task-table-shell';
+import React from 'react';
 
-import { siteConfig } from "@/core/config/site"
-import { buttonVariants } from "@/components/ui/button"
-
-export default function IndexPage() {
-  return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Beautifully designed components <br className="hidden sm:inline" />
-          built with Radix UI and Tailwind CSS.
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
-        </p>
-      </div>
-      <div className="flex gap-4">
-        <Link
-          href={siteConfig.links.docs}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonVariants()}
-        >
-          Documentation
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.github}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          GitHub
-        </Link>
-      </div>
-    </section>
-  )
+interface IndexPageProps {
+  searchParams: {
+    [key: string]: string | string[] | undefined
+  }
 }
+
+const IndexPage: React.FC<IndexPageProps> = ({ searchParams }) => {
+  const labels = [
+    "bug",
+    "feature",
+    "documentation",
+  ];
+
+  const allTasks = Array.from({ length: 20 }, (_, i) => ({
+    id: `255449078432480${24 + i}`,
+    code: `TASK-${5018 + i}`,
+    title: `Task title ${i + 1}`,
+    status: 'todo',
+    label: labels[Math.floor(Math.random() * labels.length)],
+  }));
+
+  const totalTasks = allTasks.length;
+  const limit = 10; // Set your limit here
+  const pageCount = Math.ceil(totalTasks / limit);
+
+  return (
+    <Shell>
+      <TasksTableShell data={allTasks} pageCount={pageCount} />
+    </Shell>
+  );
+};
+
+export default IndexPage;

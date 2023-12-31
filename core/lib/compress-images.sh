@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Directory containing the images
 dir="~/sites/REMCOSTOETEN_DIR/blog/blog-remcostoetn/public/blog/inspiration/"
 

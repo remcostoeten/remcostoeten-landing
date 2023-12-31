@@ -12,6 +12,7 @@ import ShellLayout from "@/components/layout/shell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Analytics } from '@vercel/analytics/react';
 
 export const viewport = {
   themeColor: [
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps) {
                 {children}
               </div>
               <Toaster />
+              <Analytics />
             </ShellLayout>
             <TailwindIndicator />
           </ThemeProvider>

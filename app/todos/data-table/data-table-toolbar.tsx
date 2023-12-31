@@ -2,17 +2,14 @@
 
 import * as React from "react"
 import Link from "next/link"
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/types"
+
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
 import type { Table } from "@tanstack/react-table"
 
 import { cn } from "@/core/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { DataTableFilterableColumn, DataTableSearchableColumn } from "@/core/types/table"
 import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
@@ -114,7 +111,7 @@ export function DataTableToolbar<TData>({
               New
             </div>
           </Link>
-        ) : null} 
+        ) : null}
         <DataTableViewOptions table={table} />
       </div>
     </div>

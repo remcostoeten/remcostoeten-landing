@@ -31,6 +31,7 @@ import { DataTableFloatingBar } from "./data-table-floating-bar"
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
 import { DataTableFilterableColumn, DataTableSearchableColumn } from "@/core/types/table"
+import { dummyData } from "@/data/todo/DummyData"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -251,6 +252,8 @@ export function DataTable<TData, TValue>({
     manualFiltering: true,
   })
 
+
+
   return (
     <div className="w-full space-y-2.5 overflow-auto">
       {advancedFilter ? (
@@ -261,9 +264,11 @@ export function DataTable<TData, TValue>({
         />
       ) : (
         <DataTableToolbar
-          table={table}
-          filterableColumns={filterableColumns}
-          searchableColumns={searchableColumns}
+          table={dummyData}
+          filterableColumns={[]}
+          searchableColumns={[]}
+          newRowLink="/new"
+          deleteRowsAction={() => { }}
         />
       )}
       <div className="rounded-md border">

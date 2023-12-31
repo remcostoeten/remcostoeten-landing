@@ -1,7 +1,7 @@
-import type { Option } from "@/core/types/table"
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons"
 import { type Column } from "@tanstack/react-table"
 
+import type { Option } from "@/core/types/table"
 import { cn } from "@/core/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"

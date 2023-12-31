@@ -176,8 +176,9 @@ export function MultiFilterRow<TData>({
     if (debounceValue.length > 0) {
       router.push(
         `${pathname}?${createQueryString({
-          [selectedOption?.value ?? ""]: `${debounceValue}${debounceValue.length > 0 ? `.${filterVariety}` : ""
-            }`,
+          [selectedOption?.value ?? ""]: `${debounceValue}${
+            debounceValue.length > 0 ? `.${filterVariety}` : ""
+          }`,
         })}`,
         {
           scroll: false,

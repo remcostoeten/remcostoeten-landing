@@ -16,6 +16,10 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table"
 
+import {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "@/core/types/table"
 import { useDebounce } from "@/core/hooks/use-debounce"
 import {
   Table,
@@ -30,7 +34,6 @@ import { DataTableAdvancedToolbar } from "./advanced/data-table-advanced-toolbar
 import { DataTableFloatingBar } from "./data-table-floating-bar"
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
-import { DataTableFilterableColumn, DataTableSearchableColumn } from "@/core/types/table"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -277,9 +280,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   )
                 })}

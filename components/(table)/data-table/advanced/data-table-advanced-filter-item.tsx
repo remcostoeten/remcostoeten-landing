@@ -1,8 +1,9 @@
 import * as React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-
 import { TrashIcon } from "@radix-ui/react-icons"
 import type { Table } from "@tanstack/react-table"
+
+import { DataTableFilterOption } from "@/core/types/table"
 import { cn } from "@/core/lib/utils"
 import { useDebounce } from "@/core/hooks/use-debounce"
 import { Button } from "@/components/ui/button"
@@ -22,7 +23,6 @@ import {
 } from "@/components/ui/select"
 
 import { DataTableFacetedFilter } from "../data-table-faceted-filter"
-import { DataTableFilterOption } from "@/core/types/table"
 
 interface DataTableAdvancedFilterItemProps<TData> {
   table: Table<TData>
@@ -47,12 +47,12 @@ export function DataTableAdvancedFilterItem<TData>({
   const selectedValues =
     selectedOption.items.length > 0
       ? Array.from(
-        new Set(
-          table
-            .getColumn(String(selectedOption.value))
-            ?.getFilterValue() as string[]
+          new Set(
+            table
+              .getColumn(String(selectedOption.value))
+              ?.getFilterValue() as string[]
+          )
         )
-      )
       : []
 
   const filterVarieties =
@@ -84,8 +84,9 @@ export function DataTableAdvancedFilterItem<TData>({
     if (debounceValue.length > 0) {
       router.push(
         `${pathname}?${createQueryString({
-          [selectedOption.value]: `${debounceValue}${debounceValue.length > 0 ? `.${filterVariety}` : ""
-            }`,
+          [selectedOption.value]: `${debounceValue}${
+            debounceValue.length > 0 ? `.${filterVariety}` : ""
+          }`,
         })}`,
         {
           scroll: false,

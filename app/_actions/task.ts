@@ -6,6 +6,7 @@ import { tasks, type Task } from "@/db/schema"
 import { eq } from "drizzle-orm"
 import { customAlphabet } from "nanoid"
 import type { z } from "zod"
+
 import type {
   updateTaskLabelSchema,
   updateTaskPrioritySchema,
@@ -14,12 +15,12 @@ import type {
 
 // Function to generate a random number between min and max
 function getRandomInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 // Function to generate a random element from an array
 function getRandomElement<T>(array: T[]): T {
-  return array[Math.floor(Math.random() * array.length)];
+  return array[Math.floor(Math.random() * array.length)]
 }
 
 export async function generateTasks({

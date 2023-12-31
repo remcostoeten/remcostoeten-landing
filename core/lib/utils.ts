@@ -1,6 +1,8 @@
 import { twMerge } from "tailwind-merge"
 
 import { ClassValue } from "../types/clsx"
+import { toast } from "sonner"
+import { z } from "zod";
 
 export function clsx(
   ...inputs: (
@@ -39,4 +41,17 @@ export function clsx(
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(...inputs))
+}
+
+export function catchError(err: unknown) {
+  if (err instanceof z.ZodError) {
+    const errors = err.issues.map((issue) => {
+      return issue.message;
+    });
+    return toast(errors.join("\n"));
+  } else if (err instanceof Error) {
+    return toast(err.message);
+  } else {
+    return toast("Something went wrong, please try again later.");
+  }
 }

@@ -1,6 +1,5 @@
 "use client"
 
-import { tasks, type Task } from "@/db/schema"
 import {
   ArrowUpIcon,
   CheckCircledIcon,
@@ -10,7 +9,7 @@ import {
 import { SelectTrigger } from "@radix-ui/react-select"
 import { type Table } from "@tanstack/react-table"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/core/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Select,
@@ -18,13 +17,21 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select"
-import { updateTaskPriority, updateTaskStatus } from "@/app/_actions/task"
 
 interface DataTableFloatingBarProps<TData>
   extends React.HTMLAttributes<HTMLElement> {
   table: Table<TData>
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
+
+const issues = {
+  status: {
+    enumValues: ["open", "closed", "in-progress"],
+  },
+  priority: {
+    enumValues: ["low", "medium", "high"],
+  },
+};
 
 export function DataTableFloatingBar<TData>({
   table,
@@ -36,24 +43,24 @@ export function DataTableFloatingBar<TData>({
 
   function updateTasksStatus(table: Table<TData>, status: string) {
     const selectedRows = table.getFilteredSelectedRowModel()
-      .rows as unknown as { original: Task }[]
+      .rows as unknown as { original: typeof issues }[]
 
     selectedRows.map(async (row) => {
       await updateTaskStatus({
         id: row.original.id,
-        status: status as Task["status"],
+        status: status as typeof issues["status"],
       })
     })
   }
 
   function updateTasksPriority(table: Table<TData>, priority: string) {
     const selectedRows = table.getFilteredSelectedRowModel()
-      .rows as unknown as { original: Task }[]
+      .rows as unknown as { original: typeof issues }[]
 
     selectedRows.map(async (row) => {
       await updateTaskPriority({
         id: row.original.id,
-        priority: priority as Task["priority"],
+        priority: priority as typeof issues["priority"],
       })
     })
   }
@@ -87,7 +94,7 @@ export function DataTableFloatingBar<TData>({
         </SelectTrigger>
         <SelectContent align="center">
           <SelectGroup>
-            {tasks.status.enumValues.map((status) => (
+            {issues.status.enumValues.map((status) => (
               <SelectItem key={status} value={status} className="capitalize">
                 {status}
               </SelectItem>
@@ -107,7 +114,7 @@ export function DataTableFloatingBar<TData>({
         </SelectTrigger>
         <SelectContent align="center">
           <SelectGroup>
-            {tasks.priority.enumValues.map((priority) => (
+            {issues.priority.enumValues.map((priority) => (
               <SelectItem
                 key={priority}
                 value={priority}

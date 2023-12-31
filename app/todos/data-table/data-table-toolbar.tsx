@@ -9,11 +9,11 @@ import type {
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
 import type { Table } from "@tanstack/react-table"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/core/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTableFacetedFilter } from "@/components/data-table/data-table-faceted-filter"
-import { DataTableViewOptions } from "@/components/data-table/data-table-view-options"
+import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { DataTableViewOptions } from "./data-table-view-options"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -114,7 +114,7 @@ export function DataTableToolbar<TData>({
               New
             </div>
           </Link>
-        ) : null}
+        ) : null} 
         <DataTableViewOptions table={table} />
       </div>
     </div>

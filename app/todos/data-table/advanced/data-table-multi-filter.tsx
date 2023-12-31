@@ -9,7 +9,7 @@ import {
 } from "@radix-ui/react-icons"
 import type { Table } from "@tanstack/react-table"
 
-import { useDebounce } from "@/hooks/use-debounce"
+import { useDebounce } from "@/core/hooks/useDebounce"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -176,9 +176,8 @@ export function MultiFilterRow<TData>({
     if (debounceValue.length > 0) {
       router.push(
         `${pathname}?${createQueryString({
-          [selectedOption?.value ?? ""]: `${debounceValue}${
-            debounceValue.length > 0 ? `.${filterVariety}` : ""
-          }`,
+          [selectedOption?.value ?? ""]: `${debounceValue}${debounceValue.length > 0 ? `.${filterVariety}` : ""
+            }`,
         })}`,
         {
           scroll: false,

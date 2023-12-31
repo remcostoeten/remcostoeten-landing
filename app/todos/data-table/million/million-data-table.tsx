@@ -1,9 +1,6 @@
 import * as React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/types"
+import type { Option } from "@/types"
 import {
   flexRender,
   getCoreRowModel,
@@ -20,7 +17,7 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table"
 
-import { useDebounce } from "@/hooks/use-debounce"
+import { useDebounce } from "@/core/hooks/useDebounce"
 import {
   Table,
   TableBody,
@@ -30,44 +27,38 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { DataTableAdvancedToolbar } from "./advanced/data-table-advanced-toolbar"
-import { DataTableFloatingBar } from "./data-table-floating-bar"
-import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar } from "./data-table-toolbar"
+import { DataTablePagination } from "../data-table-pagination"
+import { DataTableToolbar } from "../data-table-toolbar"
 
-interface DataTableProps<TData, TValue> {
+interface MillionDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   pageCount: number
-  filterableColumns?: DataTableFilterableColumn<TData>[]
-  searchableColumns?: DataTableSearchableColumn<TData>[]
-  advancedFilter?: boolean
-  floatingBar?: boolean
-  deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
+  filterableColumns?: {
+    id: keyof TData
+    title: string
+    options: Option[]
+  }[]
+  searchableColumns?: {
+    id: keyof TData
+    title: string
+  }[]
 }
 
-export function DataTable<TData, TValue>({
+export function MillionDataTable<TData, TValue>({
   columns,
   data,
   pageCount,
   filterableColumns = [],
   searchableColumns = [],
-  advancedFilter = false,
-  floatingBar = false,
-  deleteRowsAction,
-}: DataTableProps<TData, TValue>) {
+}: MillionDataTableProps<TData, TValue>) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   // Search params
   const page = searchParams?.get("page") ?? "1"
-  const pageAsNumber = Number(page)
-  const fallbackPage =
-    isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber
   const per_page = searchParams?.get("per_page") ?? "10"
-  const perPageAsNumber = Number(per_page)
-  const fallbackPerPage = isNaN(perPageAsNumber) ? 10 : perPageAsNumber
   const sort = searchParams?.get("sort")
   const [column, order] = sort?.split(".") ?? []
 
@@ -100,8 +91,8 @@ export function DataTable<TData, TValue>({
   // Handle server-side pagination
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
-      pageIndex: fallbackPage - 1,
-      pageSize: fallbackPerPage,
+      pageIndex: Number(page) - 1,
+      pageSize: Number(per_page),
     })
 
   const pagination = React.useMemo(
@@ -113,21 +104,11 @@ export function DataTable<TData, TValue>({
   )
 
   React.useEffect(() => {
-    setPagination({
-      pageIndex: fallbackPage - 1,
-      pageSize: fallbackPerPage,
-    })
-  }, [fallbackPage, fallbackPerPage])
-
-  React.useEffect(() => {
     router.push(
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
         per_page: pageSize,
-      })}`,
-      {
-        scroll: false,
-      }
+      })}`
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -175,7 +156,7 @@ export function DataTable<TData, TValue>({
       if (typeof column.value === "string") {
         router.push(
           `${pathname}?${createQueryString({
-            page: 1,
+            page,
             [column.id]: typeof column.value === "string" ? column.value : null,
           })}`
         )
@@ -189,7 +170,7 @@ export function DataTable<TData, TValue>({
       ) {
         router.push(
           `${pathname}?${createQueryString({
-            page: 1,
+            page,
             [key]: null,
           })}`
         )
@@ -203,7 +184,7 @@ export function DataTable<TData, TValue>({
       if (typeof column.value === "object" && Array.isArray(column.value)) {
         router.push(
           `${pathname}?${createQueryString({
-            page: 1,
+            page,
             [column.id]: column.value.join("."),
           })}`
         )
@@ -217,7 +198,7 @@ export function DataTable<TData, TValue>({
       ) {
         router.push(
           `${pathname}?${createQueryString({
-            page: 1,
+            page,
             [key]: null,
           })}`
         )
@@ -255,20 +236,12 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="w-full space-y-2.5 overflow-auto">
-      {advancedFilter ? (
-        <DataTableAdvancedToolbar
-          table={table}
-          filterableColumns={filterableColumns}
-          searchableColumns={searchableColumns}
-        />
-      ) : (
-        <DataTableToolbar
-          table={table}
-          filterableColumns={filterableColumns}
-          searchableColumns={searchableColumns}
-        />
-      )}
+    <div className="w-full space-y-4 overflow-auto p-1">
+      <DataTableToolbar
+        table={table}
+        filterableColumns={filterableColumns}
+        searchableColumns={searchableColumns}
+      />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -280,9 +253,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
@@ -319,15 +292,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="space-y-2.5">
-        <DataTablePagination table={table} />
-        {floatingBar ? (
-          <DataTableFloatingBar
-            table={table}
-            deleteRowsAction={deleteRowsAction}
-          />
-        ) : null}
-      </div>
+      <DataTablePagination table={table} />
     </div>
   )
 }

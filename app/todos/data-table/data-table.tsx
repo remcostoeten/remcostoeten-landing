@@ -1,6 +1,5 @@
 import * as React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import type { Option } from "@/types"
 import {
   flexRender,
   getCoreRowModel,
@@ -17,7 +16,7 @@ import {
   type VisibilityState,
 } from "@tanstack/react-table"
 
-import { useDebounce } from "@/hooks/use-debounce"
+import { useDebounce } from "@/core/hooks/useDebounce"
 import {
   Table,
   TableBody,
@@ -27,38 +26,45 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { DataTablePagination } from "../data-table-pagination"
-import { DataTableToolbar } from "../data-table-toolbar"
+import { DataTableAdvancedToolbar } from "./advanced/data-table-advanced-toolbar"
+import { DataTableFloatingBar } from "./data-table-floating-bar"
+import { DataTablePagination } from "./data-table-pagination"
+import { DataTableToolbar } from "./data-table-toolbar"
+import { DataTableFilterableColumn, DataTableSearchableColumn } from "@/core/types/table"
 
-interface MillionDataTableProps<TData, TValue> {
+interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   pageCount: number
-  filterableColumns?: {
-    id: keyof TData
-    title: string
-    options: Option[]
-  }[]
-  searchableColumns?: {
-    id: keyof TData
-    title: string
-  }[]
+  filterableColumns?: DataTableFilterableColumn<TData>[]
+  searchableColumns?: DataTableSearchableColumn<TData>[]
+  advancedFilter?: boolean
+  floatingBar?: boolean
+  deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export function MillionDataTable<TData, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
   pageCount,
   filterableColumns = [],
   searchableColumns = [],
-}: MillionDataTableProps<TData, TValue>) {
+  advancedFilter = false,
+  floatingBar = false,
+  deleteRowsAction,
+}: DataTableProps<TData, TValue>) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   // Search params
   const page = searchParams?.get("page") ?? "1"
+  const pageAsNumber = Number(page)
+  const fallbackPage =
+    isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber
   const per_page = searchParams?.get("per_page") ?? "10"
+  const perPageAsNumber = Number(per_page)
+  const fallbackPerPage = isNaN(perPageAsNumber) ? 10 : perPageAsNumber
   const sort = searchParams?.get("sort")
   const [column, order] = sort?.split(".") ?? []
 
@@ -91,8 +97,8 @@ export function MillionDataTable<TData, TValue>({
   // Handle server-side pagination
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
-      pageIndex: Number(page) - 1,
-      pageSize: Number(per_page),
+      pageIndex: fallbackPage - 1,
+      pageSize: fallbackPerPage,
     })
 
   const pagination = React.useMemo(
@@ -104,11 +110,21 @@ export function MillionDataTable<TData, TValue>({
   )
 
   React.useEffect(() => {
+    setPagination({
+      pageIndex: fallbackPage - 1,
+      pageSize: fallbackPerPage,
+    })
+  }, [fallbackPage, fallbackPerPage])
+
+  React.useEffect(() => {
     router.push(
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
         per_page: pageSize,
-      })}`
+      })}`,
+      {
+        scroll: false,
+      }
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,7 +172,7 @@ export function MillionDataTable<TData, TValue>({
       if (typeof column.value === "string") {
         router.push(
           `${pathname}?${createQueryString({
-            page,
+            page: 1,
             [column.id]: typeof column.value === "string" ? column.value : null,
           })}`
         )
@@ -170,7 +186,7 @@ export function MillionDataTable<TData, TValue>({
       ) {
         router.push(
           `${pathname}?${createQueryString({
-            page,
+            page: 1,
             [key]: null,
           })}`
         )
@@ -184,7 +200,7 @@ export function MillionDataTable<TData, TValue>({
       if (typeof column.value === "object" && Array.isArray(column.value)) {
         router.push(
           `${pathname}?${createQueryString({
-            page,
+            page: 1,
             [column.id]: column.value.join("."),
           })}`
         )
@@ -198,7 +214,7 @@ export function MillionDataTable<TData, TValue>({
       ) {
         router.push(
           `${pathname}?${createQueryString({
-            page,
+            page: 1,
             [key]: null,
           })}`
         )
@@ -236,12 +252,20 @@ export function MillionDataTable<TData, TValue>({
   })
 
   return (
-    <div className="w-full space-y-4 overflow-auto p-1">
-      <DataTableToolbar
-        table={table}
-        filterableColumns={filterableColumns}
-        searchableColumns={searchableColumns}
-      />
+    <div className="w-full space-y-2.5 overflow-auto">
+      {advancedFilter ? (
+        <DataTableAdvancedToolbar
+          table={table}
+          filterableColumns={filterableColumns}
+          searchableColumns={searchableColumns}
+        />
+      ) : (
+        <DataTableToolbar
+          table={table}
+          filterableColumns={filterableColumns}
+          searchableColumns={searchableColumns}
+        />
+      )}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -253,9 +277,9 @@ export function MillionDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
@@ -292,7 +316,15 @@ export function MillionDataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      <div className="space-y-2.5">
+        <DataTablePagination table={table} />
+        {floatingBar ? (
+          <DataTableFloatingBar
+            table={table}
+            deleteRowsAction={deleteRowsAction}
+          />
+        ) : null}
+      </div>
     </div>
   )
 }

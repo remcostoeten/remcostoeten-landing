@@ -18,7 +18,6 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/components/ui/select"
-import { updateTaskPriority, updateTaskStatus } from "@/app/_actions/task"
 
 interface DataTableFloatingBarProps<TData>
   extends React.HTMLAttributes<HTMLElement> {
@@ -38,24 +37,24 @@ export function DataTableFloatingBar<TData>({
     const selectedRows = table.getFilteredSelectedRowModel()
       .rows as unknown as { original: Task }[]
 
-    selectedRows.map(async (row) => {
-      await updateTaskStatus({
-        id: row.original.id,
-        status: status as Task["status"],
-      })
-    })
+    // selectedRows.map(async (row) => {
+    //   await updateTaskStatus({
+    //     id: row.original.id,
+    //     status: status as Task["status"],
+    //   })
+    // })
   }
 
   function updateTasksPriority(table: Table<TData>, priority: string) {
     const selectedRows = table.getFilteredSelectedRowModel()
       .rows as unknown as { original: Task }[]
 
-    selectedRows.map(async (row) => {
-      await updateTaskPriority({
-        id: row.original.id,
-        priority: priority as Task["priority"],
-      })
-    })
+    // selectedRows.map(async (row) => {
+    //   await updateTaskPriority({
+    //     id: row.original.id,
+    //     priority: priority as Task["priority"],
+    //   })
+    // })
   }
 
   return (

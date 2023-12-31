@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import type { DataTableFilterOption } from "@/types"
 import {
   CaretSortIcon,
   ChevronDownIcon,
@@ -9,6 +8,7 @@ import {
   TextIcon,
 } from "@radix-ui/react-icons"
 
+import { DataTableFilterOption } from "@/core/types/table"
 import { Button } from "@/components/ui/button"
 import {
   Command,

@@ -179,21 +179,6 @@ pre {
   scrollbar-width: none;
 }
 
-.sticky-nav {
-  background: rgba(9, 1, 23, 0.75);
-  backdrop-filter: blur(4.5px);
-  -webkit-backdrop-filter: blur(4.5px);
-}
-
-@supports not (backdrop-filter: none) {
-  .sticky-nav {
-    background-color: #f7f9fb;
-    color: #090117;
-    opacity: 1;
-    backdrop-filter: none;
-  }
-}
-
 .prose .anchor {
   position: absolute;
   visibility: hidden;

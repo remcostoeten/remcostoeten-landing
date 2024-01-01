@@ -87,3 +87,10 @@ export function catchError(err: unknown) {
     return toast("Something went wrong, please try again later.")
   }
 }
+
+export function formatDate(date: string): string {
+  const year = date.substring(0, 4);
+  const strippedYear = year.substring(2);
+  const restOfDate = date.substring(5);
+  return `${restOfDate}-${strippedYear}`;
+}

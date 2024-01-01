@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import Seperator from "./Seperator"
+import Seperator from "./layout/Seperator"
 import LoginLink from "./menu/LoginLink"
 import MenuItem from "./menu/MenuItem"
 
@@ -48,7 +48,7 @@ export default function SiteHeader() {
             <ThemeToggle />
           </div>
         </div>
-        <Seperator spacing="12px" />
+        <Seperator spacing="12" />
         <ul className="grow">
           {navigationMenu.map((navItem, index) => (
             <MenuItem

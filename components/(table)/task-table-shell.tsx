@@ -39,7 +39,7 @@ import { DataTable } from "./data-table/data-table"
 import { DataTableColumnHeader } from "./data-table/data-table-column-header"
 
 const labels: {
-  value: Task["label"]
+  value: Taskss["label"]
   label: string
 }[] = [
     {
@@ -181,6 +181,20 @@ export function TasksTableShell({ data, pageCount }: TasksTableShellProps) {
         filterFn: (row, id, value) => {
           return value instanceof Array && value.includes(row.getValue(id))
         },
+      },
+      {
+        accessorKey: "created_at",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Created At" />
+        ),
+        cell: ({ row }) => {
+          const createdAt = row.getValue("created_at");
+          return (
+            <div>{createdAt as React.ReactNode}</div>
+          );
+        },
+        enableSorting: true,
+        enableHiding: false,
       },
       {
         accessorKey: "priority",

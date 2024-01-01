@@ -4,7 +4,7 @@ import { Icons } from "@/components/icons";
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { FilterIcon } from "lucide-react";
@@ -30,13 +30,6 @@ function SearchBar({ onSearch }) {
 
 function FilterMenu({ onFilter }) {
     const [selectedFilter, setSelectedFilter] = useState('all');
-
-    const handleSelect = (value) => {
-        setSelectedFilter(value);
-        if (value.trim() !== '') {
-            onFilter(value);
-        }
-    };
 
     return (
         <DropdownMenu>
@@ -73,7 +66,7 @@ function AddNew() {
             <AlertDialogContent>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <Card>
-                    Add New
+                    add new
                 </Card>
             </AlertDialogContent>
         </AlertDialog>

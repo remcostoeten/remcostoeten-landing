@@ -42,19 +42,19 @@ const labels: {
   value: Task["label"]
   label: string
 }[] = [
-    {
-      value: "bug",
-      label: "Bug",
-    },
-    {
-      value: "feature",
-      label: "Feature",
-    },
-    {
-      value: "documentation",
-      label: "Documentation",
-    },
-  ]
+  {
+    value: "bug",
+    label: "Bug",
+  },
+  {
+    value: "feature",
+    label: "Feature",
+  },
+  {
+    value: "documentation",
+    label: "Documentation",
+  },
+]
 
 interface TasksTableShellProps {
   data: Task[]
@@ -353,7 +353,9 @@ export function TasksTableShell({ data, pageCount }: TasksTableShellProps) {
 function deleteTask(id: number): any {
   throw new Error("Function not implemented.")
 }
-function updateTaskLabel(arg0: { id: number; label: "bug" | "feature" | "enhancement" | "documentation" }) {
+function updateTaskLabel(arg0: {
+  id: number
+  label: "bug" | "feature" | "enhancement" | "documentation"
+}) {
   throw new Error("Function not implemented.")
 }
-

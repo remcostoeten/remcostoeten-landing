@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import Seperator from "./Seperator"
+import Seperator from "./layout/Seperator"
 import LoginLink from "./menu/LoginLink"
 import MenuItem from "./menu/MenuItem"
 
@@ -13,6 +13,7 @@ const navigationMenu = [
   // { label: "Projects", icon: Icons.code },
   { label: "Blog", icon: Icons.code },
   { label: "Issues", icon: Icons.todo },
+  // { label: "github-issues", icon: Icons.code },
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
@@ -48,7 +49,7 @@ export default function SiteHeader() {
             <ThemeToggle />
           </div>
         </div>
-        <Seperator spacing="12px" />
+        <Seperator spacing="12" />
         <ul className="grow">
           {navigationMenu.map((navItem, index) => (
             <MenuItem

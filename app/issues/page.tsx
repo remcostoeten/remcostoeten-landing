@@ -17,11 +17,10 @@ interface IndexPageProps {
 const IndexPage: React.FC<IndexPageProps> = ({ searchParams }) => {
   const [allTasks, setAllTasks] = useState([])
 
-
   useEffect(() => {
     setTimeout(() => {
       toast("WiP. Crud / filters are under construction")
-    }, 2222);
+    }, 2222)
 
     const getIssues = async () => {
       const tasks = await fetchGithubIssues()

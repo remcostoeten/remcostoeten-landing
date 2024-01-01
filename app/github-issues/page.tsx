@@ -1,5 +1,6 @@
 "use client"
 
+
 import {
     Table,
     TableBody, TableHead,
@@ -10,17 +11,24 @@ import {
 import RowUi from "./compopnents/RowUi"
 import TableToolbar from "./compopnents/TableToolbar"
 
-export default function page() {
+export default function Page() {
+    const handleSearch = (searchTerm) => {
+        console.log(`Search for ${searchTerm}`);
+    };
+
+    const handleFilter = (filter) => {
+        console.log(`Filter by ${filter}`);
+    };
 
     return (
         <div className="flex flex-col gap-4">
             <TableToolbar
-                onSearch={(searchTerm) => console.log(`Search for ${searchTerm}`)}
-                onFilter={(filter) => console.log(`Filter by ${filter}`)}
+                onSearch={handleSearch}
+                onFilter={handleFilter}
             />
             <Table
                 key="1"
-                className="divide-y divide-gray-900  !rounded-md border text-white"
+                className="divide-y divide-gray-900 !rounded-md border text-white"
             >
                 <TableHeader className="[&_tr]:border-b">
                     <TableRow>
@@ -58,18 +66,8 @@ export default function page() {
                         priority="low"
                         status="In Progress"
                         onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                    <RowUi
-                        taskId="TASK-1"
-                        dates={["2022-01-01"]}
-                        label="Demo Label"
-                        title="Demo Title"
-                        priority="low"
-                        status="In Progress"
-                        onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                </TableBody>
+                    />                </TableBody>
             </Table>
         </div>
-    )
+    );
 }

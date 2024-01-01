@@ -1,16 +1,19 @@
-'use client';
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { DropdownMenuTrigger, DropdownMenuRadioItem, DropdownMenuRadioGroup, DropdownMenuContent, DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
+'use client'
+
 import { Icons } from "@/components/icons";
-import { SearchIcon, FilterIcon } from "lucide-react";
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { FilterIcon } from "lucide-react";
 import { useState } from "react";
 
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (event) => {
-        console.log('d');
         setSearchTerm(event.target.value);
         if (event.target.value.trim() !== '') {
             onSearch(event.target.value);
@@ -59,16 +62,32 @@ function FilterMenu({ onFilter }) {
     );
 }
 
+function AddNew() {
+    return (
+        <AlertDialog >
+            <AlertDialogTrigger className="flex w-full items-center justify-between">
+                <Button className="ml-auto" variant="outline">
+                    Add New
+                </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <Card>
+                    Add New
+                </Card>
+            </AlertDialogContent>
+        </AlertDialog>
+    );
+}
+
 export default function TableToolbar({ onSearch, onFilter }) {
     return (
-        <div className="rounded-lgshadow-sm flex items-center justify-between ">
+        <div className="flex items-center justify-between rounded-lg shadow-sm">
             <div className="flex items-center space-x-4">
                 <SearchBar onSearch={onSearch} />
                 <FilterMenu onFilter={onFilter} />
             </div>
-            <Button className="ml-auto" variant="outline">
-                Add New
-            </Button>
+            <AddNew />
         </div>
-    )
+    );
 }

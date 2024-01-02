@@ -6,6 +6,10 @@ import {
   type Icon as LucideIcon,
 } from "lucide-react"
 
+interface ExtendedLucideProps extends LucideProps {
+  className?: string;
+}
+
 export type Icon = LucideIcon
 
 export const Icons = {
@@ -103,7 +107,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  search: (props: LucideProps) => (
+  search: (props: ExtendedLucideProps) => (
     <svg
       width="20"
       height="20"

@@ -46,8 +46,9 @@ function SearchBar({ onSearch }) {
 }
 
 function FilterMenu({ onFilter }) {
-  const [selectedFilter, setSelectedFilter] = useState("all")
   const [labels, setLabels] = useState([])
+  const [selectedFilter, setSelectedFilter] = useState(null)
+  const [issues, setIssues] = useState([]);
 
   useEffect(() => {
     const getLabels = async () => {
@@ -74,10 +75,16 @@ function FilterMenu({ onFilter }) {
     getLabels()
   }, [])
 
+
   const handleFilterChange = (filter) => {
-    setSelectedFilter(filter)
-    onFilter(filter)
-  }
+    setSelectedFilter(filter);
+
+    const filteredIssues = issues.filter(issue =>
+      issue.labels.some(label => label.name === filter)
+    );
+
+    onFilter(filteredIssues);
+  };
 
   return (
     <DropdownMenu>
@@ -90,7 +97,7 @@ function FilterMenu({ onFilter }) {
       <DropdownMenuContent align="start" className="w-[200px]">
 
         {labels.map((label) => (
-          <DropdownMenuItem className="flex flex-col gap-4 align-start items-start"
+          <DropdownMenuItem className="align-start flex flex-col items-start gap-4"
             value={selectedFilter}
             onValueChange={handleFilterChange}
           >   <LabelPill

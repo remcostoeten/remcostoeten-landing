@@ -68,7 +68,7 @@ export default function RowUi({
                     color={`#${label.color}`}
                     background={`#${label.color}`}
                     borderColor={`#${label.color}`}
-                  />
+                  >{label.name}</LabelPill>
                 ))}
             </div>
           </span>

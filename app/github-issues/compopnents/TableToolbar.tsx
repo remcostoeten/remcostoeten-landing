@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { FilterIcon } from "lucide-react"
+import { FilterIcon, XIcon } from "lucide-react"
 
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
 import {
@@ -33,7 +33,7 @@ function SearchBar() {
 function FilterMenu({ onFilter }) {
   const [issues, setIssues] = useState([])
   const [labels, setLabels] = useState([])
-
+  const [activeFilters, setActiveFilters] = useState([]);
   useEffect(() => {
     const getLabels = async () => {
       const tasks = await fetchGithubIssues()
@@ -60,10 +60,24 @@ function FilterMenu({ onFilter }) {
   }, [])
 
   const handleLabelClick = (labelName) => {
-    if (onFilter) {
-      onFilter(labelName)
+    if (activeFilters.includes(labelName)) {
+      setActiveFilters(activeFilters.filter(filter => filter !== labelName));
+    } else {
+      setActiveFilters([...activeFilters, labelName]);
     }
-  }
+
+    if (onFilter) {
+      onFilter(labelName);
+    }
+  };
+
+  const handleFilterRemove = (filterToRemove) => {
+    setActiveFilters(activeFilters.filter(filter => filter !== filterToRemove));
+    setActiveFilters([]);
+    if (onFilter) {
+      onFilter("all");
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -73,22 +87,36 @@ function FilterMenu({ onFilter }) {
           Filter
         </Button>
       </DropdownMenuTrigger>
+      {activeFilters.length > 0 && (
+        <div className="flex gap-2 ml-2">
+          {activeFilters.map((filter, index) => (
+            <div key={index} className="flex items-center text-xs text-gray-500 00 rounded-full px-2 py-1 mr-2 mb-2">
+              {filter}
+              <XIcon className="ml-2 h-4 w-4 text-red-500 cursor-pointer" onClick={() => handleFilterRemove(filter)} />
+            </div>
+          ))}
+        </div>
+      )}
       <DropdownMenuContent align="start" className="w-[200px]">
         {labels.map((label) => (
-          <DropdownMenuItem
-            key={label.name}
-            className="align-start flex flex-col items-start gap-4"
-            onClick={() => handleLabelClick(label.name)}
-          >
-            <LabelPill
-              label={label.name}
-              color={`#${label.color}`}
-              background={`#${label.color}`}
-              borderColor={`#${label.color}`}
+          <div className="relative" key={label.name}>
+            <DropdownMenuItem
+              className="align-start flex flex-col items-start gap-4"
+              onClick={() => handleLabelClick(label.name)}
             >
-              {label.name}
-            </LabelPill>
-          </DropdownMenuItem>
+              <LabelPill
+                label={label.name}
+                color={`#${label.color}`}
+                background={`#${label.color}`}
+                borderColor={`#${label.color}`}
+              >
+                {label.name}
+              </LabelPill>
+            </DropdownMenuItem>
+            {activeFilters.includes(label.name) && (
+              <XIcon className="absolute right-0 top-0 h-4 w-4 text-red-500" />
+            )}
+          </div>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

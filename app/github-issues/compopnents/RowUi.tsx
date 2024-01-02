@@ -4,24 +4,28 @@ import { formatDate } from "@/core/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+
 import LabelPill from "./LabelPill"
 
 type Label = {
-  name: string;
-  color: string;
-};
+  name: string
+  color: string
+}
 
 type RowUiProps = {
-  taskId: string;
-  dates?: string[];
-  labels: Label[];
-  title: string;
-  priority: string;
-  onCheckboxChange?: () => void;
-};
-
+  taskId: string
+  dates?: string[]
+  labels: Label[]
+  title: string
+  priority: string
+  onCheckboxChange?: () => void
+}
 
 export default function RowUi({
   taskId,
@@ -39,28 +43,33 @@ export default function RowUi({
         </TableCell>
         <TableCell className="flex flex-col  text-left font-medium">
           <span>{taskId}</span>
-          {dates && dates.map((date) => {
-            return <span className="text-[12px]">{formatDate(date)}</span>
-          })}
+          {dates &&
+            dates.map((date) => {
+              return <span className="text-[12px]">{formatDate(date)}</span>
+            })}
         </TableCell>
         <TableCell>
           <span className="flex items-center justify-between text-left">
             <Tooltip>
-              <TooltipTrigger className="text-left">{title.slice(0, 50)}{title.length > 33 ? '...' : ''}</TooltipTrigger>
+              <TooltipTrigger className="text-left">
+                {title.slice(0, 50)}
+                {title.length > 33 ? "..." : ""}
+              </TooltipTrigger>
               <TooltipContent>
                 <p>{title}</p>
               </TooltipContent>
             </Tooltip>
             <div className="flex items-center gap-2">
-              {labels && labels.map((label, index) => (
-                <LabelPill
-                  key={index}
-                  label={label.name}
-                  color={`#${label.color}`}
-                  background={`#${label.color}`}
-                  borderColor={`#${label.color}`}
-                />
-              ))}
+              {labels &&
+                labels.map((label, index) => (
+                  <LabelPill
+                    key={index}
+                    label={label.name}
+                    color={`#${label.color}`}
+                    background={`#${label.color}`}
+                    borderColor={`#${label.color}`}
+                  />
+                ))}
             </div>
           </span>
         </TableCell>

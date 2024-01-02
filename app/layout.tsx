@@ -8,11 +8,11 @@ import { siteConfig } from "@/core/config/site"
 import { fontSans } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { TooltipProvider } from "@/components/ui/tooltip"
 
 export const viewport = {
   themeColor: [

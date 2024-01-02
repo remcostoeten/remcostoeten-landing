@@ -13,6 +13,7 @@ import {
 
 import RowUi from "./compopnents/RowUi"
 import TableToolbar from "./compopnents/TableToolbar"
+import Spinner from "@/components/effects/Spinner"
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -55,7 +56,7 @@ export default function Page() {
 
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
       <div className="flex flex-col gap-4">
         <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
         <Table

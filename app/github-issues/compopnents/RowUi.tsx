@@ -12,6 +12,7 @@ import {
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
+import Spinner from "@/components/effects/Spinner"
 
 type Label = {
   name: string
@@ -36,7 +37,7 @@ export default function RowUi({
   onCheckboxChange,
 }: RowUiProps) {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">
         <TableCell>
           <Checkbox onChange={onCheckboxChange} />

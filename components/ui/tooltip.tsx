@@ -8,11 +8,6 @@ import { cn } from "@/core/lib/utils"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
-TooltipPrimitive.Root.defaultProps = {
-  ...TooltipPrimitive.Root.defaultProps,
-  delayDuration: 200,
-}
-
 const Tooltip = TooltipPrimitive.Root
 
 const TooltipTrigger = TooltipPrimitive.Trigger

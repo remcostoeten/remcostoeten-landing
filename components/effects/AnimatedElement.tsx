@@ -5,6 +5,7 @@ import { HTMLMotionProps, motion } from "framer-motion"
 import { BEZIER_CURVES, BezierCurve } from "@/core/lib/bezier-curves"
 
 interface AnimatedElementProps extends HTMLMotionProps<"div"> {
+  as?: keyof JSX.IntrinsicElements
   opacity?: number
   duration?: number
   delay?: number
@@ -17,6 +18,7 @@ interface AnimatedElementProps extends HTMLMotionProps<"div"> {
 }
 
 export default function AnimatedElement({
+  as = "div",
   opacity = 0,
   duration = 0.5,
   delay = 0,
@@ -28,14 +30,14 @@ export default function AnimatedElement({
   children,
   ...restProps
 }: AnimatedElementProps) {
-  const Element = motion.div
+  const Element = motion[as]
 
   const animationProps = {
     initial: { opacity: opacity, x, y, scale },
     animate: {
       opacity: 1,
-      x,
-      y,
+      x: 0,
+      y: 0,
       scale,
       transition: {
         duration,
@@ -51,6 +53,7 @@ export default function AnimatedElement({
     </Element>
   )
 }
+
 /**
  * An animated element component that can be used with various HTML elements.
  *

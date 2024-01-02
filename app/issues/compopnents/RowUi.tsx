@@ -1,7 +1,6 @@
-import { ChangeEvent, Suspense } from "react"
+import { Suspense } from "react"
 
 import { formatDate } from "@/core/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
 import {
@@ -9,6 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import Spinner from "@/components/effects/Spinner"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
@@ -36,7 +36,7 @@ export default function RowUi({
   onCheckboxChange,
 }: RowUiProps) {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">
         <TableCell>
           <Checkbox onChange={onCheckboxChange} />
@@ -68,7 +68,9 @@ export default function RowUi({
                     color={`#${label.color}`}
                     background={`#${label.color}`}
                     borderColor={`#${label.color}`}
-                  />
+                  >
+                    {label.name}
+                  </LabelPill>
                 ))}
             </div>
           </span>

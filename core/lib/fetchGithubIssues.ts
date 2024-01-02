@@ -5,6 +5,7 @@ export const fetchGithubIssues = async () => {
   const data = await response.json()
   return data.map((issue) => ({
     id: issue.id,
+    link: issue.html_url,
     code: `TASK-${issue.number}`,
     title: issue.title,
     status: issue.state === "open" ? "todo" : "done",

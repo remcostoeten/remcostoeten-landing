@@ -8,6 +8,9 @@ export const fetchGithubIssues = async () => {
     code: `TASK-${issue.number}`,
     title: issue.title,
     status: issue.state === "open" ? "todo" : "done",
-    labels: issue.labels.map((label) => ({ name: label.name, color: label.color })),
+    labels: issue.labels.map((label) => ({
+      name: label.name,
+      color: label.color,
+    })),
   }))
 }

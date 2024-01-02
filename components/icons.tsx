@@ -7,7 +7,7 @@ import {
 } from "lucide-react"
 
 interface ExtendedLucideProps extends LucideProps {
-  className?: string;
+  className?: string
 }
 
 export type Icon = LucideIcon

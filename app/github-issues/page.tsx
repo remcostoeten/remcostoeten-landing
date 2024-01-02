@@ -1,6 +1,6 @@
 "use client"
 
-import React, { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
 import {
@@ -44,14 +44,15 @@ export default function Page() {
 
   const handleFilter = (filter) => {
     if (filter === "all") {
-      setFilteredTasks(tasks)
+      setFilteredTasks(tasks);
     } else {
       const filtered = tasks.filter((task) =>
         task.labels.some((label) => label.name === filter)
-      )
-      setFilteredTasks(filtered)
+      );
+      setFilteredTasks(filtered);
     }
-  }
+  };
+
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -78,13 +79,13 @@ export default function Page() {
               ]
               const filteredLabels = task.labels
                 ? task.labels.filter(
-                    (label) => !priorityLabels.includes(label.name)
-                  )
+                  (label) => !priorityLabels.includes(label.name)
+                )
                 : []
               const priorityLabel = task.labels
                 ? task.labels.find((label) =>
-                    priorityLabels.includes(label.name)
-                  )
+                  priorityLabels.includes(label.name)
+                )
                 : undefined
               const strippedPriorityLabel =
                 priorityLabel && priorityLabel.name.replace(" priority", "")

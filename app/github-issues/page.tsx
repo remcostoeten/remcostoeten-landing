@@ -10,14 +10,11 @@ import {
 import TableToolbar from "./compopnents/TableToolbar";
 import RowUi from "./compopnents/RowUi";
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
-import LabelPill from "./compopnents/LabelPill";
-
-
 
 export default function Page() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [filterTerm, setFilterTerm] = useState("");
     const [tasks, setTasks] = useState([]);
+    const [filteredTasks, setFilteredTasks] = useState([]);
 
     useEffect(() => {
         const getIssues = async () => {
@@ -32,14 +29,26 @@ export default function Page() {
         setSearchTerm(term);
     };
 
-    const handleFilter = (term) => {
-        setFilterTerm(term);
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const fetchedTasks = await fetchGithubIssues();
+            setTasks(fetchedTasks);
+            setFilteredTasks(fetchedTasks);
+        };
+
+        fetchTasks();
+    }, []);
+
+    const handleFilter = (filter) => {
+        if (filter === 'all') {
+            setFilteredTasks(tasks);
+        } else {
+            const filtered = tasks.filter(task => task.labels.some(label => label.name === filter));
+            setFilteredTasks(filtered);
+        }
     };
 
-    const filteredTasks = tasks.filter(task =>
-        task.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        task.status.toLowerCase().includes(filterTerm.toLowerCase())
-    );
 
     return (
         <Suspense fallback={<div>Loading...</div>}>

@@ -2,13 +2,14 @@ import { hexToRGBA } from '@/core/lib/utils';
 import React from 'react'
 
 interface LabelPillProps {
-    label: string;
-    color: string;
-    background: string;
-    borderColor: string;
+    label?: string;
+    color?: string;
+    background?: string;
+    borderColor?: string;
+    children?: React.ReactNode;
 }
 
-export default function LabelPill({ label, color, background, borderColor }: LabelPillProps) {
+export default function LabelPill({ label, children, color, background, borderColor }: LabelPillProps) {
     const backgroundColor = hexToRGBA(background, 0.16);
 
     return (
@@ -31,7 +32,7 @@ export default function LabelPill({ label, color, background, borderColor }: Lab
                 boxSizing: 'border-box',
             }}
         >
-            {label}
+            {children}
         </span>
     );
 }

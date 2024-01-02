@@ -2,16 +2,17 @@
 
 import { Icons } from "@/components/icons";
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import { FilterIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
+import LabelPill from "./LabelPill";
 
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState('');
+
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -30,6 +31,30 @@ function SearchBar({ onSearch }) {
 
 function FilterMenu({ onFilter }) {
     const [selectedFilter, setSelectedFilter] = useState('all');
+    const [labels, setLabels] = useState([]);
+
+    useEffect(() => {
+        const getLabels = async () => {
+            const tasks = await fetchGithubIssues();
+            const priorityLabels = ["Medium priority", "High priority", "Low priority"];
+            const allLabels = tasks.flatMap(task => task.labels || []);
+            const filteredLabels = allLabels.filter(label => !priorityLabels.includes(label.name));
+
+            // Create an array of unique labels
+            const uniqueLabels = filteredLabels.reduce((unique, label) => {
+                return unique.some(u => u.name === label.name) ? unique : [...unique, label];
+            }, []);
+
+            setLabels(uniqueLabels);
+        };
+
+        getLabels();
+    }, []);
+
+    const handleFilterChange = (filter) => {
+        setSelectedFilter(filter);
+        onFilter(filter);
+    };
 
     return (
         <DropdownMenu>
@@ -40,15 +65,18 @@ function FilterMenu({ onFilter }) {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[200px]">
-                <DropdownMenuRadioGroup value="all">
+                <DropdownMenuRadioGroup value={selectedFilter} onValueChange={handleFilterChange}>
                     <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="active">Active</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="inactive">Inactive</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="priority">Priority</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="closed">Closed</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="opened">Opened</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="date">Date</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="label">Label</DropdownMenuRadioItem>
+                    {labels.map(label => (
+                        <LabelPill
+                            label={label.name}
+                            color={`#${label.color}`}
+                            background={`#${label.color}`}
+                            borderColor={`#${label.color}`}
+                        >
+                            <DropdownMenuRadioItem value={label.name}>{label.name}</DropdownMenuRadioItem>
+                        </LabelPill>
+                    ))}
                 </DropdownMenuRadioGroup>
             </DropdownMenuContent>
         </DropdownMenu>

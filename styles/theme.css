@@ -1,5 +1,26 @@
-.body-gradient {
-    background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0));
+body {
+    position: relative;
+}
+
+body::after {
+    content: "";
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    background: radial-gradient(ellipse 60% 50% at 50% -30%,
+            rgba(45, 212, 191, 0.15) 0,
+            rgba(8, 0, 0, 0));
+    animation: A 5s repeat;
+}
+
+@keyframes A {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .error-page {

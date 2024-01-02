@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import Link from "next/link"
+
 import { formatDate } from "@/core/lib/utils"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
@@ -42,7 +43,6 @@ export default function RowUi({
   return (
     <Suspense fallback={<Spinner />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">
-
         <TableCell>
           <Checkbox onChange={onCheckboxChange} />
         </TableCell>
@@ -54,20 +54,30 @@ export default function RowUi({
             })}
         </TableCell>
         <TableCell>
-
-          <Link className="flex items-center justify-between text-left" href={`https://github.com/remcostoeten/blog-remcostoetn/issues/${taskId.replace('TASK-', '')}`} target="_blank">            <Tooltip>
-            <TooltipTrigger className="text-left">
-              {title.slice(0, 50)}
-              {title.length > 33 ? "..." : ""}
-            </TooltipTrigger>
-            <TooltipContent>
-              {link ? (
-                <Link href={link} target="_blank" rel="noopener noreferrer">{title}</Link>
-              ) : (
-                title
-              )}
-            </TooltipContent>
-          </Tooltip>
+          <Link
+            className="flex items-center justify-between text-left"
+            href={`https://github.com/remcostoeten/blog-remcostoetn/issues/${taskId.replace(
+              "TASK-",
+              ""
+            )}`}
+            target="_blank"
+          >
+            {" "}
+            <Tooltip>
+              <TooltipTrigger className="text-left">
+                {title.slice(0, 50)}
+                {title.length > 33 ? "..." : ""}
+              </TooltipTrigger>
+              <TooltipContent>
+                {link ? (
+                  <Link href={link} target="_blank" rel="noopener noreferrer">
+                    {title}
+                  </Link>
+                ) : (
+                  title
+                )}
+              </TooltipContent>
+            </Tooltip>
             <div className="flex items-center gap-2">
               {labels &&
                 labels.map((label, index) => (
@@ -99,6 +109,6 @@ export default function RowUi({
           </span>
         </TableCell>
       </TableRow>
-    </Suspense >
+    </Suspense>
   )
 }

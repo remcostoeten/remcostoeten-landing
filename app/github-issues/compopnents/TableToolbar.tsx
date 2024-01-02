@@ -33,7 +33,7 @@ function SearchBar() {
 function FilterMenu({ onFilter }) {
   const [issues, setIssues] = useState([])
   const [labels, setLabels] = useState([])
-  const [activeFilters, setActiveFilters] = useState([]);
+  const [activeFilters, setActiveFilters] = useState([])
   useEffect(() => {
     const getLabels = async () => {
       const tasks = await fetchGithubIssues()
@@ -61,23 +61,25 @@ function FilterMenu({ onFilter }) {
 
   const handleLabelClick = (labelName) => {
     if (activeFilters.includes(labelName)) {
-      setActiveFilters(activeFilters.filter(filter => filter !== labelName));
+      setActiveFilters(activeFilters.filter((filter) => filter !== labelName))
     } else {
-      setActiveFilters([...activeFilters, labelName]);
+      setActiveFilters([...activeFilters, labelName])
     }
 
     if (onFilter) {
-      onFilter(labelName);
+      onFilter(labelName)
     }
-  };
+  }
 
   const handleFilterRemove = (filterToRemove) => {
-    setActiveFilters(activeFilters.filter(filter => filter !== filterToRemove));
-    setActiveFilters([]);
+    setActiveFilters(
+      activeFilters.filter((filter) => filter !== filterToRemove)
+    )
+    setActiveFilters([])
     if (onFilter) {
-      onFilter("all");
+      onFilter("all")
     }
-  };
+  }
 
   return (
     <DropdownMenu>
@@ -88,11 +90,17 @@ function FilterMenu({ onFilter }) {
         </Button>
       </DropdownMenuTrigger>
       {activeFilters.length > 0 && (
-        <div className="flex gap-2 ml-2">
+        <div className="ml-2 flex gap-2">
           {activeFilters.map((filter, index) => (
-            <div key={index} className="flex items-center text-xs text-gray-500 00 rounded-full px-2 py-1 mr-2 mb-2">
+            <div
+              key={index}
+              className="00 mb-2 mr-2 flex items-center rounded-full px-2 py-1 text-xs text-gray-500"
+            >
               {filter}
-              <XIcon className="ml-2 h-4 w-4 text-red-500 cursor-pointer" onClick={() => handleFilterRemove(filter)} />
+              <XIcon
+                className="ml-2 h-4 w-4 cursor-pointer text-red-500"
+                onClick={() => handleFilterRemove(filter)}
+              />
             </div>
           ))}
         </div>

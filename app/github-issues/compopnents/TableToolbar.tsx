@@ -88,21 +88,21 @@ function FilterMenu({ onFilter }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-[200px]">
-        <DropdownMenuItem
-          value={selectedFilter}
-          onValueChange={handleFilterChange}
-        >
-          {labels.map((label) => (
-            <LabelPill
-              label={label.name}
-              color={`#${label.color}`}
-              background={`#${label.color}`}
-              borderColor={`#${label.color}`}
-            >
+
+        {labels.map((label) => (
+          <DropdownMenuItem className="flex flex-col gap-4 align-start items-start"
+            value={selectedFilter}
+            onValueChange={handleFilterChange}
+          >   <LabelPill
+            label={label.name}
+            color={`#${label.color}`}
+            background={`#${label.color}`}
+            borderColor={`#${label.color}`}
+          >
               {label.name}
             </LabelPill>
-          ))}
-        </DropdownMenuItem>
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )

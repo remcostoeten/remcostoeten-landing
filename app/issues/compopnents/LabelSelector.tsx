@@ -17,7 +17,6 @@ import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
 import { PopoverProps } from "@radix-ui/react-popover"
 
 import { cn } from "@/core/lib/utils"
-import { useMutationObserver } from "@/core/hooks/useMutationObserver"
 
 type Model = {
   id: string
@@ -151,16 +150,6 @@ interface ModelItemProps {
 
 function ModelItem({ model, isSelected, onSelect, onPeek }: ModelItemProps) {
   const ref = React.useRef<HTMLDivElement>(null)
-
-  useMutationObserver(ref, (mutations) => {
-    for (const mutation of mutations) {
-      if (mutation.type === "attributes") {
-        if (mutation.attributeName === "aria-selected") {
-          onPeek(model)
-        }
-      }
-    }
-  })
 
   return (
     <CommandItem

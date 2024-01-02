@@ -12,6 +12,7 @@ import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 export const viewport = {
   themeColor: [
@@ -38,23 +39,25 @@ export default function RootLayout({ children }: LayoutProps) {
     <HydrationOverlay>
       <html lang="en" suppressHydrationWarning>
         <head />
-        <body
-          className={cn(
-            "body-gradient min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <NextTopLoader color="#2dd4bf" height={5} />
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <ShellLayout header={<SiteHeader />}>
-              <div className="max-w-[854px] transition-all duration-300 lg:w-4/5">
-                {children}
-              </div>
-              <Toaster />
-            </ShellLayout>
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
+        <TooltipProvider>
+          <body
+            className={cn(
+              "body-gradient min-h-screen bg-background font-sans antialiased",
+              fontSans.variable
+            )}
+          >
+            <NextTopLoader color="#2dd4bf" height={5} />
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <ShellLayout header={<SiteHeader />}>
+                <div className="max-w-[854px] transition-all duration-300">
+                  {children}
+                </div>
+                <Toaster />
+              </ShellLayout>
+              <TailwindIndicator />
+            </ThemeProvider>
+          </body>
+        </TooltipProvider>
       </html>
     </HydrationOverlay>
   )

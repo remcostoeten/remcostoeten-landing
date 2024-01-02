@@ -5,24 +5,30 @@ import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
 import { Icons } from "@/components/icons"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import LabelPill from "./LabelPill"
+
+type Label = {
+    name: string;
+    color: string;
+};
 
 type RowUiProps = {
-    taskId: string
-    dates: string[]
-    label: string
-    title: string
-    priority: string
-    status: string
-    onCheckboxChange?: () => void
-}
+    taskId: string;
+    dates?: string[];
+    labels: Label[];
+    title: string;
+    priority: string;
+    onCheckboxChange?: () => void;
+};
+
 
 export default function RowUi({
     taskId,
     dates,
-    label,
+    labels,
     title,
     priority,
-    status,
     onCheckboxChange,
 }: RowUiProps) {
     return (
@@ -33,31 +39,45 @@ export default function RowUi({
                 </TableCell>
                 <TableCell className="flex flex-col  text-left font-medium">
                     <span>{taskId}</span>
-                    {dates.map((date) => {
+                    {dates && dates.map((date) => {
                         return <span className="text-[12px]">{formatDate(date)}</span>
                     })}
                 </TableCell>
                 <TableCell>
-                    <span className="flex items-center gap-2">
-                        <Badge variant="outline">{label}</Badge>
-                        {title}
+                    <span className="flex items-center justify-between text-left">
+                        <Tooltip>
+                            <TooltipTrigger className="text-left">{title.slice(0, 50)}{title.length > 33 ? '...' : ''}</TooltipTrigger>
+                            <TooltipContent>
+                                <p>{title}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <div className="flex items-center gap-2">
+                            {labels && labels.map((label, index) => (
+                                <LabelPill
+                                    key={index}
+                                    label={label.name}
+                                    color={`#${label.color}`}
+                                    background={`#${label.color}`}
+                                    borderColor={`#${label.color}`}
+                                />
+                            ))}
+                        </div>
                     </span>
                 </TableCell>
                 <TableCell>
                     <span className="flex items-center ">
-                        {priority.toLowerCase() === "low" && (
+                        {priority?.toLowerCase() === "low" && (
                             <Icons.arrowBottom className="h-4 w-4" />
                         )}
-                        {priority.toLowerCase() === "medium" && (
+                        {priority?.toLowerCase() === "medium" && (
                             <Icons.arrowRight className="h-4 w-4" />
                         )}
-                        {priority.toLowerCase() === "high" && (
+                        {priority?.toLowerCase() === "high" && (
                             <Icons.arrowTop className="h-4 w-4" />
                         )}
                         <span>{priority}</span>
                     </span>
                 </TableCell>
-                <TableCell>{status}</TableCell>
             </TableRow>
         </Suspense>
     )

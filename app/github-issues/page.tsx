@@ -8,8 +8,8 @@ import {
     TableRow
 } from "@/components/ui/table"
 
-import RowUi from "./compopnents/RowUi"
 import TableToolbar from "./compopnents/TableToolbar"
+import RowData from "./compopnents/RowData";
 
 export default function Page() {
     const handleSearch = (searchTerm) => {
@@ -40,33 +40,8 @@ export default function Page() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <RowUi
-                        taskId="TASK-1"
-                        dates={["2022-01-01"]}
-                        label="Demo Label"
-                        title="Demo Title"
-                        priority="low"
-                        status="In Progress"
-                        onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                    <RowUi
-                        taskId="TASK-1"
-                        dates={["2022-01-01"]}
-                        label="Demo Label"
-                        title="Demo Title"
-                        priority="low"
-                        status="In Progress"
-                        onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                    <RowUi
-                        taskId="TASK-1"
-                        dates={["2022-01-01"]}
-                        label="Demo Label"
-                        title="Demo Title"
-                        priority="low"
-                        status="In Progress"
-                        onCheckboxChange={() => console.log("Checkbox changed")}
-                    />                </TableBody>
+                    <RowData />
+                </TableBody>
             </Table>
         </div>
     );

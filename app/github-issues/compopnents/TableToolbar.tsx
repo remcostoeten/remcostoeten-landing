@@ -4,7 +4,7 @@ import { Icons } from "@/components/icons";
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { FilterIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
@@ -65,7 +65,7 @@ function FilterMenu({ onFilter }) {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[200px]">
-                <DropdownMenuRadioGroup value={selectedFilter} onValueChange={handleFilterChange}>
+                <DropdownMenuItem value={selectedFilter} onValueChange={handleFilterChange}>
                     <DropdownMenuRadioItem value="all">All</DropdownMenuRadioItem>
                     {labels.map(label => (
                         <LabelPill
@@ -77,7 +77,7 @@ function FilterMenu({ onFilter }) {
                             <DropdownMenuRadioItem value={label.name}>{label.name}</DropdownMenuRadioItem>
                         </LabelPill>
                     ))}
-                </DropdownMenuRadioGroup>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

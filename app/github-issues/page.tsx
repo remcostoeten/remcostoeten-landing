@@ -28,8 +28,6 @@ export default function Page() {
         getIssues();
     }, []);
 
-    console.log(tasks)
-
     const handleSearch = (term) => {
         setSearchTerm(term);
     };

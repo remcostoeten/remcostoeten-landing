@@ -9,10 +9,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import Spinner from "@/components/effects/Spinner"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
-import Spinner from "@/components/effects/Spinner"
 
 type Label = {
   name: string
@@ -69,7 +69,9 @@ export default function RowUi({
                     color={`#${label.color}`}
                     background={`#${label.color}`}
                     borderColor={`#${label.color}`}
-                  >{label.name}</LabelPill>
+                  >
+                    {label.name}
+                  </LabelPill>
                 ))}
             </div>
           </span>

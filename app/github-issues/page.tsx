@@ -1,25 +1,35 @@
-'use client';
-import { Icons } from '@/components/icons';
-import { Badge } from '@/components/ui/badge';
-import { TableRow, TableCell, Table, TableBody, TableHead, TableHeader } from '@/components/ui/table';
-import { formatDate } from '@/core/lib/utils';
-import { Checkbox } from '@radix-ui/react-checkbox';
-import RowUi from './compopnents/RowUi';
+"use client"
 
-type RowUiProps = {
-    taskId: string;
-    dates: string[];
-    label: string;
-    title: string;
-    priority: string;
-    status: string;
-    onCheckboxChange: () => void;
-};
 
-export default function page() {
+import {
+    Table,
+    TableBody, TableHead,
+    TableHeader,
+    TableRow
+} from "@/components/ui/table"
+
+import RowUi from "./compopnents/RowUi"
+import TableToolbar from "./compopnents/TableToolbar"
+
+export default function Page() {
+    const handleSearch = (searchTerm) => {
+        console.log(`Search for ${searchTerm}`);
+    };
+
+    const handleFilter = (filter) => {
+        console.log(`Filter by ${filter}`);
+    };
+
     return (
-        <div>
-            <Table key="1" className="divide-y divide-gray-900  !rounded-md border text-white">
+        <div className="flex flex-col gap-4">
+            <TableToolbar
+                onSearch={handleSearch}
+                onFilter={handleFilter}
+            />
+            <Table
+                key="1"
+                className="divide-y divide-gray-900 !rounded-md border text-white"
+            >
                 <TableHeader className="[&_tr]:border-b">
                     <TableRow>
                         <TableHead className="w-[50px]" />
@@ -56,18 +66,8 @@ export default function page() {
                         priority="low"
                         status="In Progress"
                         onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                    <RowUi
-                        taskId="TASK-1"
-                        dates={["2022-01-01"]}
-                        label="Demo Label"
-                        title="Demo Title"
-                        priority="low"
-                        status="In Progress"
-                        onCheckboxChange={() => console.log("Checkbox changed")}
-                    />
-                </TableBody>
+                    />                </TableBody>
             </Table>
         </div>
-    )
+    );
 }

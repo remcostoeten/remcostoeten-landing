@@ -5,16 +5,16 @@ import { HTMLMotionProps, motion } from "framer-motion"
 import { BEZIER_CURVES, BezierCurve } from "@/core/lib/bezier-curves"
 
 interface AnimatedElementProps extends HTMLMotionProps<"div"> {
-  as?: keyof JSX.IntrinsicElements;
-  opacity?: number;
-  duration?: number;
-  delay?: number;
-  ease?: keyof typeof BEZIER_CURVES | BezierCurve;
-  x?: number;
-  y?: number;
-  scale?: number;
-  className?: string;
-  children?: React.ReactNode;
+  as?: keyof JSX.IntrinsicElements
+  opacity?: number
+  duration?: number
+  delay?: number
+  ease?: keyof typeof BEZIER_CURVES | BezierCurve
+  x?: number
+  y?: number
+  scale?: number
+  className?: string
+  children?: React.ReactNode
 }
 
 export default function AnimatedElement({
@@ -30,7 +30,7 @@ export default function AnimatedElement({
   children,
   ...restProps
 }: AnimatedElementProps) {
-  const Element = motion[as];
+  const Element = motion[as]
 
   const animationProps = {
     initial: { opacity: opacity, x, y, scale },
@@ -45,15 +45,14 @@ export default function AnimatedElement({
         ease: typeof ease === "string" ? BEZIER_CURVES[ease] : ease,
       },
     },
-  };
+  }
 
   return (
     <Element {...animationProps} className={className} {...restProps}>
       {children}
     </Element>
-  );
+  )
 }
-
 
 /**
  * An animated element component that can be used with various HTML elements.

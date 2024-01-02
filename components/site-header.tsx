@@ -13,6 +13,7 @@ const navigationMenu = [
   // { label: "Projects", icon: Icons.code },
   { label: "Blog", icon: Icons.code },
   { label: "Issues", icon: Icons.todo },
+  { label: "github-issues", icon: Icons.todo },
   // { label: "github-issues", icon: Icons.code },
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },

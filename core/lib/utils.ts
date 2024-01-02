@@ -94,3 +94,15 @@ export function formatDate(date: string): string {
   const restOfDate = date.substring(5)
   return `${restOfDate}-${strippedYear}`
 }
+
+export function hexToRGBA(hex, opacity) {
+  if (!hex) {
+    return `rgba(0, 0, 0, ${opacity})`
+  }
+
+  let r = parseInt(hex.slice(1, 3), 16),
+    g = parseInt(hex.slice(3, 5), 16),
+    b = parseInt(hex.slice(5, 7), 16)
+
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`
+}

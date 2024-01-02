@@ -1,91 +1,64 @@
-"use client"
+// @ts-nocheck
 
-import React, { Suspense, useState, useEffect } from "react";
-import {
-  Table,
-  TableBody, TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table";
-import TableToolbar from "./compopnents/TableToolbar";
-import RowUi from "./compopnents/RowUi";
-import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
+import { Suspense } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import type { Blog } from "contentlayer/generated"
+import dayjs from "dayjs"
 
-export default function Page() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [filteredTasks, setFilteredTasks] = useState([]);
+import { getViews } from "@/core/lib/fetcher"
 
-  useEffect(() => {
-    const getIssues = async () => {
-      const issues = await fetchGithubIssues();
-      setTasks(issues);
-    };
+const Views = async ({ slug }: { slug: string }) => {
+  const views = await getViews(slug)
 
-    getIssues();
-  }, []);
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-  };
-
-
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const fetchedTasks = await fetchGithubIssues();
-      setTasks(fetchedTasks);
-      setFilteredTasks(fetchedTasks);
-    };
-
-    fetchTasks();
-  }, []);
-
-  const handleFilter = (filter) => {
-    if (filter === 'all') {
-      setFilteredTasks(tasks);
-    } else {
-      const filtered = tasks.filter(task => task.labels.some(label => label.name === filter));
-      setFilteredTasks(filtered);
-    }
-  };
-
-
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="flex flex-col gap-4">
-        <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
-        <Table
-          key="1"
-          className="divide-y divide-gray-900 !rounded-md border text-white"
-        >
-          <TableHeader className="[&_tr]:border-b">
-            <TableRow>
-              <TableHead className="w-[50px]" />
-              <TableHead className="w-[100px]">Task</TableHead>
-              <TableHead>Title</TableHead>
-              <TableHead>Priority</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredTasks.map(task => {
-              const priorityLabels = ["Medium priority", "High priority", "Low priority"];
-              const filteredLabels = task.labels ? task.labels.filter(label => !priorityLabels.includes(label.name)) : [];
-              const priorityLabel = task.labels ? task.labels.find(label => priorityLabels.includes(label.name)) : undefined;
-              const strippedPriorityLabel = priorityLabel && priorityLabel.name.replace(" priority", "");
-              return (
-                <RowUi
-                  taskId={task.code}
-                  labels={filteredLabels}
-                  title={task.title}
-                  priority={strippedPriorityLabel}
-                  onCheckboxChange={() => {
-                    console.log(`Checkbox for task ${task.number} changed`);
-                  }} dates={[]} />
-              );
-            })}
-          </TableBody>
-        </Table>
-      </div>
-    </Suspense>
-  );
+  return <>{views} views</>
 }
+
+type Props = Pick<
+  Blog,
+  "title" | "summary" | "slug" | "publishedAt" | "image" | "blurDataURL"
+>
+
+const BlogPost = ({ slug, title, publishedAt, image, blurDataURL }: Props) => {
+  return (
+    <Link href={`/blog/${slug}`}>
+      <article className="group max-w-sm sm:max-w-none">
+        {image ? (
+          <div className="mb-2 flex">
+            <Image
+              src={image}
+              width="1200"
+              height="627"
+              alt={title}
+              className="rounded-lg"
+              placeholder="blur"
+              blurDataURL={blurDataURL}
+              priority
+            />
+          </div>
+        ) : (
+          <Image
+            src="/placeholder.jpg"
+            width="1200"
+            height="627"
+            alt={title}
+            className="rounded-lg"
+          />
+        )}
+
+        <div className="space-y-2">
+          <h3 className="title-hover text-xl font-semibold">{title}</h3>
+
+          <p className="text-sm text-gray-400">
+            {dayjs(publishedAt).format("MMMM D, YYYY")} {` • `}
+            <Suspense>
+              <Views slug={slug} />
+            </Suspense>
+          </p>
+        </div>
+      </article>
+    </Link>
+  )
+}
+
+export default BlogPost

@@ -6,6 +6,10 @@ import {
   type Icon as LucideIcon,
 } from "lucide-react"
 
+interface ExtendedLucideProps extends LucideProps {
+  className?: string
+}
+
 export type Icon = LucideIcon
 
 export const Icons = {
@@ -103,7 +107,7 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  search: (props: LucideProps) => (
+  search: (props: ExtendedLucideProps) => (
     <svg
       width="20"
       height="20"
@@ -347,23 +351,6 @@ export const Icons = {
       strokeLinejoin="round"
     >
       <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-    </svg>
-  ),
-  search: (props: LucideProps) => (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
     </svg>
   ),
   arrowRight: (props: LucideProps) => (

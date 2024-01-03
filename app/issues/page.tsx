@@ -85,13 +85,13 @@ export default function Page() {
                 ]
                 const filteredLabels = task.labels
                   ? task.labels.filter(
-                      (label) => !priorityLabels.includes(label.name)
-                    )
+                    (label) => !priorityLabels.includes(label.name)
+                  )
                   : []
                 const priorityLabel = task.labels
                   ? task.labels.find((label) =>
-                      priorityLabels.includes(label.name)
-                    )
+                    priorityLabels.includes(label.name)
+                  )
                   : undefined
                 const strippedPriorityLabel =
                   priorityLabel && priorityLabel.name.replace(" priority", "")
@@ -100,6 +100,7 @@ export default function Page() {
                     taskId={task.code}
                     labels={filteredLabels}
                     title={task.title}
+                    url={task.url}
                     priority={strippedPriorityLabel}
                     onCheckboxChange={() => {
                       console.log(`Checkbox for task ${task.number} changed`)

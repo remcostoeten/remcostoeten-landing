@@ -1,7 +1,6 @@
-import { ChangeEvent, Suspense } from "react"
+import { Suspense } from "react"
 
 import { formatDate, lightenColor } from "@/core/lib/utils"
-import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
 import {
@@ -13,7 +12,7 @@ import Spinner from "@/components/effects/Spinner"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
-
+import Link from "next/link"
 type Label = {
   name: string
   color: string
@@ -24,6 +23,7 @@ type RowUiProps = {
   dates?: string[]
   labels: Label[]
   title: string
+  url?: string
   priority: string
   onCheckboxChange?: () => void
 }
@@ -33,6 +33,7 @@ export default function RowUi({
   dates,
   labels,
   title,
+  url,
   priority,
   onCheckboxChange,
 }: RowUiProps) {
@@ -53,11 +54,12 @@ export default function RowUi({
           <span className="flex items-center justify-between text-left">
             <Tooltip>
               <TooltipTrigger className="text-left">
-                {title.slice(0, 50)}
-                {title.length > 33 ? "..." : ""}
+                <Link target="_blank" href={url ? url : '#'}>
+                  {title.slice(0, 50)}
+                  {title.length > 33 ? "..." : ""}</Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{title}</p>
+                <Link href={url ? url : '#'}>{title}</Link>
               </TooltipContent>
             </Tooltip>
             <div className="flex items-center gap-2">

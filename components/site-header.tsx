@@ -10,18 +10,22 @@ import LoginAnchor from "./menu/LoginLink";
 import MenuItem from "./menu/MenuItem";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { usePathname } from "next/navigation";
+import LoginLinkAuth from "./menu/LoginLinkAuth";
 
 const navigationMenu = [
-  { label: "Home", icon: Icons.home },
+  { label: "Home", icon: Icons.home, href: "/" },
   // { label: "Dashboard", icon: Icons.layoutGrid },
   // { label: "Projects", icon: Icons.code },
-  { label: "Blog", icon: Icons.code },
-  { label: "issues", icon: Icons.todo },
+  { label: "Blog", icon: Icons.code, href: "blog" },
+  { label: "Issues", icon: Icons.todo, href: "issues" },
   // { label: "github-issues", icon: Icons.code },
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
+  { label: "Login", icon: Icons.mail, href: "/api/auth/login" },
   // { label: "Guestbook", icon: Icons.code },
+  { label: "LoginAuth" }
   // { label: "Playground", icon: Icons.code },
 ]
 
@@ -47,9 +51,6 @@ export default function SiteHeader({
                 className="z-20 rounded-full"
               />
             )}
-
-
-
             {isAuthenticated && (
               <Avatar>
                 <AvatarImage src={user?.picture} />
@@ -77,27 +78,27 @@ export default function SiteHeader({
           </div>
           <Seperator spacing="12" />
           <ul className="grow">
-            {navigationMenu.map((navItem, index) => (
-              <MenuItem
-                key={index}
-                title={navItem.label}
-                href={
-                  navItem.label === "Home"
-                    ? "/"
-                    : `/ ${navItem.label.toLowerCase()}`
-                }
-                icon={navItem.icon ? <navItem.icon /> : null}
-                isExternal={false}
-              />
-            ))}
+            {navigationMenu.map((navItem, index) => {
+              if (navItem.label === "LoginAuth") {
+                return <LoginLinkAuth key={index} />;
+              }
+              return (
+                <MenuItem
+                  key={index}
+                  title={navItem.label}
+                  href={navItem.href ? navItem.href : '#'}
+                  icon={navItem.icon ? <navItem.icon /> : null}
+                  isExternal={false}
+                />
+              );
+            })}
           </ul>
-
-          <p className="mb-6 flex items-center">
-            With
-            <span className="mx-1 animate-pulse">❤</span>
-            by remco stoeten
-          </p>{" "}
         </div>
+        <p className="mb-6 flex items-center">
+          With
+          <span className="mx-1 animate-pulse">❤</span>
+          by remco stoeten
+        </p>{" "}
       </aside >
     </>
   );

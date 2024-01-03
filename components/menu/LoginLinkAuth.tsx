@@ -3,12 +3,11 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Icons } from "../icons";
-import { LogoutLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 export default function LoginLinkAuth() {
   const { isAuthenticated, getUser } = useKindeBrowserClient();
 
   return (
-    <>
+    <span className="space-between flex items-center">
       {isAuthenticated ? (
         <><Icons.shortcut className="mr-2" /><span className="">cmd + k</span></>
       ) : (
@@ -28,6 +27,6 @@ export default function LoginLinkAuth() {
           </Link>
         )}
       </Badge>
-    </>
+    </span>
   );
 }

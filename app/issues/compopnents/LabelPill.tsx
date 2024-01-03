@@ -17,7 +17,7 @@ export default function LabelPill({
   background,
   borderColor,
 }: LabelPillProps) {
-  const backgroundColor = hexToRGBA(background, 0.16)
+  const backgroundColor = hexToRGBA(background, 0.44)
 
   return (
     <span

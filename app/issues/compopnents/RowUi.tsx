@@ -1,6 +1,6 @@
 import { ChangeEvent, Suspense } from "react"
 
-import { formatDate } from "@/core/lib/utils"
+import { formatDate, lightenColor } from "@/core/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { TableCell, TableRow } from "@/components/ui/table"
@@ -66,9 +66,9 @@ export default function RowUi({
                   <LabelPill
                     key={index}
                     label={label.name}
-                    color={`#${label.color}`}
-                    background={`#${label.color}`}
-                    borderColor={`#${label.color}`}
+                    color={lightenColor(`#${label.color}`, 55)}
+                    background={lightenColor(`#${label.color}`, 0)}
+                    borderColor={lightenColor(`#${label.color}`, 0)}
                   >
                     {label.name}
                   </LabelPill>

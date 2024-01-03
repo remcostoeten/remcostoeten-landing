@@ -50,7 +50,7 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isShow: true,
     isExternal: false,
     eventName: "Pages: Projects",
-    type: "Pages",
+    type: "Pages",  
   },
   {
     title: "Blog",

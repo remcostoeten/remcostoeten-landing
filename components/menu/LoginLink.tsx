@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Label } from "@radix-ui/react-label"
-import { signIn } from "next-auth/react"
+import { RegisterLink, LoginLink as Login } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import { Icons } from "../icons"
 import {
@@ -22,16 +22,18 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export default function LoginLink() {
+export default function LoginAnchor() {
   const [isOpen, setIsOpen] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
-
+  const router = useRouter()
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault()
-        setIsOpen((prevIsOpen) => !prevIsOpen)
+        router.push('/api/auth/login')
       }
     }
 
@@ -44,12 +46,12 @@ export default function LoginLink() {
     <>
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogTrigger className="flex w-full items-center justify-between">
-          <div className="flex grow items-center gap-2">
+          <Link href='/api/auth/login' className="flex grow items-center gap-2">
             <Icons.shortcut className="mr-2" />
             <span className="">cmd + k</span>
-          </div>
+          </Link>
           <Badge variant="secondary" className="justify-end">
-            {isSignup ? "Sign Up" : "Login"}
+            <Link href='/api/auth/login'>{isSignup ? "Sign Up" : "Login"}</Link>
           </Badge>
         </AlertDialogTrigger>
         <AlertDialogContent>

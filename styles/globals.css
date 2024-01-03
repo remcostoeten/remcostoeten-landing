@@ -6,6 +6,7 @@
 @Import './generics.css';
 @import './animations.css';
 @import './error.css';
+@import './auth.css';
 
 @layer base {
   :root {

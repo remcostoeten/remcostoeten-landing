@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@builder.io/react-hydration-overlay": "^0.0.6",
+    "@kinde-oss/kinde-auth-nextjs": "^2.0.13",
     "@planetscale/database": "^1.11.0",
     "@prisma/client": "^5.7.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",

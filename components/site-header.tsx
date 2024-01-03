@@ -8,14 +8,15 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import Seperator from "./layout/Seperator";
 import LoginAnchor from "./menu/LoginLink";
 import MenuItem from "./menu/MenuItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
   // { label: "Dashboard", icon: Icons.layoutGrid },
   // { label: "Projects", icon: Icons.code },
   { label: "Blog", icon: Icons.code },
-  { label: "Issues", icon: Icons.todo },
+  { label: "issues", icon: Icons.todo },
   // { label: "github-issues", icon: Icons.code },
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },
@@ -43,29 +44,27 @@ export default function SiteHeader({
                 alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isAuthenticated ? "x" : ""
-                  }`}
+                className="z-20 rounded-full"
               />
             )}
 
+
+
             {isAuthenticated && (
-              <Image
-                src={user?.picture}
-                alt="Remco Stoeten"
-                width={50}
-                height={50}
-                className={`z-20 rounded-full ${isAuthenticated ? "authenticated" : ""
-                  }`}
-              />
+              <Avatar>
+                <AvatarImage src={user?.picture} />
+                <AvatarFallback>       {user?.given_name?.[0]}
+                  {user?.family_name?.[0]}</AvatarFallback>
+              </Avatar>
             )}
           </div>
-          <div className="mb-3">
-            <div className="font-bold text-blacktheme dark:text-white">
-              Remco Stoeten
-            </div>
-            <div className="text-sm text-blacktheme dark:text-gray-400">
-              @remcosoeten
-            </div>
+        </div>
+        <div className="mb-3">
+          <div className="font-bold text-blacktheme dark:text-white">
+            Remco Stoeten
+          </div>
+          <div className="text-sm text-blacktheme dark:text-gray-400">
+            @remcosoeten
           </div>
         </div>
         <div className="mb-6 flex grow flex-col">
@@ -91,15 +90,15 @@ export default function SiteHeader({
                 isExternal={false}
               />
             ))}
-            <LoginAnchor />
           </ul>
+
+          <p className="mb-6 flex items-center">
+            With
+            <span className="mx-1 animate-pulse">❤</span>
+            by remco stoeten
+          </p>{" "}
         </div>
-        <p className="mb-6 flex items-center">
-          With
-          <span className="mx-1 animate-pulse">❤</span>
-          by remco stoeten
-        </p>{" "}
-      </aside>
+      </aside >
     </>
-  )
+  );
 }

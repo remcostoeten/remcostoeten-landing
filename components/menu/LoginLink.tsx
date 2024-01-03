@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { Label } from "@radix-ui/react-label"
-import { signIn } from "next-auth/react"
 
 import { Icons } from "../icons"
 import {
@@ -11,7 +11,6 @@ import {
   AlertDialogContent,
   AlertDialogTrigger,
 } from "../ui/alert-dialog"
-import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import {
   Card,
@@ -22,35 +21,31 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
+import LoginLinkAuth from "./LoginLinkAuth"
 
-export default function LoginLink() {
+export default function LoginAnchor() {
   const [isOpen, setIsOpen] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault()
-        setIsOpen((prevIsOpen) => !prevIsOpen)
+        router.push("/api/auth/login")
       }
     }
 
     window.addEventListener("keydown", handleKeyDown)
 
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [])
+  }, [router])
 
   return (
     <>
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogTrigger className="flex w-full items-center justify-between">
-          <div className="flex grow items-center gap-2">
-            <Icons.shortcut className="mr-2" />
-            <span className="">cmd + k</span>
-          </div>
-          <Badge variant="secondary" className="justify-end">
-            {isSignup ? "Sign Up" : "Login"}
-          </Badge>
+          <LoginLinkAuth />
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -66,7 +61,7 @@ export default function LoginLink() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline" onClick={() => signIn("github")}>
+                <Button variant="outline">
                   <Icons.gitHub className="mr-2 h-4 w-4" />
                 </Button>
                 <Button variant="outline" className="flex gap-2">

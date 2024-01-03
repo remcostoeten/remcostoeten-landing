@@ -1,5 +1,6 @@
-import { useMDXComponent } from "@/core/hooks/useMdx"
 import MDXComponents from "@/MDXComponents"
+
+import { useMDXComponent } from "@/core/hooks/useMdx"
 
 const Blog = ({ code }: { code: string }) => {
   const Component = useMDXComponent(code)

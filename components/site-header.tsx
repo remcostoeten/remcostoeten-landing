@@ -1,6 +1,6 @@
 'use client';
 import Image from "next/image";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 import { Icons } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -29,50 +29,34 @@ export default function SiteHeader({
 }: {
   children?: React.ReactNode
 }) {
-  const { isAuthenticated, getUser } = getKindeServerSession();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, getUser } = useKindeBrowserClient();
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const user = await getUser();
-      const loggedIn = await isAuthenticated();
-      setUser(user);
-      setIsLoggedIn(loggedIn);
-    };
-
-    fetchData();
-  }, [getUser, isAuthenticated]);
 
   return (
     <>
       <aside className="hidden min-h-[97vh] flex-col text-blacktheme sm:flex dark:text-accent">
         <div className="flex flex-col gap-2.5 text-xl">
           <div className="relative">
-            {!isLoggedIn ? (
+            {!isAuthenticated && (
               <Image
                 src="/remco-avatar-compressed.webp"
                 alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""
+                className={`z-20 rounded-full ${isAuthenticated ? "" : ""
                   }`}
               />
-            ) : user?.picture ? (
+            )}
+
+            {isAuthenticated && (
               <Image
                 src={user?.picture}
+                alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""
+                className={`z-20 rounded-full ${isAuthenticated ? "" : ""
                   }`}
-                alt="user profile avatar"
-                referrerPolicy="no-referrer"
               />
-            ) : (
-              <div className="avatar">
-                {user?.given_name?.[0]}
-                {user?.family_name?.[0]}
-              </div>
             )}
           </div>
           <div className="mb-3">
@@ -101,7 +85,7 @@ export default function SiteHeader({
                 href={
                   navItem.label === "Home"
                     ? "/"
-                    : `/${navItem.label.toLowerCase()}`
+                    : `/ ${navItem.label.toLowerCase()}`
                 }
                 icon={navItem.icon ? <navItem.icon /> : null}
                 isExternal={false}

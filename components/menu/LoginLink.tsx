@@ -1,10 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { Label } from "@radix-ui/react-label"
 
 import { Icons } from "../icons"
@@ -14,7 +11,6 @@ import {
   AlertDialogContent,
   AlertDialogTrigger,
 } from "../ui/alert-dialog"
-import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import {
   Card,
@@ -25,14 +21,13 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
+import LoginLinkAuth from "./LoginLinkAuth"
 
 export default function LoginAnchor() {
-  const { isAuthenticated, getUser } = getKindeServerSession()
-  const user = getUser()
-  const isLoggedIn = isAuthenticated()
   const [isOpen, setIsOpen] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
   const router = useRouter()
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
@@ -44,37 +39,13 @@ export default function LoginAnchor() {
     window.addEventListener("keydown", handleKeyDown)
 
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [])
+  }, [router])
 
   return (
     <>
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogTrigger className="flex w-full items-center justify-between">
-          {isLoggedIn ? (
-            <LogoutLink className="flex grow items-center gap-2">
-              <Icons.shortcut className="mr-2" />
-              <span className="">cmd + k</span>
-            </LogoutLink>
-          ) : (
-            <Link
-              href="/api/auth/login"
-              className="flex grow items-center gap-2"
-            >
-              <Icons.shortcut className="mr-2" />
-              <span className="">cmd + k</span>
-            </Link>
-          )}
-          <Badge variant="secondary" className="justify-end">
-            {isLoggedIn ? (
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            ) : (
-              <Link href="/api/auth/login">
-                {isSignup ? "Sign Up" : "Login"}
-              </Link>
-            )}
-          </Badge>
+          <LoginLinkAuth />
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogCancel>Cancel</AlertDialogCancel>

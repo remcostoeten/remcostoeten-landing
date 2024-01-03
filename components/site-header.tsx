@@ -43,7 +43,7 @@ export default function SiteHeader({
                 alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isAuthenticated ? "" : ""
+                className={`z-20 rounded-full ${isAuthenticated ? "x" : ""
                   }`}
               />
             )}
@@ -54,7 +54,7 @@ export default function SiteHeader({
                 alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isAuthenticated ? "" : ""
+                className={`z-20 rounded-full ${isAuthenticated ? "authenticated" : ""
                   }`}
               />
             )}

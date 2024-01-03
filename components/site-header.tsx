@@ -1,18 +1,14 @@
-import {
-  RegisterLink,
-  LogoutLink,
-  LoginLink,
-} from "@kinde-oss/kinde-auth-nextjs/components";
+'use client';
+import Image from "next/image";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import Link from "next/link";
-import Image from "next/image"
 
-import { Icons } from "@/components/icons"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Icons } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-import Seperator from "./layout/Seperator"
-import LoginAnchor from "./menu/LoginLink"
-import MenuItem from "./menu/MenuItem"
+import Seperator from "./layout/Seperator";
+import LoginAnchor from "./menu/LoginLink";
+import MenuItem from "./menu/MenuItem";
+import { useEffect, useState } from "react";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home },
@@ -28,15 +24,25 @@ const navigationMenu = [
   // { label: "Playground", icon: Icons.code },
 ]
 
-
-export default async function SiteHeader({
+export default function SiteHeader({
   children,
 }: {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }) {
   const { isAuthenticated, getUser } = getKindeServerSession();
-  const user = await getUser();
-  const isLoggedIn = await isAuthenticated();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = await getUser();
+      const loggedIn = await isAuthenticated();
+      setUser(user);
+      setIsLoggedIn(loggedIn);
+    };
+
+    fetchData();
+  }, [getUser, isAuthenticated]);
 
   return (
     <>
@@ -49,14 +55,16 @@ export default async function SiteHeader({
                 alt="Remco Stoeten"
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isLoggedIn ? 'authenticated' : ''}`}
+                className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""
+                  }`}
               />
             ) : user?.picture ? (
               <Image
                 src={user?.picture}
                 width={50}
                 height={50}
-                className={`z-20 rounded-full ${isLoggedIn ? 'authenticated' : ''}`}
+                className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""
+                  }`}
                 alt="user profile avatar"
                 referrerPolicy="no-referrer"
               />
@@ -109,5 +117,5 @@ export default async function SiteHeader({
         </p>{" "}
       </aside>
     </>
-  );
+  )
 }

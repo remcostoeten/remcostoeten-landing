@@ -1,8 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { Label } from "@radix-ui/react-label"
-import { RegisterLink, LoginLink as Login } from "@kinde-oss/kinde-auth-nextjs/components";
 
 import { Icons } from "../icons"
 import {
@@ -22,10 +25,11 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export default function LoginAnchor() {
+  const { isAuthenticated, getUser } = getKindeServerSession()
+  const user = getUser()
+  const isLoggedIn = isAuthenticated()
   const [isOpen, setIsOpen] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
   const router = useRouter()
@@ -33,7 +37,7 @@ export default function LoginAnchor() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault()
-        router.push('/api/auth/login')
+        router.push("/api/auth/login")
       }
     }
 
@@ -46,12 +50,30 @@ export default function LoginAnchor() {
     <>
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
         <AlertDialogTrigger className="flex w-full items-center justify-between">
-          <Link href='/api/auth/login' className="flex grow items-center gap-2">
-            <Icons.shortcut className="mr-2" />
-            <span className="">cmd + k</span>
-          </Link>
+          {isLoggedIn ? (
+            <LogoutLink className="flex grow items-center gap-2">
+              <Icons.shortcut className="mr-2" />
+              <span className="">cmd + k</span>
+            </LogoutLink>
+          ) : (
+            <Link
+              href="/api/auth/login"
+              className="flex grow items-center gap-2"
+            >
+              <Icons.shortcut className="mr-2" />
+              <span className="">cmd + k</span>
+            </Link>
+          )}
           <Badge variant="secondary" className="justify-end">
-            <Link href='/api/auth/login'>{isSignup ? "Sign Up" : "Login"}</Link>
+            {isLoggedIn ? (
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            ) : (
+              <Link href="/api/auth/login">
+                {isSignup ? "Sign Up" : "Login"}
+              </Link>
+            )}
           </Badge>
         </AlertDialogTrigger>
         <AlertDialogContent>
@@ -68,7 +90,7 @@ export default function LoginAnchor() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline" onClick={() => signIn("github")}>
+                <Button variant="outline">
                   <Icons.gitHub className="mr-2 h-4 w-4" />
                 </Button>
                 <Button variant="outline" className="flex gap-2">

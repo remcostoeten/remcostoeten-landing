@@ -1,8 +1,8 @@
 import React from "react"
 
 interface ShellLayoutProps {
-  children?: any;
-  header?: any;
+  children?: any
+  header?: any
 }
 
 export default function ShellLayout({ children, header }: ShellLayoutProps) {

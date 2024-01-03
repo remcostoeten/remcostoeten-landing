@@ -23,7 +23,6 @@ const navigationMenu = [
   // { label: "Learn", icon: Icons.lightbulb },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
-  { label: "Login", icon: Icons.mail, href: "/api/auth/login" },
   // { label: "Guestbook", icon: Icons.code },
   { label: "LoginAuth" }
   // { label: "Playground", icon: Icons.code },

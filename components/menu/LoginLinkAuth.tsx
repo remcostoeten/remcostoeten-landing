@@ -1,22 +1,27 @@
-'use client';
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import Link from "next/link";
-import { Badge } from "../ui/badge";
-import { Icons } from "../icons";
+"use client"
+
+import Link from "next/link"
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+
+import { Icons } from "../icons"
+import { Badge } from "../ui/badge"
+
 export default function LoginLinkAuth() {
-  const { isAuthenticated, getUser } = useKindeBrowserClient();
+  const { isAuthenticated, getUser } = useKindeBrowserClient()
 
   return (
     <span className="space-between flex items-center">
       {isAuthenticated ? (
-        <><Icons.shortcut className="mr-2" /><span className="">cmd + k</span></>
+        <>
+          <Icons.shortcut className="mr-2" />
+          <span className="">cmd + k</span>
+        </>
       ) : (
         <Link href="/api/auth/login" className="flex grow items-center gap-2">
           <Icons.shortcut className="mr-2" />
           <span className="">cmd + k</span>
         </Link>
-      )
-      }
+      )}
 
       <Badge variant="secondary" className="justify-end">
         {isAuthenticated ? (
@@ -28,5 +33,5 @@ export default function LoginLinkAuth() {
         )}
       </Badge>
     </span>
-  );
+  )
 }

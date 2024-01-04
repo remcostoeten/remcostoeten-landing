@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Label } from "@radix-ui/react-label"
+import { toast } from "sonner"
 
 import { Icons } from "../icons"
 import {
@@ -32,6 +33,7 @@ export default function LoginAnchor() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault()
+        toast.success("Redirecting you to the login page!")
         router.push("/api/auth/login")
       }
     }

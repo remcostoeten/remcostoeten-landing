@@ -10,30 +10,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
 
-import RowUi from "./compopnents/RowUi"
+import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
-import IssueTableSkeleton from "@/components/effects/Skeleton"
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState("")
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    const getIssues = async () => {
-      const issues = await fetchGithubIssues()
-      setTasks(issues)
-    }
-
-    getIssues()
-  }, [])
-
-  const handleSearch = (term) => {
-    setSearchTerm(term)
-  }
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -47,8 +35,11 @@ export default function Page() {
     fetchTasks()
   }, [])
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term)
+  }
 
-  const handleFilter = (filter) => {
+  const handleFilter = (filter: string) => {
     if (filter === "all") {
       setFilteredTasks(tasks)
     } else {
@@ -69,7 +60,7 @@ export default function Page() {
         <div className="flex flex-col ">
           <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
           {isLoading ? (
-            <div className='mt-4 flex flex-col gap-[5px] '>
+            <div className="mt-4 flex flex-col gap-[5px] ">
               <IssueTableSkeleton />
             </div>
           ) : (
@@ -105,7 +96,7 @@ export default function Page() {
                   const strippedPriorityLabel =
                     priorityLabel && priorityLabel.name.replace(" priority", "")
                   return (
-                    <RowUi
+                    <IssueRow
                       taskId={task.code}
                       labels={filteredLabels}
                       title={task.title}

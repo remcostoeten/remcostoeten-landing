@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import Link from "next/link"
 
 import { formatDate, lightenColor } from "@/core/lib/utils"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -8,28 +9,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import Spinner from "@/components/effects/Spinner"
+import Skeleton from "@/components/effects/Skeleton"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
-import Link from "next/link"
-import Skeleton from "@/components/effects/Skeleton"
-type Label = {
-  name: string
-  color: string
-}
+import { IssueRowProps } from "./types"
 
-type RowUiProps = {
-  taskId: string
-  dates?: string[]
-  labels: Label[]
-  title: string
-  url?: string
-  priority: string
-  onCheckboxChange?: () => void
-}
-
-export default function RowUi({
+export default function IssueRow({
   taskId,
   dates,
   labels,
@@ -37,7 +23,7 @@ export default function RowUi({
   url,
   priority,
   onCheckboxChange,
-}: RowUiProps) {
+}: IssueRowProps) {
   return (
     <Suspense fallback={<Skeleton />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">
@@ -55,12 +41,13 @@ export default function RowUi({
           <span className="flex items-center justify-between text-left">
             <Tooltip>
               <TooltipTrigger className="text-left">
-                <Link target="_blank" href={url ? url : '#'}>
+                <Link target="_blank" href={url ? url : "#"}>
                   {title.slice(0, 50)}
-                  {title.length > 33 ? "..." : ""}</Link>
+                  {title.length > 33 ? "..." : ""}
+                </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <Link href={url ? url : '#'}>{title}</Link>
+                <Link href={url ? url : "#"}>{title}</Link>
               </TooltipContent>
             </Tooltip>
             <div className="flex items-center gap-2">

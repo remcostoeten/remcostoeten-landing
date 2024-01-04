@@ -8,6 +8,9 @@ dependencies:
   '@builder.io/react-hydration-overlay':
     specifier: ^0.0.6
     version: 0.0.6(react-dom@18.2.0)(react@18.2.0)(webpack@5.89.0)
+  '@hookform/resolvers':
+    specifier: ^3.3.4
+    version: 3.3.4(react-hook-form@7.49.2)
   '@kinde-oss/kinde-auth-nextjs':
     specifier: ^2.0.13
     version: 2.0.13(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
@@ -125,6 +128,9 @@ dependencies:
   react-grid-layout:
     specifier: ^1.4.4
     version: 1.4.4(react-dom@18.2.0)(react@18.2.0)
+  react-hook-form:
+    specifier: ^7.49.2
+    version: 7.49.2(react@18.2.0)
   react-icons:
     specifier: ^4.12.0
     version: 4.12.0(react@18.2.0)
@@ -1249,6 +1255,14 @@ packages:
       long: 5.2.3
       protobufjs: 7.2.5
       yargs: 17.7.2
+    dev: false
+
+  /@hookform/resolvers@3.3.4(react-hook-form@7.49.2):
+    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.49.2(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -8807,6 +8821,15 @@ packages:
       react-draggable: 4.4.6(react-dom@18.2.0)(react@18.2.0)
       react-resizable: 3.0.5(react-dom@18.2.0)(react@18.2.0)
       resize-observer-polyfill: 1.5.1
+    dev: false
+
+  /react-hook-form@7.49.2(react@18.2.0):
+    resolution: {integrity: sha512-TZcnSc17+LPPVpMRIDNVITY6w20deMdNi6iehTFLV1x8SqThXGwu93HjlUVU09pzFgZH7qZOvLMM7UYf2ShAHA==}
+    engines: {node: '>=18', pnpm: '8'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-icons@4.12.0(react@18.2.0):

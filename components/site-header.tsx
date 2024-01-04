@@ -1,17 +1,18 @@
-'use client';
-import Image from "next/image";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+"use client"
 
-import { Icons } from "@/components/icons";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useState } from "react"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
 
-import Seperator from "./layout/Seperator";
-import LoginAnchor from "./menu/LoginLink";
-import MenuItem from "./menu/MenuItem";
-import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { usePathname } from "next/navigation";
-import LoginLinkAuth from "./menu/LoginLinkAuth";
+import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
+
+import Seperator from "./layout/Seperator"
+import LoginAnchor from "./menu/LoginLink"
+import LoginLinkAuth from "./menu/LoginLinkAuth"
+import MenuItem from "./menu/MenuItem"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
@@ -24,7 +25,7 @@ const navigationMenu = [
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
   // { label: "Guestbook", icon: Icons.code },
-  { label: "LoginAuth" }
+  { label: "LoginAuth" },
   // { label: "Playground", icon: Icons.code },
 ]
 
@@ -33,8 +34,8 @@ export default function SiteHeader({
 }: {
   children?: React.ReactNode
 }) {
-  const { isAuthenticated, getUser } = useKindeBrowserClient();
-  const [user, setUser] = useState(null);
+  const { isAuthenticated, getUser } = useKindeBrowserClient()
+  const [user, setUser] = useState(null)
 
   return (
     <>
@@ -53,8 +54,11 @@ export default function SiteHeader({
             {isAuthenticated && (
               <Avatar>
                 <AvatarImage src={user?.picture} />
-                <AvatarFallback>       {user?.given_name?.[0]}
-                  {user?.family_name?.[0]}</AvatarFallback>
+                <AvatarFallback>
+                  {" "}
+                  {user?.given_name?.[0]}
+                  {user?.family_name?.[0]}
+                </AvatarFallback>
               </Avatar>
             )}
           </div>
@@ -79,17 +83,17 @@ export default function SiteHeader({
           <ul className="grow">
             {navigationMenu.map((navItem, index) => {
               if (navItem.label === "LoginAuth") {
-                return <LoginLinkAuth key={index} />;
+                return <LoginLinkAuth key={index} />
               }
               return (
                 <MenuItem
                   key={index}
                   title={navItem.label}
-                  href={navItem.href ? navItem.href : '#'}
+                  href={navItem.href ? navItem.href : "#"}
                   icon={navItem.icon ? <navItem.icon /> : null}
                   isExternal={false}
                 />
-              );
+              )
             })}
           </ul>
         </div>
@@ -98,7 +102,7 @@ export default function SiteHeader({
           <span className="mx-1 animate-pulse">❤</span>
           by remco stoeten
         </p>{" "}
-      </aside >
+      </aside>
     </>
-  );
+  )
 }

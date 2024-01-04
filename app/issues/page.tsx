@@ -118,9 +118,9 @@ export default function Page() {
                   })
                 ) : (
                   <div className="w-max p-4 text-gray-400">
-                    🤔 Oops! No results found for "{searchTerm}" 🧐
+                    🤔 Oops! No results found for &quot;{searchTerm}&quot; 🧐
                     <br />
-                    Don't worry, let's try searching for something else! <span className='animation-wrapper'><span>🌟</span><span>✨</span></span>
+                    Don&apos;t worry, let&apos;s try searching for something else! <span className='animation-wrapper'><span>🌟</span><span>✨</span></span>
                   </div>
                 )}
               </TableBody>

@@ -145,16 +145,8 @@ export default function TableToolbar({ onSearch, onFilter }) {
 
 function AddNew() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger className="flex w-full items-center justify-between">
-        <Button className="ml-auto" variant="outline">
-          Add New
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <Card>add new</Card>
-      </AlertDialogContent>
-    </AlertDialog>
+    <Button className="ml-auto" variant="outline">
+      Add New
+    </Button>
   )
 }

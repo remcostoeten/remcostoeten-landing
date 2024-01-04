@@ -18,7 +18,7 @@ import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
 export default function Page() {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -46,6 +46,24 @@ export default function Page() {
     }
   }
 
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm === "") {
+      setFilteredTasks(tasks);
+    } else {
+      const filtered = tasks.filter((task) =>
+        task.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredTasks(filtered);
+    }
+
+  };
+
+  // show message if no results
+
+  const noResults = filteredTasks.length === 0 && !isLoading;
+
+
   return (
     <>
       <IntroShell
@@ -54,7 +72,7 @@ export default function Page() {
       />
       <Suspense fallback={<Spinner />}>
         <div className="flex flex-col ">
-          <TableToolbar onFilter={handleFilter} />
+          <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
           {isLoading ? (
             <div className="mt-4 flex flex-col gap-[5px] ">
               <IssueTableSkeleton />
@@ -73,38 +91,38 @@ export default function Page() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredTasks.map((task) => {
-                  const priorityLabels = [
-                    "Medium priority",
-                    "High priority",
-                    "Low priority",
-                  ]
-                  const filteredLabels = task.labels
-                    ? task.labels.filter(
-                      (label) => !priorityLabels.includes(label.name)
-                    )
-                    : []
-                  const priorityLabel = task.labels
-                    ? task.labels.find((label) =>
-                      priorityLabels.includes(label.name)
-                    )
-                    : undefined
-                  const strippedPriorityLabel =
-                    priorityLabel && priorityLabel.name.replace(" priority", "")
-                  return (
-                    <IssueRow
-                      taskId={task.code}
-                      labels={filteredLabels}
-                      title={task.title}
-                      url={task.url}
-                      priority={strippedPriorityLabel}
-                      onCheckboxChange={() => {
-                        console.log(`Checkbox for task ${task.number} changed`)
-                      }}
-                      dates={[]}
-                    />
-                  )
-                })}
+                {filteredTasks.length > 0 ? (
+                  filteredTasks.map((task) => {
+                    const priorityLabels = ["Medium priority", "High priority", "Low priority"];
+                    const filteredLabels = task.labels
+                      ? task.labels.filter((label) => !priorityLabels.includes(label.name))
+                      : [];
+                    const priorityLabel = task.labels
+                      ? task.labels.find((label) => priorityLabels.includes(label.name))
+                      : undefined;
+                    const strippedPriorityLabel = priorityLabel && priorityLabel.name.replace(" priority", "");
+
+                    return (
+                      <IssueRow
+                        taskId={task.code}
+                        labels={filteredLabels}
+                        title={task.title}
+                        url={task.url}
+                        priority={strippedPriorityLabel}
+                        onCheckboxChange={() => {
+                          console.log(`Checkbox for task ${task.number} changed`);
+                        }}
+                        dates={[]}
+                      />
+                    );
+                  })
+                ) : (
+                  <div className="w-max p-4 text-gray-400">
+                    🤔 Oops! No results found for "{searchTerm}" 🧐
+                    <br />
+                    Don't worry, let's try searching for something else! <span className='animation-wrapper'><span>🌟</span><span>✨</span></span>
+                  </div>
+                )}
               </TableBody>
             </Table>
           )}

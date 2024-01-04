@@ -2,42 +2,46 @@
 import { useState, useEffect } from 'react';
 import FilterDropdown from "./FilterDropdown";
 import { fetchGithubIssues } from '@/core/lib/fetchGithubIssues';
+import { Input } from '@/components/ui/input';
 
 function TableToolbar({ onFilter, onSearch }) {
   const [labels, setLabels] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
-
-  useEffect(() => {
-    const getLabels = async () => {
-      const tasks = await fetchGithubIssues();
-      const priorityLabels = ["Medium priority", "High priority", "Low priority"];
-      const allLabels = tasks.flatMap((task) => task.labels || []);
-      const filteredLabels = allLabels.filter((label) => !priorityLabels.includes(label.name));
-
-      const uniqueLabels = filteredLabels.reduce((unique, label) => {
-        return unique.some((u) => u.name === label.name) ? unique : [...unique, label];
-      }, []);
-
-      setLabels(uniqueLabels);
-    };
-
-    getLabels();
-  }, []);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleLabelSelect = (selectedLabel) => {
     setActiveFilters([...activeFilters, selectedLabel]);
     onFilter(selectedLabel);
   };
 
-  const handleLabelRemove = (removedLabel) => {
-    if (activeFilters.length > 0) {
-      setActiveFilters([]);
-    }
-  }
+  const handleSearch = (searchTerm) => {
+    onSearch(searchTerm);
+  };
+
+  const handleInputChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+    handleSearch(newSearchTerm);
+  };
+
+  const handleLabelRemove = () => {
+    setActiveFilters([]);
+    onFilter("all");
+  };
 
   return (
     <div className="my-4 flex items-center justify-between space-x-4">
-      <FilterDropdown clear={handleLabelRemove} labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
+      <Input
+        type="text"
+        placeholder="Search issues..."
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
+      <FilterDropdown
+        clear={handleLabelRemove}
+        labels={labels.map((label) => label.name)}
+        onSelect={handleLabelSelect}
+      />
     </div>
   );
 }

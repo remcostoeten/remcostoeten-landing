@@ -8,4 +8,5 @@ export const BEZIER_CURVES = {
   LINEAR: [0, 0, 1, 1] as BezierCurve,
   DEFAULT: [0.33, 0.04, 0.67, 0.37] as BezierCurve,
   CUSTOM: [0.17, 0.67, 0.83, 0.67] as BezierCurve,
+  BEZIERONE: [0.215, 0.61, 0.355, 1] as BezierCurve,
 } as const

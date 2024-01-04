@@ -2,10 +2,12 @@ import Link from "next/link"
 
 import { siteConfig } from "@/core/config/site"
 import { buttonVariants } from "@/components/ui/button"
+import Intro from "@/components/layout/homepage/Intro"
 
 export default function IndexPage() {
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+    <section className="container !p-0 grid items-center gap-6 ">
+      <Intro />
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           https://github.com/Sukrittt/Limetta Beautifully designed components{" "}

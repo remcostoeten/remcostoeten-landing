@@ -5,7 +5,7 @@ import NextTopLoader from "nextjs-toploader"
 
 import { LayoutProps } from "@/core/types/global"
 import { siteConfig } from "@/core/config/site"
-import { fontSans } from "@/core/lib/fonts"
+import { fontSans, fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <body
             className={cn(
               "body-gradient min-h-screen bg-background font-sans antialiased",
-              fontSans.variable
+              fontSora.variable
             )}
           >
             <NextTopLoader color="#2dd4bf" height={5} />

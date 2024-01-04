@@ -2,53 +2,53 @@
 
 import { Suspense, useEffect, useState } from "react"
 
-import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
+import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
 import {
   Table,
   TableBody,
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import Spinner from "@/components/effects/Spinner";
-import IntroShell from "@/components/layout/IntroShell";
-import TableToolbar from "./compopnents/TableToolbar";
-import IssueTableSkeleton from "@/components/effects/Skeleton";
-import RowUi from "./compopnents/RowUi";
+} from "@/components/ui/table"
+import IssueTableSkeleton from "@/components/effects/Skeleton"
+import Spinner from "@/components/effects/Spinner"
+import IntroShell from "@/components/layout/IntroShell"
 
+import RowUi from "./compopnents/RowUi"
+import TableToolbar from "./compopnents/TableToolbar"
 
 export default function Page() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [filteredTasks, setFilteredTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("")
+  const [tasks, setTasks] = useState([])
+  const [filteredTasks, setFilteredTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchTasks = async () => {
-      setIsLoading(true);
-      const fetchedTasks = await fetchGithubIssues();
-      setTasks(fetchedTasks);
-      setFilteredTasks(fetchedTasks);
-      setIsLoading(false);
-    };
+      setIsLoading(true)
+      const fetchedTasks = await fetchGithubIssues()
+      setTasks(fetchedTasks)
+      setFilteredTasks(fetchedTasks)
+      setIsLoading(false)
+    }
 
-    fetchTasks();
-  }, []);
+    fetchTasks()
+  }, [])
 
   const handleSearch = (term: string) => {
-    setSearchTerm(term);
-  };
+    setSearchTerm(term)
+  }
 
   const handleFilter = (filter: string) => {
     if (filter === "all") {
-      setFilteredTasks(tasks);
+      setFilteredTasks(tasks)
     } else {
       const filtered = tasks.filter((task) =>
         task.labels.some((label) => label.name === filter)
-      );
-      setFilteredTasks(filtered);
+      )
+      setFilteredTasks(filtered)
     }
-  };
+  }
 
   return (
     <>
@@ -60,7 +60,7 @@ export default function Page() {
         <div className="flex flex-col ">
           <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
           {isLoading ? (
-            <div className='mt-4 flex flex-col gap-[5px] '>
+            <div className="mt-4 flex flex-col gap-[5px] ">
               <IssueTableSkeleton />
             </div>
           ) : (
@@ -85,13 +85,13 @@ export default function Page() {
                   ]
                   const filteredLabels = task.labels
                     ? task.labels.filter(
-                      (label) => !priorityLabels.includes(label.name)
-                    )
+                        (label) => !priorityLabels.includes(label.name)
+                      )
                     : []
                   const priorityLabel = task.labels
                     ? task.labels.find((label) =>
-                      priorityLabels.includes(label.name)
-                    )
+                        priorityLabels.includes(label.name)
+                      )
                     : undefined
                   const strippedPriorityLabel =
                     priorityLabel && priorityLabel.name.replace(" priority", "")

@@ -1,39 +1,39 @@
 // In fetchGithubIssues.ts
 
 interface Issue {
-  id: number;
-  number: number;
-  title: string;
-  html_url: string;
-  state: string;
+  id: number
+  number: number
+  title: string
+  html_url: string
+  state: string
   labels: {
-    name: string;
-    color: string;
-  }[];
+    name: string
+    color: string
+  }[]
 }
 
 interface Task {
-  id: number;
-  code: string;
-  title: string;
-  url: string;
-  status: string;
+  id: number
+  code: string
+  title: string
+  url: string
+  status: string
   labels: {
-    name: string;
-    color: string;
-  }[];
+    name: string
+    color: string
+  }[]
 }
 
 export const fetchGithubIssues = async (
   options: { endpoint?: string; queryParams?: Record<string, string> } = {}
 ): Promise<Task[]> => {
-  const { endpoint = "issues", queryParams = {} } = options;
+  const { endpoint = "issues", queryParams = {} } = options
 
-  const queryString = new URLSearchParams(queryParams).toString();
-  const apiUrl = `https://api.github.com/repos/remcostoeten/blog-remcostoetn/${endpoint}?${queryString}`;
+  const queryString = new URLSearchParams(queryParams).toString()
+  const apiUrl = `https://api.github.com/repos/remcostoeten/blog-remcostoetn/${endpoint}?${queryString}`
 
-  const response = await fetch(apiUrl);
-  const data: Issue[] = await response.json();
+  const response = await fetch(apiUrl)
+  const data: Issue[] = await response.json()
   return data.map((issue) => ({
     id: issue.id,
     code: `TASK-${issue.number}`,
@@ -44,5 +44,5 @@ export const fetchGithubIssues = async (
       name: label.name,
       color: label.color,
     })),
-  }));
-};
+  }))
+}

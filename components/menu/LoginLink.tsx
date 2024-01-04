@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Label } from "@radix-ui/react-label"
+import { toast } from "sonner"
 
 import { Icons } from "../icons"
 import {
@@ -22,7 +23,6 @@ import {
 } from "../ui/card"
 import { Input } from "../ui/input"
 import LoginLinkAuth from "./LoginLinkAuth"
-import { toast } from "sonner"
 
 export default function LoginAnchor() {
   const [isOpen, setIsOpen] = useState(false)

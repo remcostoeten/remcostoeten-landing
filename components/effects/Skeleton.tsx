@@ -75,6 +75,106 @@ const IssueTableSkeleton = () => {
         height="8"
         additionalClasses="rounded-sm bg-gray-400/10"
       />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
+      <SkeletonBar
+        width="full"
+        height="8"
+        additionalClasses="rounded-sm bg-gray-400/10"
+      />
     </>
   )
 }

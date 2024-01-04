@@ -6,7 +6,6 @@ export interface LabelPillProps {
     children?: React.ReactNode
 }
 
-
 export type Label = {
     name: string
     color: string

@@ -14,7 +14,6 @@ function SearchBar() {
 }
 
 function TableToolbar({ onFilter }) {
-  const [issues, setIssues] = useState([]);
   const [labels, setLabels] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
 
@@ -41,14 +40,9 @@ function TableToolbar({ onFilter }) {
   };
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="my-4 flex items-center justify-between space-x-4">
       <SearchBar />
       <FilterDropdown labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
-      {activeFilters.map((filter, index) => (
-        <LabelPill key={index} label={filter} onRemove={() => {
-          setActiveFilters(activeFilters.filter(activeFilter => activeFilter !== filter));
-        }} />
-      ))}
     </div>
   );
 }

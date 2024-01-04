@@ -2,62 +2,53 @@
 
 import { Suspense, useEffect, useState } from "react"
 
-import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
+import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues";
 import {
   Table,
   TableBody,
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import Spinner from "@/components/effects/Spinner"
-import IntroShell from "@/components/layout/IntroShell"
+} from "@/components/ui/table";
+import Spinner from "@/components/effects/Spinner";
+import IntroShell from "@/components/layout/IntroShell";
+import TableToolbar from "./compopnents/TableToolbar";
+import IssueTableSkeleton from "@/components/effects/Skeleton";
+import RowUi from "./compopnents/RowUi";
 
-import RowUi from "./compopnents/RowUi"
-import TableToolbar from "./compopnents/TableToolbar"
-import IssueTableSkeleton from "@/components/effects/Skeleton"
 
 export default function Page() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [tasks, setTasks] = useState([])
-  const [filteredTasks, setFilteredTasks] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    const getIssues = async () => {
-      const issues = await fetchGithubIssues()
-      setTasks(issues)
-    }
-
-    getIssues()
-  }, [])
-
-  const handleSearch = (term) => {
-    setSearchTerm(term)
-  }
+  const [searchTerm, setSearchTerm] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTasks = async () => {
-      setIsLoading(true)
-      const fetchedTasks = await fetchGithubIssues()
-      setTasks(fetchedTasks)
-      setFilteredTasks(fetchedTasks)
-      setIsLoading(false)
-    }
+      setIsLoading(true);
+      const fetchedTasks = await fetchGithubIssues();
+      setTasks(fetchedTasks);
+      setFilteredTasks(fetchedTasks);
+      setIsLoading(false);
+    };
 
-    fetchTasks()
-  }, [])
+    fetchTasks();
+  }, []);
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+  };
 
-  const handleFilter = (filter) => {
+  const handleFilter = (filter: string) => {
     if (filter === "all") {
-      setFilteredTasks(tasks)
+      setFilteredTasks(tasks);
     } else {
       const filtered = tasks.filter((task) =>
         task.labels.some((label) => label.name === filter)
-      )
-      setFilteredTasks(filtered)
+      );
+      setFilteredTasks(filtered);
     }
-  }
+  };
 
   return (
     <>

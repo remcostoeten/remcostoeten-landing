@@ -22,6 +22,7 @@ import {
 } from "../ui/card"
 import { Input } from "../ui/input"
 import LoginLinkAuth from "./LoginLinkAuth"
+import { toast } from "sonner"
 
 export default function LoginAnchor() {
   const [isOpen, setIsOpen] = useState(false)
@@ -32,6 +33,7 @@ export default function LoginAnchor() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === "k") {
         event.preventDefault()
+        toast.success("Redirecting you to the login page!")
         router.push("/api/auth/login")
       }
     }

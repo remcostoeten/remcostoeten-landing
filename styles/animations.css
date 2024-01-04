@@ -2,6 +2,31 @@
     animation: pulser 2s cubic-bezier(0.565, 0.84, 0.44, 1) infinite;
 }
 
+.animation-wrapper {
+    opacity: 0;
+    animation: fadeIn 0.5s .25s ease-in-out forwards;
+
+
+    & span:last-child {
+        opacity: 0;
+        animation: fadeIn 0.5s .75s ease-out forwards;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: rotate(-25deg);
+        scale: 0.56;
+    }
+
+    100% {
+        transform: rotate(0deg);
+        scale: 1;
+        opacity: 1;
+    }
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);

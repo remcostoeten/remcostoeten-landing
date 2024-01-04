@@ -4,14 +4,7 @@ import { useEffect, useState } from "react"
 import { FilterIcon, XIcon } from "lucide-react"
 
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
-import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input"
 
 import LabelPill from "./LabelPill"
+import Dropdown from "@/components/ui/ModelSelector"
+import LabelFilter from "./FilterDropdown"
 
 function SearchBar() {
   return (
@@ -144,9 +139,31 @@ export default function TableToolbar({ onSearch, onFilter }) {
 }
 
 function AddNew() {
+  const items = ["Task", "Issue", "Bug", "Feature"]
+
+  const data = [
+    { id: 1, name: "John", status: "Active" },
+    { id: 2, name: "Jane", status: "Inactive" },
+    // ... other data
+  ];
+
+  const statusColumn = {
+    Header: "Status",
+    accessor: "status",
+    filter: "includes",
+  };
+  const customLabels = ['Label1', 'Label2', 'Label3'];
+
+  const handleLabelSelect = (selectedLabel) => {
+    // Handle the selected label as needed
+    console.log('Selected label:', selectedLabel);
+  };
   return (
-    <Button className="ml-auto" variant="outline">
-      Add New
-    </Button>
+    <>
+
+      <LabelFilter labels={customLabels} onSelect={handleLabelSelect} />
+
+      <Dropdown items={items} renderItem={(item) => <div>{item}</div>} />
+    </>
   )
 }

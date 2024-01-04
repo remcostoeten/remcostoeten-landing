@@ -5,7 +5,18 @@ import LabelPill from "./LabelPill";
 import FilterDropdown from "./FilterDropdown";
 import { fetchGithubIssues } from '@/core/lib/fetchGithubIssues';
 
-function SearchBar() {
+function SearchBar({ data }) {
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    setFilteredData(
+      data.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, data]);
+
   return (
     <div className="relative">
       <Input placeholder="Search data..." type="search" />
@@ -13,7 +24,7 @@ function SearchBar() {
   )
 }
 
-function TableToolbar({ onFilter }) {
+function TableToolbar({ onFilter, onSearch }) {
   const [labels, setLabels] = useState([]);
   const [activeFilters, setActiveFilters] = useState([]);
 
@@ -47,7 +58,7 @@ function TableToolbar({ onFilter }) {
 
   return (
     <div className="my-4 flex items-center justify-between space-x-4">
-      <SearchBar />
+      <SearchBar data={undefined} />
       <FilterDropdown clear={handleLabelRemove} labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
     </div>
   );

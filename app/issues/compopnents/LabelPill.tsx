@@ -7,7 +7,6 @@ export default function LabelPill({
   children,
   color,
   background,
-  onRemove,
   borderColor,
 }: LabelPillProps) {
   const backgroundColor = hexToRGBA(background, 0.44)

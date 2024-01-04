@@ -133,7 +133,7 @@ function FilterMenu({ onFilter }) {
 
 export default function TableToolbar({ onSearch, onFilter }) {
   return (
-    <div className="flex items-center justify-between rounded-lg shadow-sm">
+    <div className="flex items-center justify-between rounded-lg shadow-sm mb-2">
       <div className="flex items-center space-x-4">
         <SearchBar />
         <FilterMenu onFilter={onFilter} />

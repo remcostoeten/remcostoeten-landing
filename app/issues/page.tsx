@@ -15,12 +15,13 @@ import IntroShell from "@/components/layout/IntroShell"
 
 import RowUi from "./compopnents/RowUi"
 import TableToolbar from "./compopnents/TableToolbar"
+import IssueTableSkeleton from "@/components/effects/Skeleton"
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState("")
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
-
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     const getIssues = async () => {
       const issues = await fetchGithubIssues()
@@ -36,13 +37,16 @@ export default function Page() {
 
   useEffect(() => {
     const fetchTasks = async () => {
+      setIsLoading(true)
       const fetchedTasks = await fetchGithubIssues()
       setTasks(fetchedTasks)
       setFilteredTasks(fetchedTasks)
+      setIsLoading(false)
     }
 
     fetchTasks()
   }, [])
+
 
   const handleFilter = (filter) => {
     if (filter === "all") {
@@ -62,55 +66,61 @@ export default function Page() {
         description="These are all the Github issues fetched through the API regarding this project."
       />
       <Suspense fallback={<Spinner />}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col ">
           <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
-          <Table
-            key="1"
-            className="divide-y divide-gray-900 !rounded-md border text-white"
-          >
-            <TableHeader className="[&_tr]:border-b">
-              <TableRow>
-                <TableHead className="w-[50px]" />
-                <TableHead className="w-[100px]">Task</TableHead>
-                <TableHead>Title</TableHead>
-                <TableHead>Priority</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredTasks.map((task) => {
-                const priorityLabels = [
-                  "Medium priority",
-                  "High priority",
-                  "Low priority",
-                ]
-                const filteredLabels = task.labels
-                  ? task.labels.filter(
-                    (label) => !priorityLabels.includes(label.name)
+          {isLoading ? (
+            <div className='mt-4 flex flex-col gap-[5px] '>
+              <IssueTableSkeleton />
+            </div>
+          ) : (
+            <Table
+              key="1"
+              className="divide-y divide-gray-900 !rounded-md border text-white"
+            >
+              <TableHeader className="[&_tr]:border-b">
+                <TableRow>
+                  <TableHead className="w-[50px]" />
+                  <TableHead className="w-[100px]">Task</TableHead>
+                  <TableHead>Title</TableHead>
+                  <TableHead>Priority</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredTasks.map((task) => {
+                  const priorityLabels = [
+                    "Medium priority",
+                    "High priority",
+                    "Low priority",
+                  ]
+                  const filteredLabels = task.labels
+                    ? task.labels.filter(
+                      (label) => !priorityLabels.includes(label.name)
+                    )
+                    : []
+                  const priorityLabel = task.labels
+                    ? task.labels.find((label) =>
+                      priorityLabels.includes(label.name)
+                    )
+                    : undefined
+                  const strippedPriorityLabel =
+                    priorityLabel && priorityLabel.name.replace(" priority", "")
+                  return (
+                    <RowUi
+                      taskId={task.code}
+                      labels={filteredLabels}
+                      title={task.title}
+                      url={task.url}
+                      priority={strippedPriorityLabel}
+                      onCheckboxChange={() => {
+                        console.log(`Checkbox for task ${task.number} changed`)
+                      }}
+                      dates={[]}
+                    />
                   )
-                  : []
-                const priorityLabel = task.labels
-                  ? task.labels.find((label) =>
-                    priorityLabels.includes(label.name)
-                  )
-                  : undefined
-                const strippedPriorityLabel =
-                  priorityLabel && priorityLabel.name.replace(" priority", "")
-                return (
-                  <RowUi
-                    taskId={task.code}
-                    labels={filteredLabels}
-                    title={task.title}
-                    url={task.url}
-                    priority={strippedPriorityLabel}
-                    onCheckboxChange={() => {
-                      console.log(`Checkbox for task ${task.number} changed`)
-                    }}
-                    dates={[]}
-                  />
-                )
-              })}
-            </TableBody>
-          </Table>
+                })}
+              </TableBody>
+            </Table>
+          )}
         </div>
       </Suspense>
     </>

@@ -39,10 +39,16 @@ function TableToolbar({ onFilter }) {
     onFilter(selectedLabel);
   };
 
+  const handleLabelRemove = (removedLabel) => {
+    if (activeFilters.length > 0) {
+      setActiveFilters([]);
+    }
+  }
+
   return (
     <div className="my-4 flex items-center justify-between space-x-4">
       <SearchBar />
-      <FilterDropdown labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
+      <FilterDropdown clear={handleLabelRemove} labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
     </div>
   );
 }

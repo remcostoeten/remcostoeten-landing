@@ -1,6 +1,6 @@
 'use client';
 import { useForm } from 'react-hook-form';
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+import { CaretSortIcon, CheckIcon, Cross1Icon } from '@radix-ui/react-icons';
 import { cn } from '@/core/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
@@ -8,7 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { FilterIcon } from 'lucide-react';
 
-export default function FilterDropdown({ labels, onSelect }) {
+export default function FilterDropdown({ labels, onSelect, clear }) {
     const form = useForm({
         defaultValues: {
             labels: [],
@@ -21,7 +21,7 @@ export default function FilterDropdown({ labels, onSelect }) {
                 <FormField
                     name="label"
                     render={({ field }) => (
-                        <FormItem className="flex flex-col">
+                        <FormItem className="flex items-center gap-4">
                             <Popover>
                                 <PopoverTrigger asChild>
                                     <FormControl>
@@ -62,6 +62,11 @@ export default function FilterDropdown({ labels, onSelect }) {
                                     </Command>
                                 </PopoverContent>
                             </Popover>
+                            {field.value && (
+                                <button className='unset-all -translate-y-1 cursor-pointer transition-all hover:rotate-12 hover:scale-125' onClick={clear} >
+                                    <Cross1Icon />
+                                </button>
+                            )}
                         </FormItem>
                     )}
                 />

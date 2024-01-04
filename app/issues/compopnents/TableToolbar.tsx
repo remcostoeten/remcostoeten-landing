@@ -1,28 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Input } from "@/components/ui/input";
-import LabelPill from "./LabelPill";
 import FilterDropdown from "./FilterDropdown";
 import { fetchGithubIssues } from '@/core/lib/fetchGithubIssues';
-
-function SearchBar({ data }) {
-  const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-
-  useEffect(() => {
-    setFilteredData(
-      data?.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [search, data]);
-
-  return (
-    <div className="relative">
-      <Input placeholder="Search data..." type="search" />
-    </div>
-  )
-}
 
 function TableToolbar({ onFilter, onSearch }) {
   const [labels, setLabels] = useState([]);
@@ -58,7 +37,6 @@ function TableToolbar({ onFilter, onSearch }) {
 
   return (
     <div className="my-4 flex items-center justify-between space-x-4">
-      <SearchBar data={undefined} />
       <FilterDropdown clear={handleLabelRemove} labels={labels.map(label => label.name)} onSelect={handleLabelSelect} />
     </div>
   );

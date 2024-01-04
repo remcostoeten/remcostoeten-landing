@@ -35,10 +35,6 @@ export default function Page() {
     fetchTasks()
   }, [])
 
-  const handleSearch = (term: string) => {
-    setSearchTerm(term)
-  }
-
   const handleFilter = (filter: string) => {
     if (filter === "all") {
       setFilteredTasks(tasks)
@@ -58,7 +54,7 @@ export default function Page() {
       />
       <Suspense fallback={<Spinner />}>
         <div className="flex flex-col ">
-          <TableToolbar onSearch={handleSearch} onFilter={handleFilter} />
+          <TableToolbar onFilter={handleFilter} />
           {isLoading ? (
             <div className="mt-4 flex flex-col gap-[5px] ">
               <IssueTableSkeleton />

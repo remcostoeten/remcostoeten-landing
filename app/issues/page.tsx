@@ -13,7 +13,6 @@ import {
 import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
-
 import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
@@ -22,6 +21,7 @@ export default function Page() {
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const noResults = filteredTasks.length === 0 && !isLoading;
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -56,13 +56,7 @@ export default function Page() {
       );
       setFilteredTasks(filtered);
     }
-
   };
-
-  // show message if no results
-
-  const noResults = filteredTasks.length === 0 && !isLoading;
-
 
   return (
     <>

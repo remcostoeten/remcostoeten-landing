@@ -6,7 +6,7 @@ import Intro from "@/components/layout/homepage/Intro"
 
 export default function IndexPage() {
   return (
-    <section className="container !p-0 grid items-center gap-6 ">
+    <section className="container items-center gap-6 !p-0 md:grid ">
       <Intro />
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">

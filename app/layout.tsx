@@ -42,14 +42,14 @@ export default function RootLayout({ children }: LayoutProps) {
         <TooltipProvider>
           <body
             className={cn(
-              "body-gradient min-h-screen bg-background font-sans antialiased",
+              "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
               fontSora.variable
             )}
           >
             <NextTopLoader color="#2dd4bf" height={5} />
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <ShellLayout header={<SiteHeader />}>
-                <div className="max-w-[854px] transition-all duration-300">
+                <div className="transition-all duration-300 sm:max-w-[854px]">
                   {children}
                 </div>
                 <Toaster />

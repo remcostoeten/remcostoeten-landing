@@ -11,7 +11,7 @@ export default function Intro() {
                 </h1>
             </div>
             <div className="mt-2">
-                <ul className="ml-5 flex list-disc flex-col items-center gap-1 text-neutral-700 lg:flex-row lg:gap-8 dark:text-neutral-400">
+                <ul className="ml-5 flex list-disc flex-col  gap-1 text-neutral-700 lg:flex-row lg:gap-8 dark:text-neutral-400">
                     <li>Software Engineer</li>
                     <li>
                         Based in Lemmer, the Netherlands{" "}

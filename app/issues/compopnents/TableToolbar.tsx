@@ -1,7 +1,6 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FilterDropdown from "./FilterDropdown";
-import { fetchGithubIssues } from '@/core/lib/fetchGithubIssues';
 import { Input } from '@/components/ui/input';
 
 function TableToolbar({ onFilter, onSearch }) {

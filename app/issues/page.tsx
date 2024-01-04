@@ -14,7 +14,7 @@ import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
 
-import RowUi from "./compopnents/RowUi"
+import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
 export default function Page() {
@@ -85,18 +85,18 @@ export default function Page() {
                   ]
                   const filteredLabels = task.labels
                     ? task.labels.filter(
-                        (label) => !priorityLabels.includes(label.name)
-                      )
+                      (label) => !priorityLabels.includes(label.name)
+                    )
                     : []
                   const priorityLabel = task.labels
                     ? task.labels.find((label) =>
-                        priorityLabels.includes(label.name)
-                      )
+                      priorityLabels.includes(label.name)
+                    )
                     : undefined
                   const strippedPriorityLabel =
                     priorityLabel && priorityLabel.name.replace(" priority", "")
                   return (
-                    <RowUi
+                    <IssueRow
                       taskId={task.code}
                       labels={filteredLabels}
                       title={task.title}

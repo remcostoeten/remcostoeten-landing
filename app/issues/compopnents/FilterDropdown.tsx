@@ -18,6 +18,7 @@ import { FilterIcon } from 'lucide-react';
  * @param {Function} props.onSelect - A callback function triggered when a label is selected.
  * @returns {JSX.Element} - The LabelFilter component.
  */
+
 export default function FilterDropdown({ labels, onSelect }) {
     const form = useForm({
         defaultValues: {

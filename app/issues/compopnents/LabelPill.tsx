@@ -1,14 +1,6 @@
 import React from "react"
-
 import { hexToRGBA } from "@/core/lib/utils"
-
-interface LabelPillProps {
-  label?: string
-  color?: string
-  background?: string
-  borderColor?: string
-  children?: React.ReactNode
-}
+import { LabelPillProps } from "./types"
 
 export default function LabelPill({
   label,

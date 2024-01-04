@@ -10,27 +10,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import Skeleton from "@/components/effects/Skeleton"
-import Spinner from "@/components/effects/Spinner"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
+import { IssueRowProps } from "./types"
 
-type Label = {
-  name: string
-  color: string
-}
-
-type RowUiProps = {
-  taskId: string
-  dates?: string[]
-  labels: Label[]
-  title: string
-  url?: string
-  priority: string
-  onCheckboxChange?: () => void
-}
-
-export default function RowUi({
+export default function IssueRow({
   taskId,
   dates,
   labels,
@@ -38,7 +23,7 @@ export default function RowUi({
   url,
   priority,
   onCheckboxChange,
-}: RowUiProps) {
+}: IssueRowProps) {
   return (
     <Suspense fallback={<Skeleton />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">

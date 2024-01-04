@@ -1,3 +1,7 @@
+'use client';
+import { Tooltip } from "@/components/ui/tooltip";
+import { TooltipContent, TooltipTrigger } from "@c/ui/tooltip";
+import Link from "next/link";
 
 export default function Intro() {
     return (
@@ -12,16 +16,21 @@ export default function Intro() {
             </div>
             <div className="mt-2">
                 <ul className="ml-5 flex list-disc flex-col  gap-1 text-neutral-700 lg:flex-row lg:gap-8 dark:text-neutral-400">
-                    <li>Software Engineer</li>
+                    <li>Front-end Engineer</li>
                     <li>
-                        Based in Lemmer, the Netherlands{" "}
-                        <span aria-label="Dutch flag" role="img">
-                            🇳🇱
-                        </span>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                Based in Lemmer, the Netherlands{" "}
+                                <span aria-label="Dutch flag" role="img">
+                                    🇳🇱
+                                </span>
+                            </TooltipTrigger>
+                            <TooltipContent>But remote is ❤️</TooltipContent>
+                        </Tooltip>
                     </li>
                 </ul>
                 <p className="mt-4 leading-[1.8] text-neutral-800 md:leading-loose dark:text-neutral-300">
-                    I am a recovering ex-Magento developer and currently building open source software at Pleio. Primarily working
+                    I am a recovering ex-Magento developer and currently building open source software at <Link className="underline" href='https://gitlab.com/pleio/frontend' target="_blank">Pleio</Link>. Primarily working
                     with TypeScript & Next.js, have done a little Python, Shell & Lua, and want to learn Go, OCaml 🐪 and DevOps.
                 </p>
             </div>

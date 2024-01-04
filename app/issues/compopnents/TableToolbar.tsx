@@ -11,7 +11,7 @@ function SearchBar({ data }) {
 
   useEffect(() => {
     setFilteredData(
-      data.filter((item) =>
+      data?.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       )
     );

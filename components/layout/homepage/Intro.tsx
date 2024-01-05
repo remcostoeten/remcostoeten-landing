@@ -15,13 +15,13 @@ export default function Intro() {
                 </h1>
             </div>
             <div className="mt-2">
-                <ul className="ml-5 flex list-disc flex-col  gap-1 text-neutral-700 lg:flex-row lg:gap-8 dark:text-neutral-400">
+                <ul className="flex list-disc flex-col gap-1  text-neutral-700 sm:ml-5 lg:flex-row lg:gap-8 dark:text-neutral-400">
                     <li>Front-end Engineer</li>
-                    <li>
+                    <li >
                         <Tooltip>
-                            <TooltipTrigger>
+                            <TooltipTrigger className="flex gap-2">
                                 Based in Lemmer, the Netherlands{" "}
-                                <span aria-label="Dutch flag" role="img">
+                                <span className='hidden sm:flex' aria-label="Dutch flag" role="img">
                                     🇳🇱
                                 </span>
                             </TooltipTrigger>

@@ -97,7 +97,7 @@ export default function SiteHeader({
             })}
           </ul>
         </div>
-        <p className="mb-6 flex items-center">
+        <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
           With
           <span className="mx-1 animate-pulse">❤</span>
           by remco stoeten

@@ -49,9 +49,9 @@ export default function RootLayout({ children }: LayoutProps) {
             <NextTopLoader color="#2dd4bf" height={5} />
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <ShellLayout header={<SiteHeader />}>
-                <div className="transition-all duration-300 sm:max-w-[854px]">
+                <main className="inner transition-all duration-300 sm:max-w-[854px]">
                   {children}
-                </div>
+                </main>
                 <Toaster />
               </ShellLayout>
               <TailwindIndicator />

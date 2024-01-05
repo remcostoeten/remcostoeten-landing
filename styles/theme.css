@@ -14,6 +14,17 @@
     /* background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0)); */
 }
 
+.table-layout {
+    & .inner {
+        max-width: 1440px !important;
+    }
+
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
 @keyframes morphBodyGradient {
     0% {
         background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0));

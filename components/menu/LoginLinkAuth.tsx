@@ -1,37 +1,65 @@
-"use client"
+'use client';
+import { useState, useEffect } from 'react';
+import { Icons } from "../icons";
+import { Badge } from "../ui/badge";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader, AlertDialogTrigger
+} from "../ui/alert-dialog";
+import { SignIn } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
 
-import Link from "next/link"
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+export default function LoginLink() {
+  const [isOpen, setIsOpen] = useState(false);
 
-import { Icons } from "../icons"
-import { Badge } from "../ui/badge"
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+        event.preventDefault();
+        setIsOpen(prevIsOpen => !prevIsOpen);
+      }
+    };
 
-export default function LoginLinkAuth() {
-  const { isAuthenticated, getUser } = useKindeBrowserClient()
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
-    <span className="space-between flex items-center">
-      {isAuthenticated ? (
-        <>
-          <Icons.shortcut className="mr-2" />
-          <span className="">cmd + k</span>
-        </>
-      ) : (
-        <Link href="/api/auth/login" className="flex grow items-center gap-2">
-          <Icons.shortcut className="mr-2" />
-          <span className="">cmd + k</span>
-        </Link>
-      )}
-
-      <Badge variant="secondary" className="justify-end">
-        {isAuthenticated ? (
-          <Link href="/api/auth/logout">Logout</Link>
-        ) : (
-          <Link href="/api/auth/login">
-            {isAuthenticated ? "Sign Up" : "Login"}
-          </Link>
-        )}
-      </Badge>
-    </span>
-  )
+    <>
+      <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialogTrigger className='flex w-full items-center justify-between'>
+          <div className='flex grow items-center gap-2'>
+            <Icons.shortcut className="mr-2" />
+            <span className="">cmd + k</span>
+          </div>
+          <SignedOut>
+            <Badge variant="secondary" className='justify-end'>Login</Badge>
+          </SignedOut>
+          <SignedIn>
+            <Badge variant="secondary" className='justify-end'>     <SignOutButton /></Badge>
+          </SignedIn>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogDescription>
+              <SignIn />
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <div className="mb-6 flex items-center justify-start"></div>
+    </>
+  );
 }

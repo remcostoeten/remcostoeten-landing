@@ -1,69 +1,55 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Label } from "@radix-ui/react-label"
-import { toast } from "sonner"
-
-import { Icons } from "../icons"
+'use client';
+import { useState, useEffect } from 'react';
+import { Icons } from "../icons";
+import { Badge } from "../ui/badge";
 import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogTrigger,
-} from "../ui/alert-dialog"
-import { Button } from "../ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../ui/card"
-import { Input } from "../ui/input"
-import LoginLinkAuth from "./LoginLinkAuth"
+  AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger
+} from "../ui/alert-dialog";
+import { Label } from '@radix-ui/react-label';
+import { signIn } from 'next-auth/react';
+import { Button } from '../ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
+import { Input } from '../ui/input';
 
-export default function LoginAnchor() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isSignup, setIsSignup] = useState(false)
-  const router = useRouter()
+export default function LoginLink() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || event.metaKey) && event.key === "k") {
-        event.preventDefault()
-        toast.success("Redirecting you to the login page!")
-        router.push("/api/auth/login")
+      if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+        event.preventDefault();
+        setIsOpen(prevIsOpen => !prevIsOpen);
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown);
 
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [router])
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <>
       <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
-        <AlertDialogTrigger className="flex w-full items-center justify-between">
-          <LoginLinkAuth />
+        <AlertDialogTrigger className='flex w-full items-center justify-between'>
+          <div className='flex grow items-center gap-2'>
+            <Icons.shortcut className="mr-2" />
+            <span className="">cmd + k</span>
+          </div>
+          <Badge variant="secondary" className='justify-end'>{isSignup ? 'Sign Up' : 'Login'}</Badge>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <Card>
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl">
-                {isSignup ? "Create an account" : "Sign in"}
-              </CardTitle>
+              <CardTitle className="text-2xl">{isSignup ? 'Create an account' : 'Sign in'}</CardTitle>
               <CardDescription>
-                Enter your email and password below to{" "}
-                {isSignup ? "create your account" : "sign in"}
+                Enter your email and password below to {isSignup ? 'create your account' : 'sign in'}
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline">
+                <Button variant="outline" onClick={() => signIn('github')}>
                   <Icons.gitHub className="mr-2 h-4 w-4" />
                 </Button>
                 <Button variant="outline" className="flex gap-2">
@@ -85,10 +71,8 @@ export default function LoginAnchor() {
                 <Input id="password" type="password" />
               </div>
             </CardContent>
-            <CardFooter className=" flex flex-col items-start gap-2">
-              <Button className="w-full">
-                {isSignup ? "Create account" : "Sign in"}
-              </Button>
+            <CardFooter className=' flex flex-col items-start gap-2'>
+              <Button className="w-full">{isSignup ? 'Create account' : 'Sign in'}</Button>
               <span onClick={() => setIsSignup(!isSignup)}>
                 {isSignup ? (
                   <>
@@ -114,8 +98,9 @@ export default function LoginAnchor() {
               </span>
             </CardFooter>
           </Card>
+
         </AlertDialogContent>
       </AlertDialog>
     </>
-  )
+  );
 }

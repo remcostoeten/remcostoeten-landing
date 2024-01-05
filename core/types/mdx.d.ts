@@ -3,7 +3,6 @@ declare module "*.mdx" {
   export default MDXComponent
 }
 
-
 export type BlogItem = {
   type_of: string
   id: number
@@ -38,7 +37,7 @@ export interface ContentProps {
   description: string
   image: string
   is_new: boolean
-  level: 'Easy' | 'Medium' | 'Hard'
+  level: "Easy" | "Medium" | "Hard"
   is_show: boolean
   language: string
 }

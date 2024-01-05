@@ -13,15 +13,16 @@ import {
 import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
+
 import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
 export default function Page() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("")
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const noResults = filteredTasks.length === 0 && !isLoading;
+  const noResults = filteredTasks.length === 0 && !isLoading
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -47,16 +48,16 @@ export default function Page() {
   }
 
   const handleSearch = (searchTerm) => {
-    setSearchTerm(searchTerm);
+    setSearchTerm(searchTerm)
     if (searchTerm === "") {
-      setFilteredTasks(tasks);
+      setFilteredTasks(tasks)
     } else {
       const filtered = tasks.filter((task) =>
         task.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredTasks(filtered);
+      )
+      setFilteredTasks(filtered)
     }
-  };
+  }
 
   return (
     <>
@@ -87,14 +88,24 @@ export default function Page() {
               <TableBody>
                 {filteredTasks.length > 0 ? (
                   filteredTasks.map((task) => {
-                    const priorityLabels = ["Medium priority", "High priority", "Low priority"];
+                    const priorityLabels = [
+                      "Medium priority",
+                      "High priority",
+                      "Low priority",
+                    ]
                     const filteredLabels = task.labels
-                      ? task.labels.filter((label) => !priorityLabels.includes(label.name))
-                      : [];
+                      ? task.labels.filter(
+                          (label) => !priorityLabels.includes(label.name)
+                        )
+                      : []
                     const priorityLabel = task.labels
-                      ? task.labels.find((label) => priorityLabels.includes(label.name))
-                      : undefined;
-                    const strippedPriorityLabel = priorityLabel && priorityLabel.name.replace(" priority", "");
+                      ? task.labels.find((label) =>
+                          priorityLabels.includes(label.name)
+                        )
+                      : undefined
+                    const strippedPriorityLabel =
+                      priorityLabel &&
+                      priorityLabel.name.replace(" priority", "")
 
                     return (
                       <IssueRow
@@ -104,17 +115,24 @@ export default function Page() {
                         url={task.url}
                         priority={strippedPriorityLabel}
                         onCheckboxChange={() => {
-                          console.log(`Checkbox for task ${task.number} changed`);
+                          console.log(
+                            `Checkbox for task ${task.number} changed`
+                          )
                         }}
                         dates={[]}
                       />
-                    );
+                    )
                   })
                 ) : (
                   <div className="w-max p-4 text-gray-400">
                     🤔 Oops! No results found for &quot;{searchTerm}&quot; 🧐
                     <br />
-                    Don&apos;t worry, let&apos;s try searching for something else! <span className='animation-wrapper'><span>🌟</span><span>✨</span></span>
+                    Don&apos;t worry, let&apos;s try searching for something
+                    else!{" "}
+                    <span className="animation-wrapper">
+                      <span>🌟</span>
+                      <span>✨</span>
+                    </span>
                   </div>
                 )}
               </TableBody>

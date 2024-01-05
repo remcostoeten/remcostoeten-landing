@@ -31,7 +31,12 @@ type SkeletonBarProps = {
  * A skeleton bar component that can be used to show loading state for content.
  */
 
-const SkeletonBar = ({ additionalClasses, width = 'full', height = '32', dark = 'false' }: SkeletonBarProps): JSX.Element => {
+const SkeletonBar = ({
+  additionalClasses,
+  width = "full",
+  height = "32",
+  dark = false,
+}: SkeletonBarProps): JSX.Element => {
   const widthClass = typeof width === "number" ? `w-${width}` : `w-${width}`
   const heightClass = typeof height === "number" ? `h-${height}` : `h-${height}`
   const darkClass = dark ? "dark-skeleton" : ""

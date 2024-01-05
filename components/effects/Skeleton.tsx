@@ -30,12 +30,13 @@ type SkeletonBarProps = {
 /**
  * A skeleton bar component that can be used to show loading state for content.
  */
-export const SkeletonBar: React.FC<SkeletonBarProps> = ({
+
+const SkeletonBar = ({
+  additionalClasses,
   width = "full",
   height = "32",
-  additionalClasses = "",
   dark = false,
-}) => {
+}: SkeletonBarProps): JSX.Element => {
   const widthClass = typeof width === "number" ? `w-${width}` : `w-${width}`
   const heightClass = typeof height === "number" ? `h-${height}` : `h-${height}`
   const darkClass = dark ? "dark-skeleton" : ""
@@ -180,3 +181,15 @@ const IssueTableSkeleton = () => {
 }
 
 export default IssueTableSkeleton
+
+const LoadingArticle = () => {
+  return (
+    <div className="flex h-max min-w-[250px] flex-col space-y-2">
+      <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="h-4 w-full animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="h-2 w-24 animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
+    </div>
+  )
+}
+
+export { LoadingArticle, SkeletonBar, IssueTableSkeleton }

@@ -1,7 +1,7 @@
 "use client"
 
 import { Suspense, useEffect, useState } from "react"
-
+import CreateRepo from './compopnents/CreateRepo'
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
 import {
   Table,
@@ -68,6 +68,7 @@ export default function Page() {
       <Suspense fallback={<Spinner />}>
         <div className="flex flex-col ">
           <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
+          <CreateRepo />
           {isLoading ? (
             <div className="mt-4 flex flex-col gap-[5px] ">
               <IssueTableSkeleton />
@@ -95,13 +96,13 @@ export default function Page() {
                     ]
                     const filteredLabels = task.labels
                       ? task.labels.filter(
-                          (label) => !priorityLabels.includes(label.name)
-                        )
+                        (label) => !priorityLabels.includes(label.name)
+                      )
                       : []
                     const priorityLabel = task.labels
                       ? task.labels.find((label) =>
-                          priorityLabels.includes(label.name)
-                        )
+                        priorityLabels.includes(label.name)
+                      )
                       : undefined
                     const strippedPriorityLabel =
                       priorityLabel &&

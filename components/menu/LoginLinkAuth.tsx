@@ -11,12 +11,12 @@ import {
   AlertDialogFooter,
   AlertDialogHeader, AlertDialogTrigger
 } from "../ui/alert-dialog";
-import { SignIn } from "@clerk/nextjs";
+i
+
+export default function LoginLink() {mport { SignIn } from "@clerk/nextjs";
 import { SignOutButton } from "@clerk/nextjs";
 import { SignedIn } from "@clerk/nextjs";
 import { SignedOut } from "@clerk/nextjs";
-
-export default function LoginLink() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

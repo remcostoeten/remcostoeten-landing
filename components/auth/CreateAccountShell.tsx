@@ -34,7 +34,6 @@ export default function CreateAccountShell() {
               className="mr-2 h-4 w-4"
               onClick={() => signIn("google")}
             />
-            Google
           </Button>
         </div>
         <div className="relative">

@@ -10,10 +10,30 @@ import { signIn } from 'next-auth/react';
 import { Button } from '../ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Input } from '../ui/input';
+import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { auth, firestore } from '@/core/lib/firebase';
+import { User } from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
+import Spinner from '../effects/Spinner';
 
 export default function LoginLink() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [signInWithGoogle, userCredentials, loading, error] =
+    useSignInWithGoogle(auth);
+
+  const [signInWithGithub, userCredentialsGithub, loadingGithub, errorGithub] = useSignInWithGithub(auth);
+
+  const createUserDocument = async (user: User) => {
+    const userDocRef = doc(firestore, 'users', user.uid);
+    await setDoc(userDocRef, JSON.parse(JSON.stringify(user)));
+  };
+
+  useEffect(() => {
+    if (userCredentials) {
+      createUserDocument(userCredentials.user);
+    }
+  }, [userCredentials]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -49,11 +69,23 @@ export default function LoginLink() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline" onClick={() => signIn('github')}>
-                  <Icons.gitHub className="mr-2 h-4 w-4" />
+                <Button
+                  variant="outline"
+                  className="flex gap-2"
+                  loading={loadingGithub}
+                  onClick={() => signInWithGithub()}
+                >
+                  <Icons.google className="mr-2 h-4 w-4" />
+                  {loading ? <Spinner variant='mini' /> : ''}
                 </Button>
-                <Button variant="outline" className="flex gap-2">
-                  Google
+                <Button
+                  variant="outline"
+                  className="flex gap-2"
+                  loading={loading}
+                  onClick={() => signInWithGoogle()}
+                >
+                  <Icons.google className="mr-2 h-4 w-4" />
+                  {loading ? <Spinner /> : ''}
                 </Button>
               </div>
               {isSignup && (

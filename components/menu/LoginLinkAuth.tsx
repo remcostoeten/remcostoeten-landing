@@ -1,17 +1,33 @@
-"use client"
-
-import Link from "next/link"
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
-
-import { Icons } from "../icons"
-import { Badge } from "../ui/badge"
+import { useEffect, useState } from 'react';
+import { Icons } from '../icons';
+import { Badge } from '../ui/badge';
 
 export default function LoginLinkAuth() {
-  const { isAuthenticated, getUser } = useKindeBrowserClient()
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    }, setError);
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <span className="space-between flex items-center">
-      {isAuthenticated ? (
+      {user ? (
         <>
           <Icons.shortcut className="mr-2" />
           <span className="">cmd + k</span>
@@ -22,16 +38,7 @@ export default function LoginLinkAuth() {
           <span className="">cmd + k</span>
         </Link>
       )}
-
-      <Badge variant="secondary" className="justify-end">
-        {isAuthenticated ? (
-          <Link href="/api/auth/logout">Logout</Link>
-        ) : (
-          <Link href="/api/auth/login">
-            {isAuthenticated ? "Sign Up" : "Login"}
-          </Link>
-        )}
-      </Badge>
+      <Badge variant="secondary" />
     </span>
-  )
+  );
 }

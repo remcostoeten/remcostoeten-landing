@@ -1,15 +1,23 @@
-import { useState } from "react"
-import Image from "next/image"
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+'use client';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
 export default function LoggedInAvatar() {
-  const { isAuthenticated, getUser } = useKindeBrowserClient()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, setUser);
+
+    // It's important to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const isLoggedIn = user !== null;
 
   return (
     <>
-      {" "}
       {!isLoggedIn ? (
         <Image
           src="/remco-avatar-compressed.webp"
@@ -18,9 +26,9 @@ export default function LoggedInAvatar() {
           height={50}
           className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""}`}
         />
-      ) : user?.picture ? (
+      ) : user?.photoURL ? (
         <Image
-          src={user?.picture}
+          src={user?.photoURL}
           width={50}
           height={50}
           className={`z-20 rounded-full ${isLoggedIn ? "authenticated" : ""}`}
@@ -29,10 +37,9 @@ export default function LoggedInAvatar() {
         />
       ) : (
         <div className="avatar">
-          {user?.given_name?.[0]}
-          {user?.family_name?.[0]}
+          {user?.displayName?.[0]}
         </div>
       )}
     </>
-  )
-}
+  );
+} '

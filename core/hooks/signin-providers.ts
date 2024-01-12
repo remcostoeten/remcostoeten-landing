@@ -65,5 +65,3 @@ export function useSignOutHook() {
 export function useSendEmailLink() {
     return useSendSignInLinkToEmail(auth);
 }
-return useSendSignInLinkToEmail(auth);
-}

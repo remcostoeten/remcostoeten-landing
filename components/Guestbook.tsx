@@ -1,9 +1,21 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, query, orderBy, Unsubscribe } from "firebase/firestore";
-import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {
+    collection,
+    addDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    Unsubscribe,
+} from "firebase/firestore";
+import {
+    useAuthState,
+    useSignInWithGithub,
+    useSignInWithGoogle,
+} from 'react-firebase-hooks/auth';
 import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "./ui/button";
+import Spinner, { MiniSpinner } from "./effects/Spinner";
 
 interface GuestbookEntry {
     id: string;
@@ -13,14 +25,21 @@ interface GuestbookEntry {
     timestamp: Date;
 }
 
-const Guestbook = () => {
-    // const [user] = useAuthState(auth);
-    const [signInWithGitHub, user, loading, error] = useSignInWithGithub(auth);
+const Guestbook: React.FC = () => {
+    const [signInWithGitHub, userCredential, loading, error] = useSignInWithGithub(auth);
     const [entries, setEntries] = useState<GuestbookEntry[]>([]);
     const [newEntry, setNewEntry] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    if (userCredential) {
+        const user = userCredential.user;
+        return (
+            <div>
+                <p>Signed In User: {user.email}</p>
+            </div>
+        );
+    }
 
     useEffect(() => {
         let unsubscribe: Unsubscribe;
@@ -65,12 +84,6 @@ const Guestbook = () => {
         setNewEntry('');
     };
 
-
-
-
-
-
-
     if (error) {
         return (
             <div>
@@ -78,10 +91,14 @@ const Guestbook = () => {
             </div>
         );
     }
+
     if (loading) {
-        return <p>Loading...</p>;
+        return <MiniSpinner />;
     }
-    if (user) {
+
+    if (userCredential) {
+        const user = userCredential.user; // Extract the User from UserCredential
+
         return (
             <div>
                 <p>Signed In User: {user.email}</p>
@@ -90,33 +107,34 @@ const Guestbook = () => {
     }
 
     return (
-        <div>   <div className="App">
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button  onClick={() => signInWithGitHub()}>Sign In</Button>
-        </div>
-            {!user ? (
-                <div>
-                    d
-                </div>
+        <div>
+            <div className="App">
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <Button onClick={() => signInWithGitHub()}>Sign In</Button>
+            </div>
+            {!userCredential ? (
+                <div>d</div>
             ) : (
                 <div>
                     <form onSubmit={handleNewEntrySubmit}>
                         <input type="text" value={newEntry} onChange={handleNewEntryChange} />
                         <button type="submit">Add Entry</button>
                     </form>
-                    {entries.map(entry => (
+                    {entries.map((entry) => (
                         <div key={entry.id}>
                             <img src={entry.avatar} alt={entry.user} />
-                            <p>{entry.user}: {entry.text}</p>
+                            <p>
+                                {entry.user}: {entry.text}
+                            </p>
                             <p>{entry.timestamp.toString()}</p>
                         </div>
                     ))}
@@ -124,6 +142,6 @@ const Guestbook = () => {
             )}
         </div>
     );
-}
+};
 
 export default Guestbook;

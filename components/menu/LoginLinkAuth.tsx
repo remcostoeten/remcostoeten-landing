@@ -9,12 +9,15 @@ import { Label } from '@radix-ui/react-label';
 import { Button } from '../ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../ui/card';
 import { Input } from '../ui/input';
-import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useGithubSignIn, useGoogleSignIn } from '@/core/hooks/signin-providers';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { auth } from '@/core/lib/firebase';
 
 export default function LoginLink() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [signOut, loading, error] = useSignOut(auth);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -29,7 +32,8 @@ export default function LoginLink() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-
+  const [signInWithGithub, userGithub, loadingGithub, errorGithub] = useGithubSignIn();
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useGoogleSignIn();
 
   return (
     <>
@@ -39,6 +43,9 @@ export default function LoginLink() {
             <Icons.shortcut className="mr-2" />
             <span className="">cmd + k</span>
           </div>
+          {user && (
+            <Button onClick={() => signOut()}>Logout</Button>
+          )}
           <Badge variant="secondary" className='justify-end'>{isSignup ? 'Sign Up' : 'Login'}</Badge>
         </AlertDialogTrigger>
         <AlertDialogContent>
@@ -52,10 +59,14 @@ export default function LoginLink() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline" onClick={useSignInWithGithub}>
+                <Button variant="outline" onClick={() => signInWithGithub()}>
                   <Button variant="outline" className="flex gap-2">
-                    Google
+                    <Icons.gitHub className="mr-2 h-4 w-4" />
                   </Button>
+                </Button>
+                <Button variant="outline" onClick={() => signInWithGoogle()}>
+                  <Icons.google className="mr-2 h-4 w-4" />
+                </Button>
               </div>
               {isSignup && (
                 <div className="grid gap-2">

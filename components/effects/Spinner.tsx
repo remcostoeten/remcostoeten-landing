@@ -31,6 +31,29 @@ export const TextLoader = ({ text }: SpinnerProps) => {
   )
 }
 
+type MiniSpinnerProps = {
+  color?: "lightteal" | "darkteal" | "teal" | "green" | "blue" | "red" | "yellow" | "purple" | "pink";
+}
+
+export const MiniSpinner = ({ color = "lightteal" }: MiniSpinnerProps) => {
+  const colorOptions = {
+    lightteal: 'border-teal-400',
+    darkteal: 'border-teal-800',
+    teal: 'border-teal-600',
+    green: 'border-green-600',
+    blue: 'border-blue-600',
+    red: 'border-red-600',
+    yellow: 'border-yellow-600',
+    purple: 'border-purple-600',
+    pink: 'border-pink-600',
+  };
+  const selectedColor = colorOptions[color] || colorOptions.red;
+  return (
+    <div className={`minispinner h-12 w-12 animate-spin rounded-full border-4 border-dashed ${selectedColor} border-t-transparent`}></div>
+  );
+}
+
+
 export default function Spinner({
   variant = "mini",
   size = "medium",

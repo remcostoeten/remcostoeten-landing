@@ -1,18 +1,15 @@
-"use client"
+'use client';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
-import { getAuth, onAuthStateChanged, User } from "firebase/auth"
+import { Icons } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-import { Icons } from "@/components/icons"
-import { ThemeToggle } from "@/components/theme-toggle"
-
-import Seperator from "./layout/Seperator"
-import LoginAnchor from "./menu/LoginLink"
-import LoginLinkAuth from "./menu/LoginLinkAuth"
-import MenuItem from "./menu/MenuItem"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Seperator from "./layout/Seperator";
+import LoginLinkAuth from "./menu/LoginLinkAuth";
+import MenuItem from "./menu/MenuItem";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
@@ -22,12 +19,12 @@ const navigationMenu = [
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
   { label: "LoginAuth" },
-]
+];
 
 export default function SiteHeader({
   children,
 }: {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }) {
   const [user, setUser] = useState<User | null>(null);
 
@@ -86,18 +83,20 @@ export default function SiteHeader({
           <ul className="grow">
             {navigationMenu.map((navItem, index) => {
               if (navItem.label === "LoginAuth") {
-                return <LoginLinkAuth key={index} />
+                return <LoginLinkAuth key={index} />;
               }
               return (
-                <><MenuItem
+                <MenuItem
                   key={index}
                   title={navItem.label}
                   href={navItem.href ? navItem.href : "#"}
                   icon={navItem.icon ? <navItem.icon /> : null}
-                  isExternal={false} /></>
-              )
+                  isExternal={false}
+                />
+              );
             })}
-          </ul><LoginLinkAuth />
+          </ul>
+          <LoginLinkAuth />
         </div>
         <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
           With
@@ -106,5 +105,5 @@ export default function SiteHeader({
         </p>{" "}
       </aside>
     </>
-  )
+  );
 }

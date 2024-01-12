@@ -1,21 +1,23 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, query, orderBy, Unsubscribe, Timestamp } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, orderBy, Unsubscribe, Timestamp, serverTimestamp } from "firebase/firestore";
 import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "@c/ui/button";
 import Image from "next/image";
 import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import GuestbookComments from "./components/GuestBookComments";
+import Spinner, { MiniSpinner } from "@/components/effects/Spinner";
+import { toast } from "sonner";
 
 
 
 interface GuestbookEntry {
-  id: string;
-  user: string;
-  avatar: string;
-  text: string;
-  timestamp: Date;
+  id?: string;
+  user?: string;
+  avatar?: string;
+  text?: string;
+  timestamp?: any;
 }
 
 const Guestbook = () => {
@@ -41,9 +43,24 @@ const Guestbook = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleNewEntryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNewEntryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewEntry(event.target.value);
   };
+
+  const noAvatarAvailable = () => {
+    if (user?.user?.displayName) {
+      return user.user.displayName;
+    } else if (user?.user?.email) {
+      return user.user.email[0].toUpperCase();
+    } else {
+      return '🧙';
+    }
+  }
+
+  console.log("user", user);
+  console.log("noavatar", noAvatarAvailable());
+  const photoURL = user?.user?.photoURL;
+  const displayName = user?.user?.displayName;
 
   const handleNewEntrySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -51,38 +68,19 @@ const Guestbook = () => {
     if (newEntry.trim() === '') {
       return;
     }
-
+    const photoURL = user?.user?.photoURL;
     const entriesRef = collection(firestore, 'guestbook');
     const newEntryData: Omit<GuestbookEntry, 'id'> = {
-      user: user?.displayName || '',
-      avatar: user?.photoURL || '',
+      user: user?.user?.displayName || '',
       text: newEntry,
       timestamp: serverTimestamp(),
     };
-
     await addDoc(entriesRef, newEntryData);
 
     setNewEntry('');
   };
 
-  const comments = [
-    {
-      id: '1',
-      userAvatar: 'https://dribbble.com/',
-      userName: 'User 1',
-      text: 'This is a comment from User 1.',
-      date: '2022-01-01',
-    },
-    {
-      id: '2',
-      userAvatar: 'https://dribbble.com/',
-      userName: 'User 2',
-      text: 'This is a comment from User 2.',
-      date: '2022-01-02',
-    },
-  ];
-  const photoURL = user?.user?.photoURL;
-  const displayName = user?.user?.displayName;
+
 
   const avatarFallback = () => {
     if (!photoURL) {
@@ -95,7 +93,7 @@ const Guestbook = () => {
       <h1 className="mb-4 text-3xl font-bold">Guestbook</h1>
 
       {loading ? (
-        <p>Loading...</p>
+        <MiniSpinner />
       ) : (
         <>
           {user ? (
@@ -109,15 +107,16 @@ const Guestbook = () => {
               <Button type="submit">Post Entry</Button>
             </form>
           ) : (
-            <Button onClick={() => signInWithGoogle()}>Sign In</Button>
+            <Button onClick={() => signInWithGoogle()}>Sign In to Post Entry</Button>
           )}
           {entries.map((entry) => (
-            <GuestbookComments avatarSrc={entry.avatar} nameHandle={entry.user} message={entry.text} date={entry.timestamp.toDate().toLocaleString()} avatarFallback={avatarFallback()} />
-            // < key={entry.id} className="mt-4">
-            // <Image src={entry.avatar} alt={entry.user} className="h-8 w-8 rounded-full" />
-            // <p className="font-bold">{entry.user}</p>
-            // <p>{entry.text}</p>
-            // <p className="text-sm text-gray-500">{entry.timestamp.toD ate().toLocaleString()}</p>
+            <GuestbookComments
+              avatarSrc={entry.avatar}
+              nameHandle={entry.user}
+              message={entry.text}
+              date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
+              avatarFallback={avatarFallback()}
+            />
           ))}
         </>
       )}

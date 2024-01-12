@@ -3,8 +3,36 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, firestore } from '../core/lib/firebase';
-import { collection, orderBy } from 'firebase/firestore';
+import 'firebase/firestore';
 
+import { query, collection, orderBy } from 'firebase/firestore';
+import { withConverter } from 'firebase/compat/firestore'; // Import withConverter from the correct module
+import firebase from 'firebase/compat/app'; // Import firebase for types
+
+// ...
+
+const entriesRef = collection(firestore, 'guestbook');
+const orderedEntriesQuery = query(entriesRef, orderBy('timestamp', 'desc'));
+
+const guestbookEntryConverter = {
+    toFirestore: (data: GuestbookEntry) => data,
+    fromFirestore: (snapshot: firebase.firestore.QueryDocumentSnapshot) => {
+        const data = snapshot.data();
+        return {
+            id: data.id,
+            user: data.user,
+            text: data.text,
+            timestamp: data.timestamp.toDate(),
+        } as GuestbookEntry;
+    },
+};
+
+const queryWithConverter = query(orderedEntriesQuery, withConverter(guestbookEntryConverter));
+
+const [entries, loading, error] = useCollectionData<GuestbookEntry>(queryWithConverter, {
+    idField: 'id',
+    snapshotListenOptions: { includeMetadataChanges: true },
+});
 interface GuestbookEntry {
     id: string;
     user: string;

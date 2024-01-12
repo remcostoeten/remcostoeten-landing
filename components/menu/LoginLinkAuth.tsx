@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { User, onAuthStateChanged } from 'firebase/auth';
 import { Icons } from '../icons';
 import { Badge } from '../ui/badge';
+import { auth } from '@/core/lib/firebase';
+import Link from 'next/link';
 
 export default function LoginLinkAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -8,7 +11,6 @@ export default function LoginLinkAuth() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -34,9 +36,9 @@ export default function LoginLinkAuth() {
         </>
       ) : (
         <Link href="/api/auth/login" className="flex grow items-center gap-2">
-          <Icons.shortcut className="mr-2" />
-          <span className="">cmd + k</span>
-        </Link>
+        <Icons.shortcut className="mr-2" />
+        <span className="">cmd + k</span>
+      </Link>
       )}
       <Badge variant="secondary" />
     </span>

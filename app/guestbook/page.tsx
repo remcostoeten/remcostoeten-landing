@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, query, orderBy } from "firebase/firestore";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import firebase, { auth, firestore } from "@/core/lib/firebase";
+import { collection, addDoc, onSnapshot, query, orderBy, Unsubscribe, Timestamp } from "firebase/firestore";
+import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "@c/ui/button";
 import Image from "next/image";
-
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import GuestbookComments from "./components/GuestBookComments";
 
 
 
@@ -19,11 +19,9 @@ interface GuestbookEntry {
 }
 
 const Guestbook = () => {
-  const [user, loading, error] = useAuthState(auth);
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
   const [newEntry, setNewEntry] = useState('');
-
-
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   useEffect(() => {
     const entriesRef = collection(firestore, 'guestbook');
@@ -47,26 +45,51 @@ const Guestbook = () => {
     setNewEntry(event.target.value);
   };
 
-  const handleNewEntrySubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleNewEntrySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Get the current user
-    const currentUser = auth.currentUser;
+    if (newEntry.trim() === '') {
+      return;
+    }
 
-    // Create a new entry
-    const newEntry = {
+    const entriesRef = collection(firestore, 'guestbook');
+    const newEntryData: Omit<GuestbookEntry, 'id'> = {
+      user: user?.displayName || '',
+      avatar: user?.photoURL || '',
       text: newEntry,
-      user: currentUser.displayName, // Store the user's display name
-      avatar: currentUser.photoURL,  // Store the user's avatar URL
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(), // Store the current time
+      timestamp: serverTimestamp(),
     };
 
-    // Add the new entry to the database
-    await firebase.firestore().collection('entries').add(newEntry);
+    await addDoc(entriesRef, newEntryData);
 
-    // Clear the new entry text
-    setNewEntry(''); // Use setNewEntry instead of setNewEntryText
+    setNewEntry('');
   };
+
+  const comments = [
+    {
+      id: '1',
+      userAvatar: 'https://dribbble.com/',
+      userName: 'User 1',
+      text: 'This is a comment from User 1.',
+      date: '2022-01-01',
+    },
+    {
+      id: '2',
+      userAvatar: 'https://dribbble.com/',
+      userName: 'User 2',
+      text: 'This is a comment from User 2.',
+      date: '2022-01-02',
+    },
+  ];
+  const photoURL = user?.user?.photoURL;
+  const displayName = user?.user?.displayName;
+
+  const avatarFallback = () => {
+    if (!photoURL) {
+      return displayName ? displayName[0] : 'U';
+    }
+  }
+
   return (
     <div className="min-h-screen p-8">
       <h1 className="mb-4 text-3xl font-bold">Guestbook</h1>
@@ -86,16 +109,15 @@ const Guestbook = () => {
               <Button type="submit">Post Entry</Button>
             </form>
           ) : (
-            <Button onClick={() => signInWithGithub()}>Sign In</Button>
+            <Button onClick={() => signInWithGoogle()}>Sign In</Button>
           )}
-
           {entries.map((entry) => (
-            <div key={entry.id} className="mt-4">
-              <Image src={entry.avatar} alt={entry.user} className="h-8 w-8 rounded-full" />
-              <p className="font-bold">{entry.user}</p>
-              <p>{entry.text}</p>
-              <p className="text-sm text-gray-500">{entry.timestamp.toDate().toLocaleString()}</p>
-            </div>
+            <GuestbookComments avatarSrc={entry.avatar} nameHandle={entry.user} message={entry.text} date={entry.timestamp.toDate().toLocaleString()} avatarFallback={avatarFallback()} />
+            // < key={entry.id} className="mt-4">
+            // <Image src={entry.avatar} alt={entry.user} className="h-8 w-8 rounded-full" />
+            // <p className="font-bold">{entry.user}</p>
+            // <p>{entry.text}</p>
+            // <p className="text-sm text-gray-500">{entry.timestamp.toD ate().toLocaleString()}</p>
           ))}
         </>
       )}

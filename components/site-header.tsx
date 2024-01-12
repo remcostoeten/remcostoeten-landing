@@ -89,16 +89,15 @@ export default function SiteHeader({
                 return <LoginLinkAuth key={index} />
               }
               return (
-                <MenuItem
+                <><MenuItem
                   key={index}
                   title={navItem.label}
                   href={navItem.href ? navItem.href : "#"}
                   icon={navItem.icon ? <navItem.icon /> : null}
-                  isExternal={false}
-                />
+                  isExternal={false} /></>
               )
             })}
-          </ul>
+          </ul><LoginLinkAuth />
         </div>
         <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
           With

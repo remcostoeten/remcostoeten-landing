@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useState } from "react";
 import {
     collection,
@@ -31,15 +30,6 @@ const Guestbook: React.FC = () => {
     const [newEntry, setNewEntry] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    if (userCredential) {
-        const user = userCredential.user;
-        return (
-            <div>
-                <p>Signed In User: {user.email}</p>
-            </div>
-        );
-    }
 
     useEffect(() => {
         let unsubscribe: Unsubscribe;
@@ -84,6 +74,15 @@ const Guestbook: React.FC = () => {
         setNewEntry('');
     };
 
+    if (userCredential) {
+        const user = userCredential.user;
+        return (
+            <div>
+                <p>Signed In User: {user.email}</p>
+            </div>
+        );
+    }
+
     if (error) {
         return (
             <div>
@@ -96,52 +95,74 @@ const Guestbook: React.FC = () => {
         return <MiniSpinner />;
     }
 
-    if (userCredential) {
-        const user = userCredential.user; // Extract the User from UserCredential
+    return (
+        <div>
+            {/* Render the guestbook entries */}
+            {entries.map((entry) => (
+                <div key={entry.id}>
+                    <p>User: {entry.user}</p>
+                    <p>Text: {entry.text}</p>
+                    <p>Timestamp: {entry.timestamp.toString()}</p>
+                </div>
+            ))}
 
-        return (
-            <div>
-                <p>Signed In User: {user.email}</p>
-            </div>
-        );
-    }
+            {/* Render the new entry form */}
+            <form onSubmit={handleNewEntrySubmit}>
+                <input type="text" value={newEntry} onChange={handleNewEntryChange} />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    );
+};
+
+export default Guestbook;
+
+if (userCredential) {
+    const user = userCredential.user; // Extract the User from UserCredential
 
     return (
         <div>
-            <div className="App">
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button onClick={() => signInWithGitHub()}>Sign In</Button>
-            </div>
-            {!userCredential ? (
-                <div>d</div>
-            ) : (
-                <div>
-                    <form onSubmit={handleNewEntrySubmit}>
-                        <input type="text" value={newEntry} onChange={handleNewEntryChange} />
-                        <button type="submit">Add Entry</button>
-                    </form>
-                    {entries.map((entry) => (
-                        <div key={entry.id}>
-                            <img src={entry.avatar} alt={entry.user} />
-                            <p>
-                                {entry.user}: {entry.text}
-                            </p>
-                            <p>{entry.timestamp.toString()}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
+            <p>Signed In User: {user.email}</p>
         </div>
     );
+}
+
+return (
+    <div>
+        <div className="App">
+            <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button onClick={() => signInWithGitHub()}>Sign In</Button>
+        </div>
+        {!user ? (
+            <div>d</div>
+        ) : (
+            <div>
+                <form onSubmit={handleNewEntrySubmit}>
+                    <input type="text" value={newEntry} onChange={handleNewEntryChange} />
+                    <button type="submit">Add Entry</button>
+                </form>
+                {entries.map((entry) => (
+                    <div key={entry.id}>
+                        <img src={entry.avatar} alt={entry.user} />
+                        <p>
+                            {entry.user}: {entry.text}
+                        </p>
+                        <p>{entry.timestamp.toString()}</p>
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+);
 };
 
 export default Guestbook;

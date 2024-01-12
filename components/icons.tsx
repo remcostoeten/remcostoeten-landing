@@ -26,14 +26,14 @@ export const Icons = {
       />
     </svg>
   ),
+  cancel: (props: LucideProps) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 20" version="1.1" x="0px" y="0px"><title>cross</title><desc>Created with Sketch.</desc><g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g fill="#fff"><polyline points="9.50270819 8.00000002 14 3.50270817 12.5012561 2.00396421 8.00396425 6.50125604 3.50667236 2.00396421 2.00792842 3.50270817 6.50522023 8.00000002 2.00792842 12.4972918 3.50667236 13.9960358 8.00396425 9.49874398 12.5012561 13.9960358 14 12.4972918 9.50270819 8.00000002" /></g></g><text x="0" y="31" fill="#000000" fontSize="5px" fontWeight="bold" fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, SansSerif">Created by Johan Ronsse</text><text x="0" y="36" fill="#000000" fontSize="5px" fontWeight="bold" fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, SansSerif">from the Noun Project</text></svg>
+  ),
   google: (props: LucideProps) => (
     <svg
-      width={24}
-      height={24}
       viewBox="-3 0 262 262"
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid"
-    >
+      {...props}>
       <path
         d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
         fill="#4285F4"

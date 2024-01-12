@@ -1,14 +1,15 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { collection, addDoc, onSnapshot, query, orderBy, Unsubscribe, Timestamp, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "@c/ui/button";
-import Image from "next/image";
-import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import GuestbookComments from "./components/GuestBookComments";
-import Spinner, { MiniSpinner } from "@/components/effects/Spinner";
-import { toast } from "sonner";
+import { SkeletonBar } from "@/components/effects/Skeleton";
+import IntroShell from "@/components/layout/IntroShell";
+import { Icons } from "@/components/icons";
+import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
 
 
 
@@ -23,7 +24,8 @@ interface GuestbookEntry {
 const Guestbook = () => {
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
   const [newEntry, setNewEntry] = useState('');
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, userGithub, loadingGithub, errorGithub] = useGithubSignIn();
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useGoogleSignIn();
 
   useEffect(() => {
     const entriesRef = collection(firestore, 'guestbook');
@@ -46,21 +48,18 @@ const Guestbook = () => {
   const handleNewEntryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewEntry(event.target.value);
   };
+  const user = auth.currentUser;
 
   const noAvatarAvailable = () => {
-    if (user?.user?.displayName) {
-      return user.user.displayName;
-    } else if (user?.user?.email) {
-      return user.user.email[0].toUpperCase();
-    } else {
-      return '🧙';
+    if (user?.displayName) {
+      return user.displayName;
+    } else if (user?.email) {
+      return user.email;
     }
   }
 
-  console.log("user", user);
-  console.log("noavatar", noAvatarAvailable());
-  const photoURL = user?.user?.photoURL;
-  const displayName = user?.user?.displayName;
+  const photoURL = user?.photoURL;
+  const displayName = user?.displayName;
 
   const handleNewEntrySubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -68,10 +67,10 @@ const Guestbook = () => {
     if (newEntry.trim() === '') {
       return;
     }
-    const photoURL = user?.user?.photoURL;
+    const photoURL = user?.photoURL;
     const entriesRef = collection(firestore, 'guestbook');
     const newEntryData: Omit<GuestbookEntry, 'id'> = {
-      user: user?.user?.displayName || '',
+      user: user?.displayName || '',
       text: newEntry,
       timestamp: serverTimestamp(),
     };
@@ -89,38 +88,41 @@ const Guestbook = () => {
   }
 
   return (
-    <div className="min-h-screen p-8">
-      <h1 className="mb-4 text-3xl font-bold">Guestbook</h1>
+    <> <IntroShell title="Guestbook" description="It's your time to shine. Say whatever you want to say." />
 
-      {loading ? (
-        <MiniSpinner />
-      ) : (
-        <>
-          {user ? (
-            <form onSubmit={handleNewEntrySubmit}>
-              <textarea
-                value={newEntry}
-                onChange={handleNewEntryChange}
-                placeholder="Leave a message"
-                className="mb-3 w-full rounded border border-gray-300 p-2"
+      {
+        loadingGithub || loadingGoogle ? (
+          <SkeletonBar />
+        ) : (
+          <div className="flex flex-col gap-2">
+            {entries.map((entry) => (
+              <GuestbookComments
+                avatarSrc={entry.avatar}
+                nameHandle={entry.user}
+                message={entry.text}
+                date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
+                avatarFallback={avatarFallback()}
               />
-              <Button type="submit">Post Entry</Button>
-            </form>
-          ) : (
-            <Button onClick={() => signInWithGoogle()}>Sign In to Post Entry</Button>
-          )}
-          {entries.map((entry) => (
-            <GuestbookComments
-              avatarSrc={entry.avatar}
-              nameHandle={entry.user}
-              message={entry.text}
-              date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
-              avatarFallback={avatarFallback()}
-            />
-          ))}
-        </>
-      )}
-    </div>
+            ))}
+            {user ? (
+              <form className="flex flex-col items-start gap-2" onSubmit={handleNewEntrySubmit}>
+                <textarea
+                  value={newEntry}
+                  onChange={handleNewEntryChange}
+                  placeholder="Leave a message"
+                  className=" flex min-h-[60px] w-full rounded-md border border-input bg-transparent p-4 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                />
+                <Button type="submit">Post Entry</Button>
+              </form>
+            ) : (
+              <div className="flex flex-col gap-2"><h4 className="text-gray-400">Please login in order to leave a message</h4>
+                <div className="flex items-center gap-2">
+                  <Button variant='destructive' onClick={() => signInWithGithub()}>Sign In with Github</Button><Button variant='destructive' onClick={() => signInWithGoogle()}>Sign in with Google <Icons.google /></Button></div></div>
+            )}
+          </div>
+        )
+      }
+    </>
   );
 }
 

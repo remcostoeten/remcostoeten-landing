@@ -9,6 +9,7 @@
 @import './auth.css';
 @import './utillity-classes.css';
 @import './scroll-carousel.css';
+@import './buttons.css';
 
 @layer base {
   :root {

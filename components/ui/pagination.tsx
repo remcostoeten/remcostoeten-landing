@@ -1,9 +1,9 @@
 import * as React from "react"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 import { cn } from "@/core/lib/utils"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import { motion } from "framer-motion"
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -46,20 +46,20 @@ const PaginationLink = ({
   ...props
 }: PaginationLinkProps) => (
   <PaginationItem>
-    <motion.a
+    <span
       aria-current={isActive ? "page" : undefined}
       className={cn(
         buttonVariants({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
-        isActive ? 'bg-teal-500 text-white' : '',
+        isActive ? "bg-teal-500 text-white" : "",
         className
       )}
       {...props}
     />
   </PaginationItem>
-);
+)
 
 const PaginationPrevious = ({
   className,
@@ -80,7 +80,7 @@ const PaginationPrevious = ({
       <span>Previous</span>
     </PaginationLink>
   </motion.div>
-);
+)
 
 const PaginationNext = ({
   className,
@@ -101,8 +101,7 @@ const PaginationNext = ({
       <ChevronRight className="h-4 w-4" />
     </PaginationLink>
   </motion.div>
-);
-
+)
 
 const PaginationEllipsis = ({
   className,

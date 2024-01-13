@@ -1,15 +1,16 @@
-'use client';
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+"use client"
 
-import { Icons } from "@/components/icons";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 
-import Seperator from "./layout/Seperator";
-import LoginLinkAuth from "./menu/LoginLinkAuth";
-import MenuItem from "./menu/MenuItem";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
+
+import Seperator from "./layout/Seperator"
+import LoginLinkAuth from "./menu/LoginLinkAuth"
+import MenuItem from "./menu/MenuItem"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
@@ -18,24 +19,24 @@ const navigationMenu = [
   { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
-];
+]
 
 export default function SiteHeader({
   children,
 }: {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, setUser);
+    const auth = getAuth()
+    const unsubscribe = onAuthStateChanged(auth, setUser)
 
     // It's important to unsubscribe when the component unmounts
-    return () => unsubscribe();
-  }, []);
+    return () => unsubscribe()
+  }, [])
 
-  const isAuthenticated = user !== null;
+  const isAuthenticated = user !== null
 
   return (
     <>
@@ -55,19 +56,15 @@ export default function SiteHeader({
               {isAuthenticated && user?.photoURL && (
                 <Avatar>
                   <AvatarImage src={user?.photoURL} />
-                  <AvatarFallback>
-                    {" "}
-                    {user?.displayName?.[0]}
-                  </AvatarFallback>
+                  <AvatarFallback> {user?.displayName?.[0]}</AvatarFallback>
                 </Avatar>
               )}
             </div>
           </div>
           <div>
             <div className="font-bold text-blacktheme dark:text-white">
-              {isAuthenticated && user?.displayName && (
-                <>{user?.displayName}</>
-              )} {!isAuthenticated && <>Remco Stoeten</>}
+              {isAuthenticated && user?.displayName && <>{user?.displayName}</>}{" "}
+              {!isAuthenticated && <>Remco Stoeten</>}
             </div>
             <div className="text-sm text-blacktheme dark:text-gray-400">
               {!isAuthenticated && <>@remcostoeten</>}
@@ -93,7 +90,7 @@ export default function SiteHeader({
                   icon={navItem.icon ? <navItem.icon /> : null}
                   isExternal={false}
                 />
-              );
+              )
             })}
           </ul>
           <LoginLinkAuth />
@@ -103,7 +100,7 @@ export default function SiteHeader({
           <span className="mx-1 animate-pulse">❤</span>
           by remco stoeten
         </p>{" "}
-      </aside >
+      </aside>
     </>
-  );
+  )
 }

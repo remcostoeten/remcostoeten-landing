@@ -4,48 +4,55 @@
  * @module signin-providers
  */
 
-import { useSendSignInLinkToEmail, useSignInWithApple, useSignInWithEmailAndPassword, useSignInWithEmailLink, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle, useSignInWithMicrosoft, useSignInWithTwitter, useSignInWithYahoo, useSignOut } from "react-firebase-hooks/auth";
-import { auth } from '@/core/lib/firebase';
+import {
+  useSendSignInLinkToEmail,
+  useSignInWithApple,
+  useSignInWithEmailAndPassword,
+  useSignInWithEmailLink,
+  useSignInWithFacebook,
+  useSignInWithGithub,
+  useSignInWithGoogle,
+  useSignInWithMicrosoft,
+  useSignInWithTwitter,
+  useSignInWithYahoo,
+  useSignOut,
+} from "react-firebase-hooks/auth"
 
+import { auth } from "@/core/lib/firebase"
 
 export function useGithubSignIn() {
-    return useSignInWithGithub(auth);
+  return useSignInWithGithub(auth)
 }
 
-
 export function useGoogleSignIn() {
-    return useSignInWithGoogle(auth);
+  return useSignInWithGoogle(auth)
 }
 
 export function useTwitterSignIn() {
-    return useSignInWithTwitter(auth);
+  return useSignInWithTwitter(auth)
 }
-
 
 export function useAppleSignIn() {
-    return useSignInWithApple(auth);
+  return useSignInWithApple(auth)
 }
-
 
 export function useEmailPasswordSignIn() {
-    return useSignInWithEmailAndPassword(auth);
+  return useSignInWithEmailAndPassword(auth)
 }
 export function useEmailLinkSignIn() {
-    return useSignInWithEmailLink(auth);
+  return useSignInWithEmailLink(auth)
 }
-
 
 export function useFacebookSignIn() {
-    return useSignInWithFacebook(auth);
+  return useSignInWithFacebook(auth)
 }
 
-
 export function useMicrosoftSignIn() {
-    return useSignInWithMicrosoft(auth);
+  return useSignInWithMicrosoft(auth)
 }
 
 export function useYahooSignIn() {
-    return useSignInWithYahoo(auth);
+  return useSignInWithYahoo(auth)
 }
 
 /**
@@ -54,7 +61,7 @@ export function useYahooSignIn() {
  * @returns The sign-out function.
  */
 export function useSignOutHook() {
-    return useSignOut(auth);
+  return useSignOut(auth)
 }
 
 /**
@@ -63,5 +70,5 @@ export function useSignOutHook() {
  * @returns The function for sending the sign-in link to email.
  */
 export function useSendEmailLink() {
-    return useSendSignInLinkToEmail(auth);
+  return useSendSignInLinkToEmail(auth)
 }

@@ -25,23 +25,30 @@ This is a short reminder on how to create a button with a loading spinner in Rea
 Here is the code snippet:
 
 ```jsx
-import React, { useState } from 'react';
-import { Button, Icons } from 'your-library'; // replace 'your-library' with the actual library you're using
+import React, { useState } from "react"
+import { Button, Icons } from "your-library"
+
+// replace 'your-library' with the actual library you're using
 
 const YourComponent = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
 
   async function onSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-    setIsLoading(true);
+    event.preventDefault()
+    setIsLoading(true)
 
     setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+      setIsLoading(false)
+    }, 3000)
   }
 
   return (
-    <Button onClick={onSubmit} variant="outline" type="button" disabled={isLoading}>
+    <Button
+      onClick={onSubmit}
+      variant="outline"
+      type="button"
+      disabled={isLoading}
+    >
       {isLoading ? (
         <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
       ) : (
@@ -49,5 +56,6 @@ const YourComponent = () => {
       )}{" "}
       GitHub
     </Button>
-  );
-};
+  )
+}
+```

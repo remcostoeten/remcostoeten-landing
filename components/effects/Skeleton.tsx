@@ -49,11 +49,11 @@ const SkeletonBar = ({
 }
 
 type ProfileSkeletonProps = {
-  showCoverImage?: boolean;
-  showAvatar?: boolean;
-  showLoader1?: boolean;
-  showLoader2?: boolean;
-  showLoader3?: boolean;
+  showCoverImage?: boolean
+  showAvatar?: boolean
+  showLoader1?: boolean
+  showLoader2?: boolean
+  showLoader3?: boolean
 }
 
 export const ProfileSkeleton = ({
@@ -64,12 +64,12 @@ export const ProfileSkeleton = ({
   showLoader3 = true,
 }: ProfileSkeletonProps) => {
   return (
-    <div className='card-skeleton'>
-      {showCoverImage && <div className='cover-image-skeleton'></div>}
-      {showAvatar && <div className='avatar-skeleton'></div>}
-      {showLoader1 && <div className='skeleton-loader'></div>}
-      {showLoader2 && <div className='skeleton-loader'></div>}
-      {showLoader3 && <div className='skeleton-loader'></div>}
+    <div className="card-skeleton">
+      {showCoverImage && <div className="cover-image-skeleton"></div>}
+      {showAvatar && <div className="avatar-skeleton"></div>}
+      {showLoader1 && <div className="skeleton-loader"></div>}
+      {showLoader2 && <div className="skeleton-loader"></div>}
+      {showLoader3 && <div className="skeleton-loader"></div>}
     </div>
   )
 }

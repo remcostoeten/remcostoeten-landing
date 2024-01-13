@@ -6,13 +6,23 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+    apiKey: "AIzaSyCkie5a695iQ5sLUUs1TXRbITAro9Aimqk",
+    authDomain: "blog-remcostoeten.firebaseapp.com",
+    projectId: "blog-remcostoeten",
+    storageBucket: "blog-remcostoeten.appspot.com",
+    messagingSenderId: "564381304657",
+    appId: "1:564381304657:web:d7e882a190d40935f1b570"
 };
+
+
+// const firebaseConfig = {
+//     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+//     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+//     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+//     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+//     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+//     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+// };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

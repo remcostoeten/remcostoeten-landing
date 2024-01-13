@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "@c/ui/button";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import GuestbookComments from "./components/GuestBookComments";
-import { ProfileSkeleton, SkeletonBar } from "@/components/effects/Skeleton";
+import { ProfileSkeleton } from "@/components/effects/Skeleton";
 import IntroShell from "@/components/layout/IntroShell";
 import { Icons } from "@/components/icons";
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
+import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationNext, PaginationEllipsis } from "@/components/ui/pagination";
 
 interface GuestbookEntry {
     id?: string;
@@ -28,6 +28,11 @@ export default function GuestBookPage() {
     const user = auth.currentUser;
     const photoURL = user?.photoURL;
     const displayName = user?.displayName;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [entriesPerPage, setEntriesPerPage] = useState(1);
+    const indexOfLastEntry = currentPage * entriesPerPage;
+    const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+    const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
 
     useEffect(() => {
         const entriesRef = collection(firestore, 'guestbook');
@@ -84,6 +89,18 @@ export default function GuestBookPage() {
             setIsLoading(false);
         }
     };
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    const previousTwoPages = currentPage - 2;
+    const nextTwoPages = currentPage + 2;
+    const totalPages = Math.ceil(entries.length / entriesPerPage);
+
+    const totalPageArray = Array.from(Array(totalPages).keys());
+    const pageArray = totalPageArray.slice(previousTwoPages, nextTwoPages);
 
     return (
         <>
@@ -93,8 +110,7 @@ export default function GuestBookPage() {
                 <ProfileSkeleton />
             ) : (
                 <div className="flex flex-col gap-2">
-                    {entries.map((entry) => {
-                        console.log(entry);
+                    {currentEntries.map((entry) => {
                         return (
                             <GuestbookComments
                                 avatarSrc={entry.avatar}
@@ -127,7 +143,57 @@ export default function GuestBookPage() {
                                 </Button>
                             </div>
                         </div>
-                    )}
+                    )}            <div>
+                        <button
+
+                        >
+                            Previous
+                        </button>
+                        <button
+                        >
+                            Next
+                        </button>
+                        {isClient && (
+                            <Pagination>
+                                <PaginationContent>
+                                    {currentPage !== 1 && (
+                                        <PaginationItem>
+                                            <PaginationPrevious
+                                                onClick={() => setCurrentPage(currentPage - 1)}
+                                            />
+                                        </PaginationItem>
+                                    )}
+                                    {totalPageArray.map((page) => {
+                                        if (page + 1 >= currentPage - 3 && page + 1 <= currentPage + 3) {
+                                            return (
+                                                <PaginationItem key={page}>
+                                                    <PaginationLink
+                                                        onClick={() => setCurrentPage(page + 1)}
+                                                        isActive={page + 1 === currentPage}
+                                                    >
+                                                        {page + 1}
+                                                    </PaginationLink>
+                                                </PaginationItem>
+                                            );
+                                        }
+                                        else if (page + 1 === currentPage - 4 || page + 1 === currentPage + 4) {
+                                            return <PaginationEllipsis />;
+                                        }
+                                        else {
+                                            return null;
+                                        }
+                                    })}
+                                    {currentPage !== totalPageArray.length && (
+                                        <PaginationItem>
+                                            <PaginationNext
+                                                onClick={() => setCurrentPage(currentPage + 1)}
+                                            />
+                                        </PaginationItem>
+                                    )}
+                                </PaginationContent>
+                            </Pagination>
+                        )}
+                    </div>
                 </div>
             )}
         </>

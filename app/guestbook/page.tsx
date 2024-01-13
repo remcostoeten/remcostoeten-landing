@@ -25,6 +25,9 @@ export default function GuestBookPage() {
     const [signInWithGithub, userGithub, loadingGithub, errorGithub] = useGithubSignIn();
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useGoogleSignIn();
     const [isLoading, setIsLoading] = useState(false);
+    const user = auth.currentUser;
+    const photoURL = user?.photoURL;
+    const displayName = user?.displayName;
 
     useEffect(() => {
         const entriesRef = collection(firestore, 'guestbook');
@@ -44,30 +47,9 @@ export default function GuestBookPage() {
         return () => unsubscribe();
     }, []);
 
-    async function onSubmit(event: React.SyntheticEvent) {
-        event.preventDefault()
-        setIsLoading(true)
-
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 3000)
-    }
-
     const handleNewEntryChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setNewEntry(event.target.value);
     };
-    const user = auth.currentUser;
-
-    const noAvatarAvailable = () => {
-        if (user?.displayName) {
-            return user.displayName;
-        } else if (user?.email) {
-            return user.email;
-        }
-    }
-
-    const photoURL = user?.photoURL;
-    const displayName = user?.displayName;
 
     const handleNewEntrySubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -75,23 +57,19 @@ export default function GuestBookPage() {
         if (newEntry.trim() === '') {
             return;
         }
-        const photoURL = user?.photoURL;
         const entriesRef = collection(firestore, 'guestbook');
         const newEntryData: Omit<GuestbookEntry, 'id'> = {
             user: user?.displayName || '',
+            avatar: user?.photoURL || '',
             text: newEntry,
             timestamp: serverTimestamp(),
         };
+
         await addDoc(entriesRef, newEntryData);
 
         setNewEntry('');
     };
 
-    const avatarFallback = () => {
-        if (!photoURL) {
-            return displayName ? displayName[0] : 'U';
-        }
-    }
     const handleSignIn = async (provider: 'github' | 'google') => {
         setIsLoading(true);
         try {
@@ -115,14 +93,18 @@ export default function GuestBookPage() {
                 <ProfileSkeleton />
             ) : (
                 <div className="flex flex-col gap-2">
-                    {entries.map((entry) => (
-                        <GuestbookComments
-                            avatarSrc={entry.avatar}
-                            nameHandle={entry.user}
-                            message={entry.text}
-                            date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
-                        />
-                    ))}
+                    {entries.map((entry) => {
+                        console.log(entry);
+                        return (
+                            <GuestbookComments
+                                avatarSrc={entry.avatar}
+                                nameHandle={entry.user}
+                                message={entry.text}
+                                date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
+                                avatarFallback={"s"}
+                            />
+                        );
+                    })}
                     {user ? (
                         <form className="flex flex-col items-start gap-2" onSubmit={handleNewEntrySubmit}>
                             <textarea

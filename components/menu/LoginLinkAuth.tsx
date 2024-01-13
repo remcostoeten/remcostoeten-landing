@@ -102,7 +102,7 @@ export default function LoginLink() {
                   <Icons.gitHub className='h-4 w-4' />
                 </Button>
                 <Button variant='outline' onClick={() => signInWithGoogle()}>
-                  <Icons.google className='h-4 w-4' />
+                  <Icons.google.color className='h-4 w-4' />
                 </Button>
               </div>
               {isSignup && (

@@ -1,0 +1,53 @@
+---
+title: "Creating a Button with Loading Spinner in React"
+publishedAt: "YYYY-MM-DD"
+summary: "A short reminder on how to create a button with a loading spinner in React."
+image: "/path/to/your/banner.png"
+blurDataURL: "Your blur data URL"
+---
+
+<Image
+  src="/path/to/your/banner.png"
+  width="1200"
+  height="627"
+  alt="Your Image Alt Text"
+  placeholder="blur"
+  blurDataURL="Your blur data URL"
+  priority
+/>
+
+## Introduction
+
+This is a short reminder on how to create a button with a loading spinner in React.
+
+## Code Snippet
+
+Here is the code snippet:
+
+```jsx
+import React, { useState } from 'react';
+import { Button, Icons } from 'your-library'; // replace 'your-library' with the actual library you're using
+
+const YourComponent = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function onSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }
+
+  return (
+    <Button onClick={onSubmit} variant="outline" type="button" disabled={isLoading}>
+      {isLoading ? (
+        <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+      ) : (
+        <Icons.gitHub className="mr-2 h-4 w-4" />
+      )}{" "}
+      GitHub
+    </Button>
+  );
+};

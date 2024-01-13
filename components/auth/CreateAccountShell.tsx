@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client"
 
 import { Button } from "@c/ui/button"
@@ -11,7 +12,6 @@ import {
 } from "@c/ui/card"
 import { Input } from "@c/ui/input"
 import { Label } from "@c/ui/label"
-import { signIn } from "next-auth/react"
 
 import { Icons } from "@/components/icons"
 

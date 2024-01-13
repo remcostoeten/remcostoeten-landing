@@ -48,9 +48,44 @@ const SkeletonBar = ({
   )
 }
 
-/**
- * An example component that uses the SkeletonBar component.
- */
+type ProfileSkeletonProps = {
+  showCoverImage?: boolean;
+  showAvatar?: boolean;
+  showLoader1?: boolean;
+  showLoader2?: boolean;
+  showLoader3?: boolean;
+}
+
+export const ProfileSkeleton = ({
+  showCoverImage = true,
+  showAvatar = true,
+  showLoader1 = true,
+  showLoader2 = true,
+  showLoader3 = true,
+}: ProfileSkeletonProps) => {
+  return (
+    <div className='card-skeleton'>
+      {showCoverImage && <div className='cover-image-skeleton'></div>}
+      {showAvatar && <div className='avatar-skeleton'></div>}
+      {showLoader1 && <div className='skeleton-loader'></div>}
+      {showLoader2 && <div className='skeleton-loader'></div>}
+      {showLoader3 && <div className='skeleton-loader'></div>}
+    </div>
+  )
+}
+
+const LoadingArticle = () => {
+  return (
+    <div className="flex h-max min-w-[250px] flex-col space-y-2">
+      <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="h-4 w-full animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
+      <div className="h-2 w-24 animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
+    </div>
+  )
+}
+
+export { LoadingArticle, SkeletonBar, IssueTableSkeleton }
+
 const IssueTableSkeleton = () => {
   const rows = "50"
 
@@ -179,17 +214,4 @@ const IssueTableSkeleton = () => {
     </>
   )
 }
-
 export default IssueTableSkeleton
-
-const LoadingArticle = () => {
-  return (
-    <div className="flex h-max min-w-[250px] flex-col space-y-2">
-      <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
-      <div className="h-4 w-full animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
-      <div className="h-2 w-24 animate-pulse rounded bg-neutral-300 dark:bg-neutral-700"></div>
-    </div>
-  )
-}
-
-export { LoadingArticle, SkeletonBar, IssueTableSkeleton }

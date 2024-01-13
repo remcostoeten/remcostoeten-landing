@@ -1,41 +1,42 @@
-"use client"
+'use client';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
-import { useState } from "react"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs"
+import { Icons } from "@/components/icons";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-import { Icons } from "@/components/icons"
-import { ThemeToggle } from "@/components/theme-toggle"
-
-import Seperator from "./layout/Seperator"
-import LoginAnchor from "./menu/LoginLink"
-import LoginLinkAuth from "./menu/LoginLinkAuth"
-import MenuItem from "./menu/MenuItem"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Seperator from "./layout/Seperator";
+import LoginLinkAuth from "./menu/LoginLinkAuth";
+import MenuItem from "./menu/MenuItem";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
-  // { label: "Dashboard", icon: Icons.layoutGrid },
-  // { label: "Projects", icon: Icons.code },
   { label: "Blog", icon: Icons.code, href: "blog" },
   { label: "Issues", icon: Icons.todo, href: "issues" },
-  // { label: "github-issues", icon: Icons.code },
-  // { label: "Learn", icon: Icons.lightbulb },
+  { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
-  // { label: "Guestbook", icon: Icons.code },
   { label: "LoginAuth" },
-  // { label: "Playground", icon: Icons.code },
-]
+];
 
 export default function SiteHeader({
   children,
 }: {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }) {
-  const { isAuthenticated, getUser } = useKindeBrowserClient()
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, setUser);
+
+    // It's important to unsubscribe when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const isAuthenticated = user !== null;
 
   return (
     <>
@@ -51,13 +52,12 @@ export default function SiteHeader({
                 className="z-20 rounded-full"
               />
             )}
-            {isAuthenticated && (
+            {isAuthenticated && user?.photoURL && (
               <Avatar>
-                <AvatarImage src={user?.picture} />
+                <AvatarImage src={user?.photoURL} />
                 <AvatarFallback>
                   {" "}
-                  {user?.given_name?.[0]}
-                  {user?.family_name?.[0]}
+                  {user?.displayName?.[0]}
                 </AvatarFallback>
               </Avatar>
             )}
@@ -83,7 +83,7 @@ export default function SiteHeader({
           <ul className="grow">
             {navigationMenu.map((navItem, index) => {
               if (navItem.label === "LoginAuth") {
-                return <LoginLinkAuth key={index} />
+                return <LoginLinkAuth key={index} />;
               }
               return (
                 <MenuItem
@@ -93,9 +93,10 @@ export default function SiteHeader({
                   icon={navItem.icon ? <navItem.icon /> : null}
                   isExternal={false}
                 />
-              )
+              );
             })}
           </ul>
+          <LoginLinkAuth />
         </div>
         <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
           With
@@ -104,5 +105,5 @@ export default function SiteHeader({
         </p>{" "}
       </aside>
     </>
-  )
+  );
 }

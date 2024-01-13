@@ -11,6 +11,7 @@ import { Icons } from "@/components/icons";
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
 import { Pagination, PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationNext, PaginationEllipsis } from "@/components/ui/pagination";
 import { motion, AnimatePresence } from "framer-motion";
+import { convertToEmoji } from "@/core/lib/countryToFlag";
 
 const MotionPagination = motion(Pagination);
 const MotionPaginationContent = motion(PaginationContent);
@@ -32,6 +33,7 @@ interface GuestbookEntry {
     avatar?: string;
     text?: string;
     timestamp?: any;
+    country?: string;
 }
 
 export default function GuestBookPage() {
@@ -44,7 +46,7 @@ export default function GuestBookPage() {
     const photoURL = user?.photoURL;
     const displayName = user?.displayName;
     const [currentPage, setCurrentPage] = useState(1);
-    const [entriesPerPage, setEntriesPerPage] = useState(1);
+    const [entriesPerPage, setEntriesPerPage] = useState(10);
     const indexOfLastEntry = currentPage * entriesPerPage;
     const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
     const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry);
@@ -77,19 +79,24 @@ export default function GuestBookPage() {
         if (newEntry.trim() === '') {
             return;
         }
+
+        const response = await fetch('https://ipapi.co/json/');
+        const locationData = await response.json();
+        const country = locationData.country_name;
+
         const entriesRef = collection(firestore, 'guestbook');
         const newEntryData: Omit<GuestbookEntry, 'id'> = {
             user: user?.displayName || '',
             avatar: user?.photoURL || '',
             text: newEntry,
             timestamp: serverTimestamp(),
+            country: country,
         };
 
         await addDoc(entriesRef, newEntryData);
 
         setNewEntry('');
     };
-
     const handleSignIn = async (provider: 'github' | 'google') => {
         setIsLoading(true);
         try {
@@ -130,7 +137,6 @@ export default function GuestBookPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        key={currentPage} 
                     >
                         <div className="flex flex-col gap-2">
                             {currentEntries.map((entry) => (
@@ -141,6 +147,7 @@ export default function GuestBookPage() {
                                     message={entry.text}
                                     date={entry.timestamp ? entry.timestamp.toDate().toLocaleString() : ''}
                                     avatarFallback={"s"}
+                                    country={convertToEmoji(entry.country || '')}
                                 />
                             ))}
                             {user ? (
@@ -151,7 +158,7 @@ export default function GuestBookPage() {
                                         placeholder="Leave a message"
                                         className="flex min-h-[60px] w-full rounded-md border border-input bg-transparent p-4 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                                     />
-                                    <Button type="submit">Post Entry</Button>
+                                    <Button variant="outline" type="submit">Post Entry</Button>
                                 </form>
                             ) : (
                                 <div className="flex flex-col gap-2">
@@ -167,10 +174,8 @@ export default function GuestBookPage() {
                                 </div>
                             )}
                             <div>
-                                <button onClick={() => setCurrentPage(currentPage - 1)}>Previous</button>
-                                <button onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
                                 {isClient && (
-                                    <Pagination>
+                                    <Pagination className="cursor-pointer">
                                         <PaginationContent>
                                             {currentPage !== 1 && (
                                                 <PaginationItem>

@@ -18,7 +18,6 @@ const navigationMenu = [
   { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
   { label: "About", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
-  { label: "LoginAuth" },
 ];
 
 export default function SiteHeader({
@@ -41,34 +40,38 @@ export default function SiteHeader({
   return (
     <>
       <aside className="hidden min-h-[97vh] flex-col text-blacktheme sm:flex dark:text-accent">
-        <div className="flex flex-col gap-2.5 text-xl">
-          <div className="relative">
-            {!isAuthenticated && (
-              <Image
-                src="/remco-avatar-compressed.webp"
-                alt="Remco Stoeten"
-                width={50}
-                height={50}
-                className="z-20 rounded-full"
-              />
-            )}
-            {isAuthenticated && user?.photoURL && (
-              <Avatar>
-                <AvatarImage src={user?.photoURL} />
-                <AvatarFallback>
-                  {" "}
-                  {user?.displayName?.[0]}
-                </AvatarFallback>
-              </Avatar>
-            )}
+        <div className="mb-6 flex items-center gap-2">
+          <div className="flex flex-col gap-2.5 text-xl">
+            <div className="relative">
+              {!isAuthenticated && (
+                <Image
+                  src="/remco-avatar-compressed.webp"
+                  alt="Remco Stoeten"
+                  width={50}
+                  height={50}
+                  className="z-20 rounded-full"
+                />
+              )}
+              {isAuthenticated && user?.photoURL && (
+                <Avatar>
+                  <AvatarImage src={user?.photoURL} />
+                  <AvatarFallback>
+                    {" "}
+                    {user?.displayName?.[0]}
+                  </AvatarFallback>
+                </Avatar>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="mb-3">
-          <div className="font-bold text-blacktheme dark:text-white">
-            Remco Stoeten
-          </div>
-          <div className="text-sm text-blacktheme dark:text-gray-400">
-            @remcosoeten
+          <div>
+            <div className="font-bold text-blacktheme dark:text-white">
+              {isAuthenticated && user?.displayName && (
+                <>{user?.displayName}</>
+              )} {!isAuthenticated && <>Remco Stoeten</>}
+            </div>
+            <div className="text-sm text-blacktheme dark:text-gray-400">
+              {!isAuthenticated && <>@remcostoeten</>}
+            </div>
           </div>
         </div>
         <div className="mb-6 flex grow flex-col">
@@ -82,9 +85,6 @@ export default function SiteHeader({
           <Seperator spacing="12" />
           <ul className="grow">
             {navigationMenu.map((navItem, index) => {
-              if (navItem.label === "LoginAuth") {
-                return <LoginLinkAuth key={index} />;
-              }
               return (
                 <MenuItem
                   key={index}
@@ -103,7 +103,7 @@ export default function SiteHeader({
           <span className="mx-1 animate-pulse">❤</span>
           by remco stoeten
         </p>{" "}
-      </aside>
+      </aside >
     </>
   );
 }

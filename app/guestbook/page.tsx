@@ -1,35 +1,22 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import { Button } from "@c/ui/button"
-import {
-    addDoc,
-    collection,
-    onSnapshot,
-    orderBy,
-    query,
-    serverTimestamp,
-} from "firebase/firestore"
-import { AnimatePresence, motion } from "framer-motion"
+import React, { useEffect, useState } from "react";
+import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
+import { auth, firestore } from "@/core/lib/firebase";
+import { Button } from "@c/ui/button";
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import GuestbookComments from "./components/GuestBookComments";
+import { ProfileSkeleton, SkeletonBar } from "@/components/effects/Skeleton";
+import IntroShell from "@/components/layout/IntroShell";
+import { Icons } from "@/components/icons";
+import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
 
-import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/lib/firebase"
-import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
-import { ProfileSkeleton } from "@/components/effects/Skeleton"
-import { Icons } from "@/components/icons"
-import IntroShell from "@/components/layout/IntroShell"
-
-import GuestbookComments from "./components/GuestBookComments"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
-import Dance from "@/components/effects/Dance"
-
-type GuestbookEntry = {
-    id?: string
-    user?: string
-    avatar?: string
-    text?: string
-    timestamp?: any
-    country?: string
+interface GuestbookEntry {
+    id?: string;
+    user?: string;
+    avatar?: string;
+    text?: string;
+    timestamp?: any;
 }
 
 export default function GuestBookPage() {

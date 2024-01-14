@@ -1,33 +1,25 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import { Button } from "@c/ui/button"
-import {
-    addDoc,
-    collection,
-    onSnapshot,
-    orderBy,
-    query,
-    serverTimestamp,
-} from "firebase/firestore"
-import { AnimatePresence, motion } from "framer-motion"
+import React, { useEffect, useState } from "react";
+import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
+import { auth, firestore } from "@/core/lib/firebase";
+import { Button } from "@c/ui/button";
+import GuestbookComments from "./components/GuestBookComments";
+import IntroShell from "@/components/layout/IntroShell";
+import { Icons } from "@/components/icons";
+import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
+import Dance from "@/components/effects/Dance";
+import { PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationEllipsis, PaginationNext } from "@/components/ui/pagination";
+import { convertToEmoji } from "@/core/lib/countryToFlag";
+import { Pagination } from "@tanstack/react-table";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/lib/firebase"
-import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
-import { ProfileSkeleton } from "@/components/effects/Skeleton"
-import { Icons } from "@/components/icons"
-import IntroShell from "@/components/layout/IntroShell"
-
-import GuestbookComments from "./components/GuestBookComments"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
 interface GuestbookEntry {
-    id?: string
-    user?: string
-    avatar?: string
-    text?: string
-    timestamp?: any
-    country?: string
+    id?: string;
+    user?: string;
+    avatar?: string;
+    text?: string;
+    timestamp?: any;
 }
 
 export default function GuestBookPage() {
@@ -130,7 +122,7 @@ export default function GuestBookPage() {
             />
 
             {loadingGithub || loadingGoogle ? (
-                <ProfileSkeleton />
+                <Dance />
             ) : (
                 <AnimatePresence>
                     <motion.div

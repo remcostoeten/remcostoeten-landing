@@ -21,7 +21,9 @@ import IntroShell from "@/components/layout/IntroShell"
 
 import GuestbookComments from "./components/GuestBookComments"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
-interface GuestbookEntry {
+import Dance from "@/components/effects/Dance"
+
+type GuestbookEntry = {
     id?: string
     user?: string
     avatar?: string
@@ -130,7 +132,7 @@ export default function GuestBookPage() {
             />
 
             {loadingGithub || loadingGoogle ? (
-                <ProfileSkeleton />
+                <Dance />
             ) : (
                 <AnimatePresence>
                     <motion.div

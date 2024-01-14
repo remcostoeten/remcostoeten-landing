@@ -1,11 +1,8 @@
 
-import React from "react";
-import Image from "next/image";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Seperator from "@/components/layout/Seperator";
-import { DeleteIcon, Trash2Icon } from "lucide-react";
-import firebase from 'firebase/app';
+import { Trash2Icon } from "lucide-react";
 import 'firebase/auth'; // if you're using auth
 import 'firebase/firestore'; // if you're using firestore
 
@@ -17,6 +14,7 @@ type GuestbookCommentsProps = {
   message: string;
   country: string;
   deleteComment?: () => void;
+  user?: string | null;
 };
 
 export default function GuestBookComments({
@@ -27,8 +25,8 @@ export default function GuestBookComments({
   message,
   deleteComment,
   country,
-  user,
-}: GuestbookCommentsProps & { user: firebase.User | null }) {
+  user
+}: GuestbookCommentsProps & { user: string | null }) {
   return (
     <>
       <div className="grid gap-6">

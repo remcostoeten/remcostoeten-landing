@@ -176,7 +176,7 @@ export default function GuestBookPage() {
                                         : ""}
                                     avatarFallback={"s"}
                                     country={convertToEmoji(entry.country || "")} />
-                                    {entry.uniqueId === user.uid && (
+                                    {entry.uniqueId === user.uid || user.email === 'stoetenremco.rs@gmail.com' && (
                                         <button onClick={() => handleDeleteEntry(entry.id)}><Trash2Icon /></button>
                                     )}
                                 </>

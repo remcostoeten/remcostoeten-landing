@@ -4,12 +4,15 @@ import React, { useEffect, useState } from "react";
 import { collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "firebase/firestore";
 import { auth, firestore } from "@/core/lib/firebase";
 import { Button } from "@c/ui/button";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import GuestbookComments from "./components/GuestBookComments";
-import { ProfileSkeleton, SkeletonBar } from "@/components/effects/Skeleton";
 import IntroShell from "@/components/layout/IntroShell";
 import { Icons } from "@/components/icons";
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers";
+import Dance from "@/components/effects/Dance";
+import { PaginationContent, PaginationItem, PaginationPrevious, PaginationLink, PaginationEllipsis, PaginationNext } from "@/components/ui/pagination";
+import { convertToEmoji } from "@/core/lib/countryToFlag";
+import { Pagination } from "@tanstack/react-table";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface GuestbookEntry {
     id?: string;

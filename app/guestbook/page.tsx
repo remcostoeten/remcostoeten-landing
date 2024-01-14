@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { Button } from "@c/ui/button"
 import {
     addDoc,
     collection,
+    deleteDoc,
+    doc,
     onSnapshot,
     orderBy,
     query,
@@ -15,39 +17,42 @@ import { AnimatePresence, motion } from "framer-motion"
 import { convertToEmoji } from "@/core/lib/countryToFlag"
 import { auth, firestore } from "@/core/lib/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
-import { ProfileSkeleton } from "@/components/effects/Skeleton"
 import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
 import GuestbookComments from "./components/GuestBookComments"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationPrevious } from "@/components/ui/pagination"
 import Dance from "@/components/effects/Dance"
-interface GuestbookEntry {
+import { toast } from "sonner"
+import { DeleteIcon, Trash2Icon } from "lucide-react"
+import { set } from "zod"
+import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
+
+type GuestbookEntry = {
     id?: string
     user?: string
     avatar?: string
     text?: string
     timestamp?: any
     country?: string
+    uniqueId?: string
 }
 
 export default function GuestBookPage() {
     const [entries, setEntries] = useState<GuestbookEntry[]>([])
     const [newEntry, setNewEntry] = useState("")
-    const [signInWithGithub, userGithub, loadingGithub, errorGithub] =
+    const [signInWithGithub, loadingGithub, errorGithub] =
         useGithubSignIn()
-    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+    const [signInWithGoogle, loadingGoogle, errorGoogle] =
         useGoogleSignIn()
     const [isLoading, setIsLoading] = useState(false)
     const user = auth.currentUser
-    const photoURL = user?.photoURL
-    const displayName = user?.displayName
     const [currentPage, setCurrentPage] = useState(1)
     const [entriesPerPage, setEntriesPerPage] = useState(10)
     const indexOfLastEntry = currentPage * entriesPerPage
     const indexOfFirstEntry = indexOfLastEntry - entriesPerPage
     const currentEntries = entries.slice(indexOfFirstEntry, indexOfLastEntry)
-
+    const [id, setId] = useState("")
     useEffect(() => {
         const entriesRef = collection(firestore, "guestbook")
         const orderedEntriesQuery = query(entriesRef, orderBy("timestamp", "desc"))
@@ -86,6 +91,7 @@ export default function GuestBookPage() {
         const entriesRef = collection(firestore, "guestbook")
         const newEntryData: Omit<GuestbookEntry, "id"> = {
             user: user?.displayName || "",
+            uniqueId: user?.uid || "",
             avatar: user?.photoURL || "",
             text: newEntry,
             timestamp: serverTimestamp(),
@@ -96,6 +102,27 @@ export default function GuestBookPage() {
 
         setNewEntry("")
     }
+
+    const handleDeleteEntry = useDeleteDoc('guestbook', 'Entry deleted successfully!', 'Error deleting entry!');
+
+
+    const handleCrudOperation = async (operation: "delete" | "update") => {
+        setIsLoading(true)
+        try {
+            if (operation === "delete") {
+                deleteDoc(doc(firestore, "guestbook", id))
+            } else if (operation === "update") {
+                // await updateDoc(doc(firestore, "guestbook", id), {
+                //     text: "updated text",
+                // })
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
     const handleSignIn = async (provider: "github" | "google") => {
         setIsLoading(true)
         try {
@@ -116,12 +143,9 @@ export default function GuestBookPage() {
         setIsClient(true)
     }, [])
 
-    const previousTwoPages = currentPage - 2
-    const nextTwoPages = currentPage + 2
     const totalPages = Math.ceil(entries.length / entriesPerPage)
 
     const totalPageArray = Array.from(Array(totalPages).keys())
-    const pageArray = totalPageArray.slice(previousTwoPages, nextTwoPages)
 
     return (
         <>
@@ -142,19 +166,20 @@ export default function GuestBookPage() {
                     >
                         <div className="flex flex-col gap-2">
                             {currentEntries.map((entry) => (
-                                <GuestbookComments
+                                <><GuestbookComments
                                     key={entry.id}
                                     avatarSrc={entry.avatar}
                                     nameHandle={entry.user}
                                     message={entry.text}
-                                    date={
-                                        entry.timestamp
-                                            ? entry.timestamp.toDate().toLocaleString()
-                                            : ""
-                                    }
+                                    date={entry.timestamp
+                                        ? entry.timestamp.toDate().toLocaleString()
+                                        : ""}
                                     avatarFallback={"s"}
-                                    country={convertToEmoji(entry.country || "")}
-                                />
+                                    country={convertToEmoji(entry.country || "")} />
+                                    {entry.uniqueId === user.uid && (
+                                        <button onClick={() => handleDeleteEntry(entry.id)}><Trash2Icon /></button>
+                                    )}
+                                </>
                             ))}
                             {user ? (
                                 <form
@@ -229,13 +254,6 @@ export default function GuestBookPage() {
                                                     return null
                                                 }
                                             })}
-                                            {currentPage !== totalPageArray.length && (
-                                                <PaginationItem>
-                                                    <PaginationNext
-                                                        onClick={() => setCurrentPage(currentPage + 1)}
-                                                    />
-                                                </PaginationItem>
-                                            )}
                                         </PaginationContent>
                                     </Pagination>
                                 )}

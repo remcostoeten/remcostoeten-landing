@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Button } from "@c/ui/button"
 import {
     addDoc,
@@ -23,9 +23,6 @@ import IntroShell from "@/components/layout/IntroShell"
 import GuestbookComments from "./components/GuestBookComments"
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationPrevious } from "@/components/ui/pagination"
 import Dance from "@/components/effects/Dance"
-import { toast } from "sonner"
-import { DeleteIcon, Trash2Icon } from "lucide-react"
-import { set } from "zod"
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
 
 type GuestbookEntry = {
@@ -166,7 +163,7 @@ export default function GuestBookPage() {
                     >
                         <div className="flex flex-col gap-2">
                             {currentEntries.map((entry) => (
-                                <><GuestbookComments
+                                <GuestbookComments
                                     key={entry.id}
                                     avatarSrc={entry.avatar}
                                     nameHandle={entry.user}
@@ -175,11 +172,9 @@ export default function GuestBookPage() {
                                         ? entry.timestamp.toDate().toLocaleString()
                                         : ""}
                                     avatarFallback={"s"}
-                                    country={convertToEmoji(entry.country || "")} />
-                                    {entry.uniqueId === user.uid || user.email === 'stoetenremco.rs@gmail.com' && (
-                                        <button onClick={() => handleDeleteEntry(entry.id)}><Trash2Icon /></button>
-                                    )}
-                                </>
+                                    deleteComment={entry.uniqueId === user?.uid ? () => handleDeleteEntry(entry.id) : undefined}
+                                    country={convertToEmoji(entry.country || "")} user={""}
+                                />
                             ))}
                             {user ? (
                                 <form

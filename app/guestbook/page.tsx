@@ -31,6 +31,7 @@ import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
 import GuestbookComments from "./components/GuestBookComments"
+import WIPToast from "@/components/effects/InProgressToast"
 
 type GuestbookEntry = {
   id?: string
@@ -154,6 +155,9 @@ export default function GuestBookPage() {
 
   return (
     <>
+
+      <WIPToast text='This feature is not finished yet, but you can leave a message!' />
+
       <IntroShell
         title="Guestbook"
         description="It's your time to shine. Say whatever you want to say."

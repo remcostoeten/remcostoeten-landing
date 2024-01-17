@@ -1,18 +1,15 @@
 import { Trash2Icon } from "lucide-react"
 
-
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Seperator from "@/components/layout/Seperator";
-import { Trash2Icon } from "lucide-react";
-import 'firebase/auth'; // if you're using auth
-import 'firebase/firestore'; // if you're using firestore
+import Seperator from "components/layout/Seperator";
+import 'firebase/auth';
+import 'firebase/firestore';
 
 import "firebase/auth"
-// if you're using auth
+
 import "firebase/firestore"
 
-// if you're using firestore
+
 
 type GuestbookCommentsProps = {
   avatarSrc: string
@@ -24,15 +21,6 @@ type GuestbookCommentsProps = {
   deleteComment?: () => void
   user?: string | null
 }
-  avatarSrc: string;
-  avatarFallback: string;
-  nameHandle: string;
-  date: string;
-  message: string;
-  country: string;
-  deleteComment?: () => void;
-  user?: string | null;
-};
 
 export default function GuestBookComments({
   avatarSrc,
@@ -43,7 +31,6 @@ export default function GuestBookComments({
   deleteComment,
   country,
   user,
-  user
 }: GuestbookCommentsProps & { user: string | null }) {
   return (
     <>

@@ -41,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps) {
     <HydrationOverlay>
       <html lang="en" suppressHydrationWarning>
         <head />
+        <link rel="canonical" href={siteConfig.url} />
         <TooltipProvider>
           <body
             className={cn(

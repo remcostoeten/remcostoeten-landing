@@ -14,4 +14,5 @@ export const siteConfig = {
     github: "https://github.com/remcostoeten",
     docs: "https://snippets.remcostoeten.com",
   },
+  url: "https://blog.remcostoeten.com",
 }

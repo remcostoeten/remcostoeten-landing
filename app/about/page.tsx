@@ -1,28 +1,85 @@
-'use client'
+"use client"
 
-const experiences = [{ year: 2023, role: 'Frontend Developer at Pleio - online samenwerken', location: 'Fulltime, remote', details: ['Continued development and complete front-end (design) refactoring of FSV Portaal.', 'Continued development of the Pleio-platform (SaaS for non-profit organizations and governments in React, GraphQL).', 'Continued development of PDF Checker (Vue).',], skills: 'TypeScript, Vue.js, React.js, JavaScript, SCSS', }, { year: 2022, role: 'Developer at Distil BV', location: 'Fulltime, Heerenveen, Friesland, Netherlands', details: ['Sole dedicated front-end responsible for migrating legacy code to a new design using .cshtml (Razor) templates, BEM SCSS structure, and vanilla + KnockoutJS JavaScript.', 'Took initial steps into the world of React while assisting in the rewrite of a legacy SaaS application in React + .NET.',], skills: 'ASP.NET Razor, KnockoutJS, Scss, React.js, JavaScript', }, { year: '2017 - 2022', role: 'Front-end Developer at Tickles Digital Agency B.V.', location: 'Fulltime, Joure, Friesland, Netherlands', details: ['Acquired job as Front-end Magento 2 Developer.', 'Joined as a Front-end developer after an internship during media design studies.', 'Developed from a complete beginner to a self-sufficient Front-end developer capable of translating UX designs into responsive code.', 'Worked on numerous Magento 2 webshops with varying complexities.',], skills: 'Magento 2, Scrum, PHP, JavaScript, SCSS', }, { year: 2017, role: 'Internship at Speak', location: '', details: [], skills: '', }, { year: 2017, role: 'College degree in Graphic Design', location: '', details: [], skills: '', },];
+const experiences = [
+  {
+    year: 2023,
+    role: "Frontend Developer at Pleio - online samenwerken",
+    location: "Fulltime, remote",
+    details: [
+      "Continued development and complete front-end (design) refactoring of FSV Portaal.",
+      "Continued development of the Pleio-platform (SaaS for non-profit organizations and governments in React, GraphQL).",
+      "Continued development of PDF Checker (Vue).",
+    ],
+    skills: "TypeScript, Vue.js, React.js, JavaScript, SCSS",
+  },
+  {
+    year: 2022,
+    role: "Developer at Distil BV",
+    location: "Fulltime, Heerenveen, Friesland, Netherlands",
+    details: [
+      "Sole dedicated front-end responsible for migrating legacy code to a new design using .cshtml (Razor) templates, BEM SCSS structure, and vanilla + KnockoutJS JavaScript.",
+      "Took initial steps into the world of React while assisting in the rewrite of a legacy SaaS application in React + .NET.",
+    ],
+    skills: "ASP.NET Razor, KnockoutJS, Scss, React.js, JavaScript",
+  },
+  {
+    year: "2017 - 2022",
+    role: "Front-end Developer at Tickles Digital Agency B.V.",
+    location: "Fulltime, Joure, Friesland, Netherlands",
+    details: [
+      "Acquired job as Front-end Magento 2 Developer.",
+      "Joined as a Front-end developer after an internship during media design studies.",
+      "Developed from a complete beginner to a self-sufficient Front-end developer capable of translating UX designs into responsive code.",
+      "Worked on numerous Magento 2 webshops with varying complexities.",
+    ],
+    skills: "Magento 2, Scrum, PHP, JavaScript, SCSS",
+  },
+  {
+    year: 2017,
+    role: "Internship at Speak",
+    location: "",
+    details: [],
+    skills: "",
+  },
+  {
+    year: 2017,
+    role: "College degree in Graphic Design",
+    location: "",
+    details: [],
+    skills: "",
+  },
+]
 export default function Component() {
   return (
     <div className="flex flex-col space-y-6">
       {experiences.map((experience, index) => {
-        const Icon = [CalendarIcon, ClockIcon, FlagIcon, HeartIcon]; // declare the 'Icon' variable before using it
+        const Icon = [CalendarIcon, ClockIcon, FlagIcon, HeartIcon] // declare the 'Icon' variable before using it
 
         return (
           <div className="flex items-start space-x-4" key={experience.year}>
             <div className="flex-1 border-l-2 pl-4">
               <h3 className="font-semibold">{experience.year}</h3>
               <h4>{experience.role}</h4>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{experience.location}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {experience.location}
+              </p>
               {experience.details.map((detail, detailIndex) => (
-                <p key={detailIndex} className="text-sm text-gray-500 dark:text-gray-400">{detail}</p>
+                <p
+                  key={detailIndex}
+                  className="text-sm text-gray-500 dark:text-gray-400"
+                >
+                  {detail}
+                </p>
               ))}
-              <p className="text-sm text-gray-500 dark:text-gray-400">{experience.skills}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {experience.skills}
+              </p>
             </div>
           </div>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
 function CalendarIcon(props) {
@@ -47,7 +104,6 @@ function CalendarIcon(props) {
   )
 }
 
-
 function ClockIcon(props) {
   return (
     <svg
@@ -67,7 +123,6 @@ function ClockIcon(props) {
     </svg>
   )
 }
-
 
 function FlagIcon(props) {
   return (
@@ -89,7 +144,6 @@ function FlagIcon(props) {
   )
 }
 
-
 function HeartIcon(props) {
   return (
     <svg
@@ -108,7 +162,6 @@ function HeartIcon(props) {
     </svg>
   )
 }
-
 
 function LightbulbIcon(props) {
   return (
@@ -131,7 +184,6 @@ function LightbulbIcon(props) {
   )
 }
 
-
 function RocketIcon(props) {
   return (
     <svg
@@ -153,7 +205,6 @@ function RocketIcon(props) {
     </svg>
   )
 }
-
 
 function StarIcon(props) {
   return (

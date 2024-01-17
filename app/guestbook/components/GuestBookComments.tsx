@@ -1,15 +1,12 @@
+import Seperator from "components/layout/Seperator"
 import { Trash2Icon } from "lucide-react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Seperator from "components/layout/Seperator";
-import 'firebase/auth';
-import 'firebase/firestore';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import "firebase/auth"
-
 import "firebase/firestore"
-
-
+import "firebase/auth"
+import "firebase/firestore"
 
 type GuestbookCommentsProps = {
   avatarSrc: string
@@ -48,7 +45,9 @@ export default function GuestBookComments({
                     {nameHandle}{" "}
                     <span className="ml-2 text-xs font-light">from</span>{" "}
                     {country}
-                    {nameHandle} <span className="ml-2 text-xs font-light">from</span> {country}
+                    {nameHandle}{" "}
+                    <span className="ml-2 text-xs font-light">from</span>{" "}
+                    {country}
                   </div>
                   <time className="text-xs text-gray-500 dark:text-gray-400">
                     {date}

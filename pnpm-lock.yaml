@@ -77,6 +77,9 @@ dependencies:
   '@vercel/postgres':
     specifier: ^0.5.1
     version: 0.5.1
+  '@vercel/speed-insights':
+    specifier: ^1.0.4
+    version: 1.0.4
   bcryptjs:
     specifier: ^2.4.3
     version: 2.4.3
@@ -95,9 +98,6 @@ dependencies:
   dayjs:
     specifier: ^1.11.9
     version: 1.11.10
-  drizzle-orm:
-    specifier: ^0.29.2
-    version: 0.29.3(@opentelemetry/api@1.7.0)(@planetscale/database@1.13.0)(@types/react@18.2.46)(@vercel/postgres@0.5.1)(react@18.2.0)
   firebase:
     specifier: ^10.7.1
     version: 10.7.1
@@ -140,6 +140,9 @@ dependencies:
   react-icons:
     specifier: ^4.12.0
     version: 4.12.0(react@18.2.0)
+  react-intersection-observer:
+    specifier: ^9.5.3
+    version: 9.5.3(react@18.2.0)
   react-resizable:
     specifier: ^3.0.5
     version: 3.0.5(react-dom@18.2.0)(react@18.2.0)
@@ -3997,6 +4000,11 @@ packages:
     resolution: {integrity: sha512-EpZyfF6wFGzFDmubFIh/EZtYpKindmXx/69xSfKEBTVU0afgljyOOICbyZePe5tvigfOEBLSLgrt/2nN+MlLtA==}
     dev: false
 
+  /@vercel/speed-insights@1.0.4:
+    resolution: {integrity: sha512-Q7O0bnV11KUqNKAKA984YWIGxCjqgOuJdwH1cdItqlkUVTLbIm8BhObro6hJobGMSUHm+z7xjQ0YbC8ps1ekDg==}
+    requiresBuild: true
+    dev: false
+
   /@vercel/static-build@2.0.16:
     resolution: {integrity: sha512-pI1b7ZaXI2r2TITvjQtqObBoZoSTSS/pzmNPZ/QnS/e80gxeCgiDwro4w8ICMKdJDMdLpVt3vhcPzeZrIaEGxg==}
     dependencies:
@@ -5195,84 +5203,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /drizzle-orm@0.29.3(@opentelemetry/api@1.7.0)(@planetscale/database@1.13.0)(@types/react@18.2.46)(@vercel/postgres@0.5.1)(react@18.2.0):
-    resolution: {integrity: sha512-uSE027csliGSGYD0pqtM+SAQATMREb3eSM/U8s6r+Y0RFwTKwftnwwSkqx3oS65UBgqDOM0gMTl5UGNpt6lW0A==}
-    peerDependencies:
-      '@aws-sdk/client-rds-data': '>=3'
-      '@cloudflare/workers-types': '>=3'
-      '@libsql/client': '*'
-      '@neondatabase/serverless': '>=0.1'
-      '@opentelemetry/api': ^1.4.1
-      '@planetscale/database': '>=1'
-      '@types/better-sqlite3': '*'
-      '@types/pg': '*'
-      '@types/react': '>=18'
-      '@types/sql.js': '*'
-      '@vercel/postgres': '*'
-      better-sqlite3: '>=7'
-      bun-types: '*'
-      expo-sqlite: '>=13.2.0'
-      knex: '*'
-      kysely: '*'
-      mysql2: '>=2'
-      pg: '>=8'
-      postgres: '>=3'
-      react: '>=18'
-      sql.js: '>=1'
-      sqlite3: '>=5'
-    peerDependenciesMeta:
-      '@aws-sdk/client-rds-data':
-        optional: true
-      '@cloudflare/workers-types':
-        optional: true
-      '@libsql/client':
-        optional: true
-      '@neondatabase/serverless':
-        optional: true
-      '@opentelemetry/api':
-        optional: true
-      '@planetscale/database':
-        optional: true
-      '@types/better-sqlite3':
-        optional: true
-      '@types/pg':
-        optional: true
-      '@types/react':
-        optional: true
-      '@types/sql.js':
-        optional: true
-      '@vercel/postgres':
-        optional: true
-      better-sqlite3:
-        optional: true
-      bun-types:
-        optional: true
-      expo-sqlite:
-        optional: true
-      knex:
-        optional: true
-      kysely:
-        optional: true
-      mysql2:
-        optional: true
-      pg:
-        optional: true
-      postgres:
-        optional: true
-      react:
-        optional: true
-      sql.js:
-        optional: true
-      sqlite3:
-        optional: true
-    dependencies:
-      '@opentelemetry/api': 1.7.0
-      '@planetscale/database': 1.13.0
-      '@types/react': 18.2.46
-      '@vercel/postgres': 0.5.1
-      react: 18.2.0
-    dev: false
 
   /duplexify@4.1.2:
     resolution: {integrity: sha512-fz3OjcNCHmRP12MJoZMPglx8m4rrFP8rovnk4vT8Fs+aonZoCwGg10dSsQsfP/E62eZcPTMSMP6686fu9Qlqtw==}
@@ -9823,6 +9753,14 @@ packages:
     resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
     peerDependencies:
       react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /react-intersection-observer@9.5.3(react@18.2.0):
+    resolution: {integrity: sha512-NJzagSdUPS5rPhaLsHXYeJbsvdpbJwL6yCHtMk91hc0ufQ2BnXis+0QQ9NBh6n9n+Q3OyjR6OQLShYbaNBkThQ==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
     dev: false

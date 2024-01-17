@@ -1,6 +1,8 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
 
 import { LayoutProps } from "@/core/types/global"
@@ -39,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps) {
     <HydrationOverlay>
       <html lang="en" suppressHydrationWarning>
         <head />
+        <link rel="canonical" href={siteConfig.url} />
         <TooltipProvider>
           <body
             className={cn(
@@ -52,6 +55,8 @@ export default function RootLayout({ children }: LayoutProps) {
                 <div className="transition-all duration-300 sm:max-w-[854px]">
                   {children}
                 </div>
+                <SpeedInsights />
+                <Analytics />
                 <Toaster />
               </ShellLayout>
               <TailwindIndicator />

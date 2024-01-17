@@ -17,7 +17,7 @@ const navigationMenu = [
   { label: "Blog", icon: Icons.code, href: "blog" },
   { label: "Issues", icon: Icons.todo, href: "issues" },
   { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
-  { label: "About", icon: Icons.user },
+  { label: "About", href: "about", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
 ]
 

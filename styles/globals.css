@@ -12,6 +12,20 @@
 @import './buttons.css';
 @import './card-skeleton.css';
 
+.timeline {
+  position: relative;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.year {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 @layer base {
   :root {
     --dark: #121212;

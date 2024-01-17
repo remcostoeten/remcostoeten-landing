@@ -45,9 +45,6 @@ export default function GuestBookComments({
                     {nameHandle}{" "}
                     <span className="ml-2 text-xs font-light">from</span>{" "}
                     {country}
-                    {nameHandle}{" "}
-                    <span className="ml-2 text-xs font-light">from</span>{" "}
-                    {country}
                   </div>
                   <time className="text-xs text-gray-500 dark:text-gray-400">
                     {date}

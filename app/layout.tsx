@@ -13,6 +13,8 @@ import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 
 export const viewport = {
   themeColor: [
@@ -52,6 +54,8 @@ export default function RootLayout({ children }: LayoutProps) {
                 <div className="transition-all duration-300 sm:max-w-[854px]">
                   {children}
                 </div>
+                  <SpeedInsights/>
+                <Analytics/>
                 <Toaster />
               </ShellLayout>
               <TailwindIndicator />

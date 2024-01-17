@@ -158,7 +158,6 @@ export default function GuestBookPage() {
         title="Guestbook"
         description="It's your time to shine. Say whatever you want to say."
       />
-      j frohjnt
       {loadingGithub || loadingGoogle ? (
         <Dance />
       ) : (

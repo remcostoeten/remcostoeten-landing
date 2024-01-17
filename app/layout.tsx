@@ -7,9 +7,8 @@ import NextTopLoader from "nextjs-toploader"
 
 import { LayoutProps } from "@/core/types/global"
 import { siteConfig } from "@/core/config/site"
-import { fontSans, fontSora } from "@/core/lib/fonts"
+import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
-import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
@@ -56,11 +55,12 @@ export default function RootLayout({ children }: LayoutProps) {
                   <>
                     {children}
                   </>              </div>
-                <SpeedInsights />
-                <Analytics />
+
               </ShellLayout>
               <TailwindIndicator />
             </ThemeProvider>
+            <SpeedInsights />
+                <Analytics />
           </body>
         </TooltipProvider>
       </html>

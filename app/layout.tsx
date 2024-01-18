@@ -52,15 +52,13 @@ export default function RootLayout({ children }: LayoutProps) {
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <ShellLayout header={<SiteHeader />}>
                 <div className="transition-all duration-300 sm:max-w-[854px]">
-                  <>
-                    {children}
-                  </>              </div>
-
+                  {children}
+                </div>
               </ShellLayout>
               <TailwindIndicator />
             </ThemeProvider>
             <SpeedInsights />
-                <Analytics />
+            <Analytics />
           </body>
         </TooltipProvider>
       </html>

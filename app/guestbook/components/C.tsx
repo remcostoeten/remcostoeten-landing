@@ -1,4 +1,3 @@
-
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 // import { Button } from "@/components/ui/button"
 // import {
@@ -164,9 +163,15 @@
 //     </svg>
 //   )
 // }
-import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 type GuestbookCommentsProps = {
   avatarSrc: string
   avatarFallback: string
@@ -179,14 +184,16 @@ type GuestbookCommentsProps = {
   onReply?: () => void
 }
 
-export default function Component({ avatarSrc,
+export default function Component({
+  avatarSrc,
   avatarFallback,
   nameHandle,
   date,
   message,
   country,
   intro,
-  onDelete, onReply
+  onDelete,
+  onReply,
 }: GuestbookCommentsProps) {
   return (
     <div key="1" className="space-y-8">
@@ -199,43 +206,63 @@ export default function Component({ avatarSrc,
           </Avatar>
           <div className="grid gap-1.5">
             <div className="flex w-full items-center justify-between gap-2">
-              <div className="font-semibold">{nameHandle}<span className="font-light"> from {country}</span></div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">{date}</div>
+              <div className="font-semibold">
+                {nameHandle}
+                <span className="font-light"> from {country}</span>
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                {date}
+              </div>
 
               <div className="flex gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger>:</DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem> <Button className="h-8 w-8" size="icon" variant="ghost">
-                      <FileEditIcon className="h-4 w-4" />
-                      <span className="sr-only">Edit</span>
-                    </Button></DropdownMenuItem>
-                    <DropdownMenuItem><Button className="h-8 w-8" size="icon" variant="ghost" onClick={onDelete}>
-                      <TrashIcon className="h-4 w-4" />
-                      <span className="sr-only">Delete</span>
-                    </Button></DropdownMenuItem>
-                    <DropdownMenuItem> <Button className="h-8 w-8" size="icon" variant="ghost">
-                      <StarIcon className="h-4 w-4" />
-                      <span className="sr-only">Favourite</span>
-                    </Button></DropdownMenuItem>
-                    <DropdownMenuItem> <Button className="h-8 w-8" size="icon" variant="ghost" onClick={onReply}>
-                      <FileEditIcon className="h-4 w-4" />
-                      <span className="sr-only">Reply</span>
-                    </Button></DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Button className="h-8 w-8" size="icon" variant="ghost">
+                        <FileEditIcon className="h-4 w-4" />
+                        <span className="sr-only">Edit</span>
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Button
+                        className="h-8 w-8"
+                        size="icon"
+                        variant="ghost"
+                        onClick={onDelete}
+                      >
+                        <TrashIcon className="h-4 w-4" />
+                        <span className="sr-only">Delete</span>
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Button className="h-8 w-8" size="icon" variant="ghost">
+                        <StarIcon className="h-4 w-4" />
+                        <span className="sr-only">Favourite</span>
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Button
+                        className="h-8 w-8"
+                        size="icon"
+                        variant="ghost"
+                        onClick={onReply}
+                      >
+                        <FileEditIcon className="h-4 w-4" />
+                        <span className="sr-only">Reply</span>
+                      </Button>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-
-
-
-
               </div>
             </div>
           </div>
-
         </div>
-        <div>
-          {message}
-        </div> </div>
+        <div>{message}</div>{" "}
+      </div>
       {/* <AdminReply /> */}
     </div>
   )
@@ -262,7 +289,6 @@ function FileEditIcon(props) {
   )
 }
 
-
 function StarIcon(props) {
   return (
     <svg
@@ -281,7 +307,6 @@ function StarIcon(props) {
     </svg>
   )
 }
-
 
 function TrashIcon(props) {
   return (

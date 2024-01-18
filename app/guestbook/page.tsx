@@ -27,11 +27,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import Dance from "@/components/effects/Dance"
+import WIPToast from "@/components/effects/InProgressToast"
 import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
 import GuestbookComments from "./components/GuestBookComments"
-import WIPToast from "@/components/effects/InProgressToast"
 
 type GuestbookEntry = {
   id?: string
@@ -155,8 +155,7 @@ export default function GuestBookPage() {
 
   return (
     <>
-
-      <WIPToast text='This feature is not finished yet, but you can leave a message!' />
+      <WIPToast text="This feature is not finished yet, but you can leave a message!" />
 
       <IntroShell
         title="Guestbook"

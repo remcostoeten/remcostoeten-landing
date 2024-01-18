@@ -1,4 +1,3 @@
-
 export default function Component() {
   return (
     <>
@@ -26,7 +25,8 @@ export default function Component() {
                     className="w-full flex-1 appearance-none rounded-r-lg border border-gray-300 bg-white px-4 py-2 text-base text-gray-700 shadow-sm placeholder:text-gray-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary"
                     id="sign-in-email"
                     placeholder="Your name"
-                    type="text" />
+                    type="text"
+                  />
                 </div>
               </div>
               <div className="mb-6 flex flex-col">
@@ -36,7 +36,8 @@ export default function Component() {
                   style={{
                     minHeight: "100px",
                     resize: "none",
-                  }} />
+                  }}
+                />
               </div>
               <div className="flex w-full">
                 <button
@@ -49,6 +50,7 @@ export default function Component() {
             </form>
           </div>
         </div>
-      </main></>
+      </main>
+    </>
   )
 }

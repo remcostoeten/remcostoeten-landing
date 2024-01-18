@@ -12,21 +12,23 @@
 
 // export default WIPToast;
 
+"use client"
 
-'use client';
-import React, { useEffect } from 'react';
-import { toast } from 'sonner';
+import React, { useEffect } from "react"
+import { toast } from "sonner"
 
 type ToastProps = {
-    text?: string;
+  text?: string
 }
 
-const WIPToast = ({ text = 'This website is a work in progress.' }: ToastProps) => {
-    useEffect(() => {
-        toast(text);
-    }, [text]);
+const WIPToast = ({
+  text = "This website is a work in progress.",
+}: ToastProps) => {
+  useEffect(() => {
+    toast(text)
+  }, [text])
 
-    return null;
-};
+  return null
+}
 
-export default WIPToast;
+export default WIPToast

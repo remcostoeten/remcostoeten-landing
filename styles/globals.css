@@ -30,6 +30,23 @@
   z-index: 2;
 }
 
+.custom-list-item {
+  position: relative;
+  list-style-type: none;
+}
+
+.custom-list-item:before {
+  content: '';
+  position: absolute;
+  left: -1em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.4em;
+  height: 0.4em;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
 /* .year-circle::after {
   content: '';
   position: absolute;

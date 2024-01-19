@@ -33,3 +33,19 @@ export default function Pill({ children, color = 'black', backgroundColor = 'whi
         </div>
     );
 }
+
+/**
+ * Pill Component
+ *
+ * Props:
+ * - `children`: Content to display inside the pill.
+ * - `color`: Text color (Tailwind CSS color classes or hex color). Default is 'black'.
+ * - `backgroundColor`: Background color (Tailwind CSS color classes or hex color). Default is 'white'.
+ * - `fontSize`: Text size ('xs', 'sm', 'md', 'lg', 'xl'). Default is 'sm'.
+ * - `borderRadius`: Border radius. Default is 'rounded-lg'.
+ *
+ * Example:
+ * ```jsx
+ * <Pill color="red-500" backgroundColor="blue-500" fontSize="lg" borderRadius="rounded-full">Example Pill</Pill>
+ * ```
+ */

@@ -12,6 +12,49 @@
 @import './buttons.css';
 @import './card-skeleton.css';
 
+.year-circle {
+  position: relative;
+}
+
+.year-circle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  border: 2px solid hsl(var(--border));
+  border-radius: 50%;
+  left: -16px;
+  top: 0;
+  z-index: 2;
+}
+
+/* .year-circle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  background-color: var(--background);
+  left: 50%;
+  scale: 1.5;
+  width: 20px;
+  height: 32px;
+  border-radius: 50%;
+  left: -16px;
+  top: 0;
+  z-index: 1;
+
+} */
+
+.year-icon {
+  position: absolute;
+  z-index: 4;
+  left: -11px;
+  z-index: 4;
+  top: 6px;
+}
+
+
 .timeline {
   position: relative;
 }

@@ -5,7 +5,6 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
 
-import { LayoutProps } from "@/core/types/global"
 import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: LayoutProps) {
+export default function RootLayout({ children }) {
   return (
     <HydrationOverlay>
       <html lang="en" suppressHydrationWarning>

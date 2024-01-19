@@ -1,4 +1,3 @@
-import { siteConfig } from './site';
 
 export const introduction = [
     {
@@ -8,7 +7,6 @@ export const introduction = [
         about: "I am a recoveringex-Magento developer and currently building  open source software at Pleio. During the day I work work with on a huge SaaS applcation written in React, GraphQL and a Django back-end with a little Vue and vanilla Javascript, and during my free time I mostly work with TypeScript & Next.js, have done a little Python, Shell & Lua, and want to learn Go, OCaml 🐪 and DevOps."
     }
 ];
-
 
 export const experiences = [
     {

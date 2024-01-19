@@ -30,21 +30,16 @@
   z-index: 2;
 }
 
-.custom-list-item {
-  position: relative;
-  list-style-type: none;
-}
-
-.custom-list-item:before {
+.year-circle::after {
   content: '';
   position: absolute;
-  left: -1em;
-  top: 50%;
+  left: -1px;
+  top: 55%;
   transform: translateY(-50%);
-  width: 0.4em;
-  height: 0.4em;
-  background-color: currentColor;
-  border-radius: 50%;
+  background-color: hsl(var(--border));
+  height: 80%;
+  width: 1px;
+
 }
 
 /* .year-circle::after {

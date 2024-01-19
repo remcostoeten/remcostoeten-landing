@@ -3,73 +3,81 @@
 import Pill from "@/components/Pill";
 import { experiences } from "@/core/config/about"
 import Image from "next/image";
-const iconPaths = ["/education.svg", "/ok.svg", "/no.svg", "/education.svg"];
+import ExperienceYearShell from "./components.tsx/ExperienceYearShell";
+const iconPaths = ["/about/saas.svg", "/about/saas.svg", "/about/saas.svg", "/about/saas.svg"];
 
 const ListItem = ({ children }) => {
-  return <li className='list-disc text-sm ml-4 text-gray-500 dark:text-gray-400'>{children}</li>;
+  return <li className='ml-4 text-sm text-gray-500 dark:text-gray-400'>{children}</li>;
 };
 
 export default function TimelineComponent() {
   return (
-    <ul className="flex flex-col space-y-6">
-      {experiences.map((experience, index) => {
-        const iconPath = iconPaths[index % iconPaths.length];
+    <>
+      <ExperienceYearShell icon={<Image src="/about/saas.svg" alt="SASS Icon" width={24} height={24} />} />      <ul className="flex flex-col space-y-6">
+        {experiences.map((experience, index) => {
+          const iconPath = iconPaths[index % iconPaths.length];
 
-        return (
-          <li className="flex items-start space-x-4" key={experience.year}>
-            <div className="year-circle flex-1 border-l-2 pl-6">
-              <Image src={iconPath} width="20" height="20" alt="icon" className="year-icon" />
-              <h3 className="font-semibold">{experience.year}</h3>
-              {experience.roles ? (
-                <ul>
-                  {experience.roles.map((role, roleIndex) => (
-                    <li key={roleIndex}>
-                      {role.internships && (
-                        <ul>
-                          {role.internships.map((internship, internshipIndex) => (
-                            <ul key={internshipIndex}>
-                              <a href={internship.url} target="_blank" rel="noopener noreferrer">
-                                <h5>{internship.role}</h5>
-                              </a>
-                              {internship.details.map((detail, detailIndex) => (
-                                <ListItem>{detail}</ListItem>
-                              ))}
-                              <ListItem>{internship.skills}</ListItem>
-                            </ul>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <ul>
-                  <li>
-                    <h4>{experience.role}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {experience.location}
-                    </p>
-                    {experience.details.map((detail, detailIndex) => (
-                      <p
-                        key={detailIndex}
-                        className="text-sm text-gray-500 dark:text-gray-400"
-                      >
-                        {detail}
-                      </p>
+          return (
+            <li className="flex items-start space-x-4" key={experience.year}>
+              <div className="year-circle flex-1 pl-6">
+                <Image src={iconPath} width="20" height="20" alt="icon" className="year-icon" />
+                <h3 className="font-semibold">{experience.year}</h3>
+                {experience.roles ? (
+                  <ul>
+                    {experience.roles.map((role, roleIndex) => (
+                      <li key={roleIndex}>
+                        {role.internships && (
+                          <ul>
+                            {role.internships.map((internship, internshipIndex) => (
+                              <ul key={internshipIndex}>
+                                <a href={internship.url} target="_blank" rel="noopener noreferrer">
+                                  <h5>{internship.role}</h5>
+                                </a>
+                                {internship.details.map((detail, detailIndex) => (
+                                  <ListItem>{detail}</ListItem>
+                                ))}
+                                <div className='mt-2 flex flex-wrap gap-1'>
+
+                                  {internship.skills.split(',').map((skill, skillIndex) => (
+                                    <Pill fontSize="12px" key={skillIndex}>{skill.trim()}</Pill>
+                                  ))}
+                                </div>
+                              </ul>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
                     ))}
-                    <div className='flex flex-wrap gap-1'>
-                      {experience.skills.split(',').map((skill, skillIndex) => (
-                        <Pill key={skillIndex}>{skill.trim()}</Pill>
+                  </ul>
+                ) : (
+                  <ul>
+                    <li>
+                      <h4>{experience.role}</h4>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {experience.location}
+                      </p>
+                      {experience.details.map((detail, detailIndex) => (
+                        <p
+                          key={detailIndex}
+                          className="text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          {detail}
+                        </p>
                       ))}
-                    </div>
-                  </li>
-                </ul>
-              )}
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+                      <div className='mt-2 flex flex-wrap gap-1'>
+                        {experience.skills.split(',').map((skill, skillIndex) => (
+                          <Pill fontSize="12px" key={skillIndex}>{skill.trim()}</Pill>
+                        ))}
+                      </div>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 

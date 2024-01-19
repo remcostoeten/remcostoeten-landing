@@ -4,48 +4,48 @@ type PillProps = {
     children: React.ReactNode;
     color?: string;
     backgroundColor?: string;
-    fontSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    fontSize?: '8px' | '10px' | '12px' | 'sm' | 'md' | 'lg' | 'xl';
     borderRadius?: string;
 }
 
-const tailwindColors = {
-    'red-500': '#f56565',
-    'green-500': '#48bb78',
-    'blue-500': '#4299e1',
-    // Add more Tailwind CSS color classes and their corresponding hex values here
-};
-
-export default function Pill({ children, color = 'black', backgroundColor = 'white', fontSize = 'sm', borderRadius = 'rounded-lg' }: PillProps) {
+export default function Pill({ children, color = '#F2F5F6', backgroundColor = '#1E1F1E', fontSize = 'sm', borderRadius = 'rounded-lg' }: PillProps) {
     const fontSizeClasses = {
-        xs: 'text-xs',
+        '8px': 'text-[8px]',
+        '10px': 'text-[10px]',
+        '12px': 'text-[12px]',
         sm: 'text-sm',
         md: 'text-md',
         lg: 'text-lg',
         xl: 'text-xl',
     };
 
-    const textColor = tailwindColors[color] || color;
-    const bgColor = tailwindColors[backgroundColor] || backgroundColor;
+    const fontSizeClass = fontSizeClasses[fontSize] || '';
 
     return (
-        <div style={{ color: textColor, backgroundColor: bgColor }} className={`${fontSizeClasses[fontSize]} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}>
+        <div className={`bg-${backgroundColor} transition-all hover:bg-[#303330] text-${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}>
             {children}
         </div>
     );
 }
 
 /**
- * Pill Component
- *
  * Props:
- * - `children`: Content to display inside the pill.
- * - `color`: Text color (Tailwind CSS color classes or hex color). Default is 'black'.
- * - `backgroundColor`: Background color (Tailwind CSS color classes or hex color). Default is 'white'.
- * - `fontSize`: Text size ('xs', 'sm', 'md', 'lg', 'xl'). Default is 'sm'.
- * - `borderRadius`: Border radius. Default is 'rounded-lg'.
+ * - `children`: The content to be displayed inside the pill.
+ * - `color`: The color of the text. Default is '#F2F5F6'.
+ * - `backgroundColor`: The background color of the pill. Default is '#1E1F1E'.
+ * - `fontSize`: The size of the text. Can be 'xs', 'sm', 'md', 'lg', or 'xl'. Default is 'sm'.
+ * - `borderRadius`: The border radius of the pill. Default is 'rounded-lg'.
  *
- * Example:
- * ```jsx
- * <Pill color="red-500" backgroundColor="blue-500" fontSize="lg" borderRadius="rounded-full">Example Pill</Pill>
- * ```
+ * Example usage:
+ *
+ * Default pill:
+ *
+ * Pill with custom color and background color:
+ * <Pill color="#ffffff" backgroundColor="#ff0000">Custom Colors</Pill>
+ *
+ * Pill with custom font size:
+ * <Pill fontSize="lg">Large Font</Pill>
+ *
+ * Pill with custom border radius:
+ * <Pill borderRadius="rounded-full">Full Border Radius</Pill>
  */

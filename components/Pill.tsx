@@ -22,7 +22,7 @@ export default function Pill({ children, color = '#F2F5F6', backgroundColor = '#
     const fontSizeClass = fontSizeClasses[fontSize] || '';
 
     return (
-        <div className={`bg-${backgroundColor} transition-all hover:bg-[#303330] text-${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}>
+        <div className={`bg-${backgroundColor} text- transition-all hover:bg-[#303330]${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}>
             {children}
         </div>
     );

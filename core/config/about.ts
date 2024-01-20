@@ -1,5 +1,48 @@
 
-export const introduction = [
+export type Education = {
+    year: number;
+    role: string;
+    location: string;
+    details: string[];
+    skills: string;
+    description?: string;
+}
+
+export type Internship = {
+    role: string;
+    url?: string;
+    location: string;
+    description?: string;
+    details: string[];
+    duration?: string;
+    skills: string;
+}
+
+export type Role = {
+    internships?: Internship[];
+    education?: Education[];
+}
+
+export type Experience = {
+    year: number | string;
+    role?: string;
+    location?: string;
+    details?: string[];
+    skills?: string;
+    roles?: Role[];
+    education?: Education[];
+    description?: string;
+}
+
+export type Introduction = {
+    name: string;
+    subtitle: string;
+    employee: string;
+    about: string;
+}
+
+export const introduction: Introduction[] = [
+
     {
         name: "Remco Stoeten",
         subtitle: "Front-end Developer",
@@ -8,11 +51,12 @@ export const introduction = [
     }
 ];
 
-export const experiences = [
+export const experiences: Experience[] = [
     {
         year: 2023,
         role: "Frontend Developer at Pleio - online samenwerken",
         location: "Fulltime, remote",
+        description: "A company with deep knowledge working exclusively for non profit (Ha  ddddddddddd ). I work on a huge SaaS application written in React, GraphQL and a Django back-end with a little Vue and vanilla Javascript.",
         details: [
             "Continued development and complete front-end (design) refactoring of FSV Portaal.",
             "Continued development of the Pleio-platform (SaaS for non-profit organizations and governments in React, GraphQL).",
@@ -48,6 +92,17 @@ export const experiences = [
             {
                 internships: [
                     {
+                        role: "Graphic design degree 🎉",
+                        url: "https://www.rocfriesepoort.nl/",
+                        location: "Sneek, Friesland, Netherlands",
+                        description: "Four years of Graphic Design studies where the first two we're generic (print), video (AV), and web design, and the last two we're specialized in interactive web design where we learned the entire from wireframe, paper-sketching, photoshop (No figma yet 😉) to a fully interactive website.",
+                        details: [
+                            "Graduated with specificity in interactive web-design.",
+                        ],
+                        duration: "201 - 2017",
+                        skills: "Photoshop, Illustrator, InDesign, After Effects, HTML, CSS, JavaScript",
+                    },
+                    {
                         role: "Internship at Tickles B.V.",
                         url: "https://www.tickles.nl/",
                         location: "Joure, Friesland, Netherlands",
@@ -72,7 +127,7 @@ export const experiences = [
         ],
         education: [
             {
-                year: 2017,
+                year: 2013 - 2017,
                 role: "College degree in Graphic Design",
                 location: "ROC Friese poort Sneek, Friesland, Netherlands",
                 details: [

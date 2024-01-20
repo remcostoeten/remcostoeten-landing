@@ -1,49 +1,35 @@
+// @ts-nocheck
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/LpIGIxCjG8R
+ */
+import Pill from "@/components/Pill"
 import { Badge } from "@/components/ui/badge"
 
-type ExperienceProps = {
-    icon?: JSX.Element
-    year?: string
-    role?: string
-    location?: string
-    details?: string[]
-    skills?: string[]
-    url?: string
-    internships?: string[]
-}
-
-export default function ExperienceYearShell({ icon, year, role, location, details, skills, url, internships }: ExperienceProps) {
+export default function Component() {
     return (
         <div className="flex">
             <div className="relative mr-4">
-                <div className="absolute bottom-0 left-1/2 top-4 w-0.5 bg-red-400" />
+                <div className="absolute left-1/2 -ml-0.5 h-full w-0.5 bg-gray-500" />
                 <div className="relative z-10">
-                    <div className="1border-lightgray text-lightgrey flex items-center justify-center rounded-full border p-2">
-                        {icon}
+                    <div className="flex size-6 items-center justify-center rounded-full border-2 border-black bg-transparent">
+                        <BriefcaseIcon className="text-black" />
                     </div>
                 </div>
             </div>
             <div>
-                <time className="block text-lg font-semibold text-white" dateTime="2017">
-                    QA             2017
-                </time>
+                <time className="text-lg font-bold text-white">2017</time>
                 <h3 className="mt-2 text-xl font-bold text-white">Internship at Tickles B.V.</h3>
-                <ul className="ml-5 list-disc space-y-2 text-white">
+                <ul className="list-disc space-y-1 pl-5 text-white">
                     <li>Graphic design work for various companies.</li>
                     <li>Wordpress front-end development.</li>
                 </ul>
                 <div className="mt-4 flex flex-wrap gap-2">
-                    <Badge variant="secondary">Magento 1</Badge>
-                    <Badge variant="secondary">Magento 2</Badge>
-                    <Badge variant="secondary">HTML</Badge>
-                    <Badge variant="secondary">SCSS</Badge>
-                    <Badge variant="secondary">JavaScript</Badge>
-                    <Badge variant="secondary">jQuery</Badge>
-                    <Badge variant="secondary">Adobe Photoshop</Badge>
-                    <Badge variant="secondary">Scrum</Badge>
-                    <Badge variant="secondary">Jira/Atlassian</Badge>
+                    <Pill children={undefined}>Magento 1</Pill>
+
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-white">Internship at Speak</h3>
-                <ul className="ml-5 list-disc space-y-2 text-white">
+                <ul className="list-disc space-y-1 pl-5 text-white">
                     <li>Graphic design work for narrowcasting for various big companies.</li>
                     <li>Wordpress front-end development.</li>
                 </ul>

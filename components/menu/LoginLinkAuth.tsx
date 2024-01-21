@@ -6,7 +6,7 @@ import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
 import { PiClosedCaptioningThin } from "react-icons/pi"
 import { toast } from "sonner"
 
-import { auth } from "@/core/lib/firebase"
+import { auth } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 import { Icons } from "../icons"

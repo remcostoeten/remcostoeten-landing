@@ -15,7 +15,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion"
 
 import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/lib/firebase"
+import { auth, firestore } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
 import {

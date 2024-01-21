@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { deleteDoc, doc } from "firebase/firestore"
 import { toast } from "sonner"
 
-import { firestore } from "../lib/firebase"
+import { firestore } from "../lib/database/firebase"
 
 export function useDeleteDoc(
   collectionName: string,

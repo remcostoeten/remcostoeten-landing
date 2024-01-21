@@ -1,52 +1,55 @@
-'use client'
-import { useEffect } from "react";
-import { useAuth } from "@@/utils/auth";
-import { useAppDispatch, useAppSelector } from "@/core/redux/store";
-import { fetchProjects, selectProjects } from "@/core/redux/projectsSlice";
+"use client"
+
+import { useEffect } from "react"
+import { fetchProjects, selectProjects } from "@/core/redux/projectsSlice"
+import { useAppDispatch, useAppSelector } from "@/core/redux/store"
 import {
   fetchTasks,
   selectTasksBucketSize,
   selectTasksLoading,
   tasksSelectors,
-} from "@/core/redux/tasksSlice";
-import { Task, TaskStatus } from "@/core/types/kanban";
+} from "@/core/redux/tasksSlice"
+
+import { Task, TaskStatus } from "@/core/types/kanban"
+
+import { useAuth } from "../utils/auth"
 
 const taskStatusIdx: { [x in TaskStatus]: number } = {
   closed: 0,
   open: 1,
-};
+}
 export const cmpTaskStatus = (a: Task, b: Task) => {
-  return taskStatusIdx[b.status] - taskStatusIdx[a.status];
-};
+  return taskStatusIdx[b.status] - taskStatusIdx[a.status]
+}
 
 export const useProjectTitle = (projectId: string) => {
-  const { projects } = useAppSelector(selectProjects);
-  const project = projects.find((v) => v.id === projectId);
-  return project?.title ?? "";
-};
+  const { projects } = useAppSelector(selectProjects)
+  const project = projects.find((v) => v.id === projectId)
+  return project?.title ?? ""
+}
 
 export const useProjects = () => {
-  const dispatch = useAppDispatch();
-  const { user } = useAuth();
-  const { projects, loading } = useAppSelector(selectProjects);
+  const dispatch = useAppDispatch()
+  const { user } = useAuth()
+  const { projects, loading } = useAppSelector(selectProjects)
 
   useEffect(() => {
-    if (user?.uid) dispatch(fetchProjects(user.uid));
-  }, [user]);
+    if (user?.uid) dispatch(fetchProjects(user.uid))
+  }, [user, dispatch]) // Include dispatch as a dependency
 
-  return { projects, loading };
-};
+  return { projects, loading }
+}
 
 export const useTasks = (projectId: string) => {
-  const dispatch = useAppDispatch();
-  const { user } = useAuth();
-  const tasksIds = useAppSelector(tasksSelectors.selectIds);
-  const loading = useAppSelector(selectTasksLoading);
-  const bucketSize = useAppSelector(selectTasksBucketSize);
+  const dispatch = useAppDispatch()
+  const { user } = useAuth()
+  const tasksIds = useAppSelector(tasksSelectors.selectIds)
+  const loading = useAppSelector(selectTasksLoading)
+  const bucketSize = useAppSelector(selectTasksBucketSize)
 
   useEffect(() => {
-    if (user?.uid) dispatch(fetchTasks({ userId: user.uid, projectId }));
-  }, [user, projectId]);
+    if (user?.uid) dispatch(fetchTasks({ userId: user.uid, projectId }))
+  }, [user, projectId, dispatch]) // Include dispatch as a dependency
 
-  return { tasksIds, loading, bucketSize };
-};
+  return { tasksIds, loading, bucketSize }
+}

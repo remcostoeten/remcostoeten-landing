@@ -1,35 +1,34 @@
-import Head from "next/head";
-import { signIn } from "@/core/lib/database/google";
-import { FcGoogle } from "react-icons/fc";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { Button, Typography, theme } from "antd";
-import { HiOutlineClipboardList } from "react-icons/hi";
-import { useAuth } from "@@/utils/auth";
+import { useEffect } from "react"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { Button, Typography, theme } from "antd"
+import { FcGoogle } from "react-icons/fc"
+import { HiOutlineClipboardList } from "react-icons/hi"
 
-const { Title, Text } = Typography;
+import { signIn } from "@/core/lib/database/google"
+
+import { useAuth } from "../../utils/auth"
+import { User } from "firebase/auth"
+
+const { Title, Text } = Typography
 
 /**
  * redirect if user has logged in
  */
 const useRedirect = () => {
-  const router = useRouter();
-  const { user, loading } = useAuth();
+  const router = useRouter()
+  const { user, loading } = useAuth() as { user: User | null, loading: boolean }
 
   useEffect(() => {
     if (!loading && user) {
-      router.push("/projects");
+      router.push("/projects")
     }
-  }, [loading, user]);
+  }, [loading, user, router])
 
   useEffect(() => {
-    router.prefetch("/projects");
-  }, []);
-};
+    router.prefetch("/projects")
+  }, [router])
 
-export default function Home() {
-  useRedirect();
-  const { token } = theme.useToken();
   return (
     <>
       <Head>
@@ -41,7 +40,6 @@ export default function Home() {
       <div className="container mx-auto mt-32 flex flex-col items-center">
         <HiOutlineClipboardList
           className="text-9xl"
-          style={{ color: token.colorPrimary }}
         />
         <Title level={3}>Welcome Kanban!</Title>
         <Title level={4} className="text-center">
@@ -65,5 +63,7 @@ export default function Home() {
         </Text>
       </div>
     </>
-  );
+  )
 }
+
+export default useRedirect

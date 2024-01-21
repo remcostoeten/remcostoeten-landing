@@ -1,17 +1,19 @@
-'use client'
-import React from "react";
-import { theme, Typography } from "antd";
+"use client"
 
-const { Title } = Typography;
+import React from "react"
+import { Typography, theme } from "antd"
 
+const { Title } = Typography
+
+// eslint-disable-next-line react/display-name
 export const ItemCollection = React.forwardRef<
   HTMLDivElement,
   {
-    title: string;
-    children?: React.ReactNode;
+    title: string
+    children?: React.ReactNode
   }
 >(({ title, children, ...props }, ref) => {
-  const { token } = theme.useToken();
+  const { token } = theme.useToken()
 
   return (
     <div
@@ -25,5 +27,5 @@ export const ItemCollection = React.forwardRef<
         {children}
       </div>
     </div>
-  );
-});
+  )
+})

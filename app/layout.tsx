@@ -1,21 +1,20 @@
-import "@/styles/globals.css";
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import NextTopLoader from "nextjs-toploader";
+import "@/styles/globals.css"
+import ReduxProvider from "@/core/redux/ReduxProvider"
+import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import NextTopLoader from "nextjs-toploader"
 
-import { LayoutProps } from "@/core/types/global";
-import { siteConfig } from "@/core/config/site";
-import { fontSora } from "@/core/lib/fonts";
-import { cn } from "@/core/lib/utils";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import ShellLayout from "@/components/layout/MainLayoutShell";
-import SiteHeader from "@/components/site-header";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider";
-import ReduxProvider from "@/core/redux/ReduxProvider";
-
+import { LayoutProps } from "@/core/types/global"
+import { siteConfig } from "@/core/config/site"
+import { fontSora } from "@/core/lib/fonts"
+import { cn } from "@/core/lib/utils"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+import ShellLayout from "@/components/layout/MainLayoutShell"
+import SiteHeader from "@/components/site-header"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const viewport = {
   themeColor: [
@@ -53,7 +52,11 @@ export default function RootLayout({ children }: LayoutProps) {
                 )}
               >
                 <NextTopLoader color="#2dd4bf" height={5} />
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                >
                   <ShellLayout header={<SiteHeader />}>
                     <div className="transition-all duration-300 sm:max-w-[854px]">
                       {children}
@@ -68,6 +71,6 @@ export default function RootLayout({ children }: LayoutProps) {
           </html>
         </ReduxProvider>
       </AuthUserProvider>
-    </HydrationOverlay >
+    </HydrationOverlay>
   )
 }

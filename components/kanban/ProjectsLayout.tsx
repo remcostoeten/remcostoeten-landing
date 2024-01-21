@@ -1,38 +1,40 @@
-'use client'
+"use client"
 
-import React, { useEffect, useMemo, useState } from "react";
-import { signOut } from "@/core/lib/database/google";
-import { useAppDispatch, useAppSelector } from "@/core/redux/store";
-import { selectThemeMode, switchTheme } from "@/core/redux/themeSlice";
-import { AiOutlineLogout, AiOutlineHome } from "react-icons/ai";
-import { Layout, Menu, MenuProps, Spin } from "antd";
-import { useProjects } from "@@/utils/index";
-import { NextRouter, useRouter } from "next/router";
+import React, { useEffect, useMemo, useState } from "react"
+import { NextRouter, useRouter } from "next/router"
+import { useAppDispatch, useAppSelector } from "@/core/redux/store"
+import { selectThemeMode, switchTheme } from "@/core/redux/themeSlice"
+import { Layout, Menu, MenuProps, Spin } from "antd"
+import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai"
+
+import { signOut } from "@/core/lib/database/google"
+
+import { useProjects } from "../../utils/index"
 
 const useCurMenu = (router: NextRouter) => {
-  const [curMenu, setCurMenu] = useState<string>("");
-  const { projectId } = router.query;
+  const [curMenu, setCurMenu] = useState<string>("")
+  const { projectId } = router.query
 
   useEffect(() => {
     if (router.asPath === "/projects") {
-      setCurMenu("home");
+      setCurMenu("home")
     }
     if (projectId) {
-      setCurMenu(projectId as string);
+      setCurMenu(projectId as string)
     }
-  }, [projectId, router.asPath]);
+  }, [projectId, router.asPath])
 
-  return curMenu;
-};
+  return curMenu
+}
 
 export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const dispatch = useAppDispatch();
-  const { themeMode } = useAppSelector(selectThemeMode);
-  const router = useRouter();
-  const { projects, loading } = useProjects();
-  const curMenu = useCurMenu(router);
+  const dispatch = useAppDispatch()
+  const { themeMode } = useAppSelector(selectThemeMode)
+  const router = useRouter()
+  const { projects, loading } = useProjects()
+  const curMenu = useCurMenu(router)
 
   const projectItemsChildren = useMemo(
     () =>
@@ -40,11 +42,11 @@ export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
         label: p.title,
         key: p.id ?? p.title,
         onClick: () => {
-          router.push(`/projects/${p.id}`);
+          router.push(`/projects/${p.id}`)
         },
       })),
-    [projects]
-  );
+    [projects, router]
+  )
 
   const projectItems: MenuProps["items"] = [
     {
@@ -52,7 +54,7 @@ export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
       key: "home",
       icon: <AiOutlineHome />,
       onClick: () => {
-        router.push("/projects");
+        router.push("/projects")
       },
     },
     {
@@ -61,12 +63,11 @@ export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
       key: "projects",
       children: projectItemsChildren,
     },
-  ];
+  ]
 
-  if (!router.asPath.startsWith("/projects")) return <>{children}</>;
+  if (!router.asPath.startsWith("/projects")) return <>{children}</>
 
   return (
-
     <Layout.Sider theme="light" collapsible className="border-r">
       {loading ? (
         <div className="mt-20 flex justify-center">
@@ -82,5 +83,5 @@ export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
         />
       )}
     </Layout.Sider>
-  );
-};
+  )
+}

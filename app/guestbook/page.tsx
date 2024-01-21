@@ -1,3 +1,4 @@
+// @ts-np-check
 "use client"
 
 import React, { useEffect, useState } from "react"
@@ -27,11 +28,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import Dance from "@/components/effects/Dance"
+import WIPToast from "@/components/effects/InProgressToast"
 import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
 import GuestbookComments from "./components/GuestBookComments"
-import WIPToast from "@/components/effects/InProgressToast"
 
 type GuestbookEntry = {
   id?: string
@@ -155,8 +156,7 @@ export default function GuestBookPage() {
 
   return (
     <>
-
-      <WIPToast text='This feature is not finished yet, but you can leave a message!' />
+      <WIPToast text="This feature is not finished yet, but you can leave a message!" />
 
       <IntroShell
         title="Guestbook"
@@ -176,9 +176,9 @@ export default function GuestBookPage() {
               {currentEntries.map((entry) => (
                 <GuestbookComments
                   key={entry.id}
-                  avatarSrc={entry.avatar}
-                  nameHandle={entry.user}
-                  message={entry.text}
+                  avatarSrc={entry.avatar || null}
+                  nameHandle={entry.user ?? ""}
+                  message={entry.text || ""}
                   date={
                     entry.timestamp
                       ? entry.timestamp.toDate().toLocaleString()
@@ -187,7 +187,7 @@ export default function GuestBookPage() {
                   avatarFallback={"s"}
                   deleteComment={
                     entry.uniqueId === user?.uid
-                      ? () => handleDeleteEntry(entry.id)
+                      ? () => handleDeleteEntry(entry.id ?? "")
                       : undefined
                   }
                   country={convertToEmoji(entry.country || "")}

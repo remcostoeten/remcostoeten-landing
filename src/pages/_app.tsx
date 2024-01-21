@@ -1,18 +1,20 @@
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider";
-import ShellLayout from "@/components/layout/MainLayoutShell";
-import SiteHeader from "@/components/site-header";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { fontSora } from "@/core/lib/fonts";
-import { cn } from "@/core/lib/utils";
-import ReduxProvider from "@/core/redux/ReduxProvider";
-import "@/styles/globals.css";
-import { TooltipProvider } from "@radix-ui/react-tooltip";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { AppProps } from "next/app";
-import NextTopLoader from "nextjs-toploader";
+import ReduxProvider from "@/core/redux/ReduxProvider"
 
-import { ThemeProvider } from "@/components/kanban/ThemeProvider";
+import { fontSora } from "@/core/lib/fonts"
+import { cn } from "@/core/lib/utils"
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+import ShellLayout from "@/components/layout/MainLayoutShell"
+import SiteHeader from "@/components/site-header"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+
+import "@/styles/globals.css"
+import type { AppProps } from "next/app"
+import { TooltipProvider } from "@radix-ui/react-tooltip"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import NextTopLoader from "nextjs-toploader"
+
+import { ThemeProvider } from "@/components/kanban/ThemeProvider"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,10 +28,11 @@ export default function App({ Component, pageProps }: AppProps) {
             )}
           >
             <NextTopLoader color="#2dd4bf" height={5} />
-            <ThemeProvider >
+            <ThemeProvider>
               <ShellLayout header={<SiteHeader />}>
                 <div className="transition-all duration-300 sm:max-w-[854px]">
-                  <Component {...pageProps} />                    </div>
+                  <Component {...pageProps} />{" "}
+                </div>
               </ShellLayout>
               <TailwindIndicator />
             </ThemeProvider>
@@ -41,4 +44,3 @@ export default function App({ Component, pageProps }: AppProps) {
     </AuthUserProvider>
   )
 }
-

@@ -1,52 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
+import { useRouter } from "next/router"
+import { fetchProjects } from "@/core/redux/projectsSlice"
+import { useAppDispatch } from "@/core/redux/store"
 import {
   Button,
-  theme,
-  Layout,
-  Typography,
-  Space,
-  Input,
   Form,
+  Input,
+  Layout,
+  Space,
+  Typography,
   message,
-} from "antd";
-import { addProject } from "@/core/lib/database/firestore";
-import { useAppDispatch } from "@/core/redux/store";
-import { fetchProjects } from "@/core/redux/projectsSlice";
-import { useRouter } from "next/router";
-import { useAuth } from "@@/utils/auth";
-import ProjectsSidebar from "@/components/kanban/ProjectHeader";
+  theme,
+} from "antd"
 
+import { addProject } from "@/core/lib/database/firestore"
+import ProjectsSidebar from "@/components/kanban/ProjectHeader"
 
-const { Title, Text } = Typography;
+import { useAuth } from "../../utils/auth"
+
+const { Title, Text } = Typography
 
 export default function Projects() {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { token } = theme.useToken();
-  const [form] = Form.useForm();
-  const { user } = useAuth();
-  const [messageApi, contextHolder] = message.useMessage();
+  const router = useRouter()
+  const dispatch = useAppDispatch()
+  const { token } = theme.useToken()
+  const [form] = Form.useForm()
+  const { user } = useAuth()
+  const [messageApi, contextHolder] = message.useMessage()
 
   useEffect(() => {
     if (router.query.del) {
-      messageApi.success("The project deleted!");
-      router.push("/projects");
+      messageApi.success("The project deleted!")
+      router.push("/projects")
     }
-  }, [router.query]);
+  }, [router.query, messageApi, router])
 
   const handleCreateProject = (v: { title: string }) => {
     if (user?.uid) {
       addProject(user.uid, v.title)
         .then(() => {
-          form.resetFields();
-          messageApi.success("Project Created!");
-          dispatch(fetchProjects(user.uid));
+          form.resetFields()
+          messageApi.success("Project Created!")
+          dispatch(fetchProjects(user.uid))
         })
         .catch(() => {
-          messageApi.error("Failed!");
-        });
+          messageApi.error("Failed!")
+        })
     }
-  };
+  }
 
   return (
     <>
@@ -85,5 +86,5 @@ export default function Projects() {
         style={{ backgroundColor: token.colorBgBase }}
       ></Layout.Footer>
     </>
-  );
+  )
 }

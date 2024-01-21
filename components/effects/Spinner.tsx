@@ -59,7 +59,7 @@ export const MiniSpinner = ({ color = "lightteal" }: MiniSpinnerProps) => {
   const selectedColor = colorOptions[color] || colorOptions.red
   return (
     <div
-      className={`minispinner h-12 w-12 animate-spin rounded-full border-4 border-dashed ${selectedColor} border-t-transparent`}
+      className={`minispinner size-12 animate-spin rounded-full border-4 border-dashed${selectedColor} border-t-transparent`}
     ></div>
   )
 }

@@ -1,46 +1,44 @@
-'use client'
+"use client"
 
 // Import React and useEffect from 'react' as before
-import React, { useEffect } from "react";
-import dayjs from "dayjs";
-
-
+import React, { useEffect } from "react"
+import dayjs from "dayjs"
 
 const taskLabels = [
   { value: "bug", label: "Bug" },
   { value: "feature", label: "Feature" },
   { value: "enhancement", label: "Enhancement" },
-];
+]
 const taskStatus = [
   { value: "open", label: "Open" },
   { value: "closed", label: "Closed" },
-];
+]
 const formInitValues = {
   title: "",
   label: "feature",
   status: "open",
-};
+}
 
 export const TaskForm: React.FC<{
-  form: any; // Use 'any' for now, or replace it with a proper type
-  init?: any; // Use 'any' for now, or replace it with a proper type
-  taskId?: any; // Use 'any' for now, or replace it with a proper type
+  form: any // Use 'any' for now, or replace it with a proper type
+  init?: any // Use 'any' for now, or replace it with a proper type
+  taskId?: any // Use 'any' for now, or replace it with a proper type
 }> = ({ form, init = formInitValues, taskId }) => {
   const initValues = (() => {
-    if (!init.due) return init;
-    return { ...init, due: dayjs(init.due) };
-  })();
+    if (!init.due) return init
+    return { ...init, due: dayjs(init.due) }
+  })()
 
   useEffect(() => {
-    form.resetFields();
-  }, [taskId, init, form]);
+    form.resetFields()
+  }, [taskId, init, form])
 
   return (
     <form
       name="task"
       className="flex flex-col space-y-4" // Add Tailwind CSS classes
       onSubmit={(e) => {
-        e.preventDefault();
+        e.preventDefault()
         // Add your form submission logic here
       }}
     >
@@ -132,5 +130,5 @@ export const TaskForm: React.FC<{
         Submit
       </button>
     </form>
-  );
-};
+  )
+}

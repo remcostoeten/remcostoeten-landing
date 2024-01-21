@@ -1,35 +1,35 @@
-import React, { useMemo, useState } from "react";
-import { ItemCollection } from "@/components/kanban/ItemCollection";
-import { useAppDispatch } from "@/core/redux/store";
-import { Item } from "@/components/kanban/Item";
+import { useMemo, useState } from "react"
+import { useRouter } from "next/router"
+import { fetchProjects } from "@/core/redux/projectsSlice"
+import { useAppDispatch } from "@/core/redux/store"
+import { taskMovePhase } from "@/core/redux/tasksSlice"
+import { EntityId } from "@reduxjs/toolkit"
 import {
-  theme,
-  Layout,
+  Button, Popconfirm,
+  Space,
+  Spin,
   Typography,
   message,
-  Button,
-  Space,
-  Popconfirm,
-  Spin,
-} from "antd";
-import { useRouter } from "next/router";
-import { useTasks, useProjectTitle } from "../../utils/index";
-import { delProject, updateTask } from "@/core/lib/database/firestore";
-import { useAuth } from "../../utils/auth";
-import { taskMovePhase } from "@/core/redux/tasksSlice";
+  theme
+} from "antd"
 import {
   DragDropContext,
   Draggable,
   Droppable,
   OnDragEndResponder,
-} from "react-beautiful-dnd";
-import { NewTaskButton } from "@/components/kanban/NewTaskButton";
-import { EntityId } from "@reduxjs/toolkit";
-import { TaskEditModal } from "@/components/kanban/TaskEditModal";
-import { fetchProjects } from "@/core/redux/projectsSlice";
-import { EditProjectButton } from "@/components/kanban/EditProjectButton";
+} from "react-beautiful-dnd"
 
-const { Title } = Typography;
+import { delProject, updateTask } from "@/core/lib/database/firestore"
+import { EditProjectButton } from "@/components/kanban/EditProjectButton"
+import { Item } from "@/components/kanban/Item"
+import { ItemCollection } from "@/components/kanban/ItemCollection"
+import { NewTaskButton } from "@/components/kanban/NewTaskButton"
+import { TaskEditModal } from "@/components/kanban/TaskEditModal"
+
+import { useAuth } from "../../utils/auth"
+import { useProjectTitle, useTasks } from "../../utils/index"
+
+const { Title } = Typography
 
 const collectionTitles = [
   "backlog",
@@ -37,28 +37,28 @@ const collectionTitles = [
   "coding",
   "testing",
   "deployed",
-];
+]
 
 export default function Project() {
-  const { user } = useAuth();
-  const router = useRouter();
-  const { projectId } = router.query;
-  const projectTitle = useProjectTitle(projectId as string);
-  const { token } = theme.useToken();
-  const dispatch = useAppDispatch();
-  const { tasksIds, loading, bucketSize } = useTasks(projectId as string);
-  const [messageApi, contextHolder] = message.useMessage();
-  const [selectTaskId, setSelectTaskId] = useState<EntityId | null>(null);
-  const [delLoading, setDelLoading] = useState<boolean>(false);
+  const { user } = useAuth()
+  const router = useRouter()
+  const { projectId } = router.query
+  const projectTitle = useProjectTitle(projectId as string)
+  const { token } = theme.useToken()
+  const dispatch = useAppDispatch()
+  const { tasksIds, loading, bucketSize } = useTasks(projectId as string)
+  const [messageApi, contextHolder] = message.useMessage()
+  const [selectTaskId, setSelectTaskId] = useState<EntityId | null>(null)
+  const [delLoading, setDelLoading] = useState<boolean>(false)
 
   // bucket startId and endId = buckets[i], buckets[i+1]
   const buckets = useMemo(() => {
-    const v = [0, ...bucketSize];
+    const v = [0, ...bucketSize]
     for (let i = 1; i < v.length; ++i) {
-      v[i] = v[i - 1] + v[i];
+      v[i] = v[i - 1] + v[i]
     }
-    return v;
-  }, [tasksIds, bucketSize]);
+    return v
+  }, [bucketSize])
 
   const handleDragEnd: OnDragEndResponder = (rst) => {
     // update the tasks locally and send a request to update remotely
@@ -67,38 +67,38 @@ export default function Project() {
       rst.destination &&
       rst.source.droppableId !== rst.destination.droppableId
     ) {
-      const srcPhase = parseInt(rst.source.droppableId);
+      const srcPhase = parseInt(rst.source.droppableId)
       const draggedTaskId = tasksIds.slice(
         buckets[srcPhase],
         buckets[srcPhase + 1]
-      )[rst.source.index];
-      const toPhase = parseInt(rst.destination.droppableId);
-      dispatch(taskMovePhase({ id: draggedTaskId, to: toPhase }));
+      )[rst.source.index]
+      const toPhase = parseInt(rst.destination.droppableId)
+      dispatch(taskMovePhase({ id: draggedTaskId, to: toPhase }))
       updateTask(user!.uid, projectId as string, draggedTaskId, {
         phase: toPhase,
       }).catch((e) => {
-        messageApi.error("Update Failed!");
-        console.error(e);
-        dispatch(taskMovePhase({ id: draggedTaskId, to: srcPhase }));
-      });
+        messageApi.error("Update Failed!")
+        console.error(e)
+        dispatch(taskMovePhase({ id: draggedTaskId, to: srcPhase }))
+      })
     }
-  };
+  }
 
   const handleDel = () => {
-    setDelLoading(true);
+    setDelLoading(true)
     delProject(user?.uid ?? "", projectId as string)
       .then(() => {
-        dispatch(fetchProjects(user?.uid ?? ""));
-        router.push("/projects?del=1");
+        dispatch(fetchProjects(user?.uid ?? ""))
+        router.push("/projects?del=1")
       })
       .catch((e) => {
-        messageApi.error("Failed!");
-        console.error(e);
+        messageApi.error("Failed!")
+        console.error(e)
       })
       .finally(() => {
-        setDelLoading(false);
-      });
-  };
+        setDelLoading(false)
+      })
+  }
 
   return (
     <>
@@ -169,5 +169,5 @@ export default function Project() {
         <TaskEditModal taskId={selectTaskId} setTaskId={setSelectTaskId} />
       </footer>
     </>
-  );
+  )
 }

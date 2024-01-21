@@ -69,13 +69,13 @@ export default function IssueRow({
         <TableCell>
           <span className="flex items-center ">
             {priority?.toLowerCase() === "low" && (
-              <Icons.arrowBottom className="h-4 w-4" />
+              <Icons.arrowBottom className="size-4" />
             )}
             {priority?.toLowerCase() === "medium" && (
-              <Icons.arrowRight className="h-4 w-4" />
+              <Icons.arrowRight className="size-4" />
             )}
             {priority?.toLowerCase() === "high" && (
-              <Icons.arrowTop className="h-4 w-4" />
+              <Icons.arrowTop className="size-4" />
             )}
             <span>{priority}</span>
           </span>

@@ -5,10 +5,9 @@ import { Button, Typography, theme } from "antd"
 import { User } from "firebase/auth"
 import { FcGoogle } from "react-icons/fc"
 import { HiOutlineClipboardList } from "react-icons/hi"
-
+import { useAuth } from "@/core/lib/database/auth"
 import { signIn } from "@/core/lib/database/google"
 
-import { useAuth } from "../../utils/auth"
 
 const { Title, Text } = Typography
 

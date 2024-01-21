@@ -8,7 +8,7 @@ import { Button, Form, Input, Modal, message } from "antd"
 
 import { updateProjectTitle } from "@/core/lib/database/firestore"
 
-import { useAuth } from "../../src/utils/auth"
+import { useAuth } from "../../core/lib/database/auth"
 
 export const EditProjectButton: React.FC<{ projectTitle: string }> = ({
   projectTitle,

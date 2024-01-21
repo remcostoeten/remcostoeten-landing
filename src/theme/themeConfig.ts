@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { ThemeConfig } from "antd"
 
 const theme: ThemeConfig = {

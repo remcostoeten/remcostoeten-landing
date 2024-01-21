@@ -10,7 +10,7 @@ import dayjs from "dayjs"
 import { Task } from "@/core/types/kanban"
 import { getProjectTasks } from "@/core/lib/database/firestore"
 
-import { cmpTaskStatus } from "../../src/utils"
+import { cmpTaskStatus } from "../../components/kanban"
 import { RootState } from "./store"
 
 const fetchTasks = createAsyncThunk(

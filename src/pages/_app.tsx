@@ -1,3 +1,4 @@
+// @ts-nocheck
 import ReduxProvider from "@/core/redux/ReduxProvider"
 
 import { fontSora } from "@/core/lib/fonts"

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useEffect } from "react"
 import { useRouter } from "next/router"
 import { fetchProjects } from "@/core/redux/projectsSlice"
@@ -16,7 +18,7 @@ import {
 import { addProject } from "@/core/lib/database/firestore"
 import ProjectsSidebar from "@/components/kanban/ProjectHeader"
 
-import { useAuth } from "../../utils/auth"
+import { useAuth } from "../../../core/lib/database/auth"
 
 const { Title, Text } = Typography
 

@@ -3,7 +3,7 @@
 import React, { useEffect } from "react"
 import { usePathname, useRouter } from "next/navigation"
 
-import { authContext, useFirebaseAuth } from "../../src/utils/auth"
+import { authContext, useFirebaseAuth } from "../../core/lib/database/auth"
 
 /**
  * context provider. use useAuth to retrieve the value

@@ -12,7 +12,7 @@ import {
 
 import { Task, TaskStatus } from "@/core/types/kanban"
 
-import { useAuth } from "../utils/auth"
+import { useAuth } from "../../core/lib/database/auth"
 
 const taskStatusIdx: { [x in TaskStatus]: number } = {
   closed: 0,
@@ -29,16 +29,17 @@ export const useProjectTitle = (projectId: string) => {
 }
 
 export const useProjects = () => {
-  const dispatch = useAppDispatch()
-  const { user } = useAuth()
-  const { projects, loading } = useAppSelector(selectProjects)
+  const dispatch = useAppDispatch();
+  const { user } = useAuth();
+  const { projects, loading } = useAppSelector(selectProjects);
 
   useEffect(() => {
-    if (user?.uid) dispatch(fetchProjects(user.uid))
-  }, [user, dispatch]) // Include dispatch as a dependency
+    if (user?.uid) dispatch(fetchProjects(user.uid));
+  }, [user]);
 
-  return { projects, loading }
-}
+  return { projects, loading };
+};
+
 
 export const useTasks = (projectId: string) => {
   const dispatch = useAppDispatch()

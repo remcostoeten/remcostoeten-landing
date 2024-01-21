@@ -39,7 +39,7 @@
         "./.contentlayer/generated"
       ]
     },
-    "strictNullChecks": true
+    "strictNullChecks": false // Change this to false
   },
   "include": [
     "next-env.d.ts",

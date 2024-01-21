@@ -8,8 +8,8 @@ import { Layout, Menu, MenuProps, Spin } from "antd"
 import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai"
 
 import { signOut } from "@/core/lib/database/google"
+import { useProjects } from "@/src/utils"
 
-import { useProjects } from "../../utils/index"
 
 const useCurMenu = (router: NextRouter) => {
   const [curMenu, setCurMenu] = useState<string>("")

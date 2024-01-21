@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { Fragment, useContext, useEffect, useState } from "react"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { CommandPaletteContext } from "@/common/context/CommandPaletteContext"
 import useIsMobile from "@/common/hooks/useIsMobile"
 import { MenuItemProps } from "@/common/types/menu"
@@ -87,9 +87,8 @@ const CommandPalette = () => {
             ) : (
               <DarkModeIcon size={20} />
             ),
-          title: `Switch to ${
-            resolvedTheme === "dark" ? "Light" : "Dark"
-          } Mode`,
+          title: `Switch to ${resolvedTheme === "dark" ? "Light" : "Dark"
+            } Mode`,
           click: () => setTheme(resolvedTheme === "dark" ? "light" : "dark"),
           href: "#",
           isExternal: false,
@@ -101,11 +100,11 @@ const CommandPalette = () => {
 
   const filterMenuOptions: MenuOptionProps[] = queryDebounce
     ? menuOptions.map((menu) => ({
-        ...menu,
-        children: menu.children.filter((item) =>
-          item.title.toLowerCase().includes(queryDebounce.toLowerCase())
-        ),
-      }))
+      ...menu,
+      children: menu.children.filter((item) =>
+        item.title.toLowerCase().includes(queryDebounce.toLowerCase())
+      ),
+    }))
     : menuOptions
 
   const handleSelect = (menu: MenuOptionItemProps) => {

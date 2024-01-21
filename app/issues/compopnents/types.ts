@@ -20,3 +20,4 @@ export type IssueRowProps = {
   priority: string
   onCheckboxChange?: () => void
 }
+

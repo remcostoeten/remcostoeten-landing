@@ -16,9 +16,10 @@ const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
   { label: "Blog", icon: Icons.code, href: "blog" },
   { label: "Issues", icon: Icons.todo, href: "issues" },
+  { label: "Kanban", icon: Icons.todo, href: "kanban" },
   { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
   { label: "About", href: "about", icon: Icons.user },
-  { label: "Contact", icon: Icons.mail },
+  { label: "Contact", icon: Icons.kanban },
 ]
 
 export default function SiteHeader({
@@ -40,7 +41,7 @@ export default function SiteHeader({
 
   return (
     <>
-      <aside className="hidden min-h-[97vh] flex-col text-blacktheme sm:flex dark:text-accent">
+      <aside className="hidden min-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex">
         <div className="mb-6 flex items-center gap-2">
           <div className="flex flex-col gap-2.5 text-xl">
             <div className="relative">
@@ -73,7 +74,7 @@ export default function SiteHeader({
         </div>
         <div className="mb-6 flex grow flex-col">
           <div className="mb- flex items-center">
-            <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
+            <span className="work-pulse pulser mr-2 size-2 rounded-full bg-green-400" />
             <span className="text-sm">Open for collabs!</span>
             <div className="ml-auto">
               <ThemeToggle />

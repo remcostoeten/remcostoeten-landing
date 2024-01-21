@@ -11,6 +11,7 @@ import {
 import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 import { toast } from "sonner"
+import { MockFirebaseSdk } from 'mock-cloud-firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCkie5a695iQ5sLUUs1TXRbITAro9Aimqk",
@@ -29,6 +30,31 @@ const firebaseConfig = {
 //     messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
 //     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 // };
+
+
+const firebase = new MockFirebaseSdk(
+  // Use this function to create a mock auth instance
+  () => ({
+    currentUser: {
+      email: 'stoetenremco.rs@gmail.com',
+      uid: 'yqzn5EKH7JUJ1Iom6I4H3gmZizF3'
+    }
+  }),
+  // Use this function to create a mock firestore instance
+  () => ({
+    collection: () => ({
+      doc: () => ({
+        get: () => Promise.resolve({
+          exists: true,
+          id: 'yqzn5EKH7JUJ1Iom6I4H3gmZizF3',
+          data: () => ({ /* Document data */ })
+        }),
+        set: () => Promise.resolve(),
+      }),
+    }),
+  })
+);
+
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)

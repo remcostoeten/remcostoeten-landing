@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import { useAppDispatch } from "@/core/redux/store";
 import { AiOutlinePlus } from "react-icons/ai";

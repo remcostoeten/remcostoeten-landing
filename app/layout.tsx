@@ -14,6 +14,9 @@ import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import Provider from "react-redux/es/components/Provider"
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+import store from "@/core/redux/store"
 
 export const viewport = {
   themeColor: [
@@ -38,30 +41,34 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <HydrationOverlay>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <link rel="canonical" href={siteConfig.url} />
-        <TooltipProvider>
-          <body
-            className={cn(
-              "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
-              fontSora.variable
-            )}
-          >
-            <NextTopLoader color="#2dd4bf" height={5} />
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <ShellLayout header={<SiteHeader />}>
-                <div className="transition-all duration-300 sm:max-w-[854px]">
-                  {children}
-                </div>
-              </ShellLayout>
-              <TailwindIndicator />
-            </ThemeProvider>
-            <SpeedInsights />
-            <Analytics />
-          </body>
-        </TooltipProvider>
-      </html>
-    </HydrationOverlay>
+      <Provider store={store}>
+        <AuthUserProvider>
+          <html lang="en" suppressHydrationWarning>
+            <head />
+            <link rel="canonical" href={siteConfig.url} />
+            <TooltipProvider>
+              <body
+                className={cn(
+                  "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+                  fontSora.variable
+                )}
+              >
+                <NextTopLoader color="#2dd4bf" height={5} />
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                  <ShellLayout header={<SiteHeader />}>
+                    <div className="transition-all duration-300 sm:max-w-[854px]">
+                      {children}
+                    </div>
+                  </ShellLayout>
+                  <TailwindIndicator />
+                </ThemeProvider>
+                <SpeedInsights />
+                <Analytics />
+              </body>
+            </TooltipProvider>
+          </html>
+        </AuthUserProvider>
+      </Provider>
+    </HydrationOverlay >
   )
 }

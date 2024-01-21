@@ -10,10 +10,10 @@ import {
   message,
 } from "antd";
 import { addProject } from "@/core/lib/database/firestore";
-import { useAuth } from "@@/utils/auth";
 import { useAppDispatch } from "@/core/redux/store";
 import { fetchProjects } from "@/core/redux/projectsSlice";
 import { useRouter } from "next/router";
+import { useAuth } from "@@/utils/auth";
 
 const { Title, Text } = Typography;
 

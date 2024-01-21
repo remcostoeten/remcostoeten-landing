@@ -2,10 +2,10 @@ import Head from "next/head";
 import { signIn } from "@/core/lib/database/google";
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/router";
-import { useAuth } from "@@/utils/auth";
 import { useEffect } from "react";
 import { Button, Typography, theme } from "antd";
 import { HiOutlineClipboardList } from "react-icons/hi";
+import { useAuth } from "@@/utils/auth";
 
 const { Title, Text } = Typography;
 
@@ -48,7 +48,7 @@ export default function Home() {
           It is a project management tool designed to help visualize work, limit
           work-in-progress, and maximize efficiency or flow
         </Title>
-        <Button onClick={signIn} className="mt-10 mb-2 w-80">
+        <Button onClick={signIn} className="mb-2 mt-10 w-80">
           <div className="flex items-center justify-center">
             <FcGoogle className="mr-2" />
             Continue with Google

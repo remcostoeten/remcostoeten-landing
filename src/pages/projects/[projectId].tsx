@@ -1,32 +1,20 @@
-import React, { useMemo, useState } from "react";
-import { ItemCollection } from "@c/kanban/ItemCollection";
-import { useAppDispatch } from "@/core/redux/store";
-import { Item } from "@c/kanban/Item";
-import {
-  theme,
-  Layout,
-  Typography,
-  message,
-  Button,
-  Space,
-  Popconfirm,
-  Spin,
-} from "antd";
-import { useRouter } from "next/router";
-import { useTasks, useProjectTitle } from "@@/utils/index";
-import { delProject, updateTask } from "@/core/lib/database/firestore";
-import { useAuth } from "@@/utils/auth";
-import { taskMovePhase } from "@/core/redux/tasksSlice";
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-  OnDragEndResponder,
-} from "react-beautiful-dnd";
-import { NewTaskButton } from "@c/kanban/NewTaskButton";
-import { TaskEditModal } from "@c/kanban/TaskEditModal";
+import { EditProjectButton } from "@/components/kanban/EditProjectButton";
+import { ItemCollection } from "@/components/kanban/ItemCollection";
+import { NewTaskButton } from "@/components/kanban/NewTaskButton";
+import { TaskEditModal } from "@/components/kanban/TaskEditModal";
+import { updateTask, delProject } from "@/core/lib/database/firestore";
 import { fetchProjects } from "@/core/redux/projectsSlice";
-import { EditProjectButton } from "@c/kanban/EditProjectButton";
+import { useAppDispatch } from "@/core/redux/store";
+import { taskMovePhase } from "@/core/redux/tasksSlice";
+import { useProjectTitle, useTasks } from "@/src/utils";
+import { useAuth } from "@/src/utils/auth";
+import { Item } from "@radix-ui/react-dropdown-menu";
+import { EntityId } from "@reduxjs/toolkit";
+import { Typography, theme, message, Spin, Space, Popconfirm, Button } from "antd";
+import { Layout } from "lucide-react";
+import { useRouter } from "next/router";
+import React, { useMemo, useState } from "react";
+import { OnDragEndResponder, DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const { Title } = Typography;
 

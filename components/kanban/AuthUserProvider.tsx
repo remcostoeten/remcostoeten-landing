@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from "react";
 import { useFirebaseAuth, authContext } from "@@/utils/auth";
 import { useRouter } from "next/router";

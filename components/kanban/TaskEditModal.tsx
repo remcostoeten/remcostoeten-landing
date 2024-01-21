@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/core/redux/store";
 import dayjs from "dayjs";

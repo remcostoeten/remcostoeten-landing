@@ -1,3 +1,4 @@
+'use client'
 import { useEffect } from "react";
 import { useAuth } from "@@/utils/auth";
 import { useAppDispatch, useAppSelector } from "@/core/redux/store";

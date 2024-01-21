@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useMemo, useState } from "react";
 import { signOut } from "@/core/lib/database/google";
 import { TbMoonStars, TbSun } from "react-icons/tb";

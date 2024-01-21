@@ -1,10 +1,11 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { AuthUserProvider } from "@c/kanban/AuthUserProvider";
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider";
+import { ProjectsLayout } from "@/components/kanban/ProjectsLayout";
 import store from "@/core/redux/store";
+import "@/styles/globals.css";
+import { ThemeProvider } from "next-themes";
+import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { ThemeProvider } from "@c/kanban/ThemeProvider";
-import { ProjectsLayout } from "@c/kanban/ProjectsLayout";
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
 import { Task, TaskStatus } from "@/core/types/kanban";

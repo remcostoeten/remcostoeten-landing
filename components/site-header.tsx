@@ -88,9 +88,7 @@ export default function SiteHeader({
                   key={index}
                   title={navItem.label}
                   href={navItem.href ? navItem.href : "#"}
-                  icon={navItem.icon ? <navItem.icon /> : null}
-                  isExternal={false}
-                />
+                  isExternal={false} icon={undefined} />
               )
             })}
           </ul>

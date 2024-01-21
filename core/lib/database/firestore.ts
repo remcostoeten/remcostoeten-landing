@@ -10,6 +10,7 @@ import { Project, Task } from "@/core/types/kanban";
 import { EntityId } from "@reduxjs/toolkit";
 import { db } from "@/core/lib/database/firebase";
 
+
 export const getProjects = (userId: string) =>
   new Promise<Project[]>(async (resolve, reject) => {
     try {

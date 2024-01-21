@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import React from "react";
 import { Typography, theme, Rate } from "antd";
 import { useAppSelector } from "@/core/redux/store";
@@ -16,6 +15,7 @@ const labelColor: { [x in TaskLabel]: { dot: string; bg: string } } = {
   enhancement: { dot: "bg-yellow-500/70", bg: "bg-yellow-100/30" },
 };
 
+// eslint-disable-next-line react/display-name
 export const Item = React.forwardRef<
   HTMLDivElement,
   { id: EntityId; onClick: () => void;[x: string]: any }
@@ -30,6 +30,10 @@ export const Item = React.forwardRef<
   })();
 
   if (!task) return null;
+
+  const labelBg = labelColor[task.label] ? labelColor[task.label].bg : "bg-gray-100/30";
+  const labelDot = labelColor[task.label] ? labelColor[task.label].dot : "bg-gray-500/70";
+
   return (
     <div
       ref={ref}
@@ -50,15 +54,14 @@ export const Item = React.forwardRef<
           disabled
         />
       )}
+
       <div className="flex items-center justify-between">
         <Text className="text-xs opacity-50">{dateText}</Text>
         <Text
-          className={`flex items-center rounded ${labelColor[task.label].bg
-            } px-2 text-xs font-medium`}
+          className={`flex items-center rounded ${labelBg} px-2 text-xs font-medium`}
         >
           <div
-            className={`${labelColor[task.label].dot
-              } mr-1 size-1 rounded-full`}
+            className={`${labelDot} mr-1 size-1 rounded-full`}
           />
           {task.label}
         </Text>

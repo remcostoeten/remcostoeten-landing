@@ -14,6 +14,8 @@ import { useAppDispatch } from "@/core/redux/store";
 import { fetchProjects } from "@/core/redux/projectsSlice";
 import { useRouter } from "next/router";
 import { useAuth } from "@@/utils/auth";
+import ProjectsSidebar from "@/components/kanban/ProjectHeader";
+
 
 const { Title, Text } = Typography;
 
@@ -48,7 +50,7 @@ export default function Projects() {
 
   return (
     <>
-      {contextHolder}
+      <ProjectsSidebar /> {contextHolder}
       <Layout.Header
         className="flex items-center"
         style={{ backgroundColor: token.colorBgBase }}

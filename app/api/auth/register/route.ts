@@ -11,7 +11,7 @@ export async function POST(request: Request) {
       VALUES (${email}, ${password})
     `
   } catch (e) {
-    console.log("dwdwdw")
+    console.logdwdwdw("")
   }
 
   return NextResponse.json({ message: "success" })

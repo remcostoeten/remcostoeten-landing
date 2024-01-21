@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import { signOut } from "@/core/lib/database/google";
-import { TbMoonStars, TbSun } from "react-icons/tb";
 import { useAppDispatch, useAppSelector } from "@/core/redux/store";
 import { selectThemeMode, switchTheme } from "@/core/redux/themeSlice";
 import { AiOutlineLogout, AiOutlineHome } from "react-icons/ai";
@@ -26,7 +25,7 @@ const useCurMenu = (router: NextRouter) => {
   return curMenu;
 };
 
-export const ProjectsLayout: React.FC<{ children?: React.ReactNode }> = ({
+export const ProjectsSidebar: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const dispatch = useAppDispatch();
@@ -34,21 +33,6 @@ export const ProjectsLayout: React.FC<{ children?: React.ReactNode }> = ({
   const router = useRouter();
   const { projects, loading } = useProjects();
   const curMenu = useCurMenu(router);
-
-  const settingItems: MenuProps["items"] = [
-    {
-      label: "Logout",
-      key: "logout",
-      icon: <AiOutlineLogout />,
-      onClick: signOut,
-    },
-    {
-      label: "Change Theme",
-      key: "change theme",
-      icon: themeMode === "light" ? <TbSun /> : <TbMoonStars />,
-      onClick: () => dispatch(switchTheme()),
-    },
-  ];
 
   const projectItemsChildren = useMemo(
     () =>
@@ -82,24 +66,21 @@ export const ProjectsLayout: React.FC<{ children?: React.ReactNode }> = ({
   if (!router.asPath.startsWith("/projects")) return <>{children}</>;
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Layout.Sider theme="light" collapsible className="border-r">
-        <Menu selectable={false} mode="inline" items={settingItems} />
-        {loading ? (
-          <div className="mt-20 flex justify-center">
-            <Spin />
-          </div>
-        ) : (
-          <Menu
-            selectedKeys={[curMenu]}
-            selectable={false}
-            className=""
-            mode="inline"
-            items={projectItems}
-          />
-        )}
-      </Layout.Sider>
-      <Layout>{children}</Layout>
-    </Layout>
+
+    <Layout.Sider theme="light" collapsible className="border-r">
+      {loading ? (
+        <div className="mt-20 flex justify-center">
+          <Spin />
+        </div>
+      ) : (
+        <Menu
+          selectedKeys={[curMenu]}
+          selectable={false}
+          className=""
+          mode="inline"
+          items={projectItems}
+        />
+      )}
+    </Layout.Sider>
   );
 };

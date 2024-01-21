@@ -1,20 +1,33 @@
-import { EditProjectButton } from "@/components/kanban/EditProjectButton";
-import { ItemCollection } from "@/components/kanban/ItemCollection";
-import { NewTaskButton } from "@/components/kanban/NewTaskButton";
-import { TaskEditModal } from "@/components/kanban/TaskEditModal";
-import { updateTask, delProject } from "@/core/lib/database/firestore";
-import { fetchProjects } from "@/core/redux/projectsSlice";
-import { useAppDispatch } from "@/core/redux/store";
-import { taskMovePhase } from "@/core/redux/tasksSlice";
-import { useProjectTitle, useTasks } from "@/src/utils";
-import { useAuth } from "@/src/utils/auth";
-import { Item } from "@radix-ui/react-dropdown-menu";
-import { EntityId } from "@reduxjs/toolkit";
-import { Typography, theme, message, Spin, Space, Popconfirm, Button } from "antd";
-import { Layout } from "lucide-react";
-import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
-import { OnDragEndResponder, DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { ItemCollection } from "@/components/kanban/ItemCollection";
+import { useAppDispatch } from "@/core/redux/store";
+import { Item } from "@/components/kanban/Item";
+import {
+  theme,
+  Layout,
+  Typography,
+  message,
+  Button,
+  Space,
+  Popconfirm,
+  Spin,
+} from "antd";
+import { useRouter } from "next/router";
+import { useTasks, useProjectTitle } from "../../utils/index";
+import { delProject, updateTask } from "@/core/lib/database/firestore";
+import { useAuth } from "../../utils/auth";
+import { taskMovePhase } from "@/core/redux/tasksSlice";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  OnDragEndResponder,
+} from "react-beautiful-dnd";
+import { NewTaskButton } from "@/components/kanban/NewTaskButton";
+import { EntityId } from "@reduxjs/toolkit";
+import { TaskEditModal } from "@/components/kanban/TaskEditModal";
+import { fetchProjects } from "@/core/redux/projectsSlice";
+import { EditProjectButton } from "@/components/kanban/EditProjectButton";
 
 const { Title } = Typography;
 
@@ -89,7 +102,7 @@ export default function Project() {
 
   return (
     <>
-      <Layout.Header
+      <header
         className="flex items-center"
         style={{ backgroundColor: token.colorBgBase }}
       >
@@ -107,8 +120,8 @@ export default function Project() {
             </Popconfirm>
           </Space>
         </div>
-      </Layout.Header>
-      <Layout.Content
+      </header>
+      <main
         className="flex space-x-4 overflow-x-auto p-8"
         style={{ backgroundColor: token.colorBgBase }}
       >
@@ -150,11 +163,11 @@ export default function Project() {
             </Droppable>
           ))}
         </DragDropContext>
-      </Layout.Content>
-      <Layout.Footer style={{ backgroundColor: token.colorBgBase }}>
+      </main>
+      <footer style={{ backgroundColor: token.colorBgBase }}>
         <NewTaskButton />
         <TaskEditModal taskId={selectTaskId} setTaskId={setSelectTaskId} />
-      </Layout.Footer>
+      </footer>
     </>
   );
 }

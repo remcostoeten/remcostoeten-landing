@@ -1,73 +1,136 @@
 'use client'
 
+// Import React and useEffect from 'react' as before
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
-import { Task, TaskStatus } from "@/core/types/kanban";
-import { Form, Input, Select, Rate, DatePicker, FormInstance } from "antd";
-import { EntityId } from "@reduxjs/toolkit/dist/entities/models";
+
+
 
 const taskLabels = [
   { value: "bug", label: "Bug" },
   { value: "feature", label: "Feature" },
   { value: "enhancement", label: "Enhancement" },
 ];
-const taskStatus: { value: TaskStatus; label: string }[] = [
+const taskStatus = [
   { value: "open", label: "Open" },
   { value: "closed", label: "Closed" },
 ];
-const formInitValues: Task = {
+const formInitValues = {
   title: "",
   label: "feature",
   status: "open",
 };
 
 export const TaskForm: React.FC<{
-  form: FormInstance<Task>;
-  init?: Task;
-  taskId?: EntityId | null;
+  form: any; // Use 'any' for now, or replace it with a proper type
+  init?: any; // Use 'any' for now, or replace it with a proper type
+  taskId?: any; // Use 'any' for now, or replace it with a proper type
 }> = ({ form, init = formInitValues, taskId }) => {
-  const initValuse = (() => {
+  const initValues = (() => {
     if (!init.due) return init;
     return { ...init, due: dayjs(init.due) };
   })();
 
   useEffect(() => {
     form.resetFields();
-  }, [taskId, init]);
+  }, [taskId, init, form]);
 
   return (
-    <Form
+    <form
       name="task"
-      layout="vertical"
-      requiredMark="optional"
-      form={form}
-      initialValues={initValuse}
+      className="flex flex-col space-y-4" // Add Tailwind CSS classes
+      onSubmit={(e) => {
+        e.preventDefault();
+        // Add your form submission logic here
+      }}
     >
-      <Form.Item
-        label="Title"
+      <label className="text-lg font-bold" htmlFor="title">
+        Title
+      </label>
+      <input
+        type="text"
+        id="title"
         name="title"
-        rules={[{ min: 1, required: true, max: 100 }]}
+        className="rounded-md border border-gray-300 p-2"
+        value={form.getFieldValue("title")}
+        onChange={(e) => form.setFieldsValue({ title: e.target.value })}
+      />
+
+      <label className="text-lg font-bold" htmlFor="description">
+        Description
+      </label>
+      <textarea
+        id="description"
+        name="description"
+        className="rounded-md border border-gray-300 p-2"
+        value={form.getFieldValue("description")}
+        onChange={(e) => form.setFieldsValue({ description: e.target.value })}
+      />
+
+      <label className="text-lg font-bold" htmlFor="label">
+        Label
+      </label>
+      <select
+        id="label"
+        name="label"
+        className="rounded-md border border-gray-300 p-2"
+        value={form.getFieldValue("label")}
+        onChange={(e) => form.setFieldsValue({ label: e.target.value })}
       >
-        <Input />
-      </Form.Item>
-      <Form.Item label="Description" name="description" rules={[{ max: 1000 }]}>
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item label="Label" name="label" required>
-        <Select options={taskLabels} />
-      </Form.Item>
-      <Form.Item label="Status" name="status" required>
-        <Select options={taskStatus} />
-      </Form.Item>
-      <Form.Item label="Priority" name="priority">
-        <Rate />
-      </Form.Item>
-      <Form.Item label="Due Date" name="due">
-        <DatePicker
-          format="YYYY-MM-DD HH:mm:ss"
-          showTime={{ defaultValue: dayjs("00:00:01", "HH:mm:ss") }}
-        />
-      </Form.Item>
-    </Form>
+        {taskLabels.map((label) => (
+          <option key={label.value} value={label.value}>
+            {label.label}
+          </option>
+        ))}
+      </select>
+
+      <label className="text-lg font-bold" htmlFor="status">
+        Status
+      </label>
+      <select
+        id="status"
+        name="status"
+        className="rounded-md border border-gray-300 p-2"
+        value={form.getFieldValue("status")}
+        onChange={(e) => form.setFieldsValue({ status: e.target.value })}
+      >
+        {taskStatus.map((status) => (
+          <option key={status.value} value={status.value}>
+            {status.label}
+          </option>
+        ))}
+      </select>
+
+      <label className="text-lg font-bold" htmlFor="priority">
+        Priority
+      </label>
+      <input
+        type="number"
+        id="priority"
+        name="priority"
+        className="rounded-md border border-gray-300 p-2"
+        value={form.getFieldValue("priority")}
+        onChange={(e) => form.setFieldsValue({ priority: e.target.value })}
+      />
+
+      <label className="text-lg font-bold" htmlFor="due">
+        Due Date
+      </label>
+      <input
+        type="datetime-local"
+        id="due"
+        name="due"
+        className="rounded-md border border-gray-300 p-2"
+        value={dayjs(form.getFieldValue("due")).format("YYYY-MM-DDTHH:mm")}
+        onChange={(e) => form.setFieldsValue({ due: e.target.value })}
+      />
+
+      <button
+        type="submit"
+        className="rounded-md bg-blue-500 p-2 text-white hover:bg-blue-700"
+      >
+        Submit
+      </button>
+    </form>
   );
 };

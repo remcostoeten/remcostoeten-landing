@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+import React, { useState } from "react"
 
 import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
 
@@ -10,6 +11,10 @@ interface ShellLayoutProps {
 }
 
 export default function ShellLayout({ children, header }: ShellLayoutProps) {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
   return (
     <div className=" mx-auto sm:flex md:max-w-[1440px] lg:px-8">
       <AnimatedElement
@@ -18,8 +23,8 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         ease={BEZIER_CURVES.BEZIERONE}
         x={5}
         y={5}
-        className="hidden w-[25%] p-8 sm:block"
-      >
+        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}>
         {header}
       </AnimatedElement>
       <AnimatedElement
@@ -33,6 +38,12 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
       >
         {children}
       </AnimatedElement>
-    </div>
+      <button
+        className="fixed right-4 top-4 rounded-md bg-white p-2 dark:bg-gray-800"
+        onClick={toggleSidebar}
+      >
+        {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}
+      </button>
+    </div >
   )
 }

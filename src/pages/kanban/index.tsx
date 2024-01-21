@@ -2,13 +2,13 @@ import { useEffect } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { Button, Typography, theme } from "antd"
+import { User } from "firebase/auth"
 import { FcGoogle } from "react-icons/fc"
 import { HiOutlineClipboardList } from "react-icons/hi"
 
 import { signIn } from "@/core/lib/database/google"
 
 import { useAuth } from "../../utils/auth"
-import { User } from "firebase/auth"
 
 const { Title, Text } = Typography
 
@@ -17,7 +17,7 @@ const { Title, Text } = Typography
  */
 const useRedirect = () => {
   const router = useRouter()
-  const { user, loading } = useAuth() as { user: User | null, loading: boolean }
+  const { user, loading } = useAuth() as { user: User | null; loading: boolean }
 
   useEffect(() => {
     if (!loading && user) {
@@ -38,9 +38,7 @@ const useRedirect = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto mt-32 flex flex-col items-center">
-        <HiOutlineClipboardList
-          className="text-9xl"
-        />
+        <HiOutlineClipboardList className="text-9xl" />
         <Title level={3}>Welcome Kanban!</Title>
         <Title level={4} className="text-center">
           It is a project management tool designed to help visualize work, limit

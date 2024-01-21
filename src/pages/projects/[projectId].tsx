@@ -5,12 +5,13 @@ import { useAppDispatch } from "@/core/redux/store"
 import { taskMovePhase } from "@/core/redux/tasksSlice"
 import { EntityId } from "@reduxjs/toolkit"
 import {
-  Button, Popconfirm,
+  Button,
+  Popconfirm,
   Space,
   Spin,
   Typography,
   message,
-  theme
+  theme,
 } from "antd"
 import {
   DragDropContext,
@@ -26,7 +27,6 @@ import { ItemCollection } from "@/components/kanban/ItemCollection"
 import { NewTaskButton } from "@/components/kanban/NewTaskButton"
 import { TaskEditModal } from "@/components/kanban/TaskEditModal"
 
-import { useAuth } from "../../utils/auth"
 import { useProjectTitle, useTasks } from "../../utils/index"
 
 const { Title } = Typography
@@ -40,7 +40,6 @@ const collectionTitles = [
 ]
 
 export default function Project() {
-  const { user } = useAuth()
   const router = useRouter()
   const { projectId } = router.query
   const projectTitle = useProjectTitle(projectId as string)

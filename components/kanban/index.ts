@@ -29,17 +29,16 @@ export const useProjectTitle = (projectId: string) => {
 }
 
 export const useProjects = () => {
-  const dispatch = useAppDispatch();
-  const { user } = useAuth();
-  const { projects, loading } = useAppSelector(selectProjects);
+  const dispatch = useAppDispatch()
+  const { user } = useAuth()
+  const { projects, loading } = useAppSelector(selectProjects)
 
   useEffect(() => {
-    if (user?.uid) dispatch(fetchProjects(user.uid));
-  }, [user]);
+    if (user?.uid) dispatch(fetchProjects(user.uid))
+  }, [user])
 
-  return { projects, loading };
-};
-
+  return { projects, loading }
+}
 
 export const useTasks = (projectId: string) => {
   const dispatch = useAppDispatch()

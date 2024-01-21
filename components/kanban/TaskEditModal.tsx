@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch, useAppSelector } from "@/core/redux/store"
 import { fetchTasks, tasksSelectors } from "@/core/redux/tasksSlice"
-import { useAuth } from "@/core/lib/database/auth"
 import { EntityId } from "@reduxjs/toolkit/dist/entities/models"
 import { Button, Form, Modal, Popconfirm, Space, message } from "antd"
 import dayjs from "dayjs"
 
 import { Task } from "@/core/types/kanban"
+import { useAuth } from "@/core/lib/database/auth"
 import { delTask, updateTask } from "@/core/lib/database/firestore"
 import { TaskForm } from "@/components/kanban/TaskForm"
 

@@ -4,11 +4,11 @@ import React, { useEffect, useMemo, useState } from "react"
 import { NextRouter, useRouter } from "next/router"
 import { useAppDispatch, useAppSelector } from "@/core/redux/store"
 import { selectThemeMode, switchTheme } from "@/core/redux/themeSlice"
-import { useProjects } from "@/components/kanban"
 import { Layout, Menu, MenuProps, Spin } from "antd"
 import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai"
 
 import { signOut } from "@/core/lib/database/google"
+import { useProjects } from "@/components/kanban"
 
 const useCurMenu = (router: NextRouter) => {
   const [curMenu, setCurMenu] = useState<string>("")

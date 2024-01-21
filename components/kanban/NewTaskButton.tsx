@@ -4,12 +4,12 @@ import React, { useState } from "react"
 import { useRouter } from "next/router"
 import { useAppDispatch } from "@/core/redux/store"
 import { fetchTasks } from "@/core/redux/tasksSlice"
-import { useAuth } from "@/core/lib/database/auth"
 import { FloatButton, Form, Modal, message } from "antd"
 import dayjs from "dayjs"
 import { AiOutlinePlus } from "react-icons/ai"
 
 import { Task } from "@/core/types/kanban"
+import { useAuth } from "@/core/lib/database/auth"
 import { addTask } from "@/core/lib/database/firestore"
 import { TaskForm } from "@/components/kanban/TaskForm"
 

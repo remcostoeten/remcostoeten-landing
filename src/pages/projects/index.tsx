@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import React, { useEffect } from "react"
 import { useRouter } from "next/router"
 import { fetchProjects } from "@/core/redux/projectsSlice"

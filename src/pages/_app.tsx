@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import ReduxProvider from "@/core/redux/ReduxProvider"
 
 import { fontSora } from "@/core/lib/fonts"
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <ThemeProvider>
               <ShellLayout header={<SiteHeader />}>
                 <div className="transition-all duration-300 sm:max-w-[854px]">
-                  <Component {...pageProps} />{" "}
+                  <Component {...pageProps} />
                 </div>
               </ShellLayout>
               <TailwindIndicator />

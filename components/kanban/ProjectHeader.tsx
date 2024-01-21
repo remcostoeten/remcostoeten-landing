@@ -11,8 +11,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
-import { useProjects } from "./index"
 import { MiniSpinner } from "../effects/Spinner"
+import { useProjects } from "./index"
 
 export default function ProjectsSidebar() {
   const router = useRouter()

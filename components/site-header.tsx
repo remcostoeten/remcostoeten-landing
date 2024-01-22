@@ -41,7 +41,7 @@ export default function SiteHeader({
 
   return (
     <>
-      <aside className="hidden min-h-[97vh] flex-col text-blacktheme sm:flex dark:text-accent">
+      <aside className="hidden min-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex">
         <div className="mb-6 flex items-center gap-2">
           <div className="flex flex-col gap-2.5 text-xl">
             <div className="relative">
@@ -88,8 +88,8 @@ export default function SiteHeader({
                   key={index}
                   title={navItem.label}
                   href={navItem.href ? navItem.href : "#"}
+                  icon={navItem.icon ? <navItem.icon /> : null}
                   isExternal={false}
-                  icon={undefined}
                 />
               )
             })}

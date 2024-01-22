@@ -14,6 +14,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        lightgray: "#9ca3af",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         accent: "var(--accent)",
@@ -46,6 +47,12 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      backgroundColor: {
+        lightgray: "#9ca3af",
+      },
+      borderColor: {
+        lightgray: "#9ca3af",
       },
       borderRadius: {
         lg: `var(--radius)`,

@@ -2,6 +2,7 @@
 import SectionHeading from '@/components/layout/SectionHeading'
 import SectionSubHeading from '@/components/layout/SectionSubHeading'
 import { useAuth } from '@/core/lib/database/auth'
+import { partOfTheDay } from '@/core/lib/time-of-the-day'
 import React, { useState, useEffect } from 'react'
 
 export default function SettingsPage() {
@@ -13,25 +14,6 @@ export default function SettingsPage() {
     }, [auth.user])
 
     console.log(auth)
-
-    const partOfTheDay = () => {
-        const date = new Date();
-        const hours = date.getHours();
-
-        const emojis = {
-            morning: '☕',
-            afternoon: '🌞',
-            evening: '🌙',
-        };
-
-        if (hours < 12) {
-            return { greeting: 'Good morning', emoji: emojis.morning };
-        } else if (hours >= 12 && hours < 17) {
-            return { greeting: 'Good afternoon', emoji: emojis.afternoon };
-        } else {
-            return { greeting: 'Good evening', emoji: emojis.evening };
-        }
-    }
 
     const { greeting, emoji } = partOfTheDay();
 

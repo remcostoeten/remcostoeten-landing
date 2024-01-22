@@ -5,7 +5,7 @@ export default function AdminReply() {
   return (
     <>
       <div className="ml-8 flex items-start gap-4 rounded-md bg-gray-100 p-4 dark:bg-gray-800">
-        <Avatar className="h-10 w-10 border">
+        <Avatar className="size-10 border">
           <AvatarImage alt="@shadcn" src="/placeholder-user.jpg" />
           <AvatarFallback>AC</AvatarFallback>
         </Avatar>

@@ -1,0 +1,44 @@
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider";
+import "@/styles/globals.css";
+import { ThemeProvider } from "next-themes";
+
+import ShellLayout from "@/components/layout/MainLayoutShell";
+import SiteHeader from "@/components/site-header";
+import { fontSora } from "@/core/lib/fonts";
+import { cn } from "@/core/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip"
+
+import NextTopLoader from "nextjs-toploader"
+import { Provider } from "react-redux";
+import store from "@/core/redux/store";
+
+type AppProps = {
+  Component: any;
+  pageProps: any;
+};
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    // <Provider store={store}>
+    <AuthUserProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <div
+            className={cn(
+              "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+              fontSora.variable
+            )}
+          >
+            <NextTopLoader color="#2dd4bf" height={5} />
+            <ShellLayout header={<SiteHeader />}>
+              <div className="transition-all duration-300 sm:max-w-[854px]">
+                <Component {...pageProps} />
+              </div>
+            </ShellLayout>
+          </div>
+        </TooltipProvider>
+      </ThemeProvider>
+    </AuthUserProvider>
+    // </Provider>
+  );
+}

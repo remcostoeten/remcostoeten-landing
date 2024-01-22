@@ -51,9 +51,9 @@ export default function FilterDropdown({ labels, onSelect, clear }) {
                         !field.value && "text-muted-foreground"
                       )}
                     >
-                      <FilterIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+                      <FilterIcon className="mr-2 size-4 shrink-0 opacity-50" />
                       {field.value ? field.value : "Select label"}
-                      <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      <CaretSortIcon className="ml-2 size-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
@@ -79,7 +79,7 @@ export default function FilterDropdown({ labels, onSelect, clear }) {
                           {label}
                           <CheckIcon
                             className={cn(
-                              "ml-auto h-4 w-4",
+                              "ml-auto size-4",
                               label === field.value
                                 ? "opacity-100"
                                 : "opacity-0"

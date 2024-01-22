@@ -18,7 +18,7 @@ import {
   useSignOut,
 } from "react-firebase-hooks/auth"
 
-import { auth } from "@/core/lib/firebase"
+import { auth } from "@/core/lib/database/firebase"
 
 export function useGithubSignIn() {
   return useSignInWithGithub(auth)

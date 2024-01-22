@@ -16,6 +16,7 @@ const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
   { label: "Blog", icon: Icons.code, href: "blog" },
   { label: "Issues", icon: Icons.todo, href: "issues" },
+  { label: "Kanban", icon: Icons.kanban, href: "kanban" },
   { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
   { label: "About", href: "about", icon: Icons.user },
   { label: "Contact", icon: Icons.mail },
@@ -73,7 +74,7 @@ export default function SiteHeader({
         </div>
         <div className="mb-6 flex grow flex-col">
           <div className="mb- flex items-center">
-            <span className="work-pulse pulser mr-2 h-2 w-2 rounded-full bg-green-400" />
+            <span className="work-pulse pulser mr-2 size-2 rounded-full bg-green-400" />
             <span className="text-sm">Open for collabs!</span>
             <div className="ml-auto">
               <ThemeToggle />
@@ -87,8 +88,8 @@ export default function SiteHeader({
                   key={index}
                   title={navItem.label}
                   href={navItem.href ? navItem.href : "#"}
-                  icon={navItem.icon ? <navItem.icon /> : null}
                   isExternal={false}
+                  icon={undefined}
                 />
               )
             })}

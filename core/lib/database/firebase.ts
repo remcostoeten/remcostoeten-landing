@@ -86,4 +86,13 @@ const signUp = async (name: string, email: string, password: string) => {
   return { result, error }
 }
 
-export { auth, db, firestore, googleAuthProvider, signOut, signUp, storage }
+export {
+  app,
+  auth,
+  db,
+  firestore,
+  googleAuthProvider,
+  signOut,
+  signUp,
+  storage,
+}

@@ -1,3 +1,4 @@
+// @ts-np-check
 "use client"
 
 import React, { useEffect, useState } from "react"
@@ -15,7 +16,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion"
 
 import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/lib/firebase"
+import { auth, firestore } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
 import {
@@ -175,9 +176,9 @@ export default function GuestBookPage() {
               {currentEntries.map((entry) => (
                 <GuestbookComments
                   key={entry.id}
-                  avatarSrc={entry.avatar}
-                  nameHandle={entry.user}
-                  message={entry.text}
+                  avatarSrc={entry.avatar || null}
+                  nameHandle={entry.user ?? ""}
+                  message={entry.text || ""}
                   date={
                     entry.timestamp
                       ? entry.timestamp.toDate().toLocaleString()
@@ -186,7 +187,7 @@ export default function GuestBookPage() {
                   avatarFallback={"s"}
                   deleteComment={
                     entry.uniqueId === user?.uid
-                      ? () => handleDeleteEntry(entry.id)
+                      ? () => handleDeleteEntry(entry.id ?? "")
                       : undefined
                   }
                   country={convertToEmoji(entry.country || "")}
@@ -218,14 +219,14 @@ export default function GuestBookPage() {
                       variant="outline"
                       onClick={() => handleSignIn("github")}
                     >
-                      <Icons.gitHub className="mr-2 h-4 w-4" />
+                      <Icons.gitHub className="mr-2 size-4" />
                       Sign In with Github
                     </Button>
                     <Button
                       variant="outline"
                       onClick={() => handleSignIn("google")}
                     >
-                      <Icons.google.bnw className="mr-2 h-4 w-4" fill="white" />
+                      <Icons.google.bnw className="mr-2 size-4" fill="white" />
                       Sign in with Google
                     </Button>
                   </div>

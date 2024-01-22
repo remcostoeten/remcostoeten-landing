@@ -71,6 +71,17 @@
   position: relative;
 }
 
+.sidebar-hidden {
+  transition: 250ms ease-in-out;
+  width: 0px !important;
+  opacity: 0 !important;
+}
+
+.sidebar-visible {
+  transition: 250ms ease-in-out;
+  width: auto;
+}
+
 .timeline-item {
   display: flex;
   margin-bottom: 40px;

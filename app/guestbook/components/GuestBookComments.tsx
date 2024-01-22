@@ -9,7 +9,7 @@ import "firebase/auth"
 import "firebase/firestore"
 
 type GuestbookCommentsProps = {
-  avatarSrc: string
+  avatarSrc: string | null
   avatarFallback: string
   nameHandle: string
   date: string
@@ -33,8 +33,8 @@ export default function GuestBookComments({
     <>
       <div className="grid gap-6">
         <div className="flex items-start gap-4 text-sm">
-          <Avatar className="h-10 w-10 border">
-            <AvatarImage alt={avatarFallback} src={avatarSrc} />
+          <Avatar className="size-10 border">
+            <AvatarImage alt={avatarFallback} src={avatarSrc || undefined} />
             <AvatarFallback>{avatarFallback}</AvatarFallback>
           </Avatar>
           <div className="grid gap-1.5">

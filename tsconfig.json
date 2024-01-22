@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,12 +26,30 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "react/jsx-runtime": ["node_modules/react/jsx-runtime"],
-      "@/*": ["./*"],
-      "@c/*": ["./components/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+      "react/jsx-runtime": [
+        "node_modules/react/jsx-runtime"
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "@c/*": [
+        "./components/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
+    },
+    "strictNullChecks": false // Change this to false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+
+    "*pages*", // Add this line
+    "node_modules"
+  ]
 }

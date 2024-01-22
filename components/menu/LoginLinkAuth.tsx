@@ -6,7 +6,7 @@ import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
 import { PiClosedCaptioningThin } from "react-icons/pi"
 import { toast } from "sonner"
 
-import { auth } from "@/core/lib/firebase"
+import { auth } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 import { Icons } from "../icons"
@@ -101,7 +101,7 @@ export default function LoginLink() {
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogCancel className="absolute right-6 top-6 border-0">
-            <Icons.cancel className="h-4 w-4" />
+            <Icons.cancel className="size-4" />
           </AlertDialogCancel>
           <Card>
             <CardHeader className="space-y-1">
@@ -116,10 +116,10 @@ export default function LoginLink() {
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-6">
                 <Button variant="outline" onClick={() => signInWithGithub()}>
-                  <Icons.gitHub className="h-4 w-4" />
+                  <Icons.gitHub className="size-4" />
                 </Button>
                 <Button variant="outline" onClick={() => signInWithGoogle()}>
-                  <Icons.google.color className="h-4 w-4" />
+                  <Icons.google.color className="size-4" />
                 </Button>
               </div>
               {isSignup && (

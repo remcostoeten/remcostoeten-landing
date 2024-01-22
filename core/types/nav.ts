@@ -1,10 +1,11 @@
 import { ReactNode } from "react"
 
 export interface NavItem {
-  title: string
+  title?: string
   href?: string
   disabled?: boolean
   external?: boolean
+  icon?: any
 }
 
 export type MenuItemProps = {

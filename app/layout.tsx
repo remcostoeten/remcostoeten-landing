@@ -9,12 +9,13 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
+import { HeroPattern } from "@/components/layout/HeroPattern"
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -22,18 +23,18 @@ export const viewport = {
   ],
 }
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   icons: {
-//     icon: "/favicon.ico",
-//     shortcut: "/favicon-16x16.png",
-//     apple: "/apple-touch-icon.png",
-//   },
-// }
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -46,10 +47,18 @@ export default function RootLayout({ children }) {
             <TooltipProvider>
               <body
                 className={cn(
-                  "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+                  " min-h-screen overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               >
+                {/* <body
+              className={cn(
+                "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",wwwwwwwwwwwwwww
+                fontSora.variable
+              )}
+            > */}
+                <HeroPattern />
+
                 <NextTopLoader color="#2dd4bf" height={5} />
                 <ThemeProvider
                   attribute="class"

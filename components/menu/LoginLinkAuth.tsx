@@ -114,27 +114,29 @@ export default function LoginLink() {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
-              <div className="grid grid-cols-2 gap-6">
-                <Button variant="outline" onClick={() => signInWithGithub()}>
-                  <Icons.gitHub className="size-4" />
-                </Button>
-                <Button variant="outline" onClick={() => signInWithGoogle()}>
-                  <Icons.google.color className="size-4" />
-                </Button>
-              </div>
-              {isSignup && (
-                <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" type="text" placeholder="Your name" />
+              <div className="grid gap-6">
+                <div className="grid grid-cols-2">
+                  <Button variant="outline" onClick={() => signInWithGithub()}>
+                    <Icons.gitHub className="size-4" />
+                  </Button>
+                  <Button variant="outline" onClick={() => signInWithGoogle()}>
+                    <Icons.google.color className="size-4" />
+                  </Button>
                 </div>
-              )}
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="test@test.com" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" />
+                {isSignup && (
+                  <div className="grid gap-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" type="text" placeholder="Your name" />
+                  </div>
+                )}
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="test@test.com" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" />
+                </div>
               </div>
             </CardContent>
             <CardFooter className=" flex flex-col items-start gap-2">

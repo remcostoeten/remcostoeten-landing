@@ -11,6 +11,8 @@ import Seperator from "./layout/Seperator"
 import LoginLinkAuth from "./menu/LoginLinkAuth"
 import MenuItem from "./menu/MenuItem"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import React from "react"
+import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
@@ -33,7 +35,6 @@ export default function SiteHeader({
     const auth = getAuth()
     const unsubscribe = onAuthStateChanged(auth, setUser)
 
-    // It's important to unsubscribe when the component unmounts
     return () => unsubscribe()
   }, [])
 
@@ -62,14 +63,21 @@ export default function SiteHeader({
               )}
             </div>
           </div>
-          <div>
-            <div className="font-bold text-blacktheme dark:text-white">
-              {isAuthenticated && user?.displayName && <>{user?.displayName}</>}{" "}
-              {!isAuthenticated && <>Remco Stoeten</>}
-            </div>
-            <div className="text-sm text-blacktheme dark:text-gray-400">
-              {!isAuthenticated && <>@remcostoeten</>}
-            </div>
+          <div className="flex items-center justify-between w-full text-blacktheme dark:text-white  leading-none font-normal">
+            {isAuthenticated && user?.displayName && <>
+              {user.displayName.split(' ').map((part, index) => (
+                <React.Fragment key={index}>
+                  {part}
+                  {index < user.displayName.split(' ').length - 1 && <br />}
+                </React.Fragment>
+              ))}
+              <AuthMenu />
+
+            </>}{" "}
+            {!isAuthenticated && <>Remco Stoeten</>}
+          </div>
+          <div className="text-sm text-blacktheme dark:text-gray-400">
+            {!isAuthenticated && <>@remcostoeten</>}
           </div>
         </div>
         <div className="mb-6 flex grow flex-col">

@@ -7,7 +7,7 @@ import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-
+import { toast } from 'sonner'
 import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 import { TooltipProvider } from "@radix-ui/react-tooltip"

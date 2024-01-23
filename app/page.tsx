@@ -9,7 +9,6 @@ export default function IndexPage() {
       <WIPToast />
       <AnimatedAnchor backgroundColor="#fff" anchor="#intro">
         Some anchor text
-
       </AnimatedAnchor>
       <section className="container items-center gap-2 !p-0 md:grid ">
         <Intro />

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 
-import { Icons } from "@/components/icons"
+import { navigationMenu } from "@/core/config/menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
@@ -12,16 +12,6 @@ import Seperator from "./layout/Seperator"
 import LoginLinkAuth from "./menu/LoginLinkAuth"
 import MenuItem from "./menu/MenuItem"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-
-const navigationMenu = [
-  { label: "Home", icon: Icons.home, href: "/" },
-  { label: "Blog", icon: Icons.code, href: "blog" },
-  { label: "Issues", icon: Icons.todo, href: "issues" },
-  { label: "Kanban", icon: Icons.kanban, href: "kanban" },
-  { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
-  { label: "About", href: "about", icon: Icons.user },
-  { label: "Contact", icon: Icons.mail },
-]
 
 export default function SiteHeader({
   children,

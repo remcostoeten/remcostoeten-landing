@@ -1,3 +1,5 @@
+import MobileNavigation from "@c/core/MobileNavigation"
+
 import "@/styles/globals.scss"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"
@@ -48,7 +50,7 @@ export default function RootLayout({ children }) {
             <TooltipProvider>
               <body
                 className={cn(
-                  " min-h-screen overflow-x-hidden font-sans antialiased",
+                  " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               >
@@ -58,6 +60,7 @@ export default function RootLayout({ children }) {
                 fontSora.variable
               )}
             > */}
+                <MobileNavigation />
                 <HeroPattern />
 
                 <NextTopLoader color="#2dd4bf" height={5} />

@@ -18,7 +18,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
     setSidebarVisible(!sidebarVisible)
   }
   return (
-    <div className=" mx-auto sm:flex md:max-w-[1440px] pt-8">
+    <div className="h-[300vh] mx-auto sm:flex md:max-w-[1440px] pt-8">
       <AnimatedElement
         as="aside"
         duration={0.8}
@@ -43,7 +43,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         {children}
         <Button
           variant="outline"
-          className="fixed right-4 top-4"
+          className="fixed right-4 top-4 d-none sm:d-block"
           onClick={toggleSidebar}
         >
           {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}

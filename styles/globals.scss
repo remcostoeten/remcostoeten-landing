@@ -11,7 +11,7 @@
 @import './buttons.css';
 @import './card-skeleton.css';
 @import './misc.css';
-@import './mobile-navigation.css'
+@import './mobile-navigation.css';
 
 .sidebar-hidden {
   transition: 250ms ease-in-out;
@@ -382,6 +382,8 @@ html,
 body {
   padding: 0;
   margin: 0;
+  text-rendering: optimizespeed;
+
   font-family: var(--g-font-family);
 }
 

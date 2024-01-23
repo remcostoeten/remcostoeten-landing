@@ -2,34 +2,17 @@ import { useEffect } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { useAuth } from "@/core/database/auth"
-import { googleAuthProvider } from "@/core/database/firebase"
+import { signIn } from "@/core/database/google"
 import { Button, Typography, theme } from "antd"
 import { User } from "firebase/auth"
 import { FcGoogle } from "react-icons/fc"
 import { HiOutlineClipboardList } from "react-icons/hi"
-
-import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 const { Title, Text } = Typography
 
 const useRedirect = () => {
   const router = useRouter()
   const { user, loading } = useAuth() as { user: User | null; loading: boolean }
-
-  const handleSignIn = async (provider: "github" | "google") => {
-    setIsLoading(true)
-    try {
-      if (provider === "github") {
-        await signInWithGithub()
-      } else if (provider === "google") {
-        await signInWithGoogle()
-      }
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   useEffect(() => {
     if (!loading && user) {
@@ -56,7 +39,7 @@ const useRedirect = () => {
           It is a project management tool designed to help visualize work, limit
           work-in-progress, and maximize efficiency or flow
         </Title>
-        <Button onClick={handleSignIn("google")} className="mb-2 mt-10 w-80">
+        <Button onClick={signIn} className="mb-2 mt-10 w-80">
           <div className="flex items-center justify-center">
             <FcGoogle className="mr-2" />
             Continue with Google

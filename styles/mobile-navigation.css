@@ -21,33 +21,7 @@
     padding: 0
 }
 
-html {
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    font-size: 20px;
-    line-height: 1.15;
-    scroll-behavior: auto;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4
-}
 
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: #000;
-    font-family: var(--sans);
-    font-size: 1rem;
-    font-weight: 400;
-    height: 100vh;
-    line-height: inherit;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
-    text-rendering: optimizespeed;
-    width: 100%
-}
 
 button {
     background: none;

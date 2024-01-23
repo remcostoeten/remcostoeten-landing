@@ -5,7 +5,7 @@ import { allBlogs } from "contentlayer/generated"
 import dayjs from "dayjs"
 
 import { getViews } from "@/core/lib/fetcher"
-import prisma from "@/core/lib/prisma"
+import prisma from "@/core/database/prisma"
 import ShareViaTwitter, { baseUrl } from "@/components/blog/ShareViaTwitter"
 
 import Blog from "./blog"

@@ -21,8 +21,8 @@ import {
   OnDragEndResponder,
 } from "react-beautiful-dnd"
 
-import { useAuth } from "@/core/lib/database/auth"
-import { delProject, updateTask } from "@/core/lib/database/firestore"
+import { useAuth } from "@/core/database/auth"
+import { delProject, updateTask } from "@/core/database/firestore"
 import { EditProjectButton } from "@/components/kanban/EditProjectButton"
 import { Item } from "@/components/kanban/Item"
 import { ItemCollection } from "@/components/kanban/ItemCollection"

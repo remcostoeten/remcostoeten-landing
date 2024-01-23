@@ -9,8 +9,8 @@ import dayjs from "dayjs"
 import { AiOutlinePlus } from "react-icons/ai"
 
 import { Task } from "@/core/types/kanban"
-import { useAuth } from "@/core/lib/database/auth"
-import { addTask } from "@/core/lib/database/firestore"
+import { useAuth } from "@/core/database/auth"
+import { addTask } from "@/core/database/firestore"
 import { TaskForm } from "@/components/kanban/TaskForm"
 
 export const NewTaskButton: React.FC<{}> = () => {

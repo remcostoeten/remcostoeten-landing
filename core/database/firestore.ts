@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore"
 
 import { Project, Task } from "@/core/types/kanban"
-import { db } from "@/core/lib/database/firebase"
+import { db } from "@/core/database/firebase"
 
 export const getProjects = (userId: string) =>
   new Promise<Project[]>(async (resolve, reject) => {

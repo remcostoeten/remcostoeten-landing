@@ -13,10 +13,10 @@ import {
   theme,
 } from "antd"
 
-import { addProject } from "@/core/lib/database/firestore"
+import { addProject } from "@/core/database/firestore"
 import ProjectsSidebar from "@/components/kanban/ProjectHeader"
 
-import { useAuth } from "../../../core/lib/database/auth"
+import { useAuth } from "../../../core/database/auth"
 
 const { Title, Text } = Typography
 

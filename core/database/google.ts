@@ -7,7 +7,7 @@ import {
   signOut as signOutAlias,
 } from "firebase/auth"
 
-import { app } from "@/core/lib/database/firebase"
+import { app } from "@/core/database/firebase"
 
 const provider = new GoogleAuthProvider()
 

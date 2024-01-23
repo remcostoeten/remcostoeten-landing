@@ -5,7 +5,7 @@ import { Label } from "@radix-ui/react-label"
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
 import { toast } from "sonner"
 
-import { auth } from "@/core/lib/database/firebase"
+import { auth } from "@/core/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 import { Icons } from "../icons"

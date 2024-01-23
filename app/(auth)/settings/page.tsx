@@ -1,7 +1,7 @@
 'use client';
 import SectionHeading from '@/components/layout/SectionHeading';
 import SectionSubHeading from '@/components/layout/SectionSubHeading';
-import { useAuth } from '@/core/lib/database/auth';
+import { useAuth } from '@/core/database/auth';
 import { partOfTheDay } from '@/core/lib/time-of-the-day';
 import React, { useState, useEffect } from 'react';
 import UploadAvatar from './components/UploadAvatar';

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { getAuth, updateProfile } from "firebase/auth"
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
-import { storage } from "@/core/lib/database/firebase"
+import { storage } from "@/core/database/firebase"
 
 export default function AvatarUploadShell() {
     const [name, setName] = useState("")

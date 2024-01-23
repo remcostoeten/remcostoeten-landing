@@ -5,7 +5,7 @@ import {
     ContextMenuContent,
     ContextMenuItem
 } from "@/components/ui/context-menu";
-import { auth } from '@/core/lib/database/firebase';
+import { auth } from '@/core/database/firebase';
 import { Button } from '@/components/ui/button';
 import { ContextMenuTrigger } from '@radix-ui/react-context-menu';
 import { Icons } from '@/components/icons';

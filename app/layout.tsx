@@ -15,7 +15,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
-import SiteHeader from "@/components/site-header"
+import SiteHeader from "@/components/core/SiteHeader"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 

@@ -8,10 +8,10 @@ import { navigationMenu } from "@/core/config/menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
-import Seperator from "./layout/Seperator"
-import LoginLinkAuth from "./menu/LoginLinkAuth"
-import MenuItem from "./menu/MenuItem"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Seperator from "../layout/Seperator"
+import LoginLinkAuth from "../menu/LoginLinkAuth"
+import MenuItem from "../menu/MenuItem"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 export default function SiteHeader({
   children,

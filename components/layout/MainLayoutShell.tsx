@@ -18,16 +18,15 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
     setSidebarVisible(!sidebarVisible)
   }
   return (
-    <div className="h-[300vh] mx-auto sm:flex md:max-w-[1440px] pt-8">
+    <div className="mx-auto sm:flex md:max-w-[1440px] pt-8">
       <AnimatedElement
         as="aside"
         duration={0.8}
         ease={BEZIER_CURVES.BEZIERONE}
         x={5}
         y={5}
-        className={`${
-          sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
-        } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
+        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
       >
         {header}
       </AnimatedElement>

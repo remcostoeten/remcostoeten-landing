@@ -1,4 +1,4 @@
-import "@/styles/globals.css"
+import "@/styles/globals.scss"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"

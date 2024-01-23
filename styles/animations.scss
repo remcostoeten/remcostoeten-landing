@@ -9,8 +9,47 @@
     height: 1px;
     bottom: 0;
     background-color: #fff;
-    animation: anchorAnimation 4s linear infinite;
+    animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
 }
+
+.animated-anchor {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 1px;
+        bottom: 0;
+        background-color: #fff;
+        animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
+    }
+
+    &.-80 {
+        &:: after {
+            opacity: .8;
+        }
+    }
+
+    &.-60 {
+        &:: after {
+            opacity: .6;
+        }
+    }
+
+
+    &.-40 {
+        &:: after {
+            opacity: .4;
+        }
+    }
+
+    
+
+}
+
+
+
 
 @keyframes anchorAnimation {
 

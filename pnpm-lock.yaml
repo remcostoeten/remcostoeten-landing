@@ -85,7 +85,7 @@ dependencies:
     version: 0.5.1
   '@vercel/speed-insights':
     specifier: ^1.0.4
-    version: 1.0.5(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(typescript@4.9.5)(vite@4.5.2)
+    version: 1.0.5(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(sass@1.70.0)(typescript@4.9.5)(vite@4.5.2)
   antd:
     specifier: ^5.13.2
     version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
@@ -121,7 +121,7 @@ dependencies:
     version: 0.105.0-alpha.4(react@18.2.0)
   next:
     specifier: latest
-    version: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+    version: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
   next-contentlayer:
     specifier: ^0.3.4
     version: 0.3.4(contentlayer@0.3.4)(esbuild@0.19.11)(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -152,6 +152,9 @@ dependencies:
   react-redux:
     specifier: ^8.0.5
     version: 8.1.3(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+  sass:
+    specifier: ^1.70.0
+    version: 1.70.0
   sharp:
     specifier: ^0.31.3
     version: 0.31.3
@@ -4224,7 +4227,7 @@ packages:
       svelte: 4.2.9
       tiny-glob: 0.2.9
       undici: 5.26.5
-      vite: 4.5.2(@types/node@17.0.45)
+      vite: 4.5.2(@types/node@17.0.45)(sass@1.70.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4242,7 +4245,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.9)(vite@4.5.2)
       debug: 4.3.4
       svelte: 4.2.9
-      vite: 4.5.2(@types/node@17.0.45)
+      vite: 4.5.2(@types/node@17.0.45)(sass@1.70.0)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4263,7 +4266,7 @@ packages:
       magic-string: 0.30.5
       svelte: 4.2.9
       svelte-hmr: 0.15.3(svelte@4.2.9)
-      vite: 4.5.2(@types/node@17.0.45)
+      vite: 4.5.2(@types/node@17.0.45)(sass@1.70.0)
       vitefu: 0.2.5(vite@4.5.2)
     transitivePeerDependencies:
       - supports-color
@@ -4844,12 +4847,12 @@ packages:
     resolution: {integrity: sha512-EpZyfF6wFGzFDmubFIh/EZtYpKindmXx/69xSfKEBTVU0afgljyOOICbyZePe5tvigfOEBLSLgrt/2nN+MlLtA==}
     dev: false
 
-  /@vercel/speed-insights@1.0.5(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(typescript@4.9.5)(vite@4.5.2):
+  /@vercel/speed-insights@1.0.5(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(sass@1.70.0)(typescript@4.9.5)(vite@4.5.2):
     resolution: {integrity: sha512-UWU28pZ60NI6mp4nTkdZxR8fiB1zrMBUmaqC4rjXUKCgawlrfWZzI7SZq16FqiXeBrlfpACPziekS7MZBvu51w==}
     requiresBuild: true
     optionalDependencies:
       '@sveltejs/kit': 1.30.3(svelte@4.2.9)(vite@4.5.2)
-      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       react: 18.2.0
       svelte: 4.2.9
       vue: 3.4.15(typescript@4.9.5)
@@ -8741,6 +8744,10 @@ packages:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
     dev: false
 
+  /immutable@4.3.4:
+    resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
+    dev: false
+
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -10759,7 +10766,7 @@ packages:
       '@contentlayer/core': 0.3.4(esbuild@0.19.11)
       '@contentlayer/utils': 0.3.4
       contentlayer: 0.3.4(esbuild@0.19.11)
-      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -10776,12 +10783,12 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /next@14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0):
+  /next@14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0):
     resolution: {integrity: sha512-wlzrsbfeSU48YQBjZhDzOwhWhGsy+uQycR8bHAOt1LY1bn3zZEcDyHQOEoN3aWzQ8LHCAJ1nqrWCc9XF2+O45Q==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -10805,6 +10812,7 @@ packages:
       postcss: 8.4.31
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+      sass: 1.70.0
       styled-jsx: 5.1.1(@babel/core@7.23.7)(react@18.2.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.1.0
@@ -10829,7 +10837,7 @@ packages:
       react-dom: '>= 16.0.0'
     dependencies:
       '@types/nprogress': 0.2.3
-      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.1.0(@babel/core@7.23.7)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)(sass@1.70.0)
       nprogress: 0.2.0
       prop-types: 15.8.1
       react: 18.2.0
@@ -12759,6 +12767,16 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: false
 
+  /sass@1.70.0:
+    resolution: {integrity: sha512-uUxNQ3zAHeAx5nRFskBnrWzDUJrrvpCPD5FNAoRvTi0WwremlheES3tg+56PaVtCs5QDRX5CBLxxKMDJMEa1WQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.4
+      source-map-js: 1.0.2
+    dev: false
+
   /scheduler@0.23.0:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
@@ -14023,7 +14041,7 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite@4.5.2(@types/node@17.0.45):
+  /vite@4.5.2(@types/node@17.0.45)(sass@1.70.0):
     resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -14055,6 +14073,7 @@ packages:
       esbuild: 0.18.20
       postcss: 8.4.33
       rollup: 3.29.4
+      sass: 1.70.0
     optionalDependencies:
       fsevents: 2.3.3
     dev: false
@@ -14069,7 +14088,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.5.2(@types/node@17.0.45)
+      vite: 4.5.2(@types/node@17.0.45)(sass@1.70.0)
     dev: false
     optional: true
 

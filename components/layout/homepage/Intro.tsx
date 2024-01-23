@@ -4,6 +4,7 @@ import Link from "next/link"
 import { TooltipContent, TooltipTrigger } from "@c/ui/tooltip"
 
 import { Tooltip } from "@/components/ui/tooltip"
+import CustomTooltip from "@/components/effects/CustomTooltip"
 
 export default function Intro() {
   return (
@@ -36,7 +37,9 @@ export default function Intro() {
           </li>
         </ul>
         <p className="mt-4 leading-[1.8] text-neutral-800 md:leading-loose dark:text-neutral-300">
-          I am a recovering ex-Magento developer and currently building open
+          I am a recovering <CustomTooltip triggerClassName="tooltip-border" trigger='ex-Magento developer' content='those 5 years of magento were hard, but i survived ❤️
+
+'/> and currently building open
           source software at{" "}
           <Link
             className="underline"

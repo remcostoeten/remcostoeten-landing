@@ -16,6 +16,11 @@
   position: relative;
 }
 
+.tooltip-border {
+  border-bottom: 2px dashed #26211d;
+  position: relative;
+}
+
 .year-circle::before {
   content: '';
   position: absolute;

@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
 export default function ChangeUsername({ buttontext, title, label }) {
     const [name, setName] = useState("")
     const [avatar, setAvatar] = useState<File | null>(null)
+
+    const [userProfilePicture, setUserProfilePicture] = useState("")
     const auth = getAuth()
     const storage = getStorage()
 
@@ -53,7 +56,16 @@ export default function ChangeUsername({ buttontext, title, label }) {
         }
     }
 
+    useEffect(() => {
+        if (auth.currentUser) {
+            setUserProfilePicture(auth.currentUser?.photoURL || null)
+            setName(auth.currentUser?.displayName || "")
+        }
+    }, [auth.currentUser])
+
+
     const username = name || auth.currentUser?.displayName || ""
+    const user = auth.currentUser;
 
     return (
         <>
@@ -71,6 +83,12 @@ export default function ChangeUsername({ buttontext, title, label }) {
                         onChange={(e) => setName(e.target.value)}
                     />
                     <Label htmlFor="avatar">Upload Avatar</Label>
+                    <div className="flex flex-col ">
+                        <Avatar className="h-24 w-24 cursor-move border-dashed border-4 border-gray-300 mb-4">
+                            <AvatarImage src={user?.photoURL} />
+                            <AvatarFallback> {user?.displayName?.[0]}</AvatarFallback>
+                        </Avatar>
+                    </div>
                     <Input
                         id="avatar"
                         name="avatar"
@@ -86,12 +104,11 @@ export default function ChangeUsername({ buttontext, title, label }) {
                     />
                     <Button
                         type="submit"
-                        className="inline-flex h-9 max-w-fit items-center justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-                    >
+                        variant='outline'>
                         {buttontext}
                     </Button>
                 </form>
-            </div>
+            </div >
         </>
     )
 }

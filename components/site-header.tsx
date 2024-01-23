@@ -63,7 +63,7 @@ export default function SiteHeader({
               )}
             </div>
           </div>
-          <div className="flex items-center justify-between w-full text-blacktheme dark:text-white  leading-none font-normal">
+          <div className="flex items-center justify-between  w-full text-blacktheme dark:text-white  leading-none font-normal">
             {isAuthenticated && user?.displayName && <>
               {user.displayName.split(' ').map((part, index) => (
                 <React.Fragment key={index}>
@@ -74,11 +74,12 @@ export default function SiteHeader({
               <AuthMenu />
 
             </>}{" "}
-            {!isAuthenticated && <>Remco Stoeten</>}
-          </div>
-          <div className="text-sm text-blacktheme dark:text-gray-400">
-            {!isAuthenticated && <>@remcostoeten</>}
-          </div>
+            <div className="flex flex-col">
+              {!isAuthenticated && <>Remco Stoeten</>}
+              <div className="text-sm text-blacktheme dark:text-gray-400">
+                {!isAuthenticated && <>@remcostoeten</>}
+              </div>  </div></div>
+
         </div>
         <div className="mb-6 flex grow flex-col">
           <div className="mb- flex items-center">

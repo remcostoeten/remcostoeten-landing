@@ -1,9 +1,8 @@
-"use client"
+'use client';
 
 import { useEffect, useState } from "react"
 import { Label } from "@radix-ui/react-label"
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
-import { PiClosedCaptioningThin } from "react-icons/pi"
 import { toast } from "sonner"
 
 import { auth } from "@/core/lib/database/firebase"
@@ -27,6 +26,7 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 export default function LoginLink() {
   const [isOpen, setIsOpen] = useState(false)
@@ -82,19 +82,11 @@ export default function LoginLink() {
             <span className="">cmd + k</span>
           </div>
           {user ? (
-            <Badge
-              variant="secondary"
-              className="justify-end"
-              onClick={handleLogout}
-            >
+            <Badge variant="secondary" className="justify-end" onClick={handleLogout}>
               Logout
             </Badge>
           ) : (
-            <Badge
-              variant="secondary"
-              className="justify-end"
-              onClick={() => setIsOpen(true)}
-            >
+            <Badge variant="secondary" className="justify-end" onClick={() => setIsOpen(true)}>
               Login
             </Badge>
           )}
@@ -115,7 +107,7 @@ export default function LoginLink() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid gap-6">
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 gap-2">
                   <Button variant="outline" onClick={() => signInWithGithub()}>
                     <Icons.gitHub className="size-4" />
                   </Button>
@@ -123,20 +115,26 @@ export default function LoginLink() {
                     <Icons.google.color className="size-4" />
                   </Button>
                 </div>
-                {isSignup && (
+                <Tooltip>
+                  <TooltipTrigger>Hover</TooltipTrigger>
+                  {isSignup && (
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input disabled id="name" type="text" placeholder="Your name" />
+                    </div>
+                  )}
                   <div className="grid gap-2">
-                    <Label htmlFor="name">Name</Label>
-                    <Input id="name" type="text" placeholder="Your name" />
+                    <Label htmlFor="email">Email</Label>
+                    <Input disabled id="email" type="email" placeholder="test@test.com" />
                   </div>
-                )}
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="test@test.com" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" />
-                </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input disabled id="password" type="password" />
+                  </div>
+                  <TooltipContent>
+                    Sign in & register is currently disabled through email and password. <br /> Please use Github or Google to sign in.
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </CardContent>
             <CardFooter className=" flex flex-col items-start gap-2">
@@ -171,5 +169,6 @@ export default function LoginLink() {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  )
+  );
+
 }

@@ -40,13 +40,14 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         className="flex-1 p-8"
       >
         {children}
+        <Button variant="outline"
+          className="fixed right-4 top-4"
+          onClick={toggleSidebar}
+        >
+          {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}
+        </Button>
       </AnimatedElement>
-      <Button variant="outline"
-        className="fixed right-4 top-4"
-        onClick={toggleSidebar}
-      >
-        {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}
-      </Button>
+
     </div >
   )
 }

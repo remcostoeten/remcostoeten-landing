@@ -22,12 +22,11 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
       <AnimatedElement
         as="aside"
         duration={0.8}
-        ease={BEZIER_CURVES.BEZIERONE}
+        ease={BEZIER_CURVES.BEZIERWTO}
         x={5}
         y={5}
-        className={`${
-          sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
-        } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
+        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
       >
         {header}
       </AnimatedElement>

@@ -1,3 +1,4 @@
+import '@park-ui/tailwind-plugin/preset.css'
 import "@/styles/globals.css"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"

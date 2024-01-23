@@ -1,4 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
+const { parkwindPlugin } = require('@park-ui/tailwind-plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -78,5 +79,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate", "daisyui")],
+  plugins: [require("tailwindcss-animate", "parkwindPlugin", "daisyui")],
 }

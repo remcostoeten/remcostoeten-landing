@@ -1,11 +1,11 @@
 import { Metadata } from "next"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
+import prisma from "@/core/database/prisma"
 import { allBlogs } from "contentlayer/generated"
 import dayjs from "dayjs"
 
 import { getViews } from "@/core/lib/fetcher"
-import prisma from "@/core/database/prisma"
 import ShareViaTwitter, { baseUrl } from "@/components/blog/ShareViaTwitter"
 
 import Blog from "./blog"

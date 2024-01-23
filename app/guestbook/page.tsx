@@ -2,6 +2,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import { auth, firestore } from "@/core/database/firebase"
 import { Button } from "@c/ui/button"
 import {
   addDoc,
@@ -16,7 +17,6 @@ import {
 import { AnimatePresence, motion } from "framer-motion"
 
 import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
 import {

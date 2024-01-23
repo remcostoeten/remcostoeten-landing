@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { useRouter } from "next/router"
+import { addProject } from "@/core/database/firestore"
 import { fetchProjects } from "@/core/redux/projectsSlice"
 import { useAppDispatch } from "@/core/redux/store"
 import {
@@ -13,7 +14,6 @@ import {
   theme,
 } from "antd"
 
-import { addProject } from "@/core/database/firestore"
 import ProjectsSidebar from "@/components/kanban/ProjectHeader"
 
 import { useAuth } from "../../../core/database/auth"

@@ -1,8 +1,6 @@
-
 import WIPToast from "@/components/effects/InProgressToast"
 import LatestArticle from "@/components/layout/homepage/Articles"
 import Intro from "@/components/layout/homepage/Intro"
-
 
 export default function IndexPage() {
   return (

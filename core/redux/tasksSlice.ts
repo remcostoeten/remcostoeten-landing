@@ -1,3 +1,4 @@
+import { getProjectTasks } from "@/core/database/firestore"
 import {
   EntityId,
   PayloadAction,
@@ -8,7 +9,6 @@ import {
 import dayjs from "dayjs"
 
 import { Task } from "@/core/types/kanban"
-import { getProjectTasks } from "@/core/database/firestore"
 
 import { cmpTaskStatus } from "../../components/kanban"
 import { RootState } from "./store"

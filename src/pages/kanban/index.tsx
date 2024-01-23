@@ -1,14 +1,14 @@
 import { useEffect } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { useAuth } from "@/core/database/auth"
+import { googleAuthProvider } from "@/core/database/firebase"
 import { Button, Typography, theme } from "antd"
 import { User } from "firebase/auth"
 import { FcGoogle } from "react-icons/fc"
 import { HiOutlineClipboardList } from "react-icons/hi"
-import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
-import { useAuth } from "@/core/database/auth"
-import { googleAuthProvider } from "@/core/database/firebase"
+import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 const { Title, Text } = Typography
 

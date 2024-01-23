@@ -1,3 +1,4 @@
+import { db } from "@/core/database/firebase"
 import { EntityId } from "@reduxjs/toolkit"
 import {
   addDoc,
@@ -9,7 +10,6 @@ import {
 } from "firebase/firestore"
 
 import { Project, Task } from "@/core/types/kanban"
-import { db } from "@/core/database/firebase"
 
 export const getProjects = (userId: string) =>
   new Promise<Project[]>(async (resolve, reject) => {

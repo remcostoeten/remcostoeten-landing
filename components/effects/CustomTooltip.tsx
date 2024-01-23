@@ -1,31 +1,50 @@
-import React from 'react';
+import React from "react"
+
 import {
-    Tooltip,
-    TooltipContent, TooltipTrigger
-} from "@/components/ui/tooltip";
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface CustomTooltipProps {
-    trigger: React.ReactNode;
-    triggerAs?: string;
-    triggerProps?: React.HTMLAttributes<HTMLElement>;
-    triggerClassName?: string;
-    content: React.ReactNode;
-    contentAs?: string;
-    contentProps?: React.HTMLAttributes<HTMLElement>;
-    contentClassName?: string;
+  trigger: React.ReactNode
+  triggerAs?: string
+  triggerProps?: React.HTMLAttributes<HTMLElement>
+  triggerClassName?: string
+  content: React.ReactNode
+  contentAs?: string
+  contentProps?: React.HTMLAttributes<HTMLElement>
+  contentClassName?: string
 }
 
-export default function CustomTooltip({ trigger, triggerAs = 'span', triggerProps = {}, triggerClassName, content, contentAs = 'p', contentProps = {}, contentClassName }: CustomTooltipProps) {
-    return (
-        <Tooltip>
-            <TooltipTrigger>
-                {React.createElement(triggerAs, { className: triggerClassName, ...triggerProps }, trigger)}
-            </TooltipTrigger>
-            <TooltipContent>
-                {React.createElement(contentAs, { className: contentClassName, ...contentProps }, content)}
-            </TooltipContent>
-        </Tooltip>
-    );
+export default function CustomTooltip({
+  trigger,
+  triggerAs = "span",
+  triggerProps = {},
+  triggerClassName,
+  content,
+  contentAs = "p",
+  contentProps = {},
+  contentClassName,
+}: CustomTooltipProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger>
+        {React.createElement(
+          triggerAs,
+          { className: triggerClassName, ...triggerProps },
+          trigger
+        )}
+      </TooltipTrigger>
+      <TooltipContent>
+        {React.createElement(
+          contentAs,
+          { className: contentClassName, ...contentProps },
+          content
+        )}
+      </TooltipContent>
+    </Tooltip>
+  )
 }
 
 /**

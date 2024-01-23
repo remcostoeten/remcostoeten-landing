@@ -2,6 +2,8 @@
 
 import React, { useState } from "react"
 import { useRouter } from "next/router"
+import { useAuth } from "@/core/database/auth"
+import { addTask } from "@/core/database/firestore"
 import { useAppDispatch } from "@/core/redux/store"
 import { fetchTasks } from "@/core/redux/tasksSlice"
 import { FloatButton, Form, Modal, message } from "antd"
@@ -9,8 +11,6 @@ import dayjs from "dayjs"
 import { AiOutlinePlus } from "react-icons/ai"
 
 import { Task } from "@/core/types/kanban"
-import { useAuth } from "@/core/database/auth"
-import { addTask } from "@/core/database/firestore"
 import { TaskForm } from "@/components/kanban/TaskForm"
 
 export const NewTaskButton: React.FC<{}> = () => {

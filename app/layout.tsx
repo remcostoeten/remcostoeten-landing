@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
@@ -9,13 +10,13 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
-import { HeroPattern } from "@/components/layout/HeroPattern"
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },

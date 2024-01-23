@@ -1,11 +1,11 @@
-'use client';
+"use client"
 
 import { useEffect, useState } from "react"
+import { auth } from "@/core/database/firebase"
 import { Label } from "@radix-ui/react-label"
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
 import { toast } from "sonner"
 
-import { auth } from "@/core/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 import { Icons } from "../icons"
@@ -82,11 +82,19 @@ export default function LoginLink() {
             <span className="">cmd + k</span>
           </div>
           {user ? (
-            <Badge variant="secondary" className="justify-end" onClick={handleLogout}>
+            <Badge
+              variant="secondary"
+              className="justify-end"
+              onClick={handleLogout}
+            >
               Logout
             </Badge>
           ) : (
-            <Badge variant="secondary" className="justify-end" onClick={() => setIsOpen(true)}>
+            <Badge
+              variant="secondary"
+              className="justify-end"
+              onClick={() => setIsOpen(true)}
+            >
               Login
             </Badge>
           )}
@@ -120,19 +128,30 @@ export default function LoginLink() {
                   {isSignup && (
                     <div className="grid gap-2">
                       <Label htmlFor="name">Name</Label>
-                      <Input disabled id="name" type="text" placeholder="Your name" />
+                      <Input
+                        disabled
+                        id="name"
+                        type="text"
+                        placeholder="Your name"
+                      />
                     </div>
                   )}
                   <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input disabled id="email" type="email" placeholder="test@test.com" />
+                    <Input
+                      disabled
+                      id="email"
+                      type="email"
+                      placeholder="test@test.com"
+                    />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="password">Password</Label>
                     <Input disabled id="password" type="password" />
                   </div>
                   <TooltipContent>
-                    Sign in & register is currently disabled through email and password. <br /> Please use Github or Google to sign in.
+                    Sign in & register is currently disabled through email and
+                    password. <br /> Please use Github or Google to sign in.
                   </TooltipContent>
                 </Tooltip>
               </div>
@@ -169,6 +188,5 @@ export default function LoginLink() {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  );
-
+  )
 }

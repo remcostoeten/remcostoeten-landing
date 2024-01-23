@@ -1,18 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
+import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
 import Seperator from "./layout/Seperator"
 import LoginLinkAuth from "./menu/LoginLinkAuth"
 import MenuItem from "./menu/MenuItem"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import React from "react"
-import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
 const navigationMenu = [
   { label: "Home", icon: Icons.home, href: "/" },
@@ -64,22 +63,24 @@ export default function SiteHeader({
             </div>
           </div>
           <div className="flex items-center justify-between  w-full text-blacktheme dark:text-white  leading-none font-normal">
-            {isAuthenticated && user?.displayName && <>
-              {user.displayName.split(' ').map((part, index) => (
-                <React.Fragment key={index}>
-                  {part}
-                  {index < user.displayName.split(' ').length - 1 && <br />}
-                </React.Fragment>
-              ))}
-              <AuthMenu />
-
-            </>}{" "}
+            {isAuthenticated && user?.displayName && (
+              <>
+                {user.displayName.split(" ").map((part, index) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < user.displayName.split(" ").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+                <AuthMenu />
+              </>
+            )}{" "}
             <div className="flex flex-col">
               {!isAuthenticated && <>Remco Stoeten</>}
               <div className="text-sm text-blacktheme dark:text-gray-400">
                 {!isAuthenticated && <>@remcostoeten</>}
-              </div>  </div></div>
-
+              </div>{" "}
+            </div>
+          </div>
         </div>
         <div className="mb-6 flex grow flex-col">
           <div className="mb- flex items-center">

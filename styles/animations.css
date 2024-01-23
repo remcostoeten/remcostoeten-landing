@@ -1,3 +1,66 @@
+.anchor {
+    position: relative;
+}
+
+.anchor::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: 0;
+    background-color: #fff;
+    animation: anchorAnimation 4s linear infinite;
+}
+
+@keyframes anchorAnimation {
+
+    0%,
+    100% {
+        width: 0%;
+        left: 0%;
+    }
+
+    50% {
+        width: 100%;
+        left: 0%;
+    }
+
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.infinite-link {
+    position: relative;
+}
+
+.infinite-link::after {
+    position: absolute;
+    content: "";
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid;
+    transform: scaleX(1);
+    transform-origin: 0 0;
+    animation: underlineAnimation 1.5s infinite alternate;
+}
+
+@keyframes underlineAnimation {
+    0% {
+        transform: scaleX(1);
+        transform-origin: 0 0;
+    }
+
+    100% {
+        transform: scaleX(0);
+        transform-origin: 100% 100%;
+    }
+}
+
+
 .pulser {
     animation: pulser 2s cubic-bezier(0.565, 0.84, 0.44, 1) infinite;
 }

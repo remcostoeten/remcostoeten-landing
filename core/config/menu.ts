@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons"
 
-export const navigationMenu = [
+export const navigationMenuItems = [
   { label: "Home", icon: Icons.home, href: "/" },
   { label: "Blog", icon: Icons.code, href: "blog" },
   { label: "Issues", icon: Icons.todo, href: "issues" },

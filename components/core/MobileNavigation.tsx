@@ -1,7 +1,10 @@
-// @ts-nocheck
 "use client"
 
+import { navigationMenuItems } from "@/core/config/menu"
+import Link from "next/link"
 import React, { useEffect, useRef } from "react"
+import AnimatedElement from "../effects/AnimatedElement"
+import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
 
 const BTN_ACTIVE_CLASS = "btn-active"
 const GLOW_LEFT_OFFSET = 19.75
@@ -20,7 +23,6 @@ export default function MobileNavigation() {
   const topsRef = useRef<number[]>([])
   const resizeTimeoutRef = useRef<number>(0)
 
-  // Functions
   const calcSwitcher: ICalcSwitcher = (activeBtn, targetBtn) => {
     const glow = document.querySelector(".switcher-glow") as HTMLDivElement
     const curr = document.querySelector(".switcher-curr") as HTMLDivElement
@@ -149,7 +151,6 @@ export default function MobileNavigation() {
     initListeners()
   }
 
-  // Effects
   useEffect(() => {
     initApp()
     window.addEventListener("load", initApp, { once: true })
@@ -159,57 +160,58 @@ export default function MobileNavigation() {
     }
   }, [])
 
-  // Render
+  type MenuItemTypes = {
+    label: string
+    href: any
+  }
+
+  const MenuItem = ({ label, href }: MenuItemTypes) => (
+    <button className="switcher-btn" type="button">
+      {href ? (
+        <Link href={href}>
+          {label}
+        </Link>
+      ) : (
+        <span>{label}</span>
+      )}
+    </button>
+  );
+
+
   return (
-    <header className="header sa" id="home">
-      <div className="start" style={{ height: "45px" }} ref={startRef}></div>
-      <div className="switcher" style={{ "--x": "100%" }} ref={switcherRef}>
-        <div
-          aria-hidden="true"
-          className="switcher-stroke"
-          style={{ position: "absolute" }}
-        ></div>
-        <div className="switcher-root" ref={switcherRootRef}>
-          <button
-            className={`switcher-btn ${BTN_ACTIVE_CLASS}`}
-            type="button"
-            data-scroll-to="home"
-          >
-            Home
-          </button>
-          <button
-            className="switcher-btn"
-            type="button"
-            data-scroll-to="resources"
-          >
-            Resources
-          </button>
-          <button
-            className="switcher-btn"
-            type="button"
-            data-scroll-to="people"
-          >
-            People
-          </button>
-          <button
-            className="switcher-btn"
-            type="button"
-            data-scroll-to="careers"
-          >
-            Careers
-          </button>
+    <div className='mobile-navigation'
+    ><AnimatedElement
+      opacity={0}
+      as='header'
+      duration={0.6}
+      y={-25}
+      ease={BEZIER_CURVES.CUSTOM}
+      x={-7}
+      delay={0.6} className="header sa" id="home">
+        <div className="start" style={{ height: "45px" }} ref={startRef}></div>
+        <div className="switcher" style={{ "--x": "100%" }} ref={switcherRef}>
           <div
             aria-hidden="true"
-            className="switcher-glow"
-            style={{ left: "23.75px" }}
+            className="switcher-stroke"
+            style={{ position: "absolute" }}
           ></div>
-          <div
-            aria-hidden="true"
-            className="switcher-curr"
-            style={{ left: "4px" }}
-          ></div>
+          <div className="switcher-root" ref={switcherRootRef}>
+            {navigationMenuItems.map((item, index) => (
+              <MenuItem key={index} label={item.label} href={item.href} />
+            ))}
+            <div
+              aria-hidden="true"
+              className="switcher-glow"
+              style={{ left: "23.75px" }}
+            ></div>
+            <div
+              aria-hidden="true"
+              className="switcher-curr"
+              style={{ left: "4px" }}
+            ></div>
+          </div>
         </div>
-      </div>
-    </header>
-  )
+      </AnimatedElement>
+    </div>
+  );
 }

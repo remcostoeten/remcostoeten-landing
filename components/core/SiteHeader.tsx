@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 
-import { navigationMenu } from "@/core/config/menu"
+import { navigationMenuItems } from "@/core/config/menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
@@ -82,7 +82,7 @@ export default function SiteHeader({
           </div>
           <Seperator spacing="12" />
           <ul className="grow">
-            {navigationMenu.map((navItem, index) => {
+            {navigationMenuItems.map((navItem, index) => {
               return (
                 <MenuItem
                   key={index}

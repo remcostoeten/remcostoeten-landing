@@ -9,7 +9,7 @@ import ShellLayout from "@/components/layout/MainLayoutShell"
 import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
-import "@/styles/globals.css"
+import "@/styles/globals.scss"
 import type { AppProps } from "next/app"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Analytics } from "@vercel/analytics/react"
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthUserProvider>
       <ReduxProvider>
         <TooltipProvider>
-          <div
+          <divg
             className={cn(
               "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
               fontSora.variable
@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </ThemeProvider>
             <SpeedInsights />
             <Analytics />
-          </div>
+          </divg>
         </TooltipProvider>
       </ReduxProvider>
     </AuthUserProvider>

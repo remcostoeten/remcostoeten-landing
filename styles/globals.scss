@@ -4,22 +4,14 @@
 
 @import './theme.css';
 @import './generics.css';
-@import './animations.scss';
 @import './error.css';
 @import './auth.css';
 @import './utillity-classes.css';
 @import './scroll-carousel.css';
 @import './buttons.css';
 @import './card-skeleton.css';
-@import '/misc.css';
-
-
-
-
-
-.timeline {
-  position: relative;
-}
+@import './misc.css';
+@import './mobile-navigation.css'
 
 .sidebar-hidden {
   transition: 250ms ease-in-out;
@@ -30,16 +22,6 @@
 .sidebar-visible {
   transition: 250ms ease-in-out;
   width: auto;
-}
-
-.timeline-item {
-  display: flex;
-  margin-bottom: 40px;
-}
-
-.year {
-  font-size: 24px;
-  font-weight: bold;
 }
 
 @layer base {

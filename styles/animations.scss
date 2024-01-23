@@ -1,21 +1,7 @@
 .anchor {
     position: relative;
-}
 
-.anchor::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 1px;
-    bottom: 0;
-    background-color: #fff;
-    animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
-}
-
-.animated-anchor {
-    position: relative;
-
-    &::after {
+    &::before {
         content: '';
         position: absolute;
         width: 0%;
@@ -25,31 +11,19 @@
         animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
     }
 
-    &.-80 {
-        &:: after {
-            opacity: .8;
+
+    &.not-birght {
+        &::after {
+            opacity: 0.5;
         }
     }
 
-    &.-60 {
-        &:: after {
-            opacity: .6;
+    &.lowest-brightness {
+        &::after {
+            opacity: 0.2;
         }
     }
-
-
-    &.-40 {
-        &:: after {
-            opacity: .4;
-        }
-    }
-
-    
-
 }
-
-
-
 
 @keyframes anchorAnimation {
 
@@ -254,6 +228,8 @@
     100% {
         opacity: 1;
     }
+
+    1
 }
 
 @keyframes dot-two {
@@ -339,3 +315,5 @@
         border-top: solid 3px transparent;
     }
 }
+
+1

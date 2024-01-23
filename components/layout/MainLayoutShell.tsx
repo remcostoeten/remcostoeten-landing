@@ -25,8 +25,9 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         ease={BEZIER_CURVES.BEZIERONE}
         x={5}
         y={5}
-        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
-          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
+        className={`${
+          sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+        } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
       >
         {header}
       </AnimatedElement>
@@ -42,7 +43,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         {children}
         <Button
           variant="outline"
-          className="fixed right-4 top-4 d-none sm:d-block"
+          className="fixed right-4 top-4 hidden sm:block"
           onClick={toggleSidebar}
         >
           {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}

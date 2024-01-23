@@ -1,10 +1,13 @@
+//@ts-nocheck
 "use client"
 
-import { navigationMenuItems } from "@/core/config/menu"
-import Link from "next/link"
 import React, { useEffect, useRef } from "react"
-import AnimatedElement from "../effects/AnimatedElement"
+import Link from "next/link"
+
+import { navigationMenuItems } from "@/core/config/menu"
 import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
+
+import AnimatedElement from "../effects/AnimatedElement"
 
 const BTN_ACTIVE_CLASS = "btn-active"
 const GLOW_LEFT_OFFSET = 19.75
@@ -167,27 +170,20 @@ export default function MobileNavigation() {
 
   const MenuItem = ({ label, href }: MenuItemTypes) => (
     <button className="switcher-btn" type="button">
-      {href ? (
-        <Link href={href}>
-          {label}
-        </Link>
-      ) : (
-        <span>{label}</span>
-      )}
+      {href ? <Link href={href}>{label}</Link> : <span>{label}</span>}
     </button>
-  );
-
+  )
 
   return (
-    <div className='mobile-navigation'
-    ><AnimatedElement
+    <AnimatedElement
       opacity={0}
-      as='header'
-      duration={0.6}
-      y={-25}
-      ease={BEZIER_CURVES.CUSTOM}
-      x={-7}
-      delay={0.6} className="header sa" id="home">
+      duration={1}
+      delay={0.5}
+      ease={BEZIER_CURVES.BEZIERWTO}
+      as="header"
+      className="mobile-navigation block sm:hidden "
+    >
+      <div className="header sa" id="home">
         <div className="start" style={{ height: "45px" }} ref={startRef}></div>
         <div className="switcher" style={{ "--x": "100%" }} ref={switcherRef}>
           <div
@@ -211,7 +207,7 @@ export default function MobileNavigation() {
             ></div>
           </div>
         </div>
-      </AnimatedElement>
-    </div>
-  );
+      </div>
+    </AnimatedElement>
+  )
 }

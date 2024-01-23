@@ -4,9 +4,9 @@ import { toast } from "sonner"
 
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
+import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
-import SiteHeader from "@/components/core/SiteHeader"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import "@/styles/globals.scss"

@@ -14,7 +14,7 @@ export default function AnimatedAnchor({
   anchor,
 }: AnimatedAnchorProps) {
   return (
-    <Link href={href} className={anchor ? anchor : "anchor"}>
+    <Link href={href} className="anchor">
       {children}
     </Link>
   )

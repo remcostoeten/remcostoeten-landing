@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "@/core/database/auth"
 
 import { partOfTheDay } from "@/core/lib/time-of-the-day"
@@ -8,7 +8,6 @@ import SectionHeading from "@/components/layout/SectionHeading"
 import SectionSubHeading from "@/components/layout/SectionSubHeading"
 
 import AvatarUploadShell from "./components/AvatarUpload"
-import UploadAvatar from "./components/UploadAvatar"
 import ChangeUsername from "./components/UploadAvatar"
 
 export default function SettingsPage() {

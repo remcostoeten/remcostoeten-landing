@@ -18,6 +18,7 @@ import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import Background from "@/components/core/Background"
 
 export const viewport = {
   themeColor: [
@@ -61,6 +62,7 @@ export default function RootLayout({ children }) {
               )}
             > */}
                 <MobileNavigation />
+                <Background />
                 <HeroPattern />
 
                 <NextTopLoader color="#2dd4bf" height={5} />
@@ -69,11 +71,11 @@ export default function RootLayout({ children }) {
                   defaultTheme="system"
                   enableSystem
                 >
-                  <ShellLayout header={<SiteHeader />}>
+                  {/* <ShellLayout header={<SiteHeader />}>
                     <div className="transition-all duration-300 sm:max-w-[854px]">
                       {children}
-                    </div>
-                  </ShellLayout>
+                    </div> */}
+                  {/* </ShellLayout> */}
                   <TailwindIndicator />
                 </ThemeProvider>
                 <SpeedInsights />

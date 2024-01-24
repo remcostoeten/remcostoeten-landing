@@ -9,7 +9,7 @@ import InputWithLabel from "@/components/generics/InputWithELement";
 
 export default function IncomeForm() {
     const [income, setIncome] = useState(0);
-    const [date, setDate] = useState(moment()); // initialize date as a moment object
+    const [date, setDate] = useState(moment());
     const [incomeFor, setIncomeFor] = useState('');
     const { user } = useAuth();
 
@@ -20,17 +20,21 @@ export default function IncomeForm() {
             const incomeCollectionRef = collection(userDocRef, "income");
             const incomeData = {
                 income: income,
-                date: date.format('DD-MM-YYYY'), // format date as a string
+                date: date.format('DD-MM-YYYY'),
                 incomeFor: moment().add(1, 'month').format('MMMM')
             };
             console.log(incomeData);
 
             toast(`A total of ${income} has been added to your income`);
 
-            await addDoc(incomeCollectionRef, incomeData);
+            try {
+                await addDoc(incomeCollectionRef, incomeData);
+            } catch (error) {
+                console.error("Error adding income:", error);
+                toast(`Error adding income: ${error}`);
+            }
         }
     };
-
     return (
         <Form onFinish={handleSubmit}>
             <InputWithLabel

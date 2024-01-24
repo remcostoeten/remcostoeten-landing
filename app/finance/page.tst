@@ -1,40 +1,38 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/core/lib/database/auth';
 import { collection, doc, getDocs } from 'firebase/firestore';
 import { db } from '@/core/lib/database/firebase';
-import DebtForm from './components/DebtForm';
-import DepositForm from './components/DepositForm';
-import IncomeForm from './components/IncomeForm';
-import { Input } from "@/components/ui/input";
+import DebtForm from './components/forms/DebtForm';
+import DepositForm from './components/forms/DepositForm';
+import IncomeForm from './components/forms/IncomeForm';
 
 const App = () => {
     const [incomeData, setIncomeData] = useState([]);
     const [debtData, setDebtData] = useState([]);
     const [depositData, setDepositData] = useState([]);
-    const user = useAuth();
+    const { user } = useAuth();
 
     useEffect(() => {
         const fetchData = async (userId: string) => {
-            const userDocRef = doc(db, "users", userId);
-            const incomeCollectionRef = collection(userDocRef, "income");
-            const debtCollectionRef = collection(userDocRef, "debt");
-            const depositCollectionRef = collection(userDocRef, "deposit");
+            if (user) {
+                const userId = user.uid;
+                const userDocRef = doc(db, "users", userId);
 
-            const incomeSnapshot = await getDocs(incomeCollectionRef);
-            const debtSnapshot = await getDocs(debtCollectionRef);
-            const depositSnapshot = await getDocs(depositCollectionRef);
+                const incomeCollectionRef = collection(userDocRef, "income");
+                const debtCollectionRef = collection(userDocRef, "debt");
+                const depositCollectionRef = collection(userDocRef, "deposit");
 
-            setIncomeData(incomeSnapshot.docs.map(doc => doc.data()));
-            setDebtData(debtSnapshot.docs.map(doc => doc.data()));
-            setDepositData(depositSnapshot.docs.map(doc => doc.data()));
-        };
+                const incomeSnapshot = await getDocs(incomeCollectionRef);
+                const debtSnapshot = await getDocs(debtCollectionRef);
+                const depositSnapshot = await getDocs(depositCollectionRef);
 
-        if (user) {
-            fetchData(user.uid);
+                setIncomeData(incomeSnapshot.docs.map(doc => doc.data()));
+                setDebtData(debtSnapshot.docs.map(doc => doc.data()));
+                setDepositData(depositSnapshot.docs.map(doc => doc.data()));
+            };
         }
     }, [user]);
-
 
 
     return (

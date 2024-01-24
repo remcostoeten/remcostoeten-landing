@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import dayjs from 'dayjs';
 import InputWithLabel from "@/components/generics/InputWithELement";
 import moment from 'moment';
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { off } from "process";
 
 const DebtForm = () => {
     const [nameOfDept, setNameOfDept] = useState('');
@@ -32,14 +34,14 @@ const DebtForm = () => {
                 amountPaidOff: amountPaidOff
             };
 
-            console.log(debtData);
-
-            toast(`A debt named ${nameOfDept} has been added with an amount of ${amountOfDept}`);
-
-            await addDoc(debtCollectionRef, debtData);
+            try {
+                await addDoc(debtCollectionRef, debtData);
+                toast(`A debt named ${nameOfDept} has been added with an amount of ${amountOfDept}`);
+            } catch (error) {
+                toast("Something went wrong");
+            }
         }
     };
-
     return (
         <Form onFinish={handleSubmit}>
             <InputWithLabel
@@ -55,9 +57,15 @@ const DebtForm = () => {
             />
             <DatePicker value={dayjs(date, 'DD-MM-YYYY')} onChange={(_, dateString) => setDate(dateString)} />
             <Form.Item label="Is Paid Off">
-                <Select value={isPaidOff ? 'Yes' : 'No'} onChange={value => setIsPaidOff(value === 'Yes')}>
-                    <Select.Option value="Yes">Yes</Select.Option>
-                    <Select.Option value="No">No</Select.Option>
+                <Select>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Theme" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                    </SelectContent>
                 </Select>
             </Form.Item>
             <InputWithLabel

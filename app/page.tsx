@@ -5,15 +5,22 @@ import { buttonVariants } from "@/components/ui/button"
 import WIPToast from "@/components/effects/InProgressToast"
 import LatestArticle from "@/components/layout/homepage/Articles"
 import Intro from "@/components/layout/homepage/Intro"
+import Sprinkle from "@/components/effects/Sprinkle"
 
 export default function IndexPage() {
-  return (
-    <>
-      <WIPToast />
-      <section className="container items-center gap-2 !p-0 md:grid ">
-        <Intro />
-        <LatestArticle />
-      </section>
-    </>
-  )
+    return (
+        <>
+            <WIPToast />
+            <section className="container items-center gap-2 !p-0 md:grid ">
+                <Intro />
+                <LatestArticle />
+                <span
+                    className='cta-sprinkle'
+                >
+                    <Sprinkle className='py-2 text-neutral-400'>
+                        Still a loooooooooot to do</Sprinkle>
+                </span>
+            </section>
+        </>
+    )
 }

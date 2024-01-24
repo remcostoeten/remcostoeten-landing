@@ -6,6 +6,7 @@ import { db } from "@/core/lib/database/firebase";
 import { useAuth } from "@/core/lib/database/auth";
 import { toast } from "sonner";
 import InputWithLabel from "@/components/generics/InputWithELement";
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function DepositForm() {
     const [nameOfDept, setNameOfDept] = useState('');
@@ -35,8 +36,14 @@ export default function DepositForm() {
         <Form onFinish={handleSubmit}>
             <Form.Item label="Name Of Dept">
                 <Select value={nameOfDept} onChange={value => setNameOfDept(value)}>
-                    <Select.Option value="Debt1">Debt1</Select.Option>
-                    <Select.Option value="Debt2">Debt2</Select.Option>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Theme" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="light">Light</SelectItem>
+                        <SelectItem value="dark">Dark</SelectItem>
+                        <SelectItem value="system">System</SelectItem>
+                    </SelectContent>
                 </Select>
             </Form.Item>
             <InputWithLabel

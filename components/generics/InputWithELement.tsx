@@ -1,4 +1,4 @@
-import { Label, Input, Checkbox } from '@c/ui/ui-imports';
+import { Label, Input, Checkbox } from '@/components/ui/ui-imports';
 
 type InputWithLabelProps = {
     label?: any;

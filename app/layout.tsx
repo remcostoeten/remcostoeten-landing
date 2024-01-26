@@ -1,4 +1,3 @@
-'use client';
 import "@/styles/globals.css";
 import ReduxProvider from "@/core/redux/ReduxProvider";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
@@ -15,6 +14,7 @@ import SiteHeader from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import { useEffect } from "react";
+import { Metadata } from "next/types";
 
 export const viewport = {
     themeColor: [
@@ -23,28 +23,27 @@ export const viewport = {
     ],
 }
 
-const ResponsiveViewer = () => {
-    useEffect(() => {
-        setInterval(() => {
-            console.log('TODO RES VIEWER');
-        }, 5000);
-    }, []);
-    return null
-};
+// const ResponsiveViewer = () => {
+//     useEffect(() => {
+//         setInterval(() => {
+//             console.log('TODO RES VIEWER');
+//         }, 5000);
+//     }, []);
+//     return null
+// };
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   icons: {
-//     icon: "/favicon.ico",
-//     shortcut: "/favicon-16x16.png",
-//     apple: "/apple-touch-icon.png",
-//   },
-// }
-
+export const metadata: Metadata = {
+    title: {
+        default: siteConfig.name,
+        template: `%s - ${siteConfig.name}`,
+    },
+    description: siteConfig.description,
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon-16x16.png",
+        apple: "/apple-touch-icon.png",
+    },
+}
 export default function RootLayout({ children }) {
     return (
         <HydrationOverlay>

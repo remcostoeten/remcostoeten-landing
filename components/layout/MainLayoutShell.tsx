@@ -8,45 +8,45 @@ import AnimatedElement from "../effects/AnimatedElement"
 import { Button } from "../ui/button"
 
 interface ShellLayoutProps {
-  children?: any
-  header?: any
+    children?: any
+    header?: any
 }
 
 export default function ShellLayout({ children, header }: ShellLayoutProps) {
-  const [sidebarVisible, setSidebarVisible] = useState(false)
-  const toggleSidebar = () => {
-    setSidebarVisible(!sidebarVisible)
-  }
-  return (
-    <div className=" mx-auto sm:flex md:max-w-[1440px] pt-8">
-      <AnimatedElement
-        as="aside"
-        duration={0.8}
-        ease={BEZIER_CURVES.BEZIERONE}
-        x={5}
-        y={5}
-        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
-          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
-      >
-        {header}
-      </AnimatedElement>
-      <AnimatedElement
-        as="main"
-        duration={0.8}
-        ease={BEZIER_CURVES.BEZIERONE}
-        x={5}
-        y={5}
-        delay={0.3}
-        className="flex-1 p-8"
-      >
-        {children}
-      </AnimatedElement>
-      <Button variant="outline"
-        className="fixed right-4 top-4"
-        onClick={toggleSidebar}
-      >
-        {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}
-      </Button>
-    </div >
-  )
+    const [sidebarVisible, setSidebarVisible] = useState(false)
+    const toggleSidebar = () => {
+        setSidebarVisible(!sidebarVisible)
+    }
+    return (
+        <div className=" mx-auto    sm:flex md:max-w-[1440px] pt-8">
+            <AnimatedElement
+                as="aside"
+                duration={0.8}
+                ease={BEZIER_CURVES.BEZIERONE}
+                x={5}
+                y={5}
+                className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+                    } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
+            >
+                {header}
+            </AnimatedElement>
+            <AnimatedElement
+                as="main"
+                duration={0.8}
+                ease={BEZIER_CURVES.BEZIERONE}
+                x={5}
+                y={5}
+                delay={0.3}
+                className="flex-1 p-8"
+            >
+                {children}
+            </AnimatedElement>
+            <Button variant="outline"
+                className="fixed right-4 top-4"
+                onClick={toggleSidebar}
+            >
+                {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}
+            </Button>
+        </div >
+    )
 }

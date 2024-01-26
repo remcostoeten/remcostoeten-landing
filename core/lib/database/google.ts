@@ -24,7 +24,7 @@ const signOut = () => {
   //     // Sign-out successful.
   //   })
   //   .catch((error) => {
-  //     // An error happened.
+  //     /g/ An error happened.
   //   });
 }
 

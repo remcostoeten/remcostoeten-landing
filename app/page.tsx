@@ -1,11 +1,9 @@
-import Link from "next/link"
 
-import { siteConfig } from "@/core/config/site"
-import { buttonVariants } from "@/components/ui/button"
 import WIPToast from "@/components/effects/InProgressToast"
 import LatestArticle from "@/components/layout/homepage/Articles"
 import Intro from "@/components/layout/homepage/Intro"
 import Sprinkle from "@/components/effects/Sprinkle"
+import Pill from "@/components/Pill"
 
 export default function IndexPage() {
     return (
@@ -17,10 +15,11 @@ export default function IndexPage() {
                 <span
                     className='cta-sprinkle'
                 >
-                    <Sprinkle className='py-2 text-neutral-400'>
-                        Still a loooooooooot to do</Sprinkle>
+                    <Sprinkle opacity={0.2} randomness={125} starColor="#fff" starCount={25} className='py-2 text-neutral-400'>
+                        <Pill>Still a loooooooooot to do</Pill>
+                    </Sprinkle>
                 </span>
-            </section>
+            </section >
         </>
     )
 }

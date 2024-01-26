@@ -1,7 +1,9 @@
 "use client"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import Progress from "antd/es/progress"
-import AddNewDebt from "./components/Shells/AddNewDebt"
+import AddNewDebt from "./components/Shells/FirestormForm"
+import IncomeForm from "./components/forms/IncomeForm"
+import DebtForm from "./components/forms/DebtForm"
 
 export default function Component() {
     return (
@@ -67,7 +69,8 @@ export default function Component() {
                         </div>
                     </div>
                 </div>
-                <AddNewDebt />
+                <DebtForm />
+                <IncomeForm />
             </div>
         </div>
     )

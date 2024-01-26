@@ -11,6 +11,8 @@ import Seperator from "./layout/Seperator"
 import LoginLinkAuth from "./menu/LoginLinkAuth"
 import MenuItem from "./menu/MenuItem"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Sprinkle from "./effects/Sprinkle"
+import AnimatedElement from "./effects/AnimatedElement"
 
 const navigationMenu = [
     { label: "Home", icon: Icons.home, href: "/" },
@@ -33,8 +35,6 @@ export default function SiteHeader({
     useEffect(() => {
         const auth = getAuth()
         const unsubscribe = onAuthStateChanged(auth, setUser)
-
-        // It's important to unsubscribe when the component unmounts
         return () => unsubscribe()
     }, [])
 
@@ -42,7 +42,7 @@ export default function SiteHeader({
 
     return (
         <>
-            <aside className="hidden min-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex">
+            <AnimatedElement className="hidden max-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex h-screen sticky top-8" as="aside" opacity={0} duration={0.5} ease="EASE_IN">
                 <div className="mb-6 flex items-center gap-2">
                     <div className="flex flex-col gap-2.5 text-xl">
                         <div className="relative">
@@ -56,10 +56,12 @@ export default function SiteHeader({
                                 />
                             )}
                             {isAuthenticated && user?.photoURL && (
-                                <Avatar>
-                                    <AvatarImage src={user?.photoURL} />
-                                    <AvatarFallback> {user?.displayName?.[0]}</AvatarFallback>
-                                </Avatar>
+                                <Sprinkle opacity={0.3} starColor="pink" starCount={10}>
+                                    <Avatar>
+                                        <AvatarImage src={user?.photoURL} />
+                                        <AvatarFallback>{user?.displayName?.[0]}</AvatarFallback>
+                                    </Avatar>
+                                </Sprinkle>
                             )}
                         </div>
                     </div>
@@ -72,7 +74,7 @@ export default function SiteHeader({
                             {!isAuthenticated && <>@remcostoeten</>}
                         </div>
                     </div>
-                </div>
+                </div >
                 <div className="mb-6 flex grow flex-col">
                     <div className="mb- flex items-center">
                         <span className="work-pulse pulser mr-2 size-2 rounded-full bg-green-400" />
@@ -82,7 +84,7 @@ export default function SiteHeader({
                         </div>
                     </div>
                     <Seperator spacing="12" />
-                    <ul className="grow">
+                    <ul>
                         {navigationMenu.map((navItem, index) => {
                             return (
                                 <MenuItem
@@ -97,12 +99,14 @@ export default function SiteHeader({
                     </ul>
                     <LoginLinkAuth />
                 </div>
-                <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
-                    With
-                    <span className="mx-1 animate-pulse">❤</span>
-                    by remco stoeten
-                </p>{" "}
-            </aside>
+                <Sprinkle randomness={25} starColor="#fff" starCount={3} className='py-2 text-neutral-400 text-cream flex justify-between flex-row h-full items-end'>
+                    <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
+                        With
+                        <span className="mx-1 animate-pulse text-red-800">❤</span>
+                        by remco stoeten
+                    </p>
+                </Sprinkle>
+            </AnimatedElement>
         </>
     )
 }

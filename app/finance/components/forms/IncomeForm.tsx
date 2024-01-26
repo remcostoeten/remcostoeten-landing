@@ -1,10 +1,11 @@
+import { Form, DatePicker, Button } from "antd";
 import { doc, collection, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import moment from 'moment'; // import moment
 import { db } from "@/core/lib/database/firebase";
 import { useAuth } from "@/core/lib/database/auth";
 import { toast } from "sonner";
-import FirestormForm from "../Shells/FirestormForm";
+import InputWithLabel from "@/components/generics/InputWithELement";
 
 export default function IncomeForm() {
     const [income, setIncome] = useState(0);
@@ -12,7 +13,7 @@ export default function IncomeForm() {
     const [incomeFor, setIncomeFor] = useState('');
     const { user } = useAuth();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (values: any) => {
         if (user) {
             const userId = user.uid;
             const userDocRef = doc(db, "users", userId);
@@ -34,22 +35,21 @@ export default function IncomeForm() {
             }
         }
     };
-
-
     return (
-        <>
-            <FirestormForm
-                title="Add New Income"
-                inputs={[
-                    { placeholder: "Income", type: "number" }
-                ]}
-                buttonText="Submit"
-                onSubmit={value => setIncome(parseFloat(value))}
-                onDateChange={date => setDate(date)}
-                income={income}
-                date={date}
+        <Form onFinish={handleSubmit}>
+            <InputWithLabel
+                label="Income"
+                value={income}
+                onChange={e => setIncome(parseFloat(e.target.value))}
             />
-        </>
-
+            <Form.Item label="Date">
+                <DatePicker value={date} onChange={date => setDate(date)} /> // update date with a moment object
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" htmlType="submit">
+                    Submit
+                </Button>
+            </Form.Item>
+        </Form>
     );
 }

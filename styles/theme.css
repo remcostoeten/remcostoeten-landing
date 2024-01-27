@@ -2,6 +2,10 @@
     position: relative;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .body-gradient::after {
     content: "";
     position: fixed;

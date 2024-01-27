@@ -1,10 +1,9 @@
 "use client"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import Progress from "antd/es/progress"
-import AddNewDebt from "./components/Shells/FirestormForm"
-import IncomeForm from "./components/forms/IncomeForm"
 import DebtForm from "./components/forms/DebtForm"
-
+import DepositForm from "./components/forms/DepositForm"
+import YourComponent from './components/Test'
 export default function Component() {
     return (
         <div className="bg-[#121212] min-h-screen text-white">
@@ -70,7 +69,9 @@ export default function Component() {
                     </div>
                 </div>
                 <DebtForm />
-                <IncomeForm />
+                <div className='w-36  h-2 bg-red-400 py-4 my-4' />
+                <DepositForm />
+                <YourComponent />
             </div>
         </div>
     )

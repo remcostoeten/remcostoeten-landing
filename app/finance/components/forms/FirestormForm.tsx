@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Button } from "@/components/ui/button";
 import { useFirestoreForm } from "./useFirestormForm";
 import InputWithLabel from "@/components/generics/InputWithELement";
+import dayjs from "dayjs";
 
 export const FirestoreForm = ({ initialState, collectionRef, formFields }) => {
     const fields = formFields; // Declare the 'fields' variable and assign it the value of 'formFields'
@@ -11,11 +12,11 @@ export const FirestoreForm = ({ initialState, collectionRef, formFields }) => {
 
     return (
         <Form onFinish={handleSubmit}>
-            {fields.map((field) => {
+            {fields.map((field, index) => {
                 switch (field.type) {
                     case "select":
                         return (
-                            <Form.Item label={field.label}>
+                            <Form.Item key={index} label={field.label}>
                                 <select
                                     value={state[field.name]}
                                     onChange={value => handleChange(field.name, value)}
@@ -32,7 +33,7 @@ export const FirestoreForm = ({ initialState, collectionRef, formFields }) => {
                         return (
                             <Form.Item key={field.label} label={field.label}>
                                 <DatePicker
-                                    value={moment(state[field.name], 'DD-MM-YYYY')}
+                                    value={dayjs(state[field.name], 'DD-MM-YYYY')}
                                     onChange={(_, dateString) => handleChange(field.name, dateString)}
                                 />
                             </Form.Item>

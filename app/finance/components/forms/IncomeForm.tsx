@@ -1,55 +1,41 @@
-import { doc, collection, addDoc } from "firebase/firestore";
-import { useState } from "react";
-import moment from 'moment'; // import moment
-import { db } from "@/core/lib/database/firebase";
-import { useAuth } from "@/core/lib/database/auth";
-import { toast } from "sonner";
-import FirestormForm from "../Shells/FirestormForm";
+'use client'
 
-export default function IncomeForm() {
-    const [income, setIncome] = useState(0);
-    const [date, setDate] = useState(moment());
-    const [incomeFor, setIncomeFor] = useState('');
-    const { user } = useAuth();
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+import { FirestoreForm } from './FirestormForm';
 
-    const handleSubmit = async () => {
-        if (user) {
-            const userId = user.uid;
-            const userDocRef = doc(db, "users", userId);
-            const incomeCollectionRef = collection(userDocRef, "income");
-            const incomeData = {
-                income: income,
-                date: date.format('DD-MM-YYYY'),
-                incomeFor: moment().add(1, 'month').format('MMMM')
-            };
-            console.log(incomeData);
+interface Field {
+    label: string;
+    name: string;
+    type?: string;
+    options?: Array<{ value: string, label: string }>;
+}
 
-            toast(`A total of ${income} has been added to your income`);
+const IncomeForm = () => {
+    const firestore = useFirestore();
+    const [incomeNames, setIncomeNames] = useState([]);
+    const initialState = { income: 0, date: moment(), incomeFor: '' };
+    const collectionRef = "income";
 
-            try {
-                await addDoc(incomeCollectionRef, incomeData);
-            } catch (error) {
-                console.error("Error adding income:", error);
-                toast(`Error adding income: ${error}`);
-            }
-        }
-    };
+    useEffect(() => {
+        const fetchIncomeNames = async () => {
+            const snapshot = await firestore.collection('debt').get();
+            const names = snapshot.docs.map(doc => ({ value: doc.id, label: doc.data().name }));
+            setIncomeNames(names);
+        };
 
+        fetchIncomeNames();
+    }, [firestore]);
+
+    const fields: Field[] = [
+        { label: "Income", name: "income", type: "number" },
+        { label: "Date", name: "date", type: "date" },
+        { label: "Income For", name: "incomeFor", type: "select", options: incomeNames },
+    ];
 
     return (
-        <>
-            <FirestormForm
-                title="Add New Income"
-                inputs={[
-                    { placeholder: "Income", type: "number" }
-                ]}
-                buttonText="Submit"
-                onSubmit={value => setIncome(parseFloat(value))}
-                onDateChange={date => setDate(date)}
-                income={income}
-                date={date}
-            />
-        </>
-
+        <FirestoreForm initialState={initialState} collectionRef={collectionRef} formFields={fields} />
     );
-}
+};
+
+export default IncomeForm;

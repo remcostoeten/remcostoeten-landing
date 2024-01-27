@@ -1,8 +1,8 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/core/lib/database/auth";
 import { db } from "@/core/lib/database/firebase";
-import { doc, collection, addDoc } from "firebase/firestore";
+import { doc, collection, addDoc, getDocs } from "firebase/firestore";
 import { toast } from "sonner";
 
 interface Field {
@@ -25,6 +25,19 @@ export const useFirestoreForm = (initialState: Record<string, any>, collectionRe
     const handleChange = (field: string, value: any) => {
         setState({ ...state, [field]: value });
     };
+
+    const fetchOptions = async (fieldName) => {
+        const field = fields.find(f => f.name === fieldName);
+        if (field && field.type === "select") {
+            const snapshot = await getDocs(collection(db, "departments"));
+            const departments = snapshot.docs.map(doc => doc.data());
+            field.options = departments.map(department => ({ value: department.name, label: department.name }));
+        }
+    };
+
+    useEffect(() => {
+        fetchOptions("nameOfDept");
+    }, []);
 
     const handleSubmit = async () => {
         if (user) {

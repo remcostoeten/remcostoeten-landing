@@ -3,33 +3,63 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
-
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
-
 import Seperator from "./layout/Seperator"
 import LoginLinkAuth from "./menu/LoginLinkAuth"
 import MenuItem from "./menu/MenuItem"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import Sprinkle from "./effects/Sprinkle"
 import AnimatedElement from "./effects/AnimatedElement"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/ui-imports"
+import Pill from "./Pill"
+
+type MenuPillProps = {
+    pulse?: boolean,
+    pulseClass?: string,
+    children: React.ReactNode
+}
+
+const MenuPill = ({
+    pulse,
+    pulseClass,
+    children
+}: MenuPillProps) => {
+
+    return (
+        <Pill
+            className={pulse ? pulseClass : ''}
+            backgroundColor="blue"
+            color="white"
+            fontSize="10px"
+        >
+            {children}
+        </Pill>
+    )
+}
 
 const navigationMenu = [
     { label: "Home", icon: Icons.home, href: "/" },
     { label: "About", href: "about", icon: Icons.user },
-    { label: "Blog", icon: Icons.code, href: "blog" },
+    { label: "Blog", icon: Icons.code, href: "blog", badge: <MenuPill>WiP</MenuPill> },
     { label: "Issues", icon: Icons.todo, href: "issues" },
-    { label: "Kanban", icon: Icons.kanban, href: "kanban" },
-    { label: "Finance", icon: Icons.finance, href: "finance" },
-    { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
+    {
+        label: "Kanban", icon: Icons.kanban, href: "kanban", badge: (
+            <><MenuPill>WiP</MenuPill><MenuPill>Buggy</MenuPill></>
+        )
+    },
+    { label: "Finance", icon: Icons.finance, href: "finance", badge: <><MenuPill>WiP</MenuPill><MenuPill>Experimental</MenuPill></> },
+    {
+        label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook", badge: <span className='animate-pulse'><MenuPill>1.0 🎉</MenuPill>
+        </span>
+    },
     { label: "Contact", icon: Icons.mail },
 ]
 
-export default function SiteHeader({
+const SiteHeader = ({
     children,
 }: {
     children?: React.ReactNode
-}) {
+}) => {
     const [user, setUser] = useState<User | null>(null)
 
     useEffect(() => {
@@ -42,7 +72,13 @@ export default function SiteHeader({
 
     return (
         <>
-            <AnimatedElement className="hidden max-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex h-screen sticky top-8" as="aside" opacity={0} duration={0.5} ease="EASE_IN">
+            <AnimatedElement
+                className="hidden max-h-[97vh] flex-col text-blacktheme dark:text-accent sm:flex h-screen sticky top-8"
+                as="aside"
+                opacity={0}
+                duration={0.5}
+                ease="EASE_IN"
+            >
                 <div className="mb-6 flex items-center gap-2">
                     <div className="flex flex-col gap-2.5 text-xl">
                         <div className="relative">
@@ -74,7 +110,7 @@ export default function SiteHeader({
                             {!isAuthenticated && <>@remcostoeten</>}
                         </div>
                     </div>
-                </div >
+                </div>
                 <div className="mb-6 flex grow flex-col">
                     <div className="mb- flex items-center">
                         <span className="work-pulse pulser mr-2 size-2 rounded-full bg-green-400" />
@@ -84,6 +120,7 @@ export default function SiteHeader({
                         </div>
                     </div>
                     <Seperator spacing="12" />
+
                     <ul>
                         {navigationMenu.map((navItem, index) => {
                             return (
@@ -91,6 +128,7 @@ export default function SiteHeader({
                                     key={index}
                                     title={navItem.label}
                                     href={navItem.href ? navItem.href : "#"}
+                                    badge={navItem.badge}
                                     icon={navItem.icon ? <navItem.icon /> : null}
                                     isExternal={false}
                                 />
@@ -99,7 +137,12 @@ export default function SiteHeader({
                     </ul>
                     <LoginLinkAuth />
                 </div>
-                <Sprinkle randomness={25} starColor="#fff" starCount={3} className='py-2 text-neutral-400 text-cream flex justify-between flex-row h-full items-end'>
+                <Sprinkle
+                    randomness={25}
+                    starColor="#fff"
+                    starCount={3}
+                    className="py-2 text-neutral-400 text-cream flex justify-between flex-row h-full items-end"
+                >
                     <p className="mb-6 flex flex-col-reverse items-start md:flex-row md:items-center">
                         With
                         <span className="mx-1 animate-pulse text-red-800">❤</span>
@@ -110,3 +153,5 @@ export default function SiteHeader({
         </>
     )
 }
+
+export default SiteHeader;

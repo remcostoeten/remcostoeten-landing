@@ -42,7 +42,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
                 {children}
             </AnimatedElement>
             <Button variant="outline"
-                className="fixed right-4 top-4"
+                className="fixed right-4 hidden sm:block top-4"
                 onClick={toggleSidebar}
             >
                 {sidebarVisible ? "Hide Sidebar" : "Show Sidebar"}

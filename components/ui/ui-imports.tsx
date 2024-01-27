@@ -1,5 +1,4 @@
 import { AlertDialog } from './alert-dialog';
-import { Avatar } from './avatar';
 import { Badge } from './badge';
 import { Button } from './button';
 import { Card } from './card';
@@ -21,9 +20,11 @@ import { Skeleton } from './skeleton';
 import { Table } from './table';
 import { Toaster } from './toaster';
 import { Tooltip } from './tooltip';
-
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 export {
     AlertDialog,
+    AvatarFallback,
+    AvatarImage,
     Avatar,
     Badge,
     Button,

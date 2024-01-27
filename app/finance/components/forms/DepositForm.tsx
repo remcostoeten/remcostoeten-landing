@@ -1,80 +1,134 @@
-'use client';
-import { Button } from "@/components/ui/button";
-import { Form, Select } from "antd";
+'use client'
+
 import { doc, collection, addDoc, getFirestore } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { db } from "@/core/lib/database/firebase";
 import { useAuth } from "@/core/lib/database/auth";
 import { toast } from "sonner";
-import InputWithLabel from "@/components/generics/InputWithELement";
 import useFirestoreCollection from "../../data/useFirestoreCollection";
-import { name } from "country-emoji";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { DifferentDepositChooser } from "../Shells/DifferentDepositChooser";
+import IntroShell from "@/components/layout/IntroShell";
+import { Icons } from '@/components/icons';
+import InputWithLabel from "@/components/generics/InputWithELement";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+
+interface Debt {
+    nameOfDebt: string;
+}
 
 export default function DepositForm() {
-    const [amountDeposited, setAmountDeposited] = useState(0)
-    const { user } = useAuth()
-    const userId = user?.uid
-    const db = getFirestore()
+    const [amountDeposited, setAmountDeposited] = useState(0);
     const [nameOfDebt, setNameOfDebt] = useState("");
+    const { user } = useAuth();
+    const userId = user?.uid;
+    const db = getFirestore();
 
     const {
         data: debts,
         loading,
         error,
-    } = useFirestoreCollection(db, `users/${userId}/debt`)
+    } = useFirestoreCollection(db, `users/${userId}/debt`);
 
     useEffect(() => {
         if (debts) {
-            console.log("debs", debts)
+            console.log("debs", debts);
         }
-    }, [debts])
+    }, [debts]);
 
     const handleSubmit = async () => {
         try {
             if (user) {
-                const userId = user.uid
-                const userDocRef = doc(db, "users", userId)
-                const depositCollectionRef = collection(userDocRef, "deposit")
+                const userId = user.uid;
+                const userDocRef = doc(db, "users", userId);
+                const depositCollectionRef = collection(userDocRef, "deposit");
                 const depositData = {
-                    nameOfDebt: nameOfDebt, // changed from nameOfDept
+                    nameOfDebt: nameOfDebt,
                     amountDeposited: amountDeposited,
-                }
-                await addDoc(depositCollectionRef, depositData)
+                };
+                await addDoc(depositCollectionRef, depositData);
                 toast.success(
                     `Deposit data added successfully. Name of Debt - ${nameOfDebt}, Amount Deposited - ${amountDeposited}`
-                )
+                );
             }
         } catch (error) {
-            console.error("Error adding deposit data: ", error)
-            toast.error("Failed to add deposit data")
+            console.error("Error adding deposit data: ", error);
+            toast.error("Failed to add deposit data");
         }
-    }
-    return (
-        <Form onFinish={handleSubmit}>
-            <Form.Item label="Name Of Dept">
-                <Form.Item label="Name Of Dept">
-                    <Select value={nameOfDebt} onChange={(value) => setNameOfDebt(value)}>
-                        {loading ? (
-                            <Select.Option disabled>Loading...</Select.Option>
-                        ) : (
-                            debts.map((debt) => (
-                                <Select.Option key={debt.id} value={debt.nameOfDebt}>
-                                    {debt.nameOfDebt}
-                                </Select.Option>
-                            ))
-                        )}
-                    </Select>
+    };
 
-                </Form.Item>
-            </Form.Item>
-            <InputWithLabel
-                label="Amount Deposited"
-                value={amountDeposited}
-                onChange={(e) => setAmountDeposited(parseFloat(e.target.value))}
-            />
-            <Form.Item>
-                <Button>Submit</Button>
-            </Form.Item>
-        </Form>
-    )
+    return (
+        <div>
+            <div className="flex flex-col gap-4">
+                <IntroShell
+                    spacingBottom='0'
+                    spacingTop='0'
+                    showSeperator={false}
+                    title="What kind of deposit are you making?"
+                    tooltipIcon={<Icons.tooltip />}
+                    tooltipContent="Either add a deposit to your savings balance <br> or add a deposit to subtract from a specific debt"
+
+                    t={undefined} />
+                <DifferentDepositChooser
+
+                    tabs={[
+                        {
+                            title: "Debt payoff",
+                            description: "Add a deposit to subtract from a specific debt.",
+
+                            values: (
+                                <Select onChange={(value) => setNameOfDebt(value)}>
+                                    <SelectTrigger className='w-[180px]'>
+                                        <SelectValue placeholder="Select Debt" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {debts.map((debt: Debt) => (
+                                            <SelectItem key={debt.id} value={debt.nameOfDebt} onChange={undefined}>
+                                                {debt.nameOfDebt}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            ),
+                        },
+                        {
+                            title: "Add sav ings",
+                            description: "Add a deposit to your savings balance.",
+                            values: (
+                                <>
+                                    <InputWithLabel
+                                        label="Amount Deposited"
+                                        value={amountDeposited}
+                                        onChange={(e) => setAmountDeposited(parseFloat(e.target.value))} />
+                                    <Button>Submit</Button>
+                                </>
+                            ),
+                        },
+                    ]}
+                    defaultTabValue="Savings" t={''} />
+            </div>
+
+            <form onSubmit={handleSubmit}>
+                <Select onChange={(value) => setNameOfDebt(value)}>
+                    <SelectTrigger className='w-[180px]'>
+                        <SelectValue placeholder="Select Debt" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {debts.map((debt: Debt) => (
+                            <SelectItem key={debt.id} value={debt.nameOfDebt}>
+                                {debt.nameOfDebt}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+
+                <InputWithLabel
+                    label="Amount Deposited"
+                    value={amountDeposited}
+                    onChange={(e) => setAmountDeposited(parseFloat(e.target.value))} />
+
+
+            </form>
+        </div>
+    );
 }
+''

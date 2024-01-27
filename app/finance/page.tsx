@@ -69,7 +69,6 @@ export default function Component() {
                     </div>
                 </div>
                 <DebtForm />
-                <div className='w-36  h-2 bg-red-400 py-4 my-4' />
                 <DepositForm />
                 <YourComponent />
             </div>

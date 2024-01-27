@@ -72,17 +72,10 @@ const contentLayerConfig = makeSource({
             rehypeAccessibleEmojis,
             rehypeSlug,
             rehypeCodeTitles,
-            rehypePrism,
-            [
-                rehypeAutolinkHeadings,
-                {
-                    properties: {
-                        className: ["anchor"],
-                    },
-                },
-            ],
-        ],
-    },
+            rehypePrism
+        ]
+    }
 })
+
 
 export default contentLayerConfig

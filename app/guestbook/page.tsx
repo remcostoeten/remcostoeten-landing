@@ -32,8 +32,8 @@ import WIPToast from "@/components/effects/InProgressToast"
 import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
-import GuestbookComments from "./components/GuestBookComments"
 import { GuestbookEntry } from "../issues/compopnents/types"
+import GuestbookComments from "./components/GuestBookComments"
 
 export default function GuestBookPage() {
   const [entries, setEntries] = useState<GuestbookEntry[]>([])

@@ -1,6 +1,6 @@
 import MobileNavigation from "@c/core/MobileNavigation"
 
-import "@/styles/globals.scss"
+import "@/styles/globals.css"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
@@ -12,13 +12,13 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import Background from "@/components/core/Background"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import Background from "@/components/core/Background"
 
 export const viewport = {
   themeColor: [
@@ -49,20 +49,20 @@ export default function RootLayout({ children }) {
             <head />
             <link rel="canonical" href={siteConfig.url} />
             <TooltipProvider>
-              <body
+              {/* <body
                 className={cn(
                   " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
+              > */}
+              <body
+                className={cn(
+                  " min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+                  fontSora.variable
+                )}
               >
-                {/* <body
-              className={cn(
-                "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",wwwwwwwwwwwwwww
-                fontSora.variable
-              )}
-            > */}
                 <MobileNavigation />
-                <Background />
+                <Background strength={25} delay={undefined} />
                 <HeroPattern />
 
                 <NextTopLoader color="#2dd4bf" height={5} />
@@ -71,11 +71,11 @@ export default function RootLayout({ children }) {
                   defaultTheme="system"
                   enableSystem
                 >
-                  {/* <ShellLayout header={<SiteHeader />}>
+                  <ShellLayout header={<SiteHeader />}>
                     <div className="transition-all duration-300 sm:max-w-[854px]">
                       {children}
-                    </div> */}
-                  {/* </ShellLayout> */}
+                    </div>
+                  </ShellLayout>
                   <TailwindIndicator />
                 </ThemeProvider>
                 <SpeedInsights />

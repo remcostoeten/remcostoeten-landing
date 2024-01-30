@@ -9,7 +9,7 @@ import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
-import "@/styles/globals.scss"
+import "@/styles/globals.css"
 import type { AppProps } from "next/app"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Analytics } from "@vercel/analytics/react"

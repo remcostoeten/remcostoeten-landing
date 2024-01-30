@@ -1,47 +1,34 @@
 .anchor {
     position: relative;
-
-    &::before {
-        content: '';
-        position: absolute;
-        width: 0%;
-        height: 1px;
-        bottom: 0;
-        background-color: #fff;
-        animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
-    }
-
-
-    &.not-birght {
-        &::after {
-            opacity: 0.5;
-        }
-    }
-
-    &.lowest-brightness {
-        &::after {
-            opacity: 0.2;
-        }
-    }
 }
-
+.anchor::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: 0;
+    background-color: #fff;
+    animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
+}
+.anchor.not-birght::after {
+    opacity: 0.5;
+}
+.anchor.lowest-brightness::after {
+    opacity: 0.2;
+}
 @keyframes anchorAnimation {
-
-    0%,
-    100% {
+    0%, 100% {
         width: 0%;
         left: 0%;
-    }
-
+   }
     50% {
         width: 100%;
         left: 0%;
-    }
-
+   }
     100% {
         width: 0%;
         left: 100%;
-    }
+   }
 }
 
 .infinite-link {
@@ -73,20 +60,18 @@
     }
 }
 
-
 .pulser {
     animation: pulser 2s cubic-bezier(0.565, 0.84, 0.44, 1) infinite;
 }
 
 .animation-wrapper {
     opacity: 0;
-    animation: fadeIn 0.5s .25s ease-in-out forwards;
+    animation: fadeIn 0.5s 0.25s ease-in-out forwards;
+}
 
-
-    & span:last-child {
-        opacity: 0;
-        animation: fadeIn 0.5s .75s ease-out forwards;
-    }
+.animation-wrapper span:last-child {
+    opacity: 0;
+    animation: fadeIn 0.5s 0.75s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -201,15 +186,15 @@
 
 /* loading dots for Spinner.tsx */
 .dot-one {
-    animation: dot-one 2s infinite linear
+    animation: dot-one 2s infinite linear;
 }
 
 .dot-two {
-    animation: dot-two 2s infinite linear
+    animation: dot-two 2s infinite linear;
 }
 
 .dot-three {
-    animation: dot-three 2s infinite linear
+    animation: dot-three 2s infinite linear;
 }
 
 @keyframes dot-one {
@@ -228,8 +213,6 @@
     100% {
         opacity: 1;
     }
-
-    1
 }
 
 @keyframes dot-two {
@@ -269,8 +252,6 @@
 }
 
 /* end loading dots */
-
-
 .spinner-cutout {
     display: block;
     z-index: 99;
@@ -281,7 +262,6 @@
     height: 100px;
     border: 3px solid white;
     border-radius: 50%;
-
     animation: spinn 7s ease-in-out;
     animation-iteration-count: infinite;
     transition-duration: 0.1s;
@@ -315,5 +295,3 @@
         border-top: solid 3px transparent;
     }
 }
-
-1

@@ -8,8 +8,6 @@ export type GuestbookEntry = {
   uniqueId?: string
 }
 
-
-
 export interface LabelPillProps {
   label?: string
   color?: string

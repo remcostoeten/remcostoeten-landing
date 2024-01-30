@@ -1,4 +1,5 @@
 import React from "react"
+
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 interface CustomTooltipProps {
@@ -28,12 +29,12 @@ export default function CustomTooltip({
     triggerAs,
     { className: triggerClassName, ...triggerProps },
     trigger
-  );
+  )
 
   return (
     <Tooltip>
       <TooltipTrigger>
-        {AnimatedAnchor && <AnimatedAnchor>{TriggerElement}</AnimatedAnchor>}
+        {AnimatedAnchor && <span className="anchor">{TriggerElement}</span>}
         {!AnimatedAnchor && TriggerElement}
       </TooltipTrigger>
       <TooltipContent>

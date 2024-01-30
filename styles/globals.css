@@ -11,11 +11,8 @@
 @import './buttons.css';
 @import './card-skeleton.css';
 @import './misc.css';
-@import './mobile-navigation.scss';
-
-::root {
-  --max-screen-width: 3840px
-}
+@import './mobile-navigation.css';
+@import './animations.css';
 
 .sidebar-hidden {
   transition: 250ms ease-in-out;
@@ -29,7 +26,7 @@
 
 .svg-background {
   content: "";
-  width: var(--max-screen-width);
+  width: 3840px;
   height: 2160px;
   background-position: top;
 }
@@ -328,8 +325,6 @@ pre {
 }
 
 
-
-
 /* kind */
 :root {
   --g-color-black: #000;
@@ -552,6 +547,8 @@ a {
 .start-hero-intro {
   margin-bottom: var(--g-spacing-base);
 }
+
+
 
 .avatar {
   align-items: center;

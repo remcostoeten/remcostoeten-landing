@@ -14,6 +14,7 @@ import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
 
+import GitLabIssuesComponent from "./compopnents/Gitlab"
 import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
@@ -61,6 +62,8 @@ export default function Page() {
 
   return (
     <>
+      <GitLabIssuesComponent />
+
       <IntroShell
         title="Github Issues"
         description="These are all the Github issues fetched through the API regarding this project."
@@ -95,13 +98,13 @@ export default function Page() {
                     ]
                     const filteredLabels = task.labels
                       ? task.labels.filter(
-                        (label) => !priorityLabels.includes(label.name)
-                      )
+                          (label) => !priorityLabels.includes(label.name)
+                        )
                       : []
                     const priorityLabel = task.labels
                       ? task.labels.find((label) =>
-                        priorityLabels.includes(label.name)
-                      )
+                          priorityLabels.includes(label.name)
+                        )
                       : undefined
                     const strippedPriorityLabel =
                       priorityLabel &&

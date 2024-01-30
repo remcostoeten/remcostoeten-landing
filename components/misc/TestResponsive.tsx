@@ -1,5 +1,4 @@
-"use client"
-
+'use client';
 import React, { useState } from "react"
 
 const ResponsiveToggle: React.FC = () => {
@@ -20,6 +19,19 @@ const ResponsiveToggle: React.FC = () => {
         return "Mobile"
       default:
         return ""
+    }
+  }
+
+  const getViewportSize = () => {
+    switch (viewport) {
+      case 1:
+        return "1200px" // Desktop size
+      case 2:
+        return "768px" // Tablet size
+      case 3:
+        return "375px" // Mobile size
+      default:
+        return "1200px" // Default to desktop size
     }
   }
 

@@ -12,13 +12,14 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import Background from "@/components/core/Background"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import ResponsiveToggle from "@/components/misc/TestResponsive"
+import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 
 export const viewport = {
   themeColor: [
@@ -57,13 +58,14 @@ export default function RootLayout({ children }) {
               > */}
               <body
                 className={cn(
-                  " min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+                  " min-h-screen overflow-x-hidden  font-sans antialiased",
                   fontSora.variable
                 )}
               >
+                <ResponsiveToggle />
+
                 <MobileNavigation />
-                <Background strength={25} delay={undefined} />
-                <HeroPattern />
+                {/* <HeroPattern /> */}
 
                 <NextTopLoader color="#2dd4bf" height={5} />
                 <ThemeProvider
@@ -76,6 +78,7 @@ export default function RootLayout({ children }) {
                       {children}
                     </div>
                   </ShellLayout>
+                  <BackgroundGradientEffect zIndex={-1} />
                   <TailwindIndicator />
                 </ThemeProvider>
                 <SpeedInsights />

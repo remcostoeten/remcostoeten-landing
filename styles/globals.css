@@ -7,12 +7,13 @@
 @import './error.css';
 @import './auth.css';
 @import './utillity-classes.css';
-@import './scroll-carousel.css';
 @import './buttons.css';
 @import './card-skeleton.css';
 @import './misc.css';
 @import './mobile-navigation.css';
-@import './animations.css';
+@import './effects/animations.css';
+/* @import './effects/footer-gradient.scss'; */
+@import './effects/scroll-carousel.css';
 
 .sidebar-hidden {
   transition: 250ms ease-in-out;
@@ -82,17 +83,6 @@
     --input: 12 6.5% 15.1%;
     --accent: #a3a3a3;
     --ring: 20.5 90.2% 48.2%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 

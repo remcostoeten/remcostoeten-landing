@@ -47,7 +47,9 @@ export default function Intro() {
 "
           />{" "}
           and currently building open source software at{" "}
-          <AnimatedLink brightness="low" border='dashed'
+          <AnimatedLink
+            brightness="low"
+            border="dashed"
             href="https://gitlab.com/pleio/frontend"
             target="_blank"
           >

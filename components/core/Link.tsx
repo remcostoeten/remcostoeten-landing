@@ -61,10 +61,14 @@ export const AnimatedLink: React.FC<LinkProps> = ({
     anchorStyles.opacity = 0.2
   }
 
-  const borderClass = border === "dashed" ? "dashed-border" : "";
+  const borderClass = border === "dashed" ? "dashed-border" : ""
 
   return (
-    <DefaultLink className={`${animate ? "anchor" : ""} ${borderClass}`} href={href} {...rest}>
+    <DefaultLink
+      className={`${animate ? "anchor" : ""} ${borderClass}`}
+      href={href}
+      {...rest}
+    >
       {children}
     </DefaultLink>
   )

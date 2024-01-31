@@ -12,13 +12,13 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 
 export const viewport = {
   themeColor: [
@@ -61,7 +61,6 @@ export default function RootLayout({ children }) {
                   fontSora.variable
                 )}
               >
-
                 <MobileNavigation />
                 {/* <HeroPattern /> */}
 
@@ -86,6 +85,6 @@ export default function RootLayout({ children }) {
           </html>
         </ReduxProvider>
       </AuthUserProvider>
-    </HydrationOverlay >
+    </HydrationOverlay>
   )
 }

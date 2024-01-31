@@ -41,7 +41,7 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/postgres": "^0.5.1",
     "@vercel/speed-insights": "^1.0.4",
-    "antd": "^5.13.2",
+    "antd": "^5.13.3",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.4.0",
     "cmdk": "^0.2.0",

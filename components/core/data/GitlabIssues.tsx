@@ -1,43 +1,44 @@
-'use client'
-import { useState, useEffect } from "react"
-import fetchGitlabIssues from '@/core/queries/fetchGitLabIssues'
+"use client"
+
+import { useEffect, useState } from "react"
+import fetchGitlabIssues from "@/core/queries/fetchGitLabIssues"
 
 export default function GitlabIssues() {
-    const [assignedIssues, setAssignedIssues] = useState([])
-    const [commits, setCommits] = useState([])
+  const [assignedIssues, setAssignedIssues] = useState([])
+  const [commits, setCommits] = useState([])
 
-    useEffect(() => {
-        const getAssignedIssues = async () => {
-            const issues = await fetchGitlabIssues()
-            setAssignedIssues(issues.issues)
-        }
+  useEffect(() => {
+    const getAssignedIssues = async () => {
+      const issues = await fetchGitlabIssues()
+      setAssignedIssues(issues.commits)
+    }
 
-        getAssignedIssues()
-    }, [])
+    getAssignedIssues()
+  }, [])
 
-    useEffect(() => {
-        const getCommits = async () => {
-            const issues = await fetchGitlabIssues()
-            setCommits(issues.commits)
-        }
+  useEffect(() => {
+    const getCommits = async () => {
+      const issues = await fetchGitlabIssues()
+      setCommits(issues.commits)
+    }
 
-        getCommits()
-    }, [])
+    getCommits()
+  }, [])
 
-    return (
-        <>
-            <h1>GitLab Assigned Issues</h1>
-            <ul>
-                {assignedIssues.map((issue) => (
-                    <li key={issue.id}>{issue.title}</li>
-                ))}
-            </ul>
-            <h1>GitLab Commits</h1>
-            <ul>
-                {commits.map((commit) => (
-                    <li key={commit.id}>{commit.message}</li>
-                ))}
-            </ul>
-        </>
-    )
+  return (
+    <>
+      <h1>GitLab Assigned Issues</h1>
+      <ul>
+        {assignedIssues.map((issue) => (
+          <li key={issue.id}>{issue.title}</li>
+        ))}
+      </ul>
+      <h1>GitLab Commits</h1>
+      <ul>
+        {commits.map((commit) => (
+          <li key={commit.id}>{commit.message}</li>
+        ))}
+      </ul>
+    </>
+  )
 }

@@ -32,7 +32,6 @@
       "@/*": [
         "./*"
       ],
-      "~/*": ["./src/*"],
       "@c/*": [
         "./components/*"
       ],
@@ -40,19 +39,15 @@
         "./.contentlayer/generated"
       ]
     },
-    "strictNullChecks": false // Change this to false
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "src",
-    "styled-system",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-
+    ".next/types/**/*.ts"
   ],
   "exclude": [
-    "*pages*",
     "node_modules"
   ]
 }

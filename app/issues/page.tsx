@@ -14,7 +14,7 @@ import IssueTableSkeleton from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
 
-import GitLabIssuesComponent from "./compopnents/Gitlab"
+import GitLabIssuesComponent from "./compopnents/Gitlab.txtg"
 import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 

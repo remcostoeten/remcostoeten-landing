@@ -18,7 +18,6 @@ import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import ResponsiveToggle from "@/components/misc/TestResponsive"
 import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 
 export const viewport = {
@@ -62,7 +61,6 @@ export default function RootLayout({ children }) {
                   fontSora.variable
                 )}
               >
-                <ResponsiveToggle />
 
                 <MobileNavigation />
                 {/* <HeroPattern /> */}
@@ -88,6 +86,6 @@ export default function RootLayout({ children }) {
           </html>
         </ReduxProvider>
       </AuthUserProvider>
-    </HydrationOverlay>
+    </HydrationOverlay >
   )
 }

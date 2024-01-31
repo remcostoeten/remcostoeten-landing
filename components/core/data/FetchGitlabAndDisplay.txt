@@ -1,3 +1,7 @@
+/* Fetches all created issues by (me, remcostoeten)
+TODO: fetch assigned issues for project specificy
+*/
+
 import React, { useEffect, useState } from "react"
 
 const GitLabIssuesComponent: React.FC = () => {
@@ -6,7 +10,7 @@ const GitLabIssuesComponent: React.FC = () => {
   useEffect(() => {
     const fetchGitLabAssignedIssues = async () => {
       try {
-        const accessToken = "glpat-fUDUHLEx43ZMS7U8Mpzx"
+        const accessToken = process.env.NEXT_PUBLIC_GITLAB_ACCESS_TOKEN
         const projectPath = "pleio/beheer"
 
         const response = await fetch(

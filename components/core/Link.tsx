@@ -36,35 +36,35 @@ type LinkProps = {
   hasIcon?: boolean
   style?: React.CSSProperties
   icon?: any
+  border?: string
   iconPosition?: "before" | "after"
   animate?: boolean
-  brightness?: "normal" | "light" | "lowest-brightness"
+  brightness?: "medium" | "low"
 }
 
 export const AnimatedLink: React.FC<LinkProps> = ({
   href,
   children,
-  animate,
+  animate = true,
   brightness,
+  border,
   ...rest
 }) => {
   const anchorStyles: React.CSSProperties = {
-    position: "relative",
+    position: animate ? "relative" : "static",
+    overflow: animate ? "hidden" : "visible",
   }
 
-  if (animate) {
-    anchorStyles.position = "relative"
-    anchorStyles.overflow = "hidden"
-  }
-
-  if (brightness === "light") {
+  if (brightness === "medium") {
     anchorStyles.opacity = 0.5
-  } else if (brightness === "lowest-brightness") {
+  } else if (brightness === "low") {
     anchorStyles.opacity = 0.2
   }
 
+  const borderClass = border === "dashed" ? "dashed-border" : "";
+
   return (
-    <DefaultLink className={animate ? "anchor" : ""} href={href} {...rest}>
+    <DefaultLink className={`${animate ? "anchor" : ""} ${borderClass}`} href={href} {...rest}>
       {children}
     </DefaultLink>
   )

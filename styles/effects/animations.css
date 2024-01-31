@@ -1,34 +1,78 @@
 .anchor {
     position: relative;
 }
+
 .anchor::before {
     content: '';
     position: absolute;
     width: 0%;
     height: 1px;
     bottom: 0;
-    background-color: #fff;
+    background-color: #9e9d9d;
     animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
 }
-.anchor.not-birght::after {
+
+.BackgroundGradientEffect {
+    opacity: 0;
+    animation: LowerGradientFadeIn 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+}
+
+@keyframes LowerGradientFadeIn {
+    to {
+        opacity: 1;
+
+    }
+}
+
+.anchor.dashed-border::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: 0;
+    background: repeating-linear-gradient(to right, #eee, #eee 10px, transparent 10px, transparent 20px);
+    /* animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite; */
+    animation: anchorAnimation 4s linear infinite;
+}
+
+.anchor.not-bright::after {
     opacity: 0.5;
 }
+
 .anchor.lowest-brightness::after {
     opacity: 0.2;
+
+    .anchor.bright-brightness::before {
+        opacity: 1;
+    }
+
+    .anchor.dim-brightness::before {
+        opacity: 0.5;
+    }
+
+    .anchor.dimmest-brightness::before {
+        opacity: 0.2;
+    }
 }
+
+
 @keyframes anchorAnimation {
-    0%, 100% {
+
+    0%,
+    100% {
         width: 0%;
         left: 0%;
-   }
+    }
+
     50% {
         width: 100%;
         left: 0%;
-   }
+    }
+
     100% {
         width: 0%;
         left: 100%;
-   }
+    }
 }
 
 .infinite-link {

@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export default async function fetchGitLabData() {
   try {
     const accessToken = process.env.NEXT_PUBLIC_GITLAB_ACCESS_TOKEN;

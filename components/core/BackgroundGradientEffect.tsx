@@ -1,59 +1,28 @@
-"use client"
+'use client';
+import { SetStateAction, useState } from "react";
 
-import { useEffect, useRef, useState } from "react"
+function Gradient() {
+  const [x, setX] = useState(50);
+  const [y, setY] = useState(90);
 
-export default function BackgroundGradientEffect({
-  zIndex = 0,
-  opacity = 0.1,
-  color = "#B945CC",
-}) {
-  const gradientRef = useRef<HTMLDivElement>(null)
-  const [scrollOpacity, setScrollOpacity] = useState(opacity)
+  const handleMouseMove = (event: { clientX: SetStateAction<number>; clientY: SetStateAction<number>; }) => {
 
-  useEffect(() => {
-    if (!gradientRef.current) return
+    setY(Number(event.clientX) / window.innerHeight * 10 + Math.random());
+    setY(Number(event.clientY) / window.innerHeight * 10 + Math.random());
+  };
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight
-      const normalizedScroll = scrollPosition / maxScroll
-      const updatedOpacity = opacity - normalizedScroll * opacity
-
-      setScrollOpacity(updatedOpacity)
-    }
-
-    const handleMouseMove = (event: MouseEvent) => {
-      const { clientX, clientY, screenX, screenY } = event
-      const x = (clientX / window.innerWidth) * 100
-      const y = (clientY / window.innerHeight) * 100
-
-      gradientRef.current.style.backgroundImage = `radial-gradient(at ${x}% ${y}%, rgba(185, 69, 204, ${scrollOpacity}), rgba(53, 91, 224, ${scrollOpacity}))`
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    window.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [opacity, scrollOpacity])
+  const gradientIntensity = 0.07;
 
   return (
     <div
-      className="BackgroundGradientEffect pointer-events-none h-[100vh] fixed inset-0 mx-0 max-w-none rotate-180 overflow-hidden"
-      style={{ zIndex }}
+      className="h-screen fixed bottom-0 w-screen"
+      onMouseMove={handleMouseMove}
+      style={{
+        background: `radial-gradient(ellipse 60% 50% at ${x}% ${y}%, rgba(45,212,191,${gradientIntensity}), rgba(8,0,0,0))`
+      }}
     >
-      <div className="absolute left-1/3 top-0 ml-[-30rem] h-[30rem] w-[120rem] [mask-image:linear-gradient(white,transparent)]">
-        <div
-          ref={gradientRef}
-          className="absolute inset-0 bg-gradient-to-r"
-          style={{
-            backgroundImage: `radial-gradient(farthest-side_at_top, ${color}, transparent)`,
-          }}
-        ></div>
-      </div>
     </div>
-  )
+  );
 }
+
+export default Gradient;

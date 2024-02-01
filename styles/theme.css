@@ -16,7 +16,7 @@ body {
     }
 }
 
-html,
+/* html,
 body {
     position: relative;
 
@@ -29,6 +29,6 @@ body::after {
     height: 100%;
     left: 0;
     top: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, 0.149) 0, rgba(8, 0, 0, 0));
+    background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, 0.149) 0, hsla(0, 100%, 2%, 0));
     z-index: -5;
-}
+} */

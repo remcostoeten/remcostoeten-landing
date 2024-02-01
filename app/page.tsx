@@ -5,7 +5,7 @@ import GitLabCommits from "@/components/core/data/GitlabIssues"
 import WIPToast from "@/components/effects/InProgressToast"
 import LatestArticle from "@/components/layout/homepage/Articles"
 import Intro from "@/components/layout/homepage/Intro"
-import VisualizeComponent from "@/core/lib/VisualizeComponent"
+import VisualizeComponent from "@/core/lib/VisualizeComponent.txt"
 
 export default function IndexPage() {
   return (

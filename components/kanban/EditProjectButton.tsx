@@ -2,13 +2,12 @@
 
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import { updateProjectTitle } from "@/core/database/firestore"
 import { fetchProjects } from "@/core/redux/projectsSlice"
 import { useAppDispatch } from "@/core/redux/store"
 import { Button, Form, Input, Modal, message } from "antd"
 
-import { updateProjectTitle } from "@/core/lib/database/firestore"
-
-import { useAuth } from "../../core/lib/database/auth"
+import { useAuth } from "../../core/database/auth"
 
 export const EditProjectButton: React.FC<{ projectTitle: string }> = ({
   projectTitle,

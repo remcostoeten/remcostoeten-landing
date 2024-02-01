@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import { useAuth } from "@/core/database/auth"
+import { delTask, updateTask } from "@/core/database/firestore"
 import { useAppDispatch, useAppSelector } from "@/core/redux/store"
 import { fetchTasks, tasksSelectors } from "@/core/redux/tasksSlice"
 import { EntityId } from "@reduxjs/toolkit/dist/entities/models"
@@ -9,8 +11,6 @@ import { Button, Form, Modal, Popconfirm, Space, message } from "antd"
 import dayjs from "dayjs"
 
 import { Task } from "@/core/types/kanban"
-import { useAuth } from "@/core/lib/database/auth"
-import { delTask, updateTask } from "@/core/lib/database/firestore"
 import { TaskForm } from "@/components/kanban/TaskForm"
 
 export const TaskEditModal: React.FC<{

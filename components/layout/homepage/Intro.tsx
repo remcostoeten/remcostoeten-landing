@@ -1,9 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { TooltipContent, TooltipTrigger } from "@c/ui/tooltip"
 
 import { Tooltip } from "@/components/ui/tooltip"
+import Link, { AnimatedLink } from "@/components/core/Link"
+import CustomTooltip from "@/components/effects/CustomTooltip"
 
 export default function Intro() {
   return (
@@ -36,19 +37,38 @@ export default function Intro() {
           </li>
         </ul>
         <p className="mt-4 leading-[1.8] text-neutral-800 md:leading-loose dark:text-neutral-300">
-          I am a recovering ex-Magento developer and currently building open
-          source software at{" "}
-          <Link
-            className="underline"
+          I am a recovering{" "}
+          <CustomTooltip
+            triggerClassName="tooltip-border"
+            trigger="ex-Magento developer"
+            AnimatedAnchor={true}
+            content="those 5 years of magento were hard, but i survived ❤️
+
+"
+          />{" "}
+          and currently building open source software at{" "}
+          <AnimatedLink
+            brightness="low"
+            border="dashed"
             href="https://gitlab.com/pleio/frontend"
             target="_blank"
           >
             Pleio
-          </Link>
+          </AnimatedLink>
           . Primarily working with TypeScript & Next.js, have done a little
           Python, Shell & Lua, and want to learn Go, OCaml 🐪 and DevOps.
         </p>
       </div>
+      <Link
+        href="https://next-shadcn-dashboard-starter.vercel.app/dashboard/kanban"
+        target="_blank"
+      >
+        https://next-shadcn-dashboard-starter.vercel.app/dashboard/kanban
+      </Link>
+      <Link href="https://ui.jln.dev" target="_blank">
+        https://ui.jln.dev
+      </Link>
+      bui
       <hr className="my-8" />
     </div>
   )

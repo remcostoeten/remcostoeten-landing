@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "@/core/redux/store"
 import { selectThemeMode, setTheme } from "@/core/redux/themeSlice"

@@ -39,7 +39,7 @@
         "./.contentlayer/generated"
       ]
     },
-    "strictNullChecks": false // Change this to false
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
@@ -48,8 +48,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-
-    "*pages*", // Add this line
     "node_modules"
   ]
 }

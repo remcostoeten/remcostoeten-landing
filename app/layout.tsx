@@ -1,4 +1,7 @@
+import MobileNavigation from "@c/core/MobileNavigation"
+
 import "@/styles/globals.css"
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
@@ -9,9 +12,11 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
+import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
+import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
-import SiteHeader from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -22,18 +27,18 @@ export const viewport = {
   ],
 }
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   icons: {
-//     icon: "/favicon.ico",
-//     shortcut: "/favicon-16x16.png",
-//     apple: "/apple-touch-icon.png",
-//   },
-// }
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -44,12 +49,21 @@ export default function RootLayout({ children }) {
             <head />
             <link rel="canonical" href={siteConfig.url} />
             <TooltipProvider>
+              {/* <body
+                className={cn(
+                  " min-h-screen  overflow-x-hidden font-sans antialiased",
+                  fontSora.variable
+                )}
+              > */}
               <body
                 className={cn(
-                  "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+                  " min-h-screen overflow-x-hidden  font-sans antialiased",
                   fontSora.variable
                 )}
               >
+                <MobileNavigation />
+                {/* <HeroPattern /> */}
+
                 <NextTopLoader color="#2dd4bf" height={5} />
                 <ThemeProvider
                   attribute="class"
@@ -61,6 +75,7 @@ export default function RootLayout({ children }) {
                       {children}
                     </div>
                   </ShellLayout>
+                  <BackgroundGradientEffect zIndex={-1} />
                   <TailwindIndicator />
                 </ThemeProvider>
                 <SpeedInsights />

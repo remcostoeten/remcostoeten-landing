@@ -1,3 +1,13 @@
+export type GuestbookEntry = {
+  id?: string
+  user?: string
+  avatar?: string
+  text?: string
+  timestamp?: any
+  country?: string
+  uniqueId?: string
+}
+
 export interface LabelPillProps {
   label?: string
   color?: string

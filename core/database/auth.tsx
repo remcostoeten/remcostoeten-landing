@@ -1,12 +1,12 @@
+"use client"
+
 import { createContext, useContext, useEffect, useState } from "react"
 import { User } from "firebase/auth"
 
 import { AuthState, UserInfo } from "@/core/types/kanban"
-import { auth } from "@/core/lib/database/google"
 
-/**
- * Firebase auth subscriber. return user and loading
- */
+import { auth } from "./firebase"
+
 export function useFirebaseAuth() {
   const [user, setUser] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState<boolean>(true)

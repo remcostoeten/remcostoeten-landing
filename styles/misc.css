@@ -1,0 +1,42 @@
+.year-circle {
+    position: relative;
+}
+
+.tooltip-border {
+    border-bottom: 2px dashed #26211d;
+    position: relative;
+}
+
+.year-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border: 2px solid hsl(var(--border));
+    border-radius: 50%;
+    left: -16px;
+    top: 0;
+    z-index: 2;
+}
+
+.year-circle::after {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 55%;
+    transform: translateY(-50%);
+    background-color: hsl(var(--border));
+    height: 80%;
+    width: 1px;
+
+}
+
+.year-icon {
+    position: absolute;
+    z-index: 4;
+    left: -11px;
+    z-index: 4;
+    top: 6px;
+}

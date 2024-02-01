@@ -1,26 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth"
 
-import { Icons } from "@/components/icons"
+import { navigationMenuItems } from "@/core/config/menu"
 import { ThemeToggle } from "@/components/theme-toggle"
+import AuthMenu from "@/app/(auth)/components/AuthMenu"
 
-import Seperator from "./layout/Seperator"
-import LoginLinkAuth from "./menu/LoginLinkAuth"
-import MenuItem from "./menu/MenuItem"
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-
-const navigationMenu = [
-  { label: "Home", icon: Icons.home, href: "/" },
-  { label: "Blog", icon: Icons.code, href: "blog" },
-  { label: "Issues", icon: Icons.todo, href: "issues" },
-  { label: "Kanban", icon: Icons.kanban, href: "kanban" },
-  { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
-  { label: "About", href: "about", icon: Icons.user },
-  { label: "Contact", icon: Icons.mail },
-]
+import Seperator from "../layout/Seperator"
+import LoginLinkAuth from "../menu/LoginLinkAuth"
+import MenuItem from "../menu/MenuItem"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
 export default function SiteHeader({
   children,
@@ -33,7 +24,6 @@ export default function SiteHeader({
     const auth = getAuth()
     const unsubscribe = onAuthStateChanged(auth, setUser)
 
-    // It's important to unsubscribe when the component unmounts
     return () => unsubscribe()
   }, [])
 
@@ -62,13 +52,23 @@ export default function SiteHeader({
               )}
             </div>
           </div>
-          <div>
-            <div className="font-bold text-blacktheme dark:text-white">
-              {isAuthenticated && user?.displayName && <>{user?.displayName}</>}{" "}
+          <div className="flex items-center justify-between  w-full text-blacktheme dark:text-white  leading-none font-normal">
+            {isAuthenticated && user?.displayName && (
+              <>
+                {user.displayName.split(" ").map((part, index) => (
+                  <React.Fragment key={index}>
+                    {part}
+                    {index < user.displayName.split(" ").length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+                <AuthMenu />
+              </>
+            )}{" "}
+            <div className="flex flex-col">
               {!isAuthenticated && <>Remco Stoeten</>}
-            </div>
-            <div className="text-sm text-blacktheme dark:text-gray-400">
-              {!isAuthenticated && <>@remcostoeten</>}
+              <div className="text-sm text-blacktheme dark:text-gray-400">
+                {!isAuthenticated && <>@remcostoeten</>}
+              </div>{" "}
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function SiteHeader({
           </div>
           <Seperator spacing="12" />
           <ul className="grow">
-            {navigationMenu.map((navItem, index) => {
+            {navigationMenuItems.map((navItem, index) => {
               return (
                 <MenuItem
                   key={index}

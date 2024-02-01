@@ -1,19 +1,15 @@
 import { useEffect } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { useAuth } from "@/core/database/auth"
+import { signIn } from "@/core/database/google"
 import { Button, Typography, theme } from "antd"
 import { User } from "firebase/auth"
 import { FcGoogle } from "react-icons/fc"
 import { HiOutlineClipboardList } from "react-icons/hi"
 
-import { useAuth } from "@/core/lib/database/auth"
-import { signIn } from "@/core/lib/database/google"
-
 const { Title, Text } = Typography
 
-/**
- * redirect if user has logged in
- */
 const useRedirect = () => {
   const router = useRouter()
   const { user, loading } = useAuth() as { user: User | null; loading: boolean }

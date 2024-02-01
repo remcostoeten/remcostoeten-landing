@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
+import { useAuth } from "@/core/database/auth"
+import { delProject, updateTask } from "@/core/database/firestore"
 import { fetchProjects } from "@/core/redux/projectsSlice"
 import { useAppDispatch } from "@/core/redux/store"
 import { taskMovePhase } from "@/core/redux/tasksSlice"
@@ -21,8 +23,6 @@ import {
   OnDragEndResponder,
 } from "react-beautiful-dnd"
 
-import { useAuth } from "@/core/lib/database/auth"
-import { delProject, updateTask } from "@/core/lib/database/firestore"
 import { EditProjectButton } from "@/components/kanban/EditProjectButton"
 import { Item } from "@/components/kanban/Item"
 import { ItemCollection } from "@/components/kanban/ItemCollection"

@@ -1,13 +1,12 @@
 //https://firebase.google.com/docs/auth/web/google-signin?hl=en&authuser=0#web-version-9_1
 
+import { app } from "@/core/database/firebase"
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithRedirect,
   signOut as signOutAlias,
 } from "firebase/auth"
-
-import { app } from "@/core/lib/database/firebase"
 
 const provider = new GoogleAuthProvider()
 

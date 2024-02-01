@@ -1,7 +1,7 @@
 'use client';
 import { SetStateAction, useState } from "react";
 
-function Gradient() {
+export default function Gradient() {
   const [x, setX] = useState(50);
   const [y, setY] = useState(90);
 
@@ -24,5 +24,3 @@ function Gradient() {
     </div>
   );
 }
-
-export default Gradient;

@@ -1,9 +1,14 @@
-import fetch from "node-fetch"
+import fetch from "node-fetch";
 
 export default async function fetchGitLabData() {
   try {
-    const accessToken = process.env.NEXT_PUBLIC_GITLAB_ACCESS_TOKEN
-    const username = "remcostoeten"
+    const accessToken = process.env.NEXT_PUBLIC_GITLAB_ACCESS_TOKEN;
+
+    if (!accessToken) {
+      throw new Error("GitLab access token not provided");
+    }
+
+    const username = "remcostoeten";
 
     const userResponse = await fetch(
       `https://gitlab.com/api/v4/users?username=${username}`,
@@ -12,60 +17,40 @@ export default async function fetchGitLabData() {
           "PRIVATE-TOKEN": accessToken,
         },
       }
-    )
+    );
 
     if (!userResponse.ok) {
-      throw new Error("Failed to fetch GitLab user")
+      throw new Error("Failed to fetch GitLab user");
     }
 
-    const userData = await userResponse.json()
-    const userId = userData[0].id
+    const userData = await userResponse.json();
+    const userId = userData[0].id;
 
-    const projectsResponse = await fetch(
-      `https://gitlab.com/api/v4/users/${userId}/projects`,
+    const activitiesResponse = await fetch(
+      `https://gitlab.com/api/v4/users/${userId}/events?per_page=50`,
       {
         headers: {
           "PRIVATE-TOKEN": accessToken,
         },
       }
-    )
+    );
 
-    if (!projectsResponse.ok) {
-      throw new Error("Failed to fetch GitLab projects")
+    if (!activitiesResponse.ok) {
+      throw new Error("Failed to fetch GitLab activities");
     }
 
-    const projectsData = await projectsResponse.json()
+    const activitiesData = await activitiesResponse.json();
 
-    const commitsData = await Promise.all(
-      (projectsData as any[]).map(async (project) => {
-        const commitsResponse = await fetch(
-          `https://gitlab.com/api/v4/projects/${encodeURIComponent(
-            project.id
-          )}/repository/commits?author_username=${encodeURIComponent(
-            username
-          )}`,
-          {
-            headers: {
-              "PRIVATE-TOKEN": accessToken,
-            },
-          }
-        )
-
-        if (!commitsResponse.ok) {
-          throw new Error("Failed to fetch GitLab commits")
-        }
-
-        return await commitsResponse.json()
-      })
-    )
+    console.log("Fetched GitLab activities successfully");
+    console.log(activitiesData); // Log the fetched activities data
 
     return {
-      commits: commitsData.flat(),
-    }
+      activities: activitiesData,
+    };
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return {
-      commits: [],
-    }
+      activities: [],
+    };
   }
 }

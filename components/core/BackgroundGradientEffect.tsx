@@ -1,11 +1,11 @@
 'use client';
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 export default function Gradient() {
   const [x, setX] = useState(50);
   const [y, setY] = useState(90);
 
-  const handleMouseMove = (event: { clientX: SetStateAction<number>; clientY: SetStateAction<number>; }) => {
+  const handleMouseMove = (event: { clientX: number; clientY: number; }) => {
 
     setY(Number(event.clientX) / window.innerHeight * 10 + Math.random());
     setY(Number(event.clientY) / window.innerHeight * 10 + Math.random());

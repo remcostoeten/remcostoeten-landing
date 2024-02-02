@@ -62,8 +62,6 @@ export default function RootLayout({ children }) {
                 )}
               >
                 <MobileNavigation />
-                {/* <HeroPattern /> */}
-
                 <NextTopLoader color="#2dd4bf" height={5} />
                 <ThemeProvider
                   attribute="class"
@@ -75,7 +73,6 @@ export default function RootLayout({ children }) {
                       {children}
                     </div>
                   </ShellLayout>
-                  <BackgroundGradientEffect zIndex={-1} />
                   <TailwindIndicator />
                 </ThemeProvider>
                 <SpeedInsights />

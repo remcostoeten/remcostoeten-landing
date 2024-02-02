@@ -9,7 +9,7 @@ export default function IndexPage() {
   return (
     <>
       <WIPToast />
-      <GitlabIssues />
+      {/* <GitlabIssues /> */}
       <section className="container items-center gap-2 !p-0 md:grid ">
         <Intro />
         <LatestArticle />

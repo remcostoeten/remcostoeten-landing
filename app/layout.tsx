@@ -19,6 +19,8 @@ import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ApolloProvider } from '@apollo/client';
+import ApolloWrapper from "@/core/database/ApolloWrapper";
 
 export const viewport = {
   themeColor: [
@@ -27,61 +29,64 @@ export const viewport = {
   ],
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-}
+// export const metadata: Metadata = {
+//   title: {
+//     default: siteConfig.name,
+//     template: `%s - ${siteConfig.name}`,
+//   },
+//   description: siteConfig.description,
+//   icons: {
+//     icon: "/favicon.ico",
+//     shortcut: "/favicon-16x16.png",
+//     apple: "/apple-touch-icon.png",
+//   },
+// }
 
 export default function RootLayout({ children }) {
   return (
-    <HydrationOverlay>
-      <AuthUserProvider>
-        <ReduxProvider>
-          <html lang="en" suppressHydrationWarning>
-            <head />
-            <link rel="canonical" href={siteConfig.url} />
-            <TooltipProvider>
-              {/* <body
+    <ApolloWrapper>
+      <HydrationOverlay>
+        <AuthUserProvider>
+          <ReduxProvider>
+            <html lang="en" suppressHydrationWarning>
+              <head />
+              <link rel="canonical" href={siteConfig.url} />
+              <TooltipProvider>
+                {/* <body
                 className={cn(
                   " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               > */}
-              <body
-                className={cn(
-                  " min-h-screen overflow-x-hidden  font-sans antialiased",
-                  fontSora.variable
-                )}
-              >
-                <MobileNavigation />
-                <NextTopLoader color="#2dd4bf" height={5} />
-                <ThemeProvider
-                  attribute="class"
-                  defaultTheme="system"
-                  enableSystem
+                <body
+                  className={cn(
+                    " min-h-screen overflow-x-hidden  font-sans antialiased",
+                    fontSora.variable
+                  )}
                 >
-                  <ShellLayout header={<SiteHeader />}>
-                    <div className="transition-all duration-300 sm:max-w-[854px]">
-                      {children}
-                    </div>
-                  </ShellLayout>
-                  <TailwindIndicator />
-                </ThemeProvider>
-                <SpeedInsights />
-                <Analytics />
-              </body>
-            </TooltipProvider>
-          </html>
-        </ReduxProvider>
-      </AuthUserProvider>
-    </HydrationOverlay>
+                  <MobileNavigation />
+                  <NextTopLoader color="#2dd4bf" height={5} />
+                  <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                  >
+                    <ShellLayout header={<SiteHeader />}>
+                      <div className="transition-all duration-300 sm:max-w-[854px]">
+                        {children}
+                      </div>
+                    </ShellLayout>
+                    <TailwindIndicator />
+                  </ThemeProvider>
+                  <SpeedInsights />
+                  <Analytics />
+                </body>
+              </TooltipProvider>
+            </html>
+          </ReduxProvider>
+        </AuthUserProvider>
+      </HydrationOverlay>
+    </ApolloWrapper>
+
   )
 }

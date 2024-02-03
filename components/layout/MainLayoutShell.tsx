@@ -18,16 +18,15 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
     setSidebarVisible(!sidebarVisible)
   }
   return (
-    <div className="mx-auto sm:flex md:max-w-[1440px] pt-8">
+    <div className="mx-auto sm:flex md:max-w-[1440px] p-8">
       <AnimatedElement
         as="aside"
         duration={0.8}
         ease={BEZIER_CURVES.BEZIERWTO}
         x={5}
         y={5}
-        className={`${
-          sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
-        } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
+        className={`${sidebarVisible ? "sidebar-hidden" : "sidebar-visible"
+          } mx-auto sm:flex md:max-w-[1440px] lg:px-8`}
       >
         {header}
       </AnimatedElement>
@@ -38,7 +37,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         x={5}
         y={5}
         delay={0.3}
-        className="flex-1 p-8"
+        className="flex-1 px-8"
       >
         {children}
         <Button

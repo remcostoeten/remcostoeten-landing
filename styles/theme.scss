@@ -11,7 +11,7 @@
     height: 100%;
     transform: translateX(-100vw);
     pointer-events: none;
-    animation: morphBodyGradient 25s ease-in-out infinite alternate;
+    /* animation: morphBodyGradient 25s ease-in-out infinite alternate; */
     /* background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0)); */
 }
 
@@ -54,5 +54,5 @@
 
 html,
 body {
-    background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0));
+    background-image: $green-gradient ;
 }

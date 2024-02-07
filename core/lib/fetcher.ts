@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { unstable_cache } from "next/cache"
-
-import prisma from "@/core/lib/prisma"
+import prisma from "@/core/database/prisma"
 
 export const getViews = async (slug: string) => {
   const cachedValue = await unstable_cache(

@@ -4,6 +4,7 @@
  * @module signin-providers
  */
 
+import { auth } from "@/core/database/firebase"
 import {
   useSendSignInLinkToEmail,
   useSignInWithApple,
@@ -17,8 +18,6 @@ import {
   useSignInWithYahoo,
   useSignOut,
 } from "react-firebase-hooks/auth"
-
-import { auth } from "@/core/lib/database/firebase"
 
 export function useGithubSignIn() {
   return useSignInWithGithub(auth)

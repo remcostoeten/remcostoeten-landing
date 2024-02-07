@@ -50,15 +50,15 @@
         "suppressExcessPropertyErrors": true,
         "suppressImplicitAnyIndexErrors": true
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts",
-        "app/(dashboard)/finance/page.tst"
-    ],
-    "exclude": [
-        "*pages*",
-        "node_modules"
-    ]
+    "strictNullChecks": false
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

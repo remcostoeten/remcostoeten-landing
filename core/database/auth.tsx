@@ -1,20 +1,12 @@
+"use client"
+
 import { createContext, useContext, useEffect, useState } from "react"
 import { User } from "firebase/auth"
 
-import { auth } from "@/core/lib/database/google"
+import { AuthState, UserInfo } from "@/core/types/kanban"
 
-interface UserInfo {
-  displayName: string | null
-  email: string | null
-  phoneNumber: string | null
-  photoURL: string | null
-  providerId: string
-  uid: string
-}
+import { auth } from "./firebase"
 
-/**
- * Firebase auth subscriber. return user and loading
- */
 export function useFirebaseAuth() {
   const [user, setUser] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
@@ -49,11 +41,6 @@ export function useFirebaseAuth() {
     user,
     loading,
   }
-}
-
-interface AuthState {
-  user: UserInfo | null
-  loading: boolean
 }
 
 export const authContext = createContext<AuthState>({

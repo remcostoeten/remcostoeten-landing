@@ -12,7 +12,7 @@ import {
 
 import { Task, TaskStatus } from "@/core/types/kanban"
 
-import { useAuth } from "../../core/lib/database/auth"
+import { useAuth } from "../../core/database/auth"
 
 const taskStatusIdx: { [x in TaskStatus]: number } = {
   closed: 0,

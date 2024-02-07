@@ -2,6 +2,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import { auth, firestore } from "@/core/database/firebase"
 import { Button } from "@c/ui/button"
 import {
   addDoc,
@@ -16,7 +17,6 @@ import {
 import { AnimatePresence, motion } from "framer-motion"
 
 import { convertToEmoji } from "@/core/lib/countryToFlag"
-import { auth, firestore } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc"
 import {
@@ -32,17 +32,8 @@ import WIPToast from "@/components/effects/InProgressToast"
 import { Icons } from "@/components/icons"
 import IntroShell from "@/components/layout/IntroShell"
 
+import { GuestbookEntry } from "../issues/compopnents/types"
 import GuestbookComments from "./components/GuestBookComments"
-
-type GuestbookEntry = {
-  id?: string
-  user?: string
-  avatar?: string
-  text?: string
-  timestamp?: any
-  country?: string
-  uniqueId?: string
-}
 
 export default function GuestBookPage() {
   const [entries, setEntries] = useState<GuestbookEntry[]>([])
@@ -112,23 +103,6 @@ export default function GuestBookPage() {
     "Entry deleted successfully!",
     "Error deleting entry!"
   )
-
-  const handleCrudOperation = async (operation: "delete" | "update") => {
-    setIsLoading(true)
-    try {
-      if (operation === "delete") {
-        deleteDoc(doc(firestore, "guestbook", id))
-      } else if (operation === "update") {
-        // await updateDoc(doc(firestore, "guestbook", id), {
-        //     text: "updated text",
-        // })
-      }
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const handleSignIn = async (provider: "github" | "google") => {
     setIsLoading(true)
@@ -243,7 +217,11 @@ export default function GuestBookPage() {
                           />
                         </PaginationItem>
                       )}
+
                       {totalPageArray.map((page) => {
+                        if (totalPages <= 1) {
+                          return null
+                        }
                         if (
                           page + 1 >= currentPage - 3 &&
                           page + 1 <= currentPage + 3

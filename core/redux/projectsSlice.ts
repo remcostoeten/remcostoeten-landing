@@ -1,7 +1,7 @@
+import { getProjects } from "@/core/database/firestore"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 import { Project } from "@/core/types/kanban"
-import { getProjects } from "@/core/lib/database/firestore"
 
 import { RootState } from "./store"
 

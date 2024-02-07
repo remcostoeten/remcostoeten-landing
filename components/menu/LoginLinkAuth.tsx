@@ -1,12 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { auth } from "@/core/database/firebase"
 import { Label } from "@radix-ui/react-label"
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth"
-import { PiClosedCaptioningThin } from "react-icons/pi"
 import { toast } from "sonner"
 
-import { auth } from "@/core/lib/database/firebase"
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
 import Sprinkle from "../effects/Sprinkle"
@@ -28,6 +27,7 @@ import {
   CardTitle,
 } from "../ui/card"
 import { Input } from "../ui/input"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
 export default function LoginLink() {
   const [isOpen, setIsOpen] = useState(false)

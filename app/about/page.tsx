@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import { experiences } from "@/core/config/about"
 import Pill from "@/components/Pill"
+import IntroShell from "@/components/layout/IntroShell"
 
 const iconPaths = [
   "/about/saas.svg",
@@ -24,6 +25,10 @@ const ListItem = ({ children }) => {
 export default function TimelineComponent() {
   return (
     <>
+      <IntroShell
+        title="About me 🙋🏼‍♂️"
+        description="A brief collection off some projects  and technologies used paired with my college degree, interneship or past/present job."
+      />
       <ul className="flex flex-col space-y-6">
         {experiences.map((experience, index) => {
           const iconPath = iconPaths[index % iconPaths.length]

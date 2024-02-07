@@ -1,13 +1,14 @@
-'use client';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+"use client"
+
+import { ApolloClient, InMemoryCache } from "@apollo/client"
 
 const client = new ApolloClient({
-    uri: 'https://api.github.com/graphql',
-    cache: new InMemoryCache(),
-    headers: {
-        Authorization: 'Bearer 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',
-    },
-});
+  uri: "https://api.github.com/graphql",
+  cache: new InMemoryCache(),
+  headers: {
+    Authorization:
+      "Bearer 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",
+  },
+})
 
-export default client;
-
+export default client

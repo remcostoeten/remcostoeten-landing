@@ -13,10 +13,16 @@ export default function IndexPage() {
       <WIPToast />
       {/* <GitlabIssues /> */}
       <section className="container items-center gap-2 !p-0 md:grid ">
-        <Intro />
-        <GithubContributionCards />
-        <GitHubCalendar username="remcostoeten" />
-        <LatestArticle />
+        <div className="section-wrapper--big">
+          <Intro />
+        </div>
+        <div className="section-wrapper">
+          <LatestArticle />
+        </div>
+        <div className="section-wrapper--small">
+          <GitHubCalendar username="remcostoeten" />
+          <GithubContributionCards />
+        </div>
       </section>
     </>
   )

@@ -481,7 +481,7 @@ c0.8,0,1.5-0.7,1.5-1.5V17.5z"
       <circle cx="12" cy="7" r="4" />
     </svg>
   ),
-  filter: (props: LucideProps) => (
+  filter: (props: ExtendedLucideProps) => (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
@@ -497,7 +497,7 @@ c0.8,0,1.5-0.7,1.5-1.5V17.5z"
       <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
     </svg>
   ),
-  arrowRight: (props: LucideProps) => (
+  arrowRight: (props: ExtendedLucideProps) => (
     <svg
       width="15"
       height="15"
@@ -514,7 +514,7 @@ c0.8,0,1.5-0.7,1.5-1.5V17.5z"
       ></path>
     </svg>
   ),
-  arrowTop: (props: LucideProps) => (
+  arrowTop: (props: ExtendedLucideProps) => (
     <svg
       width="15"
       height="15"
@@ -531,7 +531,7 @@ c0.8,0,1.5-0.7,1.5-1.5V17.5z"
       ></path>
     </svg>
   ),
-  arrowBottom: (props: LucideProps) => (
+  arrowBottom: (props: ExtendedLucideProps) => (
     <svg
       width="15"
       height="15"

@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import IssueTableSkeleton from "@/components/effects/Skeleton"
+import { IssueTableSkeleton } from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
 import IntroShell from "@/components/layout/IntroShell"
 

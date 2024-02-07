@@ -67,7 +67,7 @@ export default function Intro() {
                     . Primarily working with TypeScript & Next.js, have done a little
                     Python, Shell & Lua, and i'd like to dive into Go and DevOps in the near future.
                 </p>
-                <Button variant="outline" className="text-neutral-800 dark:text-neutral-400 justify-end text-right "><Link href="/about">Read more here</Link></Button>
+                <Button variant="outline" className="mt-4 text-neutral-800 dark:text-neutral-400 justify-end text-right "><Link href="/about">Read more here</Link></Button>
             </div>
         </div>
     )

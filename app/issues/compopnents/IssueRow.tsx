@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import Skeleton from "@/components/effects/Skeleton"
+import { SkeletonBar } from "@/components/effects/Skeleton"
 import { Icons } from "@/components/icons"
 
 import LabelPill from "./LabelPill"
@@ -25,7 +25,7 @@ export default function IssueRow({
   onCheckboxChange,
 }: IssueRowProps) {
   return (
-    <Suspense fallback={<Skeleton />}>
+    <Suspense fallback={<SkeletonBar />}>
       <TableRow className="border-b transition-colors hover:bg-muted/15 data-[state=selected]:bg-muted">
         <TableCell>
           <Checkbox onChange={onCheckboxChange} />
@@ -54,7 +54,6 @@ export default function IssueRow({
               {labels &&
                 labels.map((label, index) => (
                   <LabelPill
-                    key={index}
                     label={label.name}
                     color={lightenColor(`#${label.color}`, 55)}
                     background={lightenColor(`#${label.color}`, 0)}

@@ -1,8 +1,10 @@
 "use client"
 
+// In your Page component file
 import { Suspense, useEffect, useState } from "react"
 
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
+import { fetchGitLabIssues } from "@/core/lib/fetchGitlabIssue"
 import {
   Table,
   TableBody,
@@ -22,14 +24,21 @@ export default function Page() {
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const noResults = filteredTasks.length === 0 && !isLoading
 
   useEffect(() => {
     const fetchTasks = async () => {
       setIsLoading(true)
-      const fetchedTasks = await fetchGithubIssues()
-      setTasks(fetchedTasks)
-      setFilteredTasks(fetchedTasks)
+
+      const githubIssues = await fetchGithubIssues()
+      const gitlabIssues = await fetchGitLabIssues({
+        boardId: 1192495,
+        label: "frontend",
+      })
+
+      const allTasks = [...githubIssues, ...gitlabIssues]
+
+      setTasks(allTasks)
+      setFilteredTasks(allTasks)
       setIsLoading(false)
     }
 
@@ -62,21 +71,18 @@ export default function Page() {
   return (
     <>
       <IntroShell
-        title="Github Issues"
-        description="These are all the Github issues fetched through the API regarding this project."
+        title="Github & GitLab Issues"
+        description="GitHub and GitLab issues fetched through the API regarding this project."
       />
       <Suspense fallback={<Spinner />}>
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
           {isLoading ? (
-            <div className="mt-4 flex flex-col gap-[5px] ">
+            <div className="mt-4 flex flex-col gap-[5px]">
               <IssueTableSkeleton />
             </div>
           ) : (
-            <Table
-              key="1"
-              className="divide-y divide-gray-900 !rounded-md border text-white"
-            >
+            <Table className="divide-y divide-gray-900 !rounded-md border text-white">
               <TableHeader className="[&_tr]:border-b">
                 <TableRow>
                   <TableHead className="w-[50px]" />
@@ -87,42 +93,20 @@ export default function Page() {
               </TableHeader>
               <TableBody>
                 {filteredTasks.length > 0 ? (
-                  filteredTasks.map((task) => {
-                    const priorityLabels = [
-                      "Medium priority",
-                      "High priority",
-                      "Low priority",
-                    ]
-                    const filteredLabels = task.labels
-                      ? task.labels.filter(
-                          (label) => !priorityLabels.includes(label.name)
-                        )
-                      : []
-                    const priorityLabel = task.labels
-                      ? task.labels.find((label) =>
-                          priorityLabels.includes(label.name)
-                        )
-                      : undefined
-                    const strippedPriorityLabel =
-                      priorityLabel &&
-                      priorityLabel.name.replace(" priority", "")
-
-                    return (
-                      <IssueRow
-                        taskId={task.code}
-                        labels={filteredLabels}
-                        title={task.title}
-                        url={task.url}
-                        priority={strippedPriorityLabel}
-                        onCheckboxChange={() => {
-                          console.log(
-                            `Checkbox for task ${task.number} changed`
-                          )
-                        }}
-                        dates={[]}
-                      />
-                    )
-                  })
+                  filteredTasks.map((task) => (
+                    <IssueRow
+                      key={task.id}
+                      taskId={task.code}
+                      labels={task.labels}
+                      title={task.title}
+                      url={task.url}
+                      priority={task.status === "todo" ? "Medium" : "High"}
+                      onCheckboxChange={() => {
+                        console.log(`Checkbox for task ${task.id} changed`)
+                      }}
+                      dates={[]}
+                    />
+                  ))
                 ) : (
                   <div className="w-max p-4 text-gray-400">
                     🤔 Oops! No results found for &quot;{searchTerm}&quot; 🧐

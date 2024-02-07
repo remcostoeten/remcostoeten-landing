@@ -42,9 +42,7 @@ export default function GuestBookComments({
               <div>
                 <div className="flex flex-col">
                   <div className="font-semibold">
-                    {nameHandle}{" "}
-                    <span className="ml-2 text-xs font-light">from</span>{" "}
-                    {country}
+                    {nameHandle} {country}
                   </div>
                   <time className="text-xs text-gray-500 dark:text-gray-400">
                     {date}
@@ -54,7 +52,7 @@ export default function GuestBookComments({
               </div>
 
               {deleteComment && (
-                <button>
+                <button onClick={deleteComment}>
                   <Trash2Icon />
                 </button>
               )}

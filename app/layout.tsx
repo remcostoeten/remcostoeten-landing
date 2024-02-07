@@ -8,15 +8,13 @@ import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "sonner"
 
 import { siteConfig } from "@/core/config/site"
-import { fontSora } from "@/core/lib/fonts"
-import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import ShellLayout from "@/components/layout/MainLayoutShell"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
+import BodyShell from "@/components/layout/BodyShell"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const viewport = {

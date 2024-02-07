@@ -82,6 +82,44 @@ export const delProject = (userId: string, projectId: string) =>
     }
   })
 
+export const fetchAllSubCollections = async (
+  parentCollectionName: string,
+  subCollectionName: string
+) => {
+  try {
+    const parentCollRef = collection(db, parentCollectionName)
+    const parentSnapshot = await getDocs(parentCollRef)
+    const fetchPromises = parentSnapshot.docs.map((doc) =>
+      getDocs(collection(doc.ref, subCollectionName))
+    )
+    const subCollectionsSnapshots = await Promise.all(fetchPromises)
+    const documents = subCollectionsSnapshots.flatMap((snapshot) =>
+      snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+    )
+    return documents
+  } catch (error) {
+    console.error(
+      `Error fetching all ${subCollectionName} subcollections from ${parentCollectionName}:`,
+      error
+    )
+    return []
+  }
+}
+
+export const getData = async () => {
+  try {
+    const collectionName = "exampleCollection"
+    const collRef = collection(db, collectionName)
+    const snapshot = await getDocs(collRef)
+    const documents = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    console.log(documents)
+  } catch (error) {
+    console.error("Error fetching collection:", error)
+  }
+}
 export const updateTask = (
   userId: string,
   projectId: string,

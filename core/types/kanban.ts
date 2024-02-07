@@ -7,7 +7,6 @@ export interface UserInfo {
   readonly uid: string
 }
 
-
 export type ThemeMode = "light" | "dark"
 
 export interface Project {

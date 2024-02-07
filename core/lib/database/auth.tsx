@@ -1,8 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { User } from "firebase/auth"
 
-import { AuthState, UserInfo } from "@/core/types/kanban"
 import { auth } from "@/core/lib/database/google"
+
+interface UserInfo {
+  displayName: string | null
+  email: string | null
+  phoneNumber: string | null
+  photoURL: string | null
+  providerId: string
+  uid: string
+}
 
 /**
  * Firebase auth subscriber. return user and loading
@@ -41,6 +49,11 @@ export function useFirebaseAuth() {
     user,
     loading,
   }
+}
+
+interface AuthState {
+  user: UserInfo | null
+  loading: boolean
 }
 
 export const authContext = createContext<AuthState>({

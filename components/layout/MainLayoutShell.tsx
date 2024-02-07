@@ -38,7 +38,8 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
         x={5}
         y={5}
         delay={0.3}
-        className="flex-1 px-8"
+        className="flex-1 sm:px-'use client';
+                8"
       >
         {children}
         <Button

@@ -18,30 +18,30 @@ import NextTopLoader from "nextjs-toploader"
 import { ThemeProvider } from "@/components/kanban/ThemeProvider"
 
 export default function App({ Component, pageProps }: AppProps) {
-    return (
-        <AuthUserProvider>
-            <ReduxProvider>
-                <TooltipProvider>
-                    <divg
-                        className={cn(
-                            "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
-                            fontSora.variable
-                        )}
-                    >
-                        <NextTopLoader color="#2dd4bf" height={5} />
-                        <ThemeProvider>
-                            <ShellLayout header={<SiteHeader />}>
-                                <div className="transition-all duration-300 sm:max-w-[854px]">
-                                    <Component {...pageProps} />
-                                </div>
-                            </ShellLayout>
-                            <TailwindIndicator />
-                        </ThemeProvider>
-                        <SpeedInsights />
-                        <Analytics />
-                    </divg>
-                </TooltipProvider>
-            </ReduxProvider>
-        </AuthUserProvider>
-    )
+  return (
+    <AuthUserProvider>
+      <ReduxProvider>
+        <TooltipProvider>
+          <divg
+            className={cn(
+              "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
+              fontSora.variable
+            )}
+          >
+            <NextTopLoader color="#2dd4bf" height={5} />
+            <ThemeProvider>
+              <ShellLayout header={<SiteHeader />}>
+                <div className="transition-all duration-300 sm:max-w-[854px]">
+                  <Component {...pageProps} />
+                </div>
+              </ShellLayout>
+              <TailwindIndicator />
+            </ThemeProvider>
+            <SpeedInsights />
+            <Analytics />
+          </divg>
+        </TooltipProvider>
+      </ReduxProvider>
+    </AuthUserProvider>
+  )
 }

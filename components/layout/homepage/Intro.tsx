@@ -1,10 +1,12 @@
 "use client"
 
-import { TooltipContent, TooltipTrigger } from "@c/ui/tooltip"
+import Link from "next/link"
 
-import { Tooltip } from "@/components/ui/tooltip"
-import Link, { AnimatedLink } from "@/components/core/Link"
-import CustomTooltip from "@/components/effects/CustomTooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function Intro() {
   return (

@@ -17,7 +17,7 @@ export default function LatestArticle() {
   let startX
   let scrollLeft
 
-  function handleMouseDown(e) {
+  function handleMouseDown(e: { pageX: number }) {
     isDown = true
     startX = e.pageX - scrollContainer.current.offsetLeft
     scrollLeft = scrollContainer.current.scrollLeft

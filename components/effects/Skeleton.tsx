@@ -57,6 +57,12 @@ type ProfileSkeletonProps = {
   showLoader3?: boolean
 }
 
+export const BlogPlaceholder = () => {
+  return (
+    <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
+  )
+}
+
 
 export const GithubStatisticsSkeleton = () => {
   return (
@@ -107,7 +113,7 @@ export const ProfileSkeleton = ({
   )
 }
 
-const LoadingArticle = () => {
+export const LoadingArticle = () => {
   return (
     <div className="flex h-max min-w-[250px] flex-col space-y-2">
       <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
@@ -116,6 +122,8 @@ const LoadingArticle = () => {
     </div>
   )
 }
+
+export { SkeletonBar, IssueTableSkeleton }
 
 const IssueTableSkeleton = () => {
   const rows = "50"

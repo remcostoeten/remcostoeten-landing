@@ -7,11 +7,6 @@ export interface UserInfo {
   readonly uid: string
 }
 
-export interface AuthState {
-  readonly user: UserInfo | null
-  readonly loading: boolean
-}
-
 export type ThemeMode = "light" | "dark"
 
 export interface Project {

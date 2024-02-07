@@ -35,6 +35,7 @@ const Blog = defineDocumentType(() => ({
     publishedAt: { type: "string", required: true },
     summary: { type: "string", required: false },
     image: { type: "string", required: false },
+    tags: { type: "string", required: false },
     blurDataURL: { type: "string", required: false },
   },
   computedFields,
@@ -73,14 +74,6 @@ const contentLayerConfig = makeSource({
       rehypeSlug,
       rehypeCodeTitles,
       rehypePrism,
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ["anchor"],
-          },
-        },
-      ],
     ],
   },
 })

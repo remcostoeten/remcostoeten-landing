@@ -13,11 +13,13 @@ const MenuItem = ({
   href,
   icon,
   onClick,
+  badge,
   className = "",
   children,
   hideIcon = false,
 }: MenuItemProps) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [hasBadge, setHasBadge] = useState(!!badge) // Initialize hasBadge based on the presence of a badge
   const isExternalUrl = href?.includes("http")
   const isHashLink = href === "#"
   const pathname = usePathname()
@@ -33,10 +35,12 @@ const MenuItem = ({
 
   const handleMouseEnter = () => {
     setIsHovered(true)
+    setHasBadge(!!badge) // Update hasBadge based on the presence of a badge
   }
 
   const handleMouseLeave = () => {
     setIsHovered(false)
+    setHasBadge(!!badge) // Update hasBadge based on the presence of a badge
   }
 
   const elementProps = {
@@ -72,6 +76,7 @@ const MenuItem = ({
             className="-rotate-45 text-gray-500 lg:transition-all lg:duration-300"
           />
         )}
+        {hasBadge && <div className="flex space-x-1">{badge}</div>}
       </div>
     )
   }

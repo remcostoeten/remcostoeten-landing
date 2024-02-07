@@ -7,17 +7,14 @@ import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "sonner"
 
 import { siteConfig } from "@/core/config/site"
-import { fontSora } from "@/core/lib/fonts"
-import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import { HeroPattern } from "@/components/layout/HeroPattern"
-import ShellLayout from "@/components/layout/MainLayoutShell"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
+import BodyShell from "@/components/layout/BodyShell"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ApolloProvider } from '@apollo/client';
 import ApolloWrapper from "@/core/database/ApolloWrapper";
@@ -29,18 +26,18 @@ export const viewport = {
   ],
 }
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   icons: {
-//     icon: "/favicon.ico",
-//     shortcut: "/favicon-16x16.png",
-//     apple: "/apple-touch-icon.png",
-//   },
-// }
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+}
 
 export default function RootLayout({ children }) {
   return (

@@ -1,54 +1,43 @@
 {
-    "compilerOptions": {
-        "target": "es2015",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": false,
-        "forceConsistentCasingInFileNames": false,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "downlevelIteration": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "incremental": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "baseUrl": ".",
-        "paths": {
-            "react/jsx-runtime": [
-                "node_modules/react/jsx-runtime"
-            ],
-            "@/*": [
-                "./*"
-            ],
-            "@c/*": [
-                "./components/*"
-            ],
-            "contentlayer/generated": [
-                "./.contentlayer/generated"
-            ]
-        },
-        "strictNullChecks": false,
-        "noImplicitAny": false,
-        "noImplicitThis": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "noFallthroughCasesInSwitch": false,
-        "allowUnreachableCode": true,
-        "allowUnusedLabels": true,
-        "suppressExcessPropertyErrors": true,
-        "suppressImplicitAnyIndexErrors": true
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "react/jsx-runtime": [
+        "node_modules/react/jsx-runtime"
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "@c/*": [
+        "./components/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
     },
     "strictNullChecks": false
   },

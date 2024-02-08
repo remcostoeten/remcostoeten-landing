@@ -1,3 +1,4 @@
+'use client';
 import MobileNavigation from "@c/core/MobileNavigation"
 
 import "@/styles/globals.css"

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { toast } from "sonner"
 
@@ -23,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthUserProvider>
       <ReduxProvider>
         <TooltipProvider>
-          <divg
+          <div
             className={cn(
               "body-gradient min-h-screen overflow-x-hidden bg-background font-sans antialiased",
               fontSora.variable
@@ -40,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </ThemeProvider>
             <SpeedInsights />
             <Analytics />
-          </divg>
+          </div>
         </TooltipProvider>
       </ReduxProvider>
     </AuthUserProvider>

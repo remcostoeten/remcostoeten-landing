@@ -19,6 +19,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noImplicitReturns": false,
     "plugins": [
       {
         "name": "next"
@@ -39,7 +42,7 @@
         "./.contentlayer/generated"
       ]
     },
-    "strictNullChecks": false // Change this to false
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
@@ -48,8 +51,7 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-
-    "*pages*", // Add this line
+    "*pages*",
     "node_modules"
   ]
 }

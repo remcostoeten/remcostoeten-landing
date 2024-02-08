@@ -8,6 +8,7 @@ import { toast } from "sonner"
 
 import { useGithubSignIn, useGoogleSignIn } from "@/core/hooks/signin-providers"
 
+import Sprinkle from "../effects/Sprinkle"
 import { Icons } from "../icons"
 import {
   AlertDialog,

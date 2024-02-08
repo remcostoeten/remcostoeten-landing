@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 
 import FilterDropdown from "./FilterDropdown"
+import { ToggleGroupDemo } from "./ToggleIssueProvider"
 
 function TableToolbar({ onFilter, onSearch }) {
   const [labels, setLabels] = useState([])
@@ -33,12 +34,15 @@ function TableToolbar({ onFilter, onSearch }) {
 
   return (
     <div className="my-4 flex items-center justify-between space-x-4">
-      <Input
-        type="text"
-        placeholder="Search issues..."
-        value={searchTerm}
-        onChange={handleInputChange}
-      />
+      <div className="flex items-center gap-2   ">
+        <Input
+          type="text"
+          placeholder="Search issues..."
+          value={searchTerm}
+          onChange={handleInputChange}
+        />
+        <ToggleGroupDemo />
+      </div>
       <FilterDropdown
         clear={handleLabelRemove}
         labels={labels.map((label) => label.name)}

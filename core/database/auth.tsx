@@ -43,6 +43,11 @@ export function useFirebaseAuth() {
   }
 }
 
+interface AuthState {
+  user: UserInfo | null
+  loading: boolean
+}
+
 export const authContext = createContext<AuthState>({
   user: null,
   loading: false,

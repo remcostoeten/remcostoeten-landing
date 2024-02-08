@@ -1,0 +1,70 @@
+---
+title: "Create files alias for zsh"
+publishedAt: "26-01-2024"
+summary: "Create files alias for zsh"
+image: "/blog/web.png"
+blurDataURL: "Your blur data URL"
+---
+
+## Introduction
+
+Easy creation of multiple files with this alias.
+
+vim `~/.zshrc`
+
+```bash
+
+## function to create multiple files
+touchfiles() {
+  local path=$1
+  shift
+
+  if [ ! -d "$path" ]; then
+    echo "Error: The specified path does not exist."
+    return 1
+  fi
+
+  for file in "$@"; do
+    touch "$path/$file"
+  done
+}
+
+## alias to create multiple files
+
+alias touchfiles="touchfiles()"
+```
+
+Results you to allow for `touchfiles path/you/want file1.tsx file.2.tsx file3.tsx`
+
+First argument is _always_ the path. After that you can add as many files as you want.
+
+## Section 1
+
+Write your content here.
+
+## Section 2
+
+Write your content here.
+
+## Conclusion
+
+Summarize your key points and conclude your blog post.
+
+## Tech Stack (Optional)
+
+List the technologies used in your project, similar to the original template.
+
+- [Technology 1][tech1-link]
+- [Technology 2][tech2-link]
+- ...
+
+## Acknowledgments (Optional)
+
+If you want to give credit to any tools, libraries, or people, do it here.
+
+## Additional Resources (Optional)
+
+Provide links to relevant resources or references.
+
+[tech1-link]: https://example.com/tech1
+[tech2-link]: https://example.com/tech2

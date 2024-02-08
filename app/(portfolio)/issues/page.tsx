@@ -1,8 +1,10 @@
 "use client"
 
+// In your Page component file
 import { Suspense, useEffect, useState } from "react"
 
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
+import { fetchGitLabIssues } from "@/core/lib/fetchGitlabIssue"
 import {
   Table,
   TableBody,
@@ -22,14 +24,21 @@ export default function Page() {
   const [tasks, setTasks] = useState([])
   const [filteredTasks, setFilteredTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const noResults = filteredTasks.length === 0 && !isLoading
 
   useEffect(() => {
     const fetchTasks = async () => {
       setIsLoading(true)
-      const fetchedTasks = await fetchGithubIssues()
-      setTasks(fetchedTasks)
-      setFilteredTasks(fetchedTasks)
+
+      const githubIssues = await fetchGithubIssues()
+      const gitlabIssues = await fetchGitLabIssues({
+        boardId: 1192495,
+        label: "frontend",
+      })
+
+      const allTasks = [...githubIssues, ...gitlabIssues]
+
+      setTasks(allTasks)
+      setFilteredTasks(allTasks)
       setIsLoading(false)
     }
 
@@ -62,21 +71,18 @@ export default function Page() {
   return (
     <>
       <IntroShell
-        title="Github Issues"
-        description="These are all the Github issues fetched through the API regarding this project."
+        title="Github & GitLab Issues"
+        description="GitHub and GitLab issues fetched through the API regarding this project."
       />
       <Suspense fallback={<Spinner />}>
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
           {isLoading ? (
-            <div className="mt-4 flex flex-col gap-[5px] ">
+            <div className="mt-4 flex flex-col gap-[5px]">
               <IssueTableSkeleton />
             </div>
           ) : (
-            <Table
-              key="1"
-              className="divide-y divide-gray-900 !rounded-md border text-white"
-            >
+            <Table className="divide-y divide-gray-900 !rounded-md border text-white">
               <TableHeader className="[&_tr]:border-b">
                 <TableRow>
                   <TableHead className="w-[50px]" />

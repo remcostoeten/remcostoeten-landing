@@ -1,6 +1,5 @@
 "use client"
 
-// Import React and useEffect from 'react' as before
 import React, { useEffect } from "react"
 import dayjs from "dayjs"
 

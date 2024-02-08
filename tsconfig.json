@@ -52,6 +52,7 @@
   ],
   "exclude": [
     "*pages*",
+    "components/kanban/*",
     "node_modules"
   ]
 }

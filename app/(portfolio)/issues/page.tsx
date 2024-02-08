@@ -6,11 +6,11 @@ import { Suspense, useEffect, useState } from "react"
 import { fetchGithubIssues } from "@/core/lib/fetchGithubIssues"
 import { fetchGitLabIssues } from "@/core/lib/fetchGitlabIssue"
 import {
-    Table,
-    TableBody,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table"
 import { IssueTableSkeleton } from "@/components/effects/Skeleton"
 import Spinner from "@/components/effects/Spinner"
@@ -20,110 +20,110 @@ import IssueRow from "./compopnents/IssueRow"
 import TableToolbar from "./compopnents/TableToolbar"
 
 export default function Page() {
-    const [searchTerm, setSearchTerm] = useState("")
-    const [tasks, setTasks] = useState([])
-    const [filteredTasks, setFilteredTasks] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [tasks, setTasks] = useState([])
+  const [filteredTasks, setFilteredTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchTasks = async () => {
-            setIsLoading(true)
+  useEffect(() => {
+    const fetchTasks = async () => {
+      setIsLoading(true)
 
-            const githubIssues = await fetchGithubIssues()
-            const gitlabIssues = await fetchGitLabIssues({
-                boardId: 1192495,
-                label: "frontend",
-            })
+      const githubIssues = await fetchGithubIssues()
+      const gitlabIssues = await fetchGitLabIssues({
+        boardId: 1192495,
+        label: "frontend",
+      })
 
-            const allTasks = [...githubIssues, ...gitlabIssues]
+      const allTasks = [...githubIssues, ...gitlabIssues]
 
-            setTasks(allTasks)
-            setFilteredTasks(allTasks)
-            setIsLoading(false)
-        }
-
-        fetchTasks()
-    }, [])
-
-    const handleFilter = (filter: string) => {
-        if (filter === "all") {
-            setFilteredTasks(tasks)
-        } else {
-            const filtered = tasks.filter((task) =>
-                task.labels.some((label) => label.name === filter)
-            )
-            setFilteredTasks(filtered)
-        }
+      setTasks(allTasks)
+      setFilteredTasks(allTasks)
+      setIsLoading(false)
     }
 
-    const handleSearch = (searchTerm) => {
-        setSearchTerm(searchTerm)
-        if (searchTerm === "") {
-            setFilteredTasks(tasks)
-        } else {
-            const filtered = tasks.filter((task) =>
-                task.title.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            setFilteredTasks(filtered)
-        }
-    }
+    fetchTasks()
+  }, [])
 
-    return (
-        <>
-            <IntroShell
-                title="Github & GitLab Issues"
-                description="GitHub and GitLab issues fetched through the API regarding this project."
-            />
-            <Suspense fallback={<Spinner />}>
-                <div className="flex flex-col">
-                    <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
-                    {isLoading ? (
-                        <div className="mt-4 flex flex-col gap-[5px]">
-                            <IssueTableSkeleton />
-                        </div>
-                    ) : (
-                        <Table className="divide-y divide-gray-900 !rounded-md border text-white">
-                            <TableHeader className="[&_tr]:border-b">
-                                <TableRow>
-                                    <TableHead className="w-[50px]" />
-                                    <TableHead className="w-[100px]">Task</TableHead>
-                                    <TableHead>Title</TableHead>
-                                    <TableHead>Priority</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {filteredTasks.length > 0 ? (
-                                    filteredTasks.map((task) => (
-                                        <IssueRow
-                                            key={task.id}
-                                            taskId={task.code}
-                                            labels={task.labels}
-                                            title={task.title}
-                                            url={task.url}
-                                            priority={task.status === "todo" ? "Medium" : "High"}
-                                            onCheckboxChange={() => {
-                                                console.log(`Checkbox for task ${task.id} changed`)
-                                            }}
-                                            dates={[]}
-                                        />
-                                    ))
-                                ) : (
-                                    <div className="w-max p-4 text-gray-400">
-                                        🤔 Oops! No results found for &quot;{searchTerm}&quot; 🧐
-                                        <br />
-                                        Don&apos;t worry, let&apos;s try searching for something
-                                        else!{" "}
-                                        <span className="animation-wrapper">
-                                            <span>🌟</span>
-                                            <span>✨</span>
-                                        </span>
-                                    </div>
-                                )}
-                            </TableBody>
-                        </Table>
-                    )}
-                </div>
-            </Suspense>
-        </>
-    )
+  const handleFilter = (filter: string) => {
+    if (filter === "all") {
+      setFilteredTasks(tasks)
+    } else {
+      const filtered = tasks.filter((task) =>
+        task.labels.some((label) => label.name === filter)
+      )
+      setFilteredTasks(filtered)
+    }
+  }
+
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm)
+    if (searchTerm === "") {
+      setFilteredTasks(tasks)
+    } else {
+      const filtered = tasks.filter((task) =>
+        task.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      setFilteredTasks(filtered)
+    }
+  }
+
+  return (
+    <>
+      <IntroShell
+        title="Github & GitLab Issues"
+        description="GitHub and GitLab issues fetched through the API regarding this project."
+      />
+      <Suspense fallback={<Spinner />}>
+        <div className="flex flex-col">
+          <TableToolbar onFilter={handleFilter} onSearch={handleSearch} />
+          {isLoading ? (
+            <div className="mt-4 flex flex-col gap-[5px]">
+              <IssueTableSkeleton />
+            </div>
+          ) : (
+            <Table className="divide-y divide-gray-900 !rounded-md border text-white">
+              <TableHeader className="[&_tr]:border-b">
+                <TableRow>
+                  <TableHead className="w-[50px]" />
+                  <TableHead className="w-[100px]">Task</TableHead>
+                  <TableHead>Title</TableHead>
+                  <TableHead>Priority</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredTasks.length > 0 ? (
+                  filteredTasks.map((task) => (
+                    <IssueRow
+                      key={task.id}
+                      taskId={task.code}
+                      labels={task.labels}
+                      title={task.title}
+                      url={task.url}
+                      priority={task.status === "todo" ? "Medium" : "High"}
+                      onCheckboxChange={() => {
+                        console.log(`Checkbox for task ${task.id} changed`)
+                      }}
+                      dates={[]}
+                    />
+                  ))
+                ) : (
+                  <div className="w-max p-4 text-gray-400">
+                    🤔 Oops! No results found for &quot;{searchTerm}&quot; 🧐
+                    <br />
+                    Don&apos;t worry, let&apos;s try searching for something
+                    else!{" "}
+                    <span className="animation-wrapper">
+                      <span>🌟</span>
+                      <span>✨</span>
+                    </span>
+                  </div>
+                )}
+              </TableBody>
+            </Table>
+          )}
+        </div>
+      </Suspense>
+    </>
+  )
 }

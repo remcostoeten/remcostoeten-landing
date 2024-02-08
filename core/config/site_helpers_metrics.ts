@@ -10,13 +10,13 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export {
-    fontSora,
-    ThemeProvider,
-    cn,
-    Analytics,
-    ApolloWrapper,
-    ReduxProvider,
-    TailwindIndicator,
-    AuthUserProvider,
-    siteConfig,
+  fontSora,
+  ThemeProvider,
+  cn,
+  Analytics,
+  ApolloWrapper,
+  ReduxProvider,
+  TailwindIndicator,
+  AuthUserProvider,
+  siteConfig,
 }

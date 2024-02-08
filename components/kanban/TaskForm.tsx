@@ -12,20 +12,25 @@ const taskStatus = [
   { value: "open", label: "Open" },
   { value: "closed", label: "Closed" },
 ]
+
+
 const formInitValues = {
   title: "",
   label: "feature",
   status: "open",
+  due: null, // Add this line
 }
 
 export const TaskForm: React.FC<{
   form: any // Use 'any' for now, or replace it with a proper type
-  init?: any // Use 'any' for now, or replace it with a proper type
+  init?: typeof formInitValues
   taskId?: any // Use 'any' for now, or replace it with a proper type
 }> = ({ form, init = formInitValues, taskId }) => {
   const initValues = (() => {
-    if (!init.due) return init
-    return { ...init, due: dayjs(init.due) }
+    if (typeof init === 'object' && init !== null && 'due' in init && init.due) {
+      return { ...init, due: dayjs(init.due) }
+    }
+    return init
   })()
 
   useEffect(() => {

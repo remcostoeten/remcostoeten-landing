@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { useAuth } from "@/core/database/auth"
 import { addDoc, collection, doc, getFirestore } from "firebase/firestore"
 import { toast } from "sonner"
 
-import { useAuth } from "@/core/lib/database/auth"
 import { Button } from "@/components/ui/button"
 import {
   Select,

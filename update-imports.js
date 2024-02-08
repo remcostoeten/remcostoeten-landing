@@ -73,20 +73,24 @@ function processComponents() {
     });
   }
 
+// Generate import statements for each component
 const importStatements = componentFiles.map(file => {
   let componentName = path.basename(file, '.tsx');
   componentName = componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
   return `import { ${componentName} } from './${componentName}';`;
 });
 
+// Create the export statement
 const exportStatement = `export { ${componentFiles.map(file => {
   let componentName = path.basename(file, '.tsx');
   componentName = componentName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
   return componentName;
 }).join(', ')} };`;
 
+// Combine import statements and export statement
 const content = `${importStatements.join('\n')}\n${exportStatement}\n`;
 
+// Write the content to the ui-imports.tsx file
 fs.writeFileSync(path.join(chosenComponentsFolder, importsFile), content);
 
   console.log(`Imports updated in ${path.join(chosenComponentsFolder, importsFile)}.`);

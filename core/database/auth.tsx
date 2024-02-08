@@ -3,9 +3,14 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { User } from "firebase/auth"
 
-import { AuthState, UserInfo } from "@/core/types/kanban"
+import { UserInfo } from "@/core/types/kanban"
 
 import { auth } from "./firebase"
+
+type AuthState = {
+  user: UserInfo | null
+  loading: boolean
+}
 
 export function useFirebaseAuth() {
   const [user, setUser] = useState<UserInfo | null>(null)

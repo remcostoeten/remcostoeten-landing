@@ -1,5 +1,4 @@
-import "@/styles/globals.css"
-import { useEffect } from "react"
+import "@/styles/globals.scss"
 import { Metadata } from "next/types"
 import ReduxProvider from "@/core/redux/ReduxProvider"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
@@ -12,9 +11,9 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
-import SiteHeader from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const viewport = {
@@ -23,15 +22,6 @@ export const viewport = {
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 }
-
-// const ResponsiveViewer = () => {
-//     useEffect(() => {
-//         setInterval(() => {
-//             console.log('TODO RES VIEWER');
-//         }, 5000);
-//     }, []);
-//     return null
-// };
 
 export const metadata: Metadata = {
   title: {

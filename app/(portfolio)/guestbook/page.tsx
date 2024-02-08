@@ -214,6 +214,7 @@ export default function GuestBookPage() {
                         <PaginationItem>
                           <PaginationPrevious
                             onClick={() => setCurrentPage(currentPage - 1)}
+                            size={undefined}
                           />
                         </PaginationItem>
                       )}
@@ -231,6 +232,7 @@ export default function GuestBookPage() {
                               <PaginationLink
                                 onClick={() => setCurrentPage(page + 1)}
                                 isActive={page + 1 === currentPage}
+                                size={undefined}
                               >
                                 {page + 1}
                               </PaginationLink>

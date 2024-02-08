@@ -1,21 +1,28 @@
 import MobileNavigation from "@c/core/MobileNavigation"
 
 import "../styles/globals.scss"
+import React from "react"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
-import ApolloWrapper from "@/core/database/ApolloWrapper"
-import ReduxProvider from "@/core/redux/ReduxProvider"
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
-import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
-import { Toaster } from "sonner"
 
-import { siteConfig } from "@/core/config/site"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import SiteHeader from "@/components/core/SiteHeader"
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import BodyShell from "@/components/layout/BodyShell"
-import { ThemeProvider } from "@/components/theme-provider"
+import {
+  Analytics,
+  ApolloWrapper,
+  AuthUserProvider,
+  HydrationOverlay,
+  ReduxProvider,
+  TailwindIndicator,
+  ThemeProvider,
+  cn,
+  fontSora,
+  siteConfig,
+} from "@/core/config/site_helpers_metrics"
+import {
+  ShellLayout,
+  SiteHeader,
+  TooltipProvider,
+} from "@/components/ui/ui-imports"
 
 export const viewport = {
   themeColor: [

@@ -1,11 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { auth, db } from "@/core/database/firebase"
 import { addDoc, collection, doc, getDocs } from "firebase/firestore"
 import { toast } from "sonner"
-
-import { useAuth } from "@/core/lib/database/auth"
-import { auth, db } from "@/core/lib/database/firebase"
 
 interface Field {
   label: string

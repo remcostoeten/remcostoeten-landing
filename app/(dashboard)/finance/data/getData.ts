@@ -1,6 +1,5 @@
+import { db } from "@/core/database/firebase"
 import { collection, getDocs } from "firebase/firestore"
-
-import { db } from "@/core/lib/database/firebase"
 
 export async function getUserData(
   userId: string,

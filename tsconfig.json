@@ -35,11 +35,7 @@
         "./.contentlayer/generated"
       ]
     },
-    "strictNullChecks": false,
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "isolatedModules": true
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
@@ -49,8 +45,8 @@
   ],
   "exclude": [
     "*pages*",
-    "components/kanban/*",
     "node_modules",
-    ".next"
+    ".next",
+    "*next*",
   ]
 }

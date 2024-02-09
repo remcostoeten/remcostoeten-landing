@@ -14,7 +14,7 @@ export default function Header() {
             href={"https://github.com/Kiranism/next-shadcn-dashboard-starter"}
             target="_blank"
           >
-            <Logo />
+            <Logo hasIconOnly />
           </Link>
         </div>
         <div className={cn("block lg:!hidden")}>

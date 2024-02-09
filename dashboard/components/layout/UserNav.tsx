@@ -72,9 +72,6 @@ export function UserNav() {
         <>
             <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
                 <AlertDialogTrigger className="flex w-full items-center justify-between">
-                    <div className="flex grow items-center gap-2">
-                        <span className="">cmd + k</span>
-                    </div>
                     {user ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -85,7 +82,7 @@ export function UserNav() {
                                         </Avatar>
                                     )}
                                     {user && user?.photoURL && (
-                                        <Avatar>
+                                        <Avatar className="w-8 h-8">
                                             <AvatarImage src={user?.photoURL} />
                                             <AvatarFallback> {user?.displayName?.[0]}</AvatarFallback>
                                         </Avatar>

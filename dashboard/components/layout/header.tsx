@@ -1,7 +1,7 @@
 import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import { cn } from "@/core/utils";
 import { MobileSidebar } from "./mobile-sidebar";
-import { UserNav } from "./user-nav";
+import { UserNav } from "./UserNav";
 import Link from "next/link";
 import Logo from "../theme/logo";
 

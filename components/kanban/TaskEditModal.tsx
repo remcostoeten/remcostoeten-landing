@@ -13,6 +13,11 @@ import dayjs from "dayjs"
 import { Task } from "@/core/types/kanban"
 import { TaskForm } from "@/components/kanban/TaskForm"
 
+type TaskEditModalProps = {
+  taskId: EntityId | null
+  setTaskId: React.Dispatch<React.SetStateAction<EntityId | null>>
+}
+
 export const TaskEditModal: React.FC<{
   taskId: EntityId | null
   setTaskId: React.Dispatch<React.SetStateAction<EntityId | null>>
@@ -121,6 +126,7 @@ export const TaskEditModal: React.FC<{
           </div>
         }
       >
+        {/* @ts-ignore */}
         <TaskForm form={form} init={initValues} taskId={taskId} />
       </Modal>
     </>

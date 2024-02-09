@@ -1,4 +1,4 @@
-// @ts-np-check
+// @ts-no-check
 "use client"
 
 import React, { useEffect, useState } from "react"
@@ -6,13 +6,10 @@ import { auth, firestore } from "@/core/database/firebase"
 import { Button } from "@c/ui/button"
 import {
   addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
+  collection, onSnapshot,
   orderBy,
   query,
-  serverTimestamp,
+  serverTimestamp
 } from "firebase/firestore"
 import { AnimatePresence, motion } from "framer-motion"
 

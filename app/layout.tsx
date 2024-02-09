@@ -10,7 +10,6 @@ import {
   Analytics,
   ApolloWrapper,
   AuthUserProvider,
-  HydrationOverlay,
   ReduxProvider,
   TailwindIndicator,
   ThemeProvider,
@@ -47,47 +46,45 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }) {
   return (
     <ApolloWrapper>
-      <HydrationOverlay>
-        <AuthUserProvider>
-          <ReduxProvider>
-            <html lang="en" suppressHydrationWarning>
-              <head />
-              <link rel="canonical" href={siteConfig.url} />
-              <TooltipProvider>
-                {/* <body
+      <AuthUserProvider>
+        <ReduxProvider>
+          <html lang="en" suppressHydrationWarning>
+            <head />
+            <link rel="canonical" href={siteConfig.url} />
+            <TooltipProvider>
+              {/* <body
                 className={cn(
                   " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               > */}
-                <body
-                  className={cn(
-                    " min-h-screen overflow-x-hidden  font-sans antialiased",
-                    fontSora.variable
-                  )}
+              <body
+                className={cn(
+                  " min-h-screen overflow-x-hidden  font-sans antialiased",
+                  fontSora.variable
+                )}
+              >
+                <MobileNavigation />
+                <NextTopLoader color="#2dd4bf" height={5} />
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
                 >
-                  <MobileNavigation />
-                  <NextTopLoader color="#2dd4bf" height={5} />
-                  <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                  >
-                    <ShellLayout header={<SiteHeader />}>
-                      <div className="transition-all duration-300 sm:max-w-[854px]">
-                        {children}
-                      </div>
-                    </ShellLayout>
-                    <TailwindIndicator />
-                  </ThemeProvider>
-                  <SpeedInsights />
-                  <Analytics />
-                </body>
-              </TooltipProvider>
-            </html>
-          </ReduxProvider>
-        </AuthUserProvider>
-      </HydrationOverlay>
+                  <ShellLayout header={<SiteHeader />}>
+                    <div className="transition-all duration-300 sm:max-w-[854px]">
+                      {children}
+                    </div>
+                  </ShellLayout>
+                  <TailwindIndicator />
+                </ThemeProvider>
+                <SpeedInsights />
+                <Analytics />
+              </body>
+            </TooltipProvider>
+          </html>
+        </ReduxProvider>
+      </AuthUserProvider>
     </ApolloWrapper>
   )
 }

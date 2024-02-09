@@ -1,7 +1,6 @@
 import "@/styles/globals.scss"
 import { Metadata } from "next/types"
 import ReduxProvider from "@/core/redux/ReduxProvider"
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
@@ -37,41 +36,39 @@ export const metadata: Metadata = {
 }
 export default function RootLayout({ children }) {
   return (
-    <HydrationOverlay>
-      <AuthUserProvider>
-        <ReduxProvider>
-          <TooltipProvider>
-            <html lang="en" suppressHydrationWarning>
-              <head />
-              <link rel="canonical" href={siteConfig.url} />
-              <TooltipProvider>
-                <body
-                  className={cn(
-                    "overflow-y-hidden body-gradient min-h-screen bg-background font-sans antialiased",
-                    fontSora.variable
-                  )}
+    <AuthUserProvider>
+      <ReduxProvider>
+        <TooltipProvider>
+          <html lang="en" suppressHydrationWarning>
+            <head />
+            <link rel="canonical" href={siteConfig.url} />
+            <TooltipProvider>
+              <body
+                className={cn(
+                  "overflow-y-hidden body-gradient min-h-screen bg-background font-sans antialiased",
+                  fontSora.variable
+                )}
+              >
+                <NextTopLoader color="#2dd4bf" height={5} />
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
                 >
-                  <NextTopLoader color="#2dd4bf" height={5} />
-                  <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                  >
-                    <ShellLayout header={<SiteHeader />}>
-                      <div className="transition-all duration-300 sm:max-w-[854px]">
-                        {children}
-                      </div>
-                    </ShellLayout>
-                    <Toaster invert className="tex-[30px]" />
-                  </ThemeProvider>
-                  <SpeedInsights />
-                  <Analytics />
-                </body>
-              </TooltipProvider>
-            </html>
-          </TooltipProvider>
-        </ReduxProvider>
-      </AuthUserProvider>
-    </HydrationOverlay>
+                  <ShellLayout header={<SiteHeader />}>
+                    <div className="transition-all duration-300 sm:max-w-[854px]">
+                      {children}
+                    </div>
+                  </ShellLayout>
+                  <Toaster invert className="tex-[30px]" />
+                </ThemeProvider>
+                <SpeedInsights />
+                <Analytics />
+              </body>
+            </TooltipProvider>
+          </html>
+        </TooltipProvider>
+      </ReduxProvider>
+    </AuthUserProvider>
   )
 }

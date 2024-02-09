@@ -1,8 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useAppDispatch, useAppSelector } from "@/core/redux/store"
-import { selectThemeMode } from "@/core/redux/themeSlice"
-import { AiOutlineHome } from "react-icons/ai"
+import { useMemo } from "react"
+import { useRouter } from "next/navigation"
 
 import {
   NavigationMenu,

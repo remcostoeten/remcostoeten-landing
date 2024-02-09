@@ -1,6 +1,5 @@
 import ApolloWrapper from "@/core/database/ApolloWrapper"
 import ReduxProvider from "@/core/redux/ReduxProvider"
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 
 import { siteConfig } from "@/core/config/site"
@@ -14,7 +13,6 @@ export {
   fontSora,
   ThemeProvider,
   cn,
-  HydrationOverlay,
   Analytics,
   ApolloWrapper,
   ReduxProvider,

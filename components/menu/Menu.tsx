@@ -44,6 +44,15 @@ export const MENU_ITEMS: MenuItemProps[] = [
     type: "Pages",
   },
   {
+    title: "About",
+    href: "/about",
+    icon: <ProfileIcon size={iconSize} />,
+    isShow: true,
+    isExternal: false,
+    eventName: "Pages: About",
+    type: "Pages",
+  },
+  {
     title: "Projects",
     href: "/projects",
     icon: <ProjectIcon size={iconSize} />,
@@ -68,15 +77,6 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isShow: true,
     isExternal: false,
     eventName: "Pages: Learn",
-    type: "Pages",
-  },
-  {
-    title: "About",
-    href: "/about",
-    icon: <ProfileIcon size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: "Pages: About",
     type: "Pages",
   },
   {

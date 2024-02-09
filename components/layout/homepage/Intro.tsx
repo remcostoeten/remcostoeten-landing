@@ -59,16 +59,6 @@ export default function Intro() {
           Python, Shell & Lua, and want to learn Go, OCaml 🐪 and DevOps.
         </p>
       </div>
-      <Link
-        href="https://next-shadcn-dashboard-starter.vercel.app/dashboard/kanban"
-        target="_blank"
-      >
-        https://next-shadcn-dashboard-starter.vercel.app/dashboard/kanban
-      </Link>
-      <Link href="https://ui.jln.dev" target="_blank">
-        https://ui.jln.dev
-      </Link>
-      bui
       <hr className="my-8" />
     </div>
   )

@@ -1,13 +1,14 @@
 'use client';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
+const GITHUB_PAT = process.env.NEXT_PUBLIC_GITHUB_API_KEY;
+
 const client = new ApolloClient({
     uri: 'https://api.github.com/graphql',
     cache: new InMemoryCache(),
     headers: {
-        Authorization: 'Bearer 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',
+        Authorization: `Bearer ${GITHUB_PAT}`,
     },
 });
 
 export default client;
-

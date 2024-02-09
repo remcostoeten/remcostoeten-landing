@@ -59,7 +59,7 @@ export default function MobileNavigation() {
     const closestBtn = target.closest(".switcher-btn") as HTMLButtonElement
 
     if (!closestBtn) return
-    if (closestBtn === activeBtn) return
+    if (closestBtn === activeBtn) returnN
     calcSwitcher(activeBtn, closestBtn)
 
     const targetSection = document.querySelector(

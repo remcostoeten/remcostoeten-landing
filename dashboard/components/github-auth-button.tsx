@@ -1,9 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { Button } from "./ui/button";
-import { Icons } from "./icons";
+import { Icons } from "./theme/icons";
 
 export default function GoogleSignInButton() {
   const searchParams = useSearchParams();

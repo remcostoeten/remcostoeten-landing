@@ -1,30 +1,24 @@
-import Providers from "@/components/layout/providers";
-import { Toaster } from "@/components/ui/toaster";
-import "@uploadthing/react/styles.css";
+import Header from "@/components/layout/header";
+import Sidebar from "@/components/layout/sidebar";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.scss";
-
-const inter = Inter({ subsets: ["latin"] });
-
+import '../styles/globals.css';
 export const metadata: Metadata = {
-  title: "Next Shadcn",
+  title: "Next Shadcn Dashboard Starter",
   description: "Basic dashboard with Next.js and Shadcn",
 };
 
-export default async function RootLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} overflow-hidden`}>
-        <Providers>
-          <Toaster />
-          {children}
-        </Providers>
-      </body>
-    </html >
+    <>
+      <Header />
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar />
+        <main className="w-full pt-16">{children}</main>
+      </div>
+    </>
   );
 }

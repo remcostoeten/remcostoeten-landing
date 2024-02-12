@@ -26,44 +26,14 @@ $card-inner: $grey-light;
     color: $text;
 }
 
-.bg-block {
+.dark:bg-block {
     background-color: $grey;
+}
 
-    &--z-1 {
-        z-index: -1;
-    }
+.bg-block {
+    background-color: $grey-light;
+}
 
-    &--z-2 {
-        z-index: -2;
-    }
-
-    &--absolute {
-        background-color: transparent;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: $grey;
-            z-index: -2;
-        }
-    }
-
-    &--absolute-title {
-        background-color: transparent;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: $grey;
-            z-index: -2;
-        }
-    }
+.border-regular {
+    border: 1px solid #26282c;
 }

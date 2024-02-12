@@ -19,7 +19,7 @@ export default function DashboardLayout({
       <div className="flex h-screen overflow-hidde sm:mt-[70px]">
         <Aside />
         {/* <NewProjectSidebar /> */}
-        <main className="w-full pt-16">{children}</main>
+        <main className="w-full ">{children}</main>
       </div>
     </>
   );

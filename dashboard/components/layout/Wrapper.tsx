@@ -19,23 +19,24 @@ export default function Wrapper({
     ...rest
 }: WrapperProps) {
     const radius = 'rounded-sm'
-    const horizontalPadding = padding === 'small' ? 'px-5' : padding === 'regular' ? 'px-10' : padding === 'large' ? 'px-16' : 'px-20'
+    const horizontalPadding = padding === 'small' ? 'py-5' : padding === 'regular' ? 'py-10' : padding === 'large' ? 'py-16' : 'py-20'
     const verticalPadding = padding === 'small' ? 'px-5' : padding === 'regular' ? 'px-10' : padding === 'large' ? 'px-16' : 'px-20'
     const paddingValues = `${horizontalPadding} ${verticalPadding}`
 
     const wrapperStyles: React.CSSProperties = {
-        height: isFullHeight ? '100vh' : 'auto',
+        height: isFullHeight ? 'calc(100vh - 110px - 1rem)' : 'auto',
+        marginBottom: '25px',
         position: 'relative',
         borderRadius: '10rem',
     }
 
     const solidBgStyles: React.CSSProperties = {
-        backgroundColor: '#131417',
         zIndex: -2,
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
+        borderRadius: '1rem',
         bottom: 0
     }
 
@@ -55,13 +56,14 @@ export default function Wrapper({
         top: hasTitle ? '5%' : '0',
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
+        borderRadius: '16px',
     } : {};
 
 
     return (
         <Element
-            className={`${radius} Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues}`}            style={wrapperStyles}
+            className={`${radius} bg-[black] dark:bg-[#131417] mb-10 pb-10 Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues}`} style={wrapperStyles}
             {...rest}
         >
             {children}

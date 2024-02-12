@@ -1,9 +1,10 @@
 import Providers from "@/components/layout/providers";
-import { Toaster } from "@/components/ui/toaster";
 import "@uploadthing/react/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.scss";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,12 +20,13 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} overflow-hidden`}>
-        <Providers>
-          <Toaster />
-          {children}
-        </Providers>
-      </body>
-    </html >
+      <TooltipProvider>
+        <body className={`${inter.className} overflow-hidden`}>
+          <Providers>
+            <Toaster />
+            {children}
+          </Providers>
+        </body>
+      </TooltipProvider>    </html >
   );
 }

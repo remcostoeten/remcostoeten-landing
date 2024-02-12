@@ -3,9 +3,20 @@
 @tailwind utilities;
 
 @import '../styles/variables/colors.scss';
+@import '../styles/utilities/animations.scss';
+@import '../styles/theme/body.scss';
+
+.sidebar-height {
+  max-height: calc(100vh - 70px);
+}
+
 
 @layer base {
   :root {
+    --black: #050505;
+    --grey: #131417;
+    --white: #D7D9DB;
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 

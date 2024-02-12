@@ -2,7 +2,7 @@ $white : #DFE0E2;
 $grey: #131417;
 $grey-light: #26282C;
 $pink: #B749AC;
-
+$black: #050505;
 $text: $white;
 $text-dark: #40454d;
 
@@ -12,3 +12,58 @@ $color-secondary: $pink;
 $header-bar : $grey;
 $card: $grey;
 $card-inner: $grey-light;
+
+
+.bg-theme {
+    background-color: $black;
+}
+
+.text-dark {
+    color: $text-dark;
+}
+
+.text-light {
+    color: $text;
+}
+
+.bg-block {
+    background-color: $grey;
+
+    &--z-1 {
+        z-index: -1;
+    }
+
+    &--z-2 {
+        z-index: -2;
+    }
+
+    &--absolute {
+        background-color: transparent;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $grey;
+            z-index: -2;
+        }
+    }
+
+    &--absolute-title {
+        background-color: transparent;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $grey;
+            z-index: -2;
+        }
+    }
+}

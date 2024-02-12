@@ -18,6 +18,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        black: "var(--black)",
+        card: "var(--grey)",
+        body: "var(--black)",
+           white: "var(--white)",
+        grey: "var(--grey)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -51,6 +56,13 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      backgroundColor: {
+        black: "var(--black)",
+        white: "var(--white)",
+        grey: "var(--grey)",
+        card: "var(--grey)",
+        body: "var(--black)",
       },
       borderRadius: {
         lg: "var(--radius)",

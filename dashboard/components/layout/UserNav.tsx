@@ -23,7 +23,7 @@ import { Tooltip, Label } from "recharts";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../ui/card";
 import { Input } from "../ui/input";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
-
+import Image from 'next/image';
 
 export function UserNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -81,12 +81,14 @@ export function UserNav() {
                                             <AvatarFallback>Guest</AvatarFallback>
                                         </Avatar>
                                     )}
-                                    {user && user?.photoURL && (
-                                        <Avatar className="w-8 h-8">
-                                            <AvatarImage src={user?.photoURL} />
-                                            <AvatarFallback> {user?.displayName?.[0]}</AvatarFallback>
-                                        </Avatar>
-                                    )}
+
+                                    <Button variant="outline" size="icon">
+                                        {user && user?.photoURL && (
+                                            <Image
+                                                fill
+                                                src={user?.photoURL} alt={user?.displayName} />
+                                        )}
+                                    </Button>
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56" align="end" forceMount>
@@ -158,35 +160,26 @@ export function UserNav() {
                                         google
                                     </Button>
                                 </div>
-                                <Tooltip>
-                                    <TooltipTrigger>Hover</TooltipTrigger>
-                                    {isSignup && (
-                                        <div className="grid gap-2">
-                                            <Label>Name</Label>
-                                            <Input
-                                                disabled
-                                                id="name"
-                                                type="text"
-                                                placeholder="Your name" />
-                                        </div>
-                                    )}
+                                {isSignup && (
                                     <div className="grid gap-2">
-                                        <Label>Email</Label>
+                                        <Label>Name</Label>
                                         <Input
-                                            disabled
-                                            id="email"
-                                            type="email"
-                                            placeholder="test@test.com" />
+                                            id="name"
+                                            type="text"
+                                            placeholder="Your name" />
                                     </div>
-                                    <div className="grid gap-2">
-                                        <Label>Password</Label>
-                                        <Input disabled id="password" type="password" />
-                                    </div>
-                                    <TooltipContent>
-                                        Sign in & register is currently disabled through email and
-                                        password. <br /> Please use Github or Google to sign in.
-                                    </TooltipContent>
-                                </Tooltip>
+                                )}
+                                <div className="grid gap-2">
+                                    <Label>Email</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        placeholder="test@test.com" />
+                                </div>
+                                <div className="grid gap-2">
+                                    <Label>Password</Label>
+                                    <Input disabled id="password" type="password" />
+                                </div>
                             </div>
                         </CardContent>
                         <CardFooter className=" flex flex-col items-start gap-2">
@@ -219,7 +212,7 @@ export function UserNav() {
                         </CardFooter>
                     </Card>
                 </AlertDialogContent>
-            </AlertDialog>
+            </AlertDialog >
         </>
     );
 }

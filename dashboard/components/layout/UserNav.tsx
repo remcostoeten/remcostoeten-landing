@@ -86,7 +86,7 @@ export function UserNav() {
                                         {user && user?.photoURL && (
                                             <Image
                                                 fill
-                                                src={user?.photoURL} alt={user?.displayName} />
+                                                src={user?.photoURL} alt='user' />
                                         )}
                                     </Button>
                                 </Button>

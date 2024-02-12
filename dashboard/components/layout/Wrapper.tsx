@@ -25,7 +25,8 @@ export default function Wrapper({
 
     const wrapperStyles: React.CSSProperties = {
         height: isFullHeight ? '100vh' : 'auto',
-        position: 'relative'
+        position: 'relative',
+        borderRadius: '10rem',
     }
 
     const solidBgStyles: React.CSSProperties = {
@@ -60,8 +61,7 @@ export default function Wrapper({
 
     return (
         <Element
-            className={`Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${radius} ${paddingValues}`}
-            style={wrapperStyles}
+            className={`${radius} Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues}`}            style={wrapperStyles}
             {...rest}
         >
             {children}

@@ -1,6 +1,6 @@
 import NewProjectSidebar from "@/components/layout/NewProjectSidebar.tsx";
+import Aside from "@/components/layout/Aside";
 import Header from "@/components/layout/header";
-import Sidebar from "@/components/layout/Sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function DashboardLayout({
     <>
       <Header />
       <div className="flex h-screen overflow-hidde sm:mt-[70px]">
-        <Sidebar />
+        <Aside />
         {/* <NewProjectSidebar /> */}
         <main className="w-full pt-16">{children}</main>
       </div>

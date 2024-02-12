@@ -1,8 +1,8 @@
 import Wrapper from "./Wrapper"
 
-export default function Sidebar() {
+export default function Aside() {
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-4 mt-8 pl-4">
             <Wrapper hasDottedBg as="aside" isFullHeight padding="regular"  >
                 <div className="flex flex-col items-center pt-10 space-y-8">
                     <HomeIcon className="text-[#818CF8] text-3xl" />

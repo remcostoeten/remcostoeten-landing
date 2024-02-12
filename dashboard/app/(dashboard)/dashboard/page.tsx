@@ -16,7 +16,7 @@ import { auth } from "@/core/database/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import GetTimeOfTheDay from "@/core/utils/getTimeOfTheDay";
 
-export default function page() {
+export default function Page() {
   const [user] = useAuthState(auth);
   const timeOfTheDay = GetTimeOfTheDay();
   return (

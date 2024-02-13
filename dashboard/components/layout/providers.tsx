@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { User } from "firebase/auth";
 import { auth } from "@/core/database/firebase";
-import ThemeProvider from "./ThemeToggle/theme-provider";
+import ThemeProvider from "../theme/theme-provider";
 
 type UserInfo = {
   displayName: string | null;

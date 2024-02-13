@@ -1,5 +1,5 @@
 'use client';
-import ThemeToggle from "./ThemeToggle/theme-toggle"
+import ThemeToggle from "../theme/theme-toggle"
 import Wrapper from "./Wrapper"
 
 export default function Aside() {

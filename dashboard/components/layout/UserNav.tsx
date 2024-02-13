@@ -82,9 +82,9 @@ export function UserNav() {
                                         </Avatar>
                                     )}
 
-                                    <Button variant="outline" size="icon">
+                                    <Button className='rounded-full' variant="outline" size="icon">
                                         {user && user?.photoURL && (
-                                            <Image
+                                            <Image className="rounded-full"
                                                 fill
                                                 src={user?.photoURL} alt='user' />
                                         )}

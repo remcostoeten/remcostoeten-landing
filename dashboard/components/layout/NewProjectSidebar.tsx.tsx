@@ -1,7 +1,6 @@
 'use client';
 import { PlusIcon } from "lucide-react";
 import { Button } from "../ui/button";
-import VisualizeComponent from '@remcostoeten/visualize-component-debugger'
 import Wrapper from "./Wrapper";
 
 export default function NewProjectSidebar() {

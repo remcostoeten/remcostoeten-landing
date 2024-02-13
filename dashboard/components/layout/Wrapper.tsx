@@ -7,6 +7,8 @@ interface WrapperProps {
     hasDottedBg?: boolean
     hasTitle?: boolean
     children?: React.ReactNode
+    isEmpty?: boolean
+    className?: string
 }
 
 export default function Wrapper({
@@ -16,18 +18,21 @@ export default function Wrapper({
     hasDottedBg = false,
     hasTitle = false,
     children,
+    isEmpty,
+    className,
     ...rest
 }: WrapperProps) {
     const radius = 'rounded-sm'
     const horizontalPadding = padding === 'small' ? 'py-5' : padding === 'regular' ? 'py-10' : padding === 'large' ? 'py-16' : 'py-20'
     const verticalPadding = padding === 'small' ? 'px-5' : padding === 'regular' ? 'px-10' : padding === 'large' ? 'px-16' : 'px-20'
     const paddingValues = `${horizontalPadding} ${verticalPadding}`
-
+    const hasNoBg = 'bg-transparent'
+    const isEmptyBg = !hasDottedBg && !hasTitle && hasNoBg
     const wrapperStyles: React.CSSProperties = {
         height: isFullHeight ? 'calc(100vh - 110px - 1rem)' : 'auto',
         marginBottom: '25px',
         position: 'relative',
-        borderRadius: '10rem',
+        borderRadius: '16px',
     }
 
     const solidBgStyles: React.CSSProperties = {
@@ -37,7 +42,6 @@ export default function Wrapper({
         left: 0,
         right: 0,
         borderRadius: '1rem',
-        bottom: 0
     }
 
     const dottedBgStyles: React.CSSProperties = hasDottedBg ? {
@@ -60,10 +64,12 @@ export default function Wrapper({
         borderRadius: '16px',
     } : {};
 
+    const bgStyles = isEmpty ? { background: 'transparent' } : {};
 
     return (
         <Element
-            className={`${radius} bg-[black] dark:bg-[#131417] mb-10 pb-10 Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues}`} style={wrapperStyles}
+            className={`${radius} ${isEmptyBg ? 'bg-black dark:bg-[#131417]' : 'bg-red-400'} mb-10 pb-10 Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues} ${className} `}
+            style={{ ...wrapperStyles, ...bgStyles }}
             {...rest}
         >
             {children}

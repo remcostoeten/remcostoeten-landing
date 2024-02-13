@@ -1,9 +1,10 @@
+'use client';
 import ThemeToggle from "./ThemeToggle/theme-toggle"
 import Wrapper from "./Wrapper"
 
 export default function Aside() {
     return (
-        <div className="flex gap-4 mt-8 pl-4">
+        <div className="flex gap-4  pl-4">
             <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
                 <div className="flex flex-col items-center space-y-8 h-full">
                     <HomeIcon className="dark:text-[white] text-slate-500  text-3xl hover:text-blue-500 cursor-pointer" />

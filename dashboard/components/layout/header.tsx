@@ -1,3 +1,4 @@
+'use client';
 import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import { cn } from "@/core/utils";
 import { MobileSidebar } from "./mobile-sidebar";

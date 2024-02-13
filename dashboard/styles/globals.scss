@@ -10,11 +10,16 @@
   max-height: calc(100vh - 110px);
 }
 
+.full-height {
+  height: calc(-110px - 1rem + 100vh);
+}
+
 
 @layer base {
   :root {
     --black: #050505;
     --grey: #131417;
+
     --white: #D7D9DB;
 
     --background: 0 0% 100%;

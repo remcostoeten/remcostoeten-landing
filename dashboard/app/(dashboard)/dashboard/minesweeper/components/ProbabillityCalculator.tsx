@@ -1,4 +1,8 @@
 'use client'
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import React, { useState } from 'react';
 
 export default function ProbabillityCalculator() {
@@ -17,12 +21,12 @@ export default function ProbabillityCalculator() {
 
     const calculateProbability = () => {
         if (useVariant2 && (totalTiles !== 49 || totalBombs !== 5)) {
-            alert('Invalid input! For variant 2, the total tiles should be 49 (7x7 grid) and total bombs should be 5.');
+            alert('Invalid Input! For variant 2, the total tiles should be 49 (7x7 grid) and total bombs should be 5.');
             return;
         }
 
         if (tilesToOpen > totalTiles - totalBombs || tilesToOpen > 20) {
-            alert('Invalid input! Number of tiles to open should be less than or equal to (total tiles - total bombs) and less than or equal to 20.');
+            alert('Invalid Input! Number of tiles to open should be less than or equal to (total tiles - total bombs) and less than or equal to 20.');
             return;
         }
 
@@ -52,34 +56,34 @@ export default function ProbabillityCalculator() {
     };
 
     return (
-        <div>
+        <Card>
             <h1>Minesweeper Probability & Money Back Multiplier Calculator</h1>
             <div>
-                <label>
+                <Label>
                     Total Tiles:
-                    <input type="number" value={totalTiles} onChange={(e) => setTotalTiles(Number(e.target.value))} />
-                </label>
+                    <Input type="number" value={totalTiles} onChange={(e) => setTotalTiles(Number(e.target.value))} />
+                </Label>
             </div>
             <div>
-                <label>
+                <Label>
                     Total Bombs:
-                    <input type="number" value={totalBombs} onChange={(e) => setTotalBombs(Number(e.target.value))} />
-                </label>
+                    <Input type="number" value={totalBombs} onChange={(e) => setTotalBombs(Number(e.target.value))} />
+                </Label>
             </div>
             <div>
-                <label>
+                <Label>
                     Tiles to Open (max 20):
-                    <input type="number" value={tilesToOpen} onChange={(e) => setTilesToOpen(Number(e.target.value))} />
-                </label>
+                    <Input type="number" value={tilesToOpen} onChange={(e) => setTilesToOpen(Number(e.target.value))} />
+                </Label>
             </div>
             <div>
-                <label>
+                <Label>
                     Use Payout Variant 2 (7x7 grid):
-                    <input type="checkbox" checked={useVariant2} onChange={() => setUseVariant2(!useVariant2)} />
-                </label>
+                    <Input type="checkbox" checked={useVariant2} onChange={() => setUseVariant2(!useVariant2)} />
+                </Label>
             </div>
             <div>
-                <button onClick={calculateProbability}>Calculate Probability & Multiplier</button>
+                <Button variant='outline' onClick={calculateProbability}>Calculate Probability & Multiplier</Button>
             </div>
             {probability !== null && moneyBackMultiplier !== null && (
                 <div>
@@ -87,6 +91,6 @@ export default function ProbabillityCalculator() {
                     <p>Money Back Multiplier: {moneyBackMultiplier.toFixed(2)}x</p>
                 </div>
             )}
-        </div>
+        </Card>
     );
 };

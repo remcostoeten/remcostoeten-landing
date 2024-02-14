@@ -16,7 +16,7 @@ export default function DashboardLayout({
       <div className="ml-4 flex h-screen overflow-hidde sm:mt-[70px]">
         <NewProjectSidebar />
         <Aside />
-        <main className="w-full flex flex-col ">
+        <main className="w-full flex flex-col space-y-4 p-4 md:p-8 pt-6 ">
           <UserGreeting />
           {children}</main>
       </div>

@@ -1,4 +1,3 @@
-ffffffffff// a reusable hook to post firestore data regardless of the form fields
 'use client';
 
 import { useState, useEffect } from 'react';

@@ -1,19 +1,30 @@
 'use client';
+import Link from "next/link";
 import ThemeToggle from "../theme/theme-toggle"
 import Wrapper from "./Wrapper"
+import { JSX, SVGProps } from "react";
 
 export default function Aside() {
     return (
         <div className="flex gap-4  pl-4">
             <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
                 <div className="flex flex-col items-center space-y-8 h-full">
-                    <HomeIcon className="dark:text-[white] text-slate-500  text-3xl hover:text-blue-500 cursor-pointer" />
+                    <Link href="#">
+                        <HomeIcon className="dark:text-[white] text-slate-500 text-3xl hover:text-blue-500 cursor-pointer" />
+                    </Link>
                     <hr className="border-t border-regular w-[75%] absolute" />
-                    <CodeIcon className="text-gray-600 text-slate-500  text-2xl hover:text-blue-500 cursor-pointer" /> {/* Fix the missing component */}
-                    <StarIcon className="text-gray-600 text-slate-500  text-2xl hover:text-blue-500 cursor-pointer" />
-                    <MenuIcon className="text-gray-600 text-slate-500  text-2xl hover:text-blue-500 cursor-pointer" />
-                    <DatabaseIcon className="text-gray-600  text-2xl hover:text-blue-500 cursor-pointer" />
-                    <div className="flex-grow"></div>
+                    <Link href="#">
+                        <CodeIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
+                    </Link>
+                    <Link href="#">
+                        <StarIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
+                    </Link>
+                    <Link href="#">
+                        <MenuIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
+                    </Link>
+                    <Link href="dashboard/minesweeper">
+                        <DatabaseIcon className="text-gray-600 text-2xl hover:text-blue-500 cursor-pointer" />
+                    </Link>
                 </div>
                 <div className="flex flex-col items-center pt-10 space-y-8 h-full">
                     <hr className="border-t border-regular w-[75%]  absolute bottom-[85px]" />
@@ -26,7 +37,7 @@ export default function Aside() {
     )
 }
 
-function CodeIcon(props) {
+function CodeIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
     return (
         <svg
             {...props}

@@ -18,6 +18,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        primary: "#ef4477",
         black: "var(--black)",
         card: "var(--grey)",
         body: "var(--black)",
@@ -63,6 +64,7 @@ module.exports = {
         grey: "var(--grey)",
         card: "var(--grey)",
         body: "var(--black)",
+        primary: "#ef4477",
       },
       borderRadius: {
         lg: "var(--radius)",

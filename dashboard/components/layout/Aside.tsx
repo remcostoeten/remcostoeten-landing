@@ -10,20 +10,20 @@ export default function Aside() {
             <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
                 <div className="flex flex-col items-center space-y-8 h-full">
                     <Link href="#">
-                        <HomeIcon className="dark:text-[white] text-slate-500 text-3xl hover:text-blue-500 cursor-pointer" />
+                        <HomeIcon className="dark:text-[white] text-[#494e57] text-3xl hover:text-primary cursor-pointer" />
                     </Link>
-                    <hr className="!containermt-[50px] border-t border-regular w-[75%] absolute" />
+                    <hr className="!mt-[50px] border-t border-regular w-[75%] absolute" />
                     <Link href="#">
-                        <CodeIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
-                    </Link>
-                    <Link href="#">
-                        <StarIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
+                        <CodeIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
                     </Link>
                     <Link href="#">
-                        <MenuIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
+                        <StarIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
+                    </Link>
+                    <Link href="#">
+                        <MenuIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
                     </Link>
                     <Link href="dashboard/minesweeper">
-                        <DatabaseIcon className="text-gray-600 text-2xl hover:text-blue-500 cursor-pointer" />
+                        <DatabaseIcon className=" text-2xl hover:text-primary cursor-pointer" />
                     </Link>
                 </div>
                 <div className="flex flex-col items-center pt-10 space-y-8 h-full">

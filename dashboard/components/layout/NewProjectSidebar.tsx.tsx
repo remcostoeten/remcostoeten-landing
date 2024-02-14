@@ -13,7 +13,7 @@ export default function NewProjectSidebar() {
             <ProjectsMenu />
             {projects.length > 0 ? (
                 projects.map((project, index) => (
-                     <div key={index}>{project}</div>
+                    <div key={index}>{project}</div>
                 ))
             ) : (
                 <h2 className="text-dark text-sm  text-center">Your snippets will be listed here</h2>

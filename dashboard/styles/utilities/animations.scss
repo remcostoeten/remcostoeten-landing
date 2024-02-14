@@ -49,3 +49,16 @@
         transform: rotate(0deg);
     }
 }
+
+.file-hover {
+    transition: all 0.3s ease;
+
+    &--bg {
+        background-color: $color-primary;
+
+    }
+
+    &--text {
+        color: $color-primary;
+    }
+}

@@ -3,7 +3,9 @@ import React from 'react'
 interface WrapperProps {
     as?: keyof JSX.IntrinsicElements
     isFullHeight?: boolean | string
-    padding?: 'small' | 'regular' | 'large' | 'xl'
+    padding?: 'small' | 'regular' | 'large' | 'xl' | 'none'
+    horizontalPadding?: string
+    verticalPadding?: string
     hasDottedBg?: boolean
     hasTitle?: boolean
     children?: React.ReactNode
@@ -15,6 +17,8 @@ export default function Wrapper({
     as: Element = 'div',
     isFullHeight = 'min-h-dvh',
     padding = 'regular',
+    horizontalPadding = '',
+    verticalPadding = '',
     hasDottedBg = false,
     hasTitle = false,
     children,
@@ -23,9 +27,11 @@ export default function Wrapper({
     ...rest
 }: WrapperProps) {
     const radius = 'rounded-sm'
-    const horizontalPadding = padding === 'small' ? 'py-5' : padding === 'regular' ? 'py-10' : padding === 'large' ? 'py-16' : 'py-20'
-    const verticalPadding = padding === 'small' ? 'px-5' : padding === 'regular' ? 'px-10' : padding === 'large' ? 'px-16' : 'px-20'
-    const paddingValues = `${horizontalPadding} ${verticalPadding}`
+    const defaultHorizontalPadding = padding === 'small' ? 'py-5' : padding === 'regular' ? 'py-10' : padding === 'large' ? 'py-16' : padding === 'none' ? '' : 'py-20'
+    const defaultVerticalPadding = padding === 'small' ? 'px-5' : padding === 'regular' ? 'px-10' : padding === 'large' ? 'px-16' : padding === 'none' ? '' : 'px-20'
+    const horizontalPaddingValue = horizontalPadding || defaultHorizontalPadding
+    const verticalPaddingValue = verticalPadding || defaultVerticalPadding
+    const paddingValues = `${horizontalPaddingValue} ${verticalPaddingValue}`
     const hasNoBg = 'bg-transparent'
     const isEmptyBg = !hasDottedBg && !hasTitle && hasNoBg
     const wrapperStyles: React.CSSProperties = {
@@ -68,8 +74,8 @@ export default function Wrapper({
 
     return (
         <Element
-            className={`${radius} ${isEmptyBg ? 'bg-black dark:bg-[#131417]' : 'bg-red-400'} mb-10 pb-10 Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues} ${className} `}
-            style={{ ...wrapperStyles, ...bgStyles }}
+            className={`${radius} ${isEmptyBg ? 'bg-black dark:bg-[#131417]' : 'bg-block'} mb-10 pb-10 Wrapper ${hasTitle ? 'pt-10' : 'bg-block'} ${paddingValues} ${className} `}
+            style={{ ...wrapperStyles, ...bgStyles, padding: `${verticalPaddingValue} ${horizontalPaddingValue}` }}
             {...rest}
         >
             {children}
@@ -83,3 +89,4 @@ export default function Wrapper({
         </Element>
     )
 }
+

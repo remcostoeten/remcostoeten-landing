@@ -5,6 +5,7 @@ $pink: #B749AC;
 $black: #050505;
 $text: $white;
 $text-dark: #40454d;
+$text-grey: #9ca2aa;
 
 $color-primary: #364472;
 $color-secondary: $pink;
@@ -26,14 +27,18 @@ $card-inner: $grey-light;
     color: $text;
 }
 
-.dark:bg-block {
-    background-color: $grey;
-}
-
 .bg-block {
-    background-color: $grey-light;
+    background-color: $grey;
 }
 
 .border-regular {
     border: 1px solid #26282c;
+}
+
+.text-grey {
+    color: $text-grey;
+}
+
+.bg-grey-light {
+    background-color: $grey-light;
 }

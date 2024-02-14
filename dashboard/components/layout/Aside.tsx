@@ -12,7 +12,7 @@ export default function Aside() {
                     <Link href="#">
                         <HomeIcon className="dark:text-[white] text-slate-500 text-3xl hover:text-blue-500 cursor-pointer" />
                     </Link>
-                    <hr className="border-t border-regular w-[75%] absolute" />
+                    <hr className="!containermt-[50px] border-t border-regular w-[75%] absolute" />
                     <Link href="#">
                         <CodeIcon className="text-gray-600 text-slate-500 text-2xl hover:text-blue-500 cursor-pointer" />
                     </Link>

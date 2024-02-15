@@ -42,7 +42,7 @@ export default function NewProjectForm() {
                     <fieldset>
                         <legend className="mb-2 text-sm font-medium text-gray-300">Expiry</legend>
                         <div className="flex items-center space-x-4">
-                            <FirebaseForm fields={fields} collectionName="expenses" />
+                            <FirebaseForm fields={fields} collectionName="categories" />
                             <RadioGroup defaultValue="never">
                                 <div className="flex items-center space-x-2">
                                     <RadioGroupItem id="expiry-never" value="never" />

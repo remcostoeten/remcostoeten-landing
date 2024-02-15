@@ -24,6 +24,7 @@ import { DropdownMenu } from "./dropdown-menu";
 import { RadioGroup } from "./radio-group";
 import { Calendar } from "./calendar";
 import { toast, Toaster } from "sonner";
+import Seperator from "./Seperator";
 
 export {
   Accordion,
@@ -34,6 +35,7 @@ export {
   Calendar,
   Card,
   Checkbox,
+  Seperator,
   DataTable,
   Dialog,
   DropdownMenu,

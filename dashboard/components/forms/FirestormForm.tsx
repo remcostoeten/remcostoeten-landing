@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { db } from "@/core/database/firebase";
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@c/ui/button"
 
 type Field = {
     name: string;
@@ -92,7 +93,7 @@ export function FirebaseForm({ fields, collectionName }: FormProps) {
                             placeholder={field.placeholder}
                         />
             ))}
-            <button type="submit" className='btn btn-primary'>Add Item</button>
+            <Button type="submit">Add Item</Button>
         </form>
     )
 }

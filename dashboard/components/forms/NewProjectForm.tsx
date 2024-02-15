@@ -9,7 +9,7 @@ import { FirebaseForm } from "./FirestormForm"
 
 export default function NewProjectForm() {
     const fields = [
-        { name: 'Category name', type: 'text', placeholder: 'A category name' },
+        { name: 'name', type: 'text', placeholder: 'A category name' },
         { name: 'description', type: 'textarea', placeholder: 'Description' },
         // { name: 'category', type: 'select', options: [{ id: 'categories', name: 'Categories' }] },
     ];

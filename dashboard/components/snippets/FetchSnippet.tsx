@@ -1,101 +1,49 @@
-'use client';
-import React, { useState, useEffect } from "react";
-import { onSnapshot, doc, updateDoc, deleteDoc, collection } from "firebase/firestore";
-import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { db } from "@core/database/firebase";
+'use client'
+import { useState, useEffect } from 'react';
+import { onSnapshot, doc, updateDoc, deleteDoc, collection } from 'firebase/firestore';
+import { toast } from 'sonner';
+import { db } from '@core/database/firebase';
 
-type Category = {
-    id: string;
-    name: string;
-}
-
-export function CategoriesList() {
-    const [categories, setCategories] = useState<Category[]>([]);
-    const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
+export function useFirestoreCollection(collectionName) {
+    const [data, setData] = useState([]);
+    const [editingItemId, setEditingItemId] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, "categories"), (snapshot) => {
-            const fetchedCategories: Category[] = [];
-            snapshot.forEach((doc) => {
-                const category = doc.data() as Category;
-                category.id = doc.id;
-                fetchedCategories.push(category);
-            });
-            setCategories(fetchedCategories);
+        const unsubscribe = onSnapshot(collection(db, collectionName), (snapshot) => {
+            const fetchedData = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setData(fetchedData);
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [collectionName]);
 
-    const handleDelete = async (categoryId: string) => {
+    const handleDelete = async (itemId) => {
         try {
-            await deleteDoc(doc(db, "categories", categoryId));
-            toast.success("Category deleted successfully.");
+            await deleteDoc(doc(db, collectionName, itemId));
+            toast.success('Item deleted successfully.');
         } catch (error) {
-            toast.error("Something went wrong.");
+            toast.error('Something went wrong.');
             console.error(error);
         }
     };
 
-    return (
-        <div className=" flex flex-col gap-2">
-            {categories.map(category => (
-                <div key={category.id}>
-                    <span>{category.name}</span>
-                    <div className="flex gap-2 mt-1">
-                        <Button variant="secondary" onClick={() => setEditingCategoryId(category.id)} >Edit</Button>
-                        <Button variant="ghost" onClick={() => handleDelete(category.id)} >Delete</Button>
-                    </div></div>
-            ))}
-            {editingCategoryId && (
-                <EditCategory
-                    categoryId={editingCategoryId}
-                    onClose={() => setEditingCategoryId(null)}
-                />
-            )}
-        </div>
-    );
-}
+    const handleEdit = (itemId) => {
+        setEditingItemId(itemId);
+    };
 
-interface EditCategoryProps {
-    categoryId?: string;
-    onClose?: () => void;
-}
-
-export default function EditCategory({ categoryId, onClose }: EditCategoryProps) {
-    const [categoryName, setCategoryName] = useState<string>("");
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleUpdate = async (itemId, newData) => {
         try {
-            await updateDoc(doc(db, "categories", categoryId), {
-                name: categoryName,
-            });
-            toast.success("Category updated successfully.");
-            onClose();
+            await updateDoc(doc(db, collectionName, itemId), newData);
+            toast.success('Item updated successfully.');
+            setEditingItemId(null);
         } catch (error) {
-            toast.error("Something went wrong.");
+            toast.error('Something went wrong.');
             console.error(error);
         }
     };
 
-    return (
-        <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
-            <Input
-                value={categoryName}
-                onChange={e => setCategoryName(e.target.value)}
-                placeholder="Category Name"
-            />
-            <div className="flex gap-2">
-                <button type="submit" className="px-4 py-2 rounded-md bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                    Update
-                </button>
-                <button type="button" className="px-4 py-2 rounded-md bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300" onClick={onClose}>
-                    Cancel
-                </button>
-            </div>
-        </form>
-    );
+    return { data, editingItemId, handleDelete, handleEdit, handleUpdate };
 }

@@ -5,17 +5,23 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { FirebaseForm } from "./FirestormForm"
 
-
-
 export default function NewProjectForm() {
-    const fields = [
+    const categoryFields = [
         { name: 'name', type: 'text', placeholder: 'A category name' },
         { name: 'description', type: 'textarea', placeholder: 'Description' },
-        // { name: 'category', type: 'select', options: [{ id: 'categories', name: 'Categories' }] },
+    ];
+
+    const snippetFields = [
+        { name: 'name', type: 'text', placeholder: 'A snippet name' },
+        { name: 'description', type: 'textarea', placeholder: 'Description' },
+        { name: 'parent', type: 'select', optionsCollection: 'categories', placeholder: 'Select a category' },
     ];
 
     return (
-        <FirebaseForm fields={fields} collectionName="categories" />
+        <div>
+            <FirebaseForm fields={categoryFields} collectionName="categories" />
+            <FirebaseForm fields={snippetFields} collectionName="snippets" />
+        </div>
     )
 }
 

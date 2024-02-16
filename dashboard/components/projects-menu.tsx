@@ -4,7 +4,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import Wrapper from "./layout/Wrapper";
 import { usePathname } from "next/navigation";
 import React from "react";
-import Link from "next/link";
 import { Icons } from "./theme/icons";
 import Seperator from "./ui/Seperator";
 import { useFirestoreCollection } from "@/hooks/useGetFirestoreData";
@@ -21,11 +20,11 @@ export function ProjectsMenu() {
   const pathname = usePathname().toLowerCase();
 
   if (loading) {
-    return <div>Loading...</div>; // replace with your loading component
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>; // replace with your error component
+    return <div>Error: {error.message}</div>;
   }
 
   const handleDelete = async (id: string) => {
@@ -38,7 +37,7 @@ export function ProjectsMenu() {
 
   return (
     <Wrapper horizontalPadding="0" isEmpty padding="none" className="text-white">
-      <h2 className="text-lg text-grey font-medium tracking-wide">All snippet</h2>
+      <h2 className="text-lg text-grey font-medium tracking-wide">All snippets</h2>
       <Seperator spacingTop="10" spacingBottom="10" />
       {categories?.map((category, index) => (
         <React.Fragment key={index}>

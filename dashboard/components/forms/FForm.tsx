@@ -1,15 +1,13 @@
 'use client';
-// components/FirebaseForm.tsx
-
-import React, { useEffect } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import React, { useEffect, useState } from "react"
+import { addDoc, collection, onSnapshot } from "firebase/firestore"
+import { Input } from "@/components/ui/input"
+import { toast } from "sonner"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { db } from "@/core/database/firebase";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@c/ui/button";
-import useFormSubmit from "@/hooks/useHandleSubmit";
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@c/ui/button"
 
 type Field = {
     name: string;
@@ -23,18 +21,18 @@ type FormProps = {
     collectionName: string;
 }
 
-export function FirebaseForm({ fields, collectionName }: FormProps) {
-    const { values, setValues, handleSubmit } = useFormSubmit(collectionName);
+export function FForm({ fields, collectionName }: FormProps) {
+    const [values, setValues] = useState<{ [key: string]: any }>({});
 
     useEffect(() => {
         fields.forEach(field => {
             if (field.type === 'select' && field.optionsCollection) {
                 const unsubscribe = onSnapshot(collection(db, field.optionsCollection), (snapshot) => {
-                    const options: { id: string, categoryName: string }[] = []
+                    const options: { id: string, snippetName: string }[] = []
                     snapshot.forEach((doc) => {
-                        const option = doc.data()
+                        const option: { id: string, snippetName: string } = doc.data()
                         option.id = doc.id
-                        options.push(option as { id: string, categoryName: string })
+                        options.push(option)
                     })
                     field.options = options
                 })
@@ -45,6 +43,19 @@ export function FirebaseForm({ fields, collectionName }: FormProps) {
 
     const handleChange = (name: string, value: any) => {
         setValues(prevValues => ({ ...prevValues, [name]: value }));
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        try {
+            await addDoc(collection(db, collectionName), values)
+            setValues({})
+            toast.success("Item added!")
+        } catch (error) {
+            toast.error("Something went wrong!")
+            console.error(error)
+        }
     }
 
     return (

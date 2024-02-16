@@ -22,11 +22,6 @@ export default function AuthenticationPage() {
         <div className="relative z-20 flex items-center text-lg font-medium">
           <Logo hasIconOnly />
         </div>
-        <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2">
-            <footer className="text-sm">Sofia Davis</footer>
-          </blockquote>
-        </div>
       </div>
       <div className="p-4 lg:p-8 h-full flex items-center">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">

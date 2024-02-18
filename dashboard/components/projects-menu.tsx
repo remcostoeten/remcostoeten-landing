@@ -53,11 +53,11 @@ export function ProjectsMenu() {
           <div className={`ml-3 mt-2.5 ${category?.files?.length > 0 ? '!mt-2' : ''} hover:file-hover--text`}>
             {snippets?.filter(snippet => snippet.parent === category.id).map((snippet, snippetIndex) => (
               <div key={snippetIndex} className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
+                <Link href={`/dashboard/snippets/${snippet.name}`} className="flex items-center gap-2">
                   <FileIcon />
                   <p className="text-sm">{snippet.name}</p>
-                </div>
-                <CrudOperation onDelete={() => handleDelete(snippet.id)} onUpdate={() => handleUpdate(snippet.id, { name: 'New Name' })} />
+                </Link>
+                <CrudOperation onDelete={() => handleDeleteWrapper(snippet.id)} onUpdate={() => handleUpdateWrapper(snippet.id, { name: 'New Name' })} />
               </div>
             ))}
           </div>

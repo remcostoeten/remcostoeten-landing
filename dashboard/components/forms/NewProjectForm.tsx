@@ -1,8 +1,3 @@
-import { Input } from "@/components/ui/input"
-import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from "@/components/ui/select"
-import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 import { FirebaseForm } from "./FirestormForm"
 
 export default function NewProjectForm() {

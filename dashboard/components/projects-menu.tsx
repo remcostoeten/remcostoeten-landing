@@ -2,38 +2,43 @@
 import { FileIcon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Wrapper from "./layout/Wrapper";
-import { usePathname } from "next/navigation";
 import React from "react";
 import { Icons } from "./theme/icons";
 import Seperator from "./ui/Seperator";
 import { useFirestoreCollection } from "@/hooks/useGetFirestoreData";
+import Link from "./core/Anchor";
+import { handleDelete, handleUpdate } from "@core/mutations/handleDelete";
 
 interface Category {
   id: string;
   name: string;
+  parent?: string
+
   files: string[];
 }
 
 export function ProjectsMenu() {
-  const { data: categories, loading, error, deleteItem, updateItem } = useFirestoreCollection<Category>('categories');
+  const { data: categories, loading: categoriesLoading, error: categoriesError, deleteItem: deleteCategory, updateItem: updateCategory } = useFirestoreCollection<Category>('categories');
+  const { data: snippets, loading: snippetsLoading, error: snippetsError, deleteItem: deleteSnippet, updateItem: updateSnippet } = useFirestoreCollection<Category>('snippets');
 
-  const pathname = usePathname().toLowerCase();
-
-  if (loading) {
+  if (categoriesLoading || snippetsLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (categoriesError || snippetsError) {
+    return <div>Error: {categoriesError?.message || snippetsError?.message}</div>;
   }
 
-  const handleDelete = async (id: string) => {
-    await deleteItem(id);
+  const handleDeleteWrapper = async (id: string) => {
+    await handleDelete(id, deleteCategory, deleteSnippet);
   };
 
-  const handleUpdate = async (id: string, newData: Partial<Category>) => {
-    await updateItem(id, newData);
+  const handleUpdateWrapper = async (id: string, newData: Partial<Category>) => {
+    await handleUpdate(id, newData, updateCategory, updateSnippet);
   };
+
+  const categoryNames = categories?.map(category => category.name);
+  const snippetNames = snippets?.map(snippet => snippet.name);
 
   return (
     <Wrapper horizontalPadding="0" isEmpty padding="none" className="text-white">
@@ -42,17 +47,17 @@ export function ProjectsMenu() {
       {categories?.map((category, index) => (
         <React.Fragment key={index}>
           <div className={`bg-grey-light px-4 py-[6px] lg:pt-2 rounded-lg flex justify-between ${index === 0 ? '' : 'mt-2 '}`}>
-            <h3 className="text-sm font-medium">{category?.name}</h3>
-            <CrudOperation onDelete={() => handleDelete(category.id)} onUpdate={() => handleUpdate(category.id, { name: 'New Name' })} />
+            <Link variant="heading" headingLevel={3} className="text-sm font-medium" href={`/dashboard/categories/${category.name}`}>{category?.name}</Link>
+            <CrudOperation onDelete={() => handleDeleteWrapper(category.id)} onUpdate={() => handleUpdateWrapper(category.id, { name: 'New Name' })} />
           </div>
-          <div className={`flex flex-col gap-2 ${category?.files?.length > 0 ? '!mt-2' : ''} hover:file-hover--text`}>
-            {category?.files?.map((file, fileIndex) => (
-              <div key={fileIndex} className="flex justify-between items-center">
+          <div className={`ml-3 mt-2.5 ${category?.files?.length > 0 ? '!mt-2' : ''} hover:file-hover--text`}>
+            {snippets?.filter(snippet => snippet.parent === category.id).map((snippet, snippetIndex) => (
+              <div key={snippetIndex} className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <FileIcon />
-                  <p className="text-sm">{file}</p>
+                  <p className="text-sm">{snippet.name}</p>
                 </div>
-                <CrudOperation onDelete={() => handleDelete(category.id)} onUpdate={() => handleUpdate(category.id, { name: 'New Name' })} />
+                <CrudOperation onDelete={() => handleDelete(snippet.id)} onUpdate={() => handleUpdate(snippet.id, { name: 'New Name' })} />
               </div>
             ))}
           </div>

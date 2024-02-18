@@ -6,7 +6,6 @@ import { db } from '@/core/database/firebase';
 
 export default function CategoryPage() {
     const router = useRouter();
-    const { id } = router.query;
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {

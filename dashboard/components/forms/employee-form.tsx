@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { Button } from "@/components/ui/button";
 import {
@@ -147,7 +148,7 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
             size="sm"
             onClick={() => setOpen(true)}
           >
-            <Trash className="h-4 w-4" />
+            <Trash className="size-4" />
           </Button>
         )}
       </div>
@@ -155,7 +156,7 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
+          className="w-full space-y-8"
         >
           <FormField
             control={form.control}
@@ -174,7 +175,7 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
               </FormItem>
             )}
           />
-          <div className="md:grid md:grid-cols-3 gap-8">
+          <div className="gap-8 md:grid md:grid-cols-3">
             <FormField
               control={form.control}
               name="name"
@@ -243,7 +244,6 @@ export const EmployeeForm: React.FC<ProductFormProps> = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {/* @ts-ignore  */}
                       {categories.map((category) => (
                         <SelectItem key={category._id} value={category._id}>
                           {category.name}

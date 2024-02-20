@@ -26,7 +26,7 @@ export const UserClient: React.FC<ProductsClientProps> = ({ data }) => {
           className="text-xs md:text-sm"
           onClick={() => router.push(`/dashboard/user/new`)}
         >
-          <Plus className="mr-2 h-4 w-4" /> Add New
+          <Plus className="mr-2 size-4" /> Add New
         </Button>
       </div>
       <Separator />

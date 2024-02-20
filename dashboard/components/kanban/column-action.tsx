@@ -57,7 +57,7 @@ export function ColumnActions({
         <Input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="text-base !mt-0 mr-auto disabled:opacity-100 disabled:cursor-pointer disabled:border-none"
+          className="!mt-0 mr-auto text-base disabled:cursor-pointer disabled:border-none disabled:opacity-100"
           disabled={editDisable}
           ref={inputRef}
         />
@@ -66,7 +66,7 @@ export function ColumnActions({
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" className="ml-1">
             <span className="sr-only">Actions</span>
-            <DotsHorizontalIcon className="h-4 w-4" />
+            <DotsHorizontalIcon className="size-4" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">

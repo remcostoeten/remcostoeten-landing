@@ -77,12 +77,12 @@ export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
         dragging: isOverlay ? "overlay" : isDragging ? "over" : undefined,
       })}
     >
-      <CardHeader className="p-4 font-semibold border-b-2 text-left flex flex-row space-between items-center">
+      <CardHeader className="space-between flex flex-row items-center border-b-2 p-4 text-left font-semibold">
         <Button
           variant={"ghost"}
           {...attributes}
           {...listeners}
-          className=" p-1 text-primary/50 -ml-2 h-auto cursor-grab relative"
+          className=" relative -ml-2 h-auto cursor-grab p-1 text-primary/50"
         >
           <span className="sr-only">{`Move column: ${column.title}`}</span>
           <GripVertical />
@@ -94,7 +94,7 @@ export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
         /> */}
         <ColumnActions id={column.id} title={column.title} />
       </CardHeader>
-      <CardContent className="flex flex-grow flex-col gap-4 p-2 overflow-y-auto overflow-x-hidden">
+      <CardContent className="flex grow flex-col gap-4 overflow-y-auto overflow-x-hidden p-2">
         <SortableContext items={tasksIds}>
           {tasks.map((task) => (
             <TaskCard key={task.id} task={task} />
@@ -126,7 +126,7 @@ export function BoardContainer({ children }: { children: React.ReactNode }) {
         dragging: dndContext.active ? "active" : "default",
       })}
     >
-      <div className="flex gap-4 items-start flex-row justify-center">
+      <div className="flex flex-row items-start justify-center gap-4">
         {children}
       </div>
     </div>

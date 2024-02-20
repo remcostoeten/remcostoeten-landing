@@ -196,7 +196,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
             size="sm"
             onClick={() => setOpen(true)}
           >
-            <Trash className="h-4 w-4" />
+            <Trash className="size-4" />
           </Button>
         )}
       </div>
@@ -223,7 +223,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                   <span className="text-sm font-medium">{step.name}</span>
                 </div>
               ) : (
-                <div className="group flex h-full w-full flex-col border-l-4 border-gray-200 py-2 pl-4 transition-colors md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
+                <div className="group flex size-full flex-col border-l-4 border-gray-200 py-2 pl-4 transition-colors md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
                   <span className="text-sm font-medium text-gray-500 transition-colors">
                     {step.id}
                   </span>
@@ -238,13 +238,13 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(processForm)}
-          className="space-y-8 w-full"
+          className="w-full space-y-8"
         >
           <div
             className={cn(
               currentStep === 1
-                ? "md:inline-block w-full"
-                : "md:grid md:grid-cols-3 gap-8",
+                ? "w-full md:inline-block"
+                : "gap-8 md:grid md:grid-cols-3",
             )}
           >
             {currentStep === 0 && (
@@ -398,7 +398,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                     <AccordionItem value="item-1">
                       <AccordionTrigger
                         className={cn(
-                          "[&[data-state=closed]>button]:hidden [&[data-state=open]>.alert]:hidden relative !no-underline",
+                          "relative !no-underline [&[data-state=closed]>button]:hidden [&[data-state=open]>.alert]:hidden",
                           errors?.jobs?.[index] && "text-red-700",
                         )}
                       >
@@ -410,18 +410,18 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                           className="absolute right-8"
                           onClick={() => remove(index)}
                         >
-                          <Trash2Icon className="h-4 w-4 " />
+                          <Trash2Icon className="size-4 " />
                         </Button>
                         {errors?.jobs?.[index] && (
-                          <span className="absolute alert right-8">
-                            <AlertTriangleIcon className="h-4 w-4   text-red-700" />
+                          <span className="alert absolute right-8">
+                            <AlertTriangleIcon className="size-4 text-red-700" />
                           </span>
                         )}
                       </AccordionTrigger>
                       <AccordionContent>
                         <div
                           className={cn(
-                            "md:grid md:grid-cols-3 gap-8 border p-4 rounded-md relative mb-4",
+                            "relative mb-4 gap-8 rounded-md border p-4 md:grid md:grid-cols-3",
                           )}
                         >
                           <FormField
@@ -565,7 +565,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
                   </Accordion>
                 ))}
 
-                <div className="flex justify-center mt-4">
+                <div className="mt-4 flex justify-center">
                   <Button
                     type="button"
                     className="flex justify-center"
@@ -616,7 +616,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="h-6 w-6"
+              className="size-6"
             >
               <path
                 strokeLinecap="round"
@@ -637,7 +637,7 @@ export const CreateProfileOne: React.FC<ProfileFormType> = ({
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="h-6 w-6"
+              className="size-6"
             >
               <path
                 strokeLinecap="round"

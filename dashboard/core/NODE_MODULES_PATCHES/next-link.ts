@@ -1,3 +1,3 @@
-import Link from "@/node_modules/next/dist/client/link"
+import Link from "@/node_modules/next/dist/client/link";
 
-export { Link }
+export { Link };

@@ -1,17 +1,16 @@
-'use client';
-import React, { useState } from 'react';
-import { Button, Input } from '@ui/ui-imports';
-import 'tailwindcss/tailwind.css';
+"use client";
+import React, { useState } from "react";
+import { Button, Input } from "@ui/ui-imports";
+import "tailwindcss/tailwind.css";
 
 interface MinesweeperProbabilityCounterProps {
   initialTotalSquares?: number;
   initialMinesToPlace?: number;
 }
 
-const MinesweeperProbabilityCounter: React.FC<MinesweeperProbabilityCounterProps> = ({
-  initialTotalSquares = 72,
-  initialMinesToPlace = 15,
-}) => {
+const MinesweeperProbabilityCounter: React.FC<
+  MinesweeperProbabilityCounterProps
+> = ({ initialTotalSquares = 72, initialMinesToPlace = 15 }) => {
   const [totalSquares, setTotalSquares] = useState(initialTotalSquares);
   const [minesToPlace, setMinesToPlace] = useState(initialMinesToPlace);
   const [probability, setProbability] = useState<number | null>(null);
@@ -35,8 +34,8 @@ const MinesweeperProbabilityCounter: React.FC<MinesweeperProbabilityCounterProps
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl mb-4">Minesweeper Probability Counter</h1>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
+      <h1 className="mb-4 text-2xl">Minesweeper Probability Counter</h1>
       <div className="flex gap-4">
         <Input
           type="number"

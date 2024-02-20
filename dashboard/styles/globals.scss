@@ -6,6 +6,7 @@
 @import '../styles/utilities/animations.scss';
 @import '../styles/theme/body.scss';
 
+
 .sidebar-height {
   max-height: calc(100vh - 110px);
 }
@@ -14,13 +15,30 @@
   height: calc(-110px - 1rem + 100vh);
 }
 
-
 @layer base {
   :root {
-    --black: #050505;
+    // Theme
+    --white: #DFE0E2;
     --grey: #131417;
+    --grey-light: #26282C;
+    --pink: #B749AC;
+    --pink-secondary: #ef4477;
+    --black: #050505;
+    --text: var(--white);
+    --text-dark: #40454d;
+    --text-grey: #9ca2aa;
+    --offwhite: #f5f5f5;
+    --color-primary: var(--pink-secondary);
+    --color-secondary: var(--pink);
+    --header-bar: var(--grey);
+    --card: var(--grey);
+    --card-inner: var(--grey-light);
+    // Theme
 
-    --white: #D7D9DB;
+    // --black: #050505;
+    // --grey: #131417;
+
+    // --white: #D7D9DB;
 
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;

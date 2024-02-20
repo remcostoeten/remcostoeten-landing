@@ -14,6 +14,7 @@ import { Form } from "./form";
 import { Label } from "./label";
 import { Alert } from "./alert";
 import { Card } from "./card";
+import { Badge } from "./badge";
 import { DataTable } from "./data-table";
 import { Input } from "./input";
 import { Modal } from "./modal";
@@ -29,6 +30,7 @@ import Seperator from "./Seperator";
 export {
   Accordion,
   AlertDialog,
+  Badge,
   Alert,
   Avatar,
   Button,
@@ -57,5 +59,4 @@ export {
   toast,
   AvatarFallback,
   AvatarImage,
-
 };

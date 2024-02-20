@@ -12,7 +12,7 @@ export default function AuthenticationPage() {
         href="/examples/authentication"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute right-4 hidden top-4 md:right-8 md:top-8",
+          "absolute right-4 top-4 hidden md:right-8 md:top-8",
         )}
       >
         Login
@@ -23,7 +23,7 @@ export default function AuthenticationPage() {
           <Logo hasIconOnly />
         </div>
       </div>
-      <div className="p-4 lg:p-8 h-full flex items-center">
+      <div className="flex h-full items-center p-4 lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">

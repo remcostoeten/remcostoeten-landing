@@ -42,7 +42,6 @@ type IconProps = {
   size?: number;
 };
 
-
 export const Icons = {
   dashboard: LayoutDashboardIcon,
   logo: Command,

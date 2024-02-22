@@ -33,22 +33,22 @@ export default function Wrapper({
     padding === "small"
       ? "py-5"
       : padding === "regular"
-        ? "py-10"
-        : padding === "large"
-          ? "py-16"
-          : padding === "none"
-            ? ""
-            : "py-20";
+      ? "py-10"
+      : padding === "large"
+      ? "py-16"
+      : padding === "none"
+      ? ""
+      : "py-20";
   const defaultVerticalPadding =
     padding === "small"
       ? "px-5"
       : padding === "regular"
-        ? "px-10"
-        : padding === "large"
-          ? "px-16"
-          : padding === "none"
-            ? ""
-            : "px-20";
+      ? "px-10"
+      : padding === "large"
+      ? "px-16"
+      : padding === "none"
+      ? ""
+      : "px-20";
   const horizontalPaddingValue = horizontalPadding || defaultHorizontalPadding;
   const verticalPaddingValue = verticalPadding || defaultVerticalPadding;
   const paddingValues = `${horizontalPaddingValue} ${verticalPaddingValue}`;
@@ -72,33 +72,35 @@ export default function Wrapper({
 
   const dottedBgStyles: React.CSSProperties = hasDottedBg
     ? {
-      // @ts-ignore
-      "--dot-bg": "#131417",
-      "--dot-color": "#26282c",
-      "--dot-size": "3px",
-      "--dot-space": "22px",
-      background: `
+        // @ts-ignore
+        "--dot-bg": "#131417",
+        "--dot-color": "#26282c",
+        "--dot-size": "3px",
+        "--dot-space": "22px",
+        background: `
             linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
             linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
             var(--dot-color)
         `,
-      zIndex: -1,
-      position: "absolute",
-      top: hasTitle ? "5%" : "0",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderRadius: "16px",
-    }
+        zIndex: -1,
+        position: "absolute",
+        top: hasTitle ? "5%" : "0",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        borderRadius: "16px",
+      }
     : {};
 
   const bgStyles = isEmpty ? { background: "transparent" } : {};
 
   return (
     <Element
-      className={`${radius} ${isEmptyBg ? "bg-black dark:bg-[#131417]" : "bg-block"
-        } Wrapper mb-10 pb-10 ${hasTitle ? "pt-10" : "bg-block"
-        } ${paddingValues} ${className} `}
+      className={`${radius} ${
+        isEmptyBg ? "bg-black dark:bg-[#131417]" : "bg-block"
+      } Wrapper mb-10 pb-10 ${
+        hasTitle ? "pt-10" : "bg-block"
+      } ${paddingValues} ${className} `}
       style={{
         ...wrapperStyles,
         ...bgStyles,
@@ -106,7 +108,9 @@ export default function Wrapper({
       }}
       {...rest}
     >
-      {pageTitle ? <h1 className="text-2xl font-bold pt-4">{pageTitle}</h1> : null}
+      {pageTitle ? (
+        <h1 className="pt-4 text-2xl font-bold">{pageTitle}</h1>
+      ) : null}
       {children}
       <div style={solidBgStyles} />
       {hasDottedBg ? (

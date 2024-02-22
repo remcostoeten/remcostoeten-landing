@@ -1,47 +1,82 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import { useState } from "react";
+import { BlockNoteEditor } from "@blocknote/core";
+import {
+  BlockNoteView,
+  FormattingToolbarPositioner,
+  HyperlinkToolbarPositioner,
+  SideMenuPositioner,
+  SlashMenuPositioner,
+  ToggledStyleButton,
+  Toolbar,
+  ToolbarButton,
+  useBlockNote,
+  useEditorContentChange,
+  useEditorSelectionChange,
+} from "@blocknote/react";
+import "@blocknote/react/style.css";
 
-const GasStationFinder = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+const CustomFormattingToolbar = (props: { editor: BlockNoteEditor }) => {
+  // Tracks whether the text & background are both blue.
+  const [isSelected, setIsSelected] = useState<boolean>(
+    props.editor.getActiveStyles().textColor === "blue" &&
+    props.editor.getActiveStyles().backgroundColor === "blue"
+  );
 
-  const fetchPrices = async (fuelType) => {
-    try {
-      const response = await fetch(
-        `https://www.tankplanner.nl/api/v1/price/${fuelType}/`,
-      );
-      const data = await response.json();
-      setData(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  // Updates state on content change.
+  useEditorContentChange(props.editor, () => {
+    setIsSelected(
+      props.editor.getActiveStyles().textColor === "blue" &&
+      props.editor.getActiveStyles().backgroundColor === "blue"
+    );
+  });
 
-  const fetchRouteStations = async (fuelType, origin, destination) => {
-    try {
-      const response = await fetch(
-        `https://www.tankplanner.nl/api/v1/route/${fuelType}/?origin=${encodeURIComponent(
-          origin,
-        )}&destination=${encodeURIComponent(destination)}`,
-      );
-      const data = await response.json();
-      setData(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  // Updates state on selection change.
+  useEditorSelectionChange(props.editor, () => {
+    setIsSelected(
+      props.editor.getActiveStyles().textColor === "blue" &&
+      props.editor.getActiveStyles().backgroundColor === "blue"
+    );
+  });
 
   return (
-    <div>
-      {/* Render your component here, using the data and error state variables */}
-      {data && (
-        <div>
-          <h2>Data:</h2>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      )}
-    </div>
+    <Toolbar>
+      {/*Default button to toggle bold.*/}
+      <ToggledStyleButton editor={props.editor} toggledStyle={"bold"} />
+      {/*Default button to toggle italic.*/}
+      <ToggledStyleButton editor={props.editor} toggledStyle={"italic"} />
+      {/*Default button to toggle underline.*/}
+      <ToggledStyleButton editor={props.editor} toggledStyle={"underline"} />
+      {/*Custom button to toggle blue text & background color.*/}
+      <ToolbarButton
+        mainTooltip={"Blue Text & Background"}
+        onClick={() => {
+          props.editor.toggleStyles({
+            textColor: "blue",
+            backgroundColor: "blue",
+          });
+        }}
+        isSelected={isSelected}>
+        Blue
+      </ToolbarButton>
+    </Toolbar>
   );
 };
 
-export default GasStationFinder;
+export default function App() {
+  // Creates a new editor instance.
+  const editor: BlockNoteEditor = useBlockNote();
+
+  // Renders the editor instance.
+  return (
+    <BlockNoteView editor={editor} theme={"dark"}>
+      <FormattingToolbarPositioner
+        editor={editor}
+        formattingToolbar={CustomFormattingToolbar}
+      />
+      <HyperlinkToolbarPositioner editor={editor} />
+      <SlashMenuPositioner editor={editor} />
+      <SideMenuPositioner editor={editor} />
+    </BlockNoteView>
+  );
+}

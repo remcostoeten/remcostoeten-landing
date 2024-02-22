@@ -1,36 +1,19 @@
   {
     "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
       "allowJs": true,
       "skipLibCheck": true,
-      "strict": false,
-      "forceConsistentCasingInFileNames": false,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
       "noEmit": true,
       "esModuleInterop": true,
-      "downlevelIteration": false,
       "module": "esnext",
-      "target": "es2017",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext.asynciterable"
-      ],
       "moduleResolution": "node",
       "resolveJsonModule": true,
       "isolatedModules": true,
       "jsx": "preserve",
       "incremental": true,
-      "baseUrl": ".",
-      "noImplicitAny": false,
-      "noImplicitThis": false,
-      "noImplicitReturns": false,
-      "noUnusedLocals": false,
-      "noUnusedParameters": false,
-      "noFallthroughCasesInSwitch": false,
-      "noUncheckedIndexedAccess": false,
-      "noPropertyAccessFromIndexSignature": false,
-      "allowSyntheticDefaultImports": true,
-      "allowUnusedLabels": true,
-      "allowUnreachableCode": true,
       "plugins": [
         {
           "name": "next"

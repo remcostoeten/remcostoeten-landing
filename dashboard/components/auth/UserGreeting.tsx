@@ -8,7 +8,7 @@ export default function UserGreeting() {
   const timeOfTheDay = GetTimeOfTheDay();
 
   return (
-    <h2 className="text-xl font-bold tracking-tight mr-2">
+    <h2 className="mr-2 text-xl font-bold tracking-tight">
       Good {timeOfTheDay} {user?.displayName}{" "}
       <span aria-label="waving hand" className="wave" role="img">
         👋

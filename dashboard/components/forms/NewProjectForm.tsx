@@ -6,7 +6,10 @@ type ProjectProps = {
   regularForm?: boolean;
 };
 
-export default function NewProjectForm({ sidebarForm, regularForm }: ProjectProps) {
+export default function NewProjectForm({
+  sidebarForm,
+  regularForm,
+}: ProjectProps) {
   const categoryFields = [
     { name: "name", type: "text", placeholder: "A category name" },
   ];
@@ -24,8 +27,12 @@ export default function NewProjectForm({ sidebarForm, regularForm }: ProjectProp
 
   return (
     <>
-      {sidebarForm && <FirebaseForm fields={categoryFields} collectionName="categories" />}
-      {regularForm && <FirebaseForm fields={snippetFields} collectionName="snippets" />}
+      {sidebarForm && (
+        <FirebaseForm fields={categoryFields} collectionName="categories" />
+      )}
+      {regularForm && (
+        <FirebaseForm fields={snippetFields} collectionName="snippets" />
+      )}
     </>
   );
 }

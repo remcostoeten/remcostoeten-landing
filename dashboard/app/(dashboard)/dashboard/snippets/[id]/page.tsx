@@ -3,24 +3,20 @@
 import { usePathname } from "next/navigation";
 import { useFirestoreCollection } from "@/hooks/useGetFirestoreData";
 import Wrapper from "@c/layout/Wrapper";
-import Tiptap from "@c/tiptap";
+import dynamic from "next/dynamic";
+import QuickSubscribe from "@c/core/micro-btn";
 
 type Category = {
   name: string;
   description: string;
 };
-import { Coda } from "next/font/google";
-const coda = Coda({
-  subsets: ['latin'],
-  weight: '400',
-});
+
 
 export default function SnippetPage() {
   // Use the usePathname hook to get the current pathname
   const pathname = usePathname();
   // Extract the id from the pathname
   const id = pathname?.split("/").pop();
-
 
   // Fetch the snippets data using the useFirestoreCollection hook
   const {
@@ -53,9 +49,8 @@ export default function SnippetPage() {
   // Render the snippet details
   return (
     <Wrapper horizontalPadding="0" padding="small" pageTitle={snippet.name}>
-      <Tiptap />
+      <QuickSubscribe />
       <p>{snippet.description}</p>
-      <Tiptap />
     </Wrapper>
   );
 }

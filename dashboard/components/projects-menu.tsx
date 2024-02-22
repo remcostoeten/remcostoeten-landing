@@ -24,6 +24,8 @@ interface Category {
   files: string[];
 }
 
+type Snippet = Category;
+
 export function ProjectsMenu() {
   const {
     data: categories,
@@ -102,23 +104,28 @@ export function ProjectsMenu() {
             />
           </div>
           <div
-            className={`ml-3 mt-2.5 flex flex-col gap-2 ${category?.files?.length > 0 && !category?.files?.lastIndexOf(0) ? "mt-0" : "mt-0"
+            className={`ml-3  flex flex-col gap-2 ${category?.files?.length > 0 && !category?.files?.lastIndexOf(0)
+                ? "mt-0"
+                : "mt-0"
               } hover:file-hover--text`}
           >
             {snippets
-              ?.filter((snippet) => snippet.parent === category.id)
-              .map((snippet, snippetIndex) => (
+              ?.filter((snippet: Snippet) => snippet.parent === category.id)
+              .map((snippet: Snippet, snippetIndex: number) => (
                 <div
                   key={snippetIndex}
-                  className="flex gap-2  mt-2 items-center justify-between"
+                  className="mt-2 flex  items-center justify-between gap-2"
                 >
                   <Link
                     href={`/dashboard/snippets/${snippet.name.replace(
                       /\s/g,
                       "-",
                     )}`}
-                    className={`flex items-cente ${styleCurrentActive(
-                      `/dashboard/snippets/${snippet.name.replace(/\s/g, "-")}`,
+                    className={`items-cente flex ${styleCurrentActive(
+                      `/dashboard/snippets/${snippet?.name?.replace(
+                        /\s/g,
+                        "-",
+                      )}`,
                     )}`}
                   >
                     <FileIcon />

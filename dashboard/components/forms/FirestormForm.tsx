@@ -1,6 +1,5 @@
 // @ts-nocheck
 "use client";
-// components/FirebaseForm.tsx
 
 import React, { useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";

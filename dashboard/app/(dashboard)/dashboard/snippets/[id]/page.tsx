@@ -3,8 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useFirestoreCollection } from "@/hooks/useGetFirestoreData";
 import Wrapper from "@c/layout/Wrapper";
-import dynamic from "next/dynamic";
-import QuickSubscribe from "@c/core/micro-btn";
+import FroalaEditor from 'react-froala-wysiwyg';
+import Contact from "@c/core/micro-btn";
+import RichEditor from "@c/snippets/RichEditor";
 
 type Category = {
   name: string;
@@ -49,7 +50,8 @@ export default function SnippetPage() {
   // Render the snippet details
   return (
     <Wrapper horizontalPadding="0" padding="small" pageTitle={snippet.name}>
-      <QuickSubscribe />
+      <Contact />
+      <RichEditor />
       <p>{snippet.description}</p>
     </Wrapper>
   );

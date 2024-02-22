@@ -125,6 +125,9 @@ dependencies:
   firebase:
     specifier: ^10.8.0
     version: 10.8.0
+  froala-editor:
+    specifier: ^4.1.4
+    version: 4.1.4
   lucide-react:
     specifier: ^0.291.0
     version: 0.291.0(react@18.2.0)
@@ -152,6 +155,9 @@ dependencies:
   react-firebase-hooks:
     specifier: ^5.1.1
     version: 5.1.1(firebase@10.8.0)(react@18.2.0)
+  react-froala-wysiwyg:
+    specifier: ^4.1.4
+    version: 4.1.4(react-dom@18.2.0)(react@18.2.0)
   react-hook-form:
     specifier: ^7.47.0
     version: 7.50.1(react@18.2.0)
@@ -3114,6 +3120,13 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /create-react-class@15.7.0:
+    resolution: {integrity: sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
     dev: false
@@ -3876,6 +3889,10 @@ packages:
 
   /fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+    dev: false
+
+  /froala-editor@4.1.4:
+    resolution: {integrity: sha512-oWF8SZNtLvfweURV5T0WYO69ZQpB1LQiGO2e6zoYRAlOwmqlW5yqLWfGi0tfn99qOgZ/4dxqBBDxqfOsRCQFiA==}
     dev: false
 
   /fs-constants@1.0.0:
@@ -5210,6 +5227,18 @@ packages:
     dependencies:
       firebase: 10.8.0
       react: 18.2.0
+    dev: false
+
+  /react-froala-wysiwyg@4.1.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-gykUmilMhq7uGqPDrFPEvCUE6KAa6ZdBL6Cp9joCm9RA/M2nio150Ug/DGFO1zGYEBMpXDeL7JaFaOhkxldSAA==}
+    peerDependencies:
+      react: ~0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ~0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      create-react-class: 15.7.0
+      froala-editor: 4.1.4
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-hook-form@7.50.1(react@18.2.0):

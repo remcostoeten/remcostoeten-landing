@@ -19,7 +19,7 @@ const QuickSubscribe: React.FC = () => {
 
     const handleInputFocus = (focused: boolean) => {
         setInputFocused(focused);
-        alert('focused');   
+        alert('focused');
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

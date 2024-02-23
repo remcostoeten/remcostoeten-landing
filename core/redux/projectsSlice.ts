@@ -13,7 +13,6 @@ const fetchProjects = createAsyncThunk(
   }
 )
 
-// ----
 
 interface ProjectsState {
   projects: Project[]

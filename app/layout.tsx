@@ -1,3 +1,4 @@
+'use client';
 import MobileNavigation from "@c/core/MobileNavigation"
 
 import "../styles/globals.scss"
@@ -23,6 +24,8 @@ import {
   SiteHeader,
   TooltipProvider,
 } from "@/components/ui/ui-imports"
+import { ApolloProvider } from '@apollo/client';
+import ApolloWrapper from "@/core/database/ApolloWrapper";
 
 export const viewport = {
   themeColor: [
@@ -31,18 +34,18 @@ export const viewport = {
   ],
 }
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-}
+// export const metadata: Metadata = {
+//   title: {
+//     default: siteConfig.name,
+//     template: `%s - ${siteConfig.name}`,
+//   },
+//   description: siteConfig.description,
+//   icons: {
+//     icon: "/favicon.ico",
+//     shortcut: "/favicon-16x16.png",
+//     apple: "/apple-touch-icon.png",
+//   },
+// }
 
 export default function RootLayout({ children }) {
   return (

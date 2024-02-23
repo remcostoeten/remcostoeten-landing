@@ -12,4 +12,5 @@ export type MenuItemProps = {
   eventName?: string
   hideIcon?: boolean
   type?: string
+  badge?: JSX.Element
 }

@@ -1,5 +1,4 @@
 import ReduxProvider from "@/core/redux/ReduxProvider"
-import { toast } from "sonner"
 
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
@@ -8,7 +7,7 @@ import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
-import "@/styles/globals.css"
+import "@/styles/globals.scss"
 import type { AppProps } from "next/app"
 import { TooltipProvider } from "@radix-ui/react-tooltip"
 import { Analytics } from "@vercel/analytics/react"

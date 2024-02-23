@@ -3,12 +3,14 @@ import React from "react"
 type PillProps = {
   children: React.ReactNode
   color?: string
+  className?: string
   backgroundColor?: string
   fontSize?: "8px" | "10px" | "12px" | "sm" | "md" | "lg" | "xl"
   borderRadius?: string
 }
 
 export default function Pill({
+  className,
   children,
   color = "#F2F5F6",
   backgroundColor = "#1E1F1E",
@@ -29,7 +31,7 @@ export default function Pill({
 
   return (
     <div
-      className={`bg-${backgroundColor} text- transition-all hover:bg-[#303330]${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}
+      className={`bg-${backgroundColor} ${className} text- transition-all hover:bg-[#303330]${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}
     >
       {children}
     </div>

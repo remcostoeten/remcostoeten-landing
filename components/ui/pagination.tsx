@@ -3,7 +3,11 @@ import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 import { cn } from "@/core/lib/utils"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+
+type ButtonProps = {
+  size?: any
+} & React.ComponentPropsWithoutRef<"button">
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav

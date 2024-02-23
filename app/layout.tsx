@@ -1,25 +1,29 @@
 'use client';
 import MobileNavigation from "@c/core/MobileNavigation"
 
-import "@/styles/globals.css"
+import "../styles/globals.scss"
+import React from "react"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
-import ReduxProvider from "@/core/redux/ReduxProvider"
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
-import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import NextTopLoader from "nextjs-toploader"
 
-import { siteConfig } from "@/core/config/site"
-import { fontSora } from "@/core/lib/fonts"
-import { cn } from "@/core/lib/utils"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
-import SiteHeader from "@/components/core/SiteHeader"
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import { HeroPattern } from "@/components/layout/HeroPattern"
-import ShellLayout from "@/components/layout/MainLayoutShell"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
+import {
+  Analytics,
+  ApolloWrapper,
+  AuthUserProvider,
+  HydrationOverlay,
+  ReduxProvider,
+  TailwindIndicator,
+  ThemeProvider,
+  cn,
+  fontSora,
+  siteConfig,
+} from "@/core/config/site_helpers_metrics"
+import {
+  ShellLayout,
+  SiteHeader,
+  TooltipProvider,
+} from "@/components/ui/ui-imports"
 import { ApolloProvider } from '@apollo/client';
 import ApolloWrapper from "@/core/database/ApolloWrapper";
 
@@ -88,6 +92,5 @@ export default function RootLayout({ children }) {
         </AuthUserProvider>
       </HydrationOverlay>
     </ApolloWrapper>
-
   )
 }

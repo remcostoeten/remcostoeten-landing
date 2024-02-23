@@ -18,7 +18,7 @@ export default function SectionHeading({
       className={`flex items-center gap-1 text-xl font-medium text-neutral-800 dark:text-neutral-300 ${className}`}
     >
       {!iconBehind && icon && <>{icon}</>}
-      <h2 className="capitalize">{title}</h2>
+      <h2 className="">{title}</h2>
       {iconBehind && icon && <>{icon}</>}
     </div>
   )

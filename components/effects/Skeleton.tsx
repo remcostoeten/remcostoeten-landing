@@ -2,35 +2,12 @@ import React from "react"
 import { Card } from "../ui/card"
 
 /**
- * Props for the SkeletonBar component.
+ * Prop docs below
  */
-type SkeletonBarProps = {
-  /**
-   * The width of the skeleton bar.
-   * Can be a string or number.
-   * Default value is 'full'.
-   */
-  width?: string | number
-  /**
-   * The height of the skeleton bar.
-   * Can be a string or number.
-   * Default value is '32'.
-   */
-  height?: string | number
-  /**
-   * Additional CSS classes to apply to the skeleton bar.
-   */
-  additionalClasses?: string
-  /**
-   * Whether to use the dark variant of the skeleton bar.
-   * Default value is false.
-   */
-  dark?: boolean
-}
 
-/**
- * A skeleton bar component that can be used to show loading state for content.
- */
+import React from "react"
+
+import { Card } from "../ui/card"
 
 const SkeletonBar = ({
   additionalClasses,
@@ -56,6 +33,46 @@ type ProfileSkeletonProps = {
   showLoader2?: boolean
   showLoader3?: boolean
 }
+const BlogPlaceholder = () => {
+  return (
+    <div className="h-28 w-full animate-pulse overflow-hidden rounded-md bg-neutral-300 dark:bg-neutral-700"></div>
+  )
+}
+
+const GithubStatisticsSkeleton = () => {
+  return (
+    <div className="grid grid-cols-2 gap-3 py-2 sm:grid-cols-4">
+      {[1, 2, 3, 4].map((index) => (
+        <Card
+          key={index}
+          className="flex flex-col gap-2  self-center rounded-xl py-3 px-4 border"
+        >
+          <span className="text-sm dark:text-neutral-400">
+            {index === 1
+              ? "Total"
+              : index === 2
+              ? "Average per day"
+              : index === 3
+              ? "Best day"
+              : "Different languages"}
+          </span>
+          <div>
+            {index === 2 ? (
+              <div className="flex gap-2">
+                <SkeletonBar width={6} height={4} />
+                <SkeletonBar width={8} height={4} />
+              </div>
+            ) : (
+              <SkeletonBar width={12} height={4} />
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
+const ProfileSkeleton = ({
 
 
 export const GithubStatisticsSkeleton = () => {
@@ -245,6 +262,43 @@ const IssueTableSkeleton = () => {
     </>
   )
 }
+
+export {
+  BlogPlaceholder,
+  GithubStatisticsSkeleton,
+  ProfileSkeleton,
+  LoadingArticle,
+  SkeletonBar,
+  IssueTableSkeleton,
+}
+
+type SkeletonBarProps = {
+  /**
+   * The width of the skeleton bar.
+   * Can be a string or number.
+   * Default value is 'full'.
+   */
+  width?: string | number
+  /**
+   * The height of the skeleton bar.
+   * Can be a string or number.
+   * Default value is '32'.
+   */
+  height?: string | number
+  /**
+   * Additional CSS classes to apply to the skeleton bar.
+   */
+  additionalClasses?: string
+  /**
+   * Whether to use the dark variant of the skeleton bar.
+   * Default value is false.
+   */
+  dark?: boolean
+}
+
+/**
+ * A skeleton bar component that can be used to show loading state for content.
+ */
 
 export { LoadingArticle, SkeletonBar, IssueTableSkeleton }
 

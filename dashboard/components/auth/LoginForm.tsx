@@ -153,8 +153,8 @@ export default function LoginForm() {
                 {loading
                   ? "Signing in..."
                   : isSignup
-                  ? "Create account"
-                  : "Sign in"}
+                    ? "Create account"
+                    : "Sign in"}
               </Button>
               <span onClick={() => setIsSignup(!isSignup)}>
                 {isSignup ? (

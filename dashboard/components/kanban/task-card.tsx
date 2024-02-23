@@ -6,6 +6,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { cva } from "class-variance-authority";
 import { GripVertical } from "lucide-react";
 import { Badge } from "../ui/badge";
+import Wrapper from "@c/layout/Wrapper";
 
 // export interface Task {
 //   id: UniqueIdentifier;
@@ -59,7 +60,7 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
   });
 
   return (
-    <Card
+    <Wrapper
       ref={setNodeRef}
       style={style}
       className={variants({
@@ -83,6 +84,6 @@ export function TaskCard({ task, isOverlay }: TaskCardProps) {
       <CardContent className="whitespace-pre-wrap px-3 pb-6 pt-3 text-left">
         {task.title}
       </CardContent>
-    </Card>
+    </Wrapper>
   );
 }

@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { ColumnActions } from "./column-action";
 import { TaskCard } from "./task-card";
+import Wrapper from "@c/layout/Wrapper";
 
 export interface Column {
   id: UniqueIdentifier;
@@ -95,12 +96,13 @@ export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
         <ColumnActions id={column.id} title={column.title} />
       </CardHeader>
       <CardContent className="flex grow flex-col gap-4 overflow-y-auto overflow-x-hidden p-2">
-        <SortableContext items={tasksIds}>
-          {tasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        </SortableContext>
+
       </CardContent>
+      <Wrapper> <SortableContext items={tasksIds}>
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </SortableContext></Wrapper>
     </Card>
   );
 }

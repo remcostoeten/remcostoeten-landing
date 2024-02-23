@@ -48,6 +48,6 @@ export default function RichEditor() {
                     Submit
                 </button>
             </div>
-        </form>
+        </form>b
     );
 }

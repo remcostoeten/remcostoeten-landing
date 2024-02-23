@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client/core";
+import { gql } from "@apollo/client/core"
 
 export const GET_GITHUB_CONTRIBUTION_STATS = gql`
   query GetGitHubContributionStats($username: String!) {
@@ -39,17 +39,17 @@ export const GET_GITHUB_CONTRIBUTION_STATS = gql`
       }
     }
   }
-`;
+`
 
 export const GET_CONTRIBUTIONS = gql`
-        query GetUserContributions($username: String!) {
-          user(login: $username) {
-          contributionsCollection {
-          contributionCalendar {
+  query GetUserContributions($username: String!) {
+    user(login: $username) {
+      contributionsCollection {
+        contributionCalendar {
           totalContributions
           weeks {
-          contributionDays {
-          contributionCount
+            contributionDays {
+              contributionCount
               date
             }
           }
@@ -57,4 +57,4 @@ export const GET_CONTRIBUTIONS = gql`
       }
     }
   }
-`;
+`

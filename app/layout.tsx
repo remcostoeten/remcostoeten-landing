@@ -1,9 +1,12 @@
-'use client';
+"use client"
+
 import MobileNavigation from "@c/core/MobileNavigation"
 
 import "@/styles/globals.css"
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
+import ApolloWrapper from "@/core/database/ApolloWrapper"
 import ReduxProvider from "@/core/redux/ReduxProvider"
+import { ApolloProvider } from "@apollo/client"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -20,8 +23,6 @@ import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ApolloProvider } from '@apollo/client';
-import ApolloWrapper from "@/core/database/ApolloWrapper";
 
 export const viewport = {
   themeColor: [
@@ -88,6 +89,5 @@ export default function RootLayout({ children }) {
         </AuthUserProvider>
       </HydrationOverlay>
     </ApolloWrapper>
-
   )
 }

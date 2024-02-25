@@ -69,12 +69,12 @@ const App: React.FC = () => {
                 <label>
                     Total Bombs:
                     <input type="number" value={totalBombs} onChange={(e) => setTotalBombs(Number(e.target.value))} />
-            </div>
+                </label>  </div>
             <div>
                 <label>
                     Tiles to Open (max 20):
                     <input type="number" value={tilesToOpen} onChange={(e) => setTilesToOpen(Number(e.target.value))} />
-            </div>
+                </label>   </div>
             <div>
                 <label>
                     Use Payout Variant 2 (7x7 grid):

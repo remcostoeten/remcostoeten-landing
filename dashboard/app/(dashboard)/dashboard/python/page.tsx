@@ -4,6 +4,10 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { toast } from 'sonner';
+import Wrapper from '@c/layout/Wrapper';
+import { set } from 'date-fns';
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@c/ui/table';
+import { ResetIcon } from '@radix-ui/react-icons';
 
 interface Cell {
     isBomb: boolean;
@@ -34,20 +38,44 @@ const placeBombs = (board: Cell[][], bombs: number): Cell[][] => {
     return board;
 };
 
+
 const Minesweeper: React.FC = () => {
     const [rows, setRows] = useState<number>(5);
     const [cols, setCols] = useState<number>(5);
     const [bombs, setBombs] = useState<number>(3);
     const [openedTilesCount, setOpenedTilesCount] = useState(0);
-
+    const [timesClicked, setTimesClicked] = useState<number>(0);
     const [board, setBoard] = useState<Cell[][]>(initializeBoard(rows, cols));
     const [gameOver, setGameOver] = useState<boolean>(false);
     const [numDeaths, setNumDeaths] = useState<number>(0);
+    const [roundResults, setRoundResults] = useState<Array<{ round: number, timesDied: number, timesClicked: number, rows: number, cols: number, bombs: number }>>([]);
+
+    const clearAll = () => {
+        setRoundResults([]);
+        localStorage.clear();
+    }
+
+    // result logic
+    const [saveClickedPerRound, setSaveClickedPerRound] = useState<number>(0);
+
+    // save each individual round
+    const [rounds, setRounds] = useState<number>(0);
+
+    const individualRound = (roundData) => {
+        return (
+            <div>
+                <h2>Round: {roundData.roundNumber}</h2>
+                <p>Times died: {roundData.timesDied}</p>
+                <p>Times clicked: {roundData.timesClicked}</p>
+            </div>
+        );
+    }
 
     const resetGame = () => {
         const newBoard = placeBombs(initializeBoard(rows, cols), bombs);
         setBoard(newBoard);
         setGameOver(false);
+        setTimesClicked(0);
     };
 
     const revealAll = () => {
@@ -64,7 +92,7 @@ const Minesweeper: React.FC = () => {
         if (gameOver || board[row][col].isRevealed) {
             return;
         }
-
+        setTimesClicked(prevCount => prevCount + 1);
         let newBoard = [...board];
         newBoard[row][col].isRevealed = true;
         setBoard(newBoard);
@@ -72,7 +100,11 @@ const Minesweeper: React.FC = () => {
         if (board[row][col].isBomb) {
             setGameOver(true);
             revealAll();
-            toast(`Too bad, you died on the ${openedTilesCount + 1} click`);        } else if (!board[row][col].isRevealed) {
+            setSaveClickedPerRound(timesClicked);
+            setNumDeaths(prevCount => prevCount + 1);
+            setRoundResults(prevResults => [...prevResults, { round: rounds, timesDied: numDeaths + 1, timesClicked, rows, cols, bombs }]);
+            toast(`Too bad, you died on the ${timesClicked + 1} click`);
+        } else if (!board[row][col].isRevealed) {
             setOpenedTilesCount(prevCount => prevCount + 1);
         }
     };
@@ -148,36 +180,70 @@ const Minesweeper: React.FC = () => {
             <button onClick={resetGame} className="mb-4 bg-blue-500 text-white py-2 px-4 rounded">
                 Start New Game
             </button>
+            <div className='flex '>
+                <Wrapper className='mx-auto flex  justify-center items-start'>
+                    <div className="grid grid-cols-5 gap-1 w-max  place-items-center w-max-[900px]">
+                        {board.map((row, rowIndex) =>
+                            row.map((cell, colIndex) => (
+                                <div
+                                    key={`${rowIndex}-${colIndex}`}
+                                    className={classNames(
+                                        'border border-gray-100 h-32 w-32 flex items-center justify-center cursor-pointer text-lg font-semibold',
+                                        { 'flex bg-emerald-600': cell.isRevealed },
+                                        { 'bg-red-500': cell.isRevealed && cell.isBomb },
+                                    )}
+                                    onClick={() => handleCellClick(rowIndex, colIndex)}
+                                >
+                                    <span className='scale-175'>  {cell.isRevealed && cell.isBomb ? '💣' : ''}</span>
+                                    <span className='scale-175'> {cell.isRevealed && !cell.isBomb ? '💎' : ''}</span>
+                                </div>
 
-            <div className="grid grid-cols-5 gap-1">
-                {board.map((row, rowIndex) =>
-                    row.map((cell, colIndex) => (
-                        <div
-                            key={`${rowIndex}-${colIndex}`}
-                            className={classNames(
-                                'border border-gray-300 h-10 w-10 flex items-center justify-center cursor-pointer text-lg font-semibold',
-                                { 'bg-gray-400': cell.isRevealed },
-                                { 'bg-red-500': cell.isRevealed && cell.isBomb },
-                            )}
-                            onClick={() => handleCellClick(rowIndex, colIndex)}
-                        >
-                            <span className='scale-175'>  {cell.isRevealed && cell.isBomb ? '💣' : ''}</span>
-                            <span className='scale-175'> {cell.isRevealed && !cell.isBomb ? '💎' : ''}</span>
-                        </div>
-
-                    )),
-                )}
+                            )),
+                        )}
+                    </div>
+                </Wrapper >
+                <ResultsSidebar reset={clearAll} timesDied={numDeaths} saveClickedPerRound={saveClickedPerRound} roundResults={roundResults} />
             </div>
-
-            {gameOver && (
-                <div className="mt-4 text-red-500">
-                    Game Over! You've died {numDeaths} times.
-                </div>
-            )}
         </div>
     );
 };
 
+interface ResultsSidebarProps {
+    timesDied: number | null;
+    saveClickedPerRound: number | null;
+    roundResults: Array<{ round: number, timesDied: number, timesClicked: number, rows: number, cols: number, bombs: number }>;
+    reset: () => void;
+}
 
+
+const ResultsSidebar: React.FC<ResultsSidebarProps> = ({ reset, timesDied, saveClickedPerRound, roundResults }) => {
+    return (
+        <Wrapper>
+            <Table>
+                <ResetIcon height={30} width={30} className='absolute top-4 t right-4' onClick={reset} />
+                <TableHeader className='mt-4 border-b'>
+                    <TableCell>Round</TableCell>
+                    <TableCell>Times Died</TableCell>
+                    <TableCell>Times Clicked</TableCell>
+                    <TableCell>Rows</TableCell>
+                    <TableCell>Columns</TableCell>
+                    <TableCell>Bombs</TableCell>
+                </TableHeader>
+                <TableBody>
+                    {roundResults.map((result, index) => (
+                        <TableRow key={index}>
+                            <TableCell>{result.round}</TableCell>
+                            <TableCell>{result.timesDied}</TableCell>
+                            <TableCell>{result.timesClicked}</TableCell>
+                            <TableCell>{result.rows}</TableCell>
+                            <TableCell>{result.cols}</TableCell>
+                            <TableCell>{result.bombs}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </Wrapper>
+    )
+}
 
 export default Minesweeper;

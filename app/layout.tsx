@@ -1,27 +1,24 @@
 'use client';
-import MobileNavigation from "@c/core/MobileNavigation"
+import MobileNavigation from "@c/core/MobileNavigation";
 
-import "@/styles/globals.css"
-import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
-import ReduxProvider from "@/core/redux/ReduxProvider"
-import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import NextTopLoader from "nextjs-toploader"
+import "@/styles/globals.css";
+import ReduxProvider from "@/core/redux/ReduxProvider";
+import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import NextTopLoader from "nextjs-toploader";
 
-import { siteConfig } from "@/core/config/site"
-import { fontSora } from "@/core/lib/fonts"
-import { cn } from "@/core/lib/utils"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
-import SiteHeader from "@/components/core/SiteHeader"
-import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import { HeroPattern } from "@/components/layout/HeroPattern"
-import ShellLayout from "@/components/layout/MainLayoutShell"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
-import { ApolloProvider } from '@apollo/client';
+import { siteConfig } from "@/core/config/site";
+import { fontSora } from "@/core/lib/fonts";
+import { cn } from "@/core/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import SiteHeader from "@/components/core/SiteHeader";
+import { AuthUserProvider } from "@/components/kanban/AuthUserProvider";
+import ShellLayout from "@/components/layout/MainLayoutShell";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { ThemeProvider } from "@/components/theme-provider";
 import ApolloWrapper from "@/core/database/ApolloWrapper";
+import NoticeToFinishCursus from "@/dashboard/components/Notice";
 
 export const viewport = {
   themeColor: [
@@ -65,6 +62,7 @@ export default function RootLayout({ children }) {
                     fontSora.variable
                   )}
                 >
+                <NoticeToFinishCursus/>
                   <MobileNavigation />
                   <NextTopLoader color="#2dd4bf" height={5} />
                   <ThemeProvider

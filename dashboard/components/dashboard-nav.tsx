@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { Icons } from "@/components/theme/icons";
 import { cn } from "@/core/utils";
-import { NavItem } from "@/types";
+import { NavItem } from "@core/types";
 import { Dispatch, SetStateAction } from "react";
 
 interface DashboardNavProps {

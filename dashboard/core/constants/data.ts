@@ -1,5 +1,5 @@
 import { Icons } from "@/components/theme/icons";
-import { NavItem, SidebarNavItem } from "@/types";
+import { NavItem, SidebarNavItem } from "@core/types";
 
 export type User = {
   id: number;

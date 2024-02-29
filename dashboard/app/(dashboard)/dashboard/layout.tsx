@@ -4,6 +4,7 @@ import Header from "@/components/layout/header";
 import type { Metadata } from "next";
 import UserGreeting from "@/components/auth/UserGreeting";
 import { Toaster } from 'sonner'
+import NoticeToFinishCursus from "@c/Notice";
 
 export default function DashboardLayout({
   children,
@@ -18,6 +19,7 @@ export default function DashboardLayout({
         <Aside />
         <main className="w-full flex flex-col space-y-4 p-4 md:p-8 pt-6 ">
           <UserGreeting />
+          <NoticeToFinishCursus/>
           <Toaster position="bottom-right" />
           {children}</main>
       </div>

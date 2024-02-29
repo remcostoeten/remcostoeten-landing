@@ -176,7 +176,7 @@ const Minesweeper: React.FC = () => {
                     className="border p-2"
                 />
             </div>
-
+            Ja hehe, waar was je al die tijd? Ben een tijdje naar Pristina (kosovo) geweest
             <button onClick={resetGame} className="mb-4 bg-blue-500 text-white py-2 px-4 rounded">
                 Start New Game
             </button>

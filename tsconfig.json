@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "noStrictGenericChecks": true,
     "forceConsistentCasingInFileNames": false,
     "noEmit": true,
     "esModuleInterop": true,
@@ -26,28 +23,13 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "react/jsx-runtime": [
-        "node_modules/react/jsx-runtime"
-      ],
-      "@/*": [
-        "./*"
-      ],
-      "@c/*": [
-        "./components/*"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
-      ]
+      "react/jsx-runtime": ["node_modules/react/jsx-runtime"],
+      "@/*": ["./*"],
+      "@c/*": ["./components/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "strictNullChecks": false
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

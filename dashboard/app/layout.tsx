@@ -1,12 +1,12 @@
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
 import Providers from "@/components/layout/providers";
-import "@uploadthing/react/styles.css";
 import { Inter } from "next/font/google";
 import "../styles/globals.scss";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
+import NextTopLoader from "nextjs-toploader";
 
 
 export default function RootLayout({
@@ -19,7 +19,9 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <TooltipProvider>
           <body className={`${inter.className} overflow-hidden`}>
-            <Providers>
+
+               <NextTopLoader color="#2dd4bf"  />
+   <Providers>
               <Toaster />
               {children}
             </Providers>

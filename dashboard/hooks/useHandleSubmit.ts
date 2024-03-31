@@ -1,9 +1,9 @@
 // hooks/useFormSubmit.ts
 
-import { useState } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from '@/core/database/firebase';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/core/database/firebase";
+import { toast } from "sonner";
 
 const useFormSubmit = (collectionName: string) => {
   const [values, setValues] = useState<{ [key: string]: any }>({});
@@ -14,9 +14,9 @@ const useFormSubmit = (collectionName: string) => {
     try {
       await addDoc(collection(db, collectionName), values);
       setValues({});
-      toast.success('Item added!');
+      toast.success("Item added!");
     } catch (error) {
-      toast.error('Something went wrong!');
+      toast.error("Something went wrong!");
       console.error(error);
     }
   };

@@ -1,6 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
-import CommentSection from './comment-section'
+import CommentSection from "./comment-section";
 interface ImageProps {
   src: string;
   alt: string;
@@ -67,28 +67,29 @@ function CChat() {
                     alt="Virtual Agent"
                     className="shrink-0 w-10 aspect-square"
                   />
-               <section className="flex flex-col grow shrink-0 justify-center py-4 pr-11 pl-3.5 rounded-lg basis-0 bg-white bg-opacity-10 w-fit max-md:pr-5 max-md:max-w-full">
-  <p className="text-sm leading-6 max-md:max-w-full">
-    Hello, I'm your virtual agent. You can ask me anything, and I'll do my best to answer you. If you
-  </p>
-  <div className="flex gap-2 mt-1 max-md:flex-wrap">
-    <p className="flex-auto my-auto text-sm leading-6">
-      need a more professional or customized agent, click on
-    </p>
-    <div className="flex gap-1">
-      <span className="justify-center py-2 text-xs leading-3 whitespace-nowrap rounded border border-solid bg-white bg-opacity-10 border-zinc-800">
-        +
-      </span>
-      <p className="flex-auto my-auto text-sm leading-6">
-        to create a custom agent.
-      </p>
-    </div>
-  </div>
-</section>
+                  <section className="flex flex-col grow shrink-0 justify-center py-4 pr-11 pl-3.5 rounded-lg basis-0 bg-white bg-opacity-10 w-fit max-md:pr-5 max-md:max-w-full">
+                    <p className="text-sm leading-6 max-md:max-w-full">
+                      Hello, I'm your virtual agent. You can ask me anything,
+                      and I'll do my best to answer you. If you
+                    </p>
+                    <div className="flex gap-2 mt-1 max-md:flex-wrap">
+                      <p className="flex-auto my-auto text-sm leading-6">
+                        need a more professional or customized agent, click on
+                      </p>
+                      <div className="flex gap-1">
+                        <span className="justify-center py-2 text-xs leading-3 whitespace-nowrap rounded border border-solid bg-white bg-opacity-10 border-zinc-800">
+                          +
+                        </span>
+                        <p className="flex-auto my-auto text-sm leading-6">
+                          to create a custom agent.
+                        </p>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </div>
 
-                    <CommentSection/>
+              <CommentSection />
             </section>
           </main>
           <aside className="flex flex-col ml-5 w-[27%] max-md:ml-0 max-md:w-full">
@@ -133,7 +134,9 @@ function CChat() {
                   <p className="max-md:mr-2.5">
                     the current session as a historical{" "}
                   </p>
-                  <p className="max-md:mr-2.5">topic and start a new session.</p>
+                  <p className="max-md:mr-2.5">
+                    topic and start a new session.
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3 items-center py-2.5 pr-20 pl-3.5 mt-2 rounded-md bg-white bg-opacity-10 max-md:pr-5">
@@ -200,4 +203,4 @@ function CChat() {
   );
 }
 
-export default CChat
+export default CChat;

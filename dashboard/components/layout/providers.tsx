@@ -62,7 +62,7 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-export default function Providers({ children }: { children: React.ReactNode; }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   const auth = useFirebaseAuth();
 
   return (

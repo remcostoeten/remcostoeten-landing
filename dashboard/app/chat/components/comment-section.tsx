@@ -6,16 +6,39 @@ interface ImageProps {
 }
 
 const Image: React.FC<ImageProps> = ({ src, alt }) => (
-  <img loading="lazy" src={src} alt={alt} className="shrink-0 w-9 aspect-square" />
+  <img
+    loading="lazy"
+    src={src}
+    alt={alt}
+    className="shrink-0 w-9 aspect-square"
+  />
 );
 
 const images = [
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/e6e2f12aa623f097decbf558abd8299fbf7bc011f7f83646d6d22616c736cd98?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 1" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/33935a99691dc4932cea6dd6f5f563a241045b31a8b985677481e7f2f6bdcc8e?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 2" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/3728321f042cd78743cff1e1e5eef628aa35a5113f091d6dac947808bb1679d1?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 3" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/50c755d5f4757dab3789d6980d220340cf740176ac54fc72de97ab42322b3bb4?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 4" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f483fdadb007527c73fb59bc240866790e0bf3db08eed54a3660d5e5e749135f?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 5" },
-  { src: "https://cdn.builder.io/api/v1/image/assets/TEMP/eb5b95d4379852e6f0a849255f413bf2db983708b4ebd0e556810cfc5a9aeeaa?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&", alt: "Image 6" },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/e6e2f12aa623f097decbf558abd8299fbf7bc011f7f83646d6d22616c736cd98?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 1",
+  },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/33935a99691dc4932cea6dd6f5f563a241045b31a8b985677481e7f2f6bdcc8e?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 2",
+  },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/3728321f042cd78743cff1e1e5eef628aa35a5113f091d6dac947808bb1679d1?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 3",
+  },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/50c755d5f4757dab3789d6980d220340cf740176ac54fc72de97ab42322b3bb4?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 4",
+  },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/f483fdadb007527c73fb59bc240866790e0bf3db08eed54a3660d5e5e749135f?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 5",
+  },
+  {
+    src: "https://cdn.builder.io/api/v1/image/assets/TEMP/eb5b95d4379852e6f0a849255f413bf2db983708b4ebd0e556810cfc5a9aeeaa?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&",
+    alt: "Image 6",
+  },
 ];
 
 const CommentSection: React.FC = () => {

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 type CompProps = {};
-export default function ThemeToggle({ }: CompProps) {
+export default function ThemeToggle({}: CompProps) {
   const { setTheme } = useTheme();
   return (
     <DropdownMenu>
@@ -32,6 +32,6 @@ export default function ThemeToggle({ }: CompProps) {
           System
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu >
+    </DropdownMenu>
   );
 }

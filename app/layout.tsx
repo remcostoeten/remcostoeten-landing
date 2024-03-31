@@ -19,6 +19,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import ApolloWrapper from "@/core/database/ApolloWrapper";
 import NoticeToFinishCursus from "@/dashboard/components/Notice";
+import { HeroPattern } from "@/components/layout/HeroPattern";
 
 export const viewport = {
   themeColor: [
@@ -62,7 +63,7 @@ export default function RootLayout({ children }) {
                     fontSora.variable
                   )}
                 >
-                <NoticeToFinishCursus/>
+                <HeroPattern/>
                   <MobileNavigation />
                   <NextTopLoader color="#2dd4bf" height={5} />
                   <ThemeProvider

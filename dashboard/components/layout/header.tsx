@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { cn } from "@/core/utils";
 import { MobileSidebar } from "./mobile-sidebar";
 import { UserNav } from "./UserNav";

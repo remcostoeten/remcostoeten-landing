@@ -3,19 +3,29 @@
  * @see https://v0.dev/t/8M9soCCveg0
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import Link from "next/link"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
-import StatusComponent from "./Status"
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
+import {
+  TableHead,
+  TableRow,
+  TableHeader,
+  TableCell,
+  TableBody,
+  Table,
+} from "@/components/ui/table";
+import StatusComponent from "./Status";
 
 export default function Component() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
         <nav className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="#">
+          <Link
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            href="#"
+          >
             <Package2Icon className="w-6 h-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
@@ -61,7 +71,7 @@ export default function Component() {
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium">Online Status</CardTitle>
             <Button size="sm">Check Now</Button>
-            <StatusComponent/>
+            <StatusComponent />
           </CardHeader>
           <CardContent className="flex items-center gap-4">
             <div className="flex flex-col items-center gap-1">
@@ -72,14 +82,20 @@ export default function Component() {
             </div>
             <div className="flex flex-col items-start gap-1">
               <div className="font-semibold">Alice Johnson</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Online Status</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Last Seen: 10:30 AM</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                Online Status
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                Last Seen: 10:30 AM
+              </div>
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Online Status History</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Online Status History
+            </CardTitle>
             <Button size="xs">Export</Button>
           </CardHeader>
           <CardContent className="p-0">
@@ -117,7 +133,7 @@ export default function Component() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
 
 function Package2Icon(props) {
@@ -138,9 +154,8 @@ function Package2Icon(props) {
       <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
       <path d="M12 3v6" />
     </svg>
-  )
+  );
 }
-
 
 function SearchIcon(props) {
   return (
@@ -159,9 +174,8 @@ function SearchIcon(props) {
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
     </svg>
-  )
+  );
 }
-
 
 function UserIcon(props) {
   return (
@@ -180,5 +194,5 @@ function UserIcon(props) {
       <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
     </svg>
-  )
+  );
 }

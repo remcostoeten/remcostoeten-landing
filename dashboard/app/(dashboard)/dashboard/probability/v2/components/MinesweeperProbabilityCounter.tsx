@@ -1,17 +1,16 @@
-'use client';
-import React, { useState } from 'react';
-import { Button, Input } from '@ui/ui-imports';
-import 'tailwindcss/tailwind.css';
+"use client";
+import React, { useState } from "react";
+import { Button, Input } from "@ui/ui-imports";
+import "tailwindcss/tailwind.css";
 
 interface MinesweeperProbabilityCounterProps {
   initialTotalSquares?: number;
   initialMinesToPlace?: number;
 }
 
-const MinesweeperProbabilityCounter: React.FC<MinesweeperProbabilityCounterProps> = ({
-  initialTotalSquares = 72,
-  initialMinesToPlace = 15,
-}) => {
+const MinesweeperProbabilityCounter: React.FC<
+  MinesweeperProbabilityCounterProps
+> = ({ initialTotalSquares = 72, initialMinesToPlace = 15 }) => {
   const [totalSquares, setTotalSquares] = useState(initialTotalSquares);
   const [minesToPlace, setMinesToPlace] = useState(initialMinesToPlace);
   const [probability, setProbability] = useState<number | null>(null);

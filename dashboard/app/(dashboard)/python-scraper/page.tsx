@@ -11,104 +11,54 @@ import {
   TableBody,
   Table,
 } from "@/components/ui/table";
-import { useState } from "react";
-const initialState = { onlineStatus: null };
+import { useState, useEffect } from "react";
+import StatusComponent from "./Status";
 
 export default function Component() {
-  const [onlineStatus, setOnlineStatus] = useState(initialState.onlineStatus);
+  const [onlineStatus, setOnlineStatus] = useState(null);
+  const [onlineStatusHistory, setOnlineStatusHistory] = useState([]);
 
-  const handleCheckStatus = async () => {
+  const fetchStatus = async () => {
     try {
       const response = await fetch("/api/status");
       const data = await response.json();
       setOnlineStatus(data.status);
+      setOnlineStatusHistory(data.history);
     } catch (error) {
       console.error("Error fetching status:", error);
       // Handle errors appropriately, e.g., display an error message
     }
   };
 
+  useEffect(() => {
+    fetchStatus();
+    // Refresh status every 30 seconds
+    const interval = setInterval(fetchStatus, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
-        <nav className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link
-            className="flex items-center gap-2 text-lg font-semibold md:text-base"
-            href="#"
-          >
-            <Package2Icon className="w-6 h-6" />
-            <span className="sr-only">Acme Inc</span>
-          </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="#">
-            Dashboard
-          </Link>
-          <Link className="text-gray-500 dark:text-gray-400" href="#">
-            Messages
-          </Link>
-          <Link className="font-bold" href="#">
-            Online Status
-          </Link>
-        </nav>
-        <div className="flex items-center w-full gap-4 md:ml-auto md:gap-2 lg:gap-4">
-          <form className="flex-1 ml-auto sm:flex-initial">
-            <div className="relative">
-              <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
-              <Input
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-                placeholder="Search messages..."
-                type="search"
-              />
-            </div>
-          </form>
-          <Button className="rounded-full" size="icon" variant="ghost">
-            <img
-              alt="Avatar"
-              className="rounded-full"
-              height="32"
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "32/32",
-                objectFit: "cover",
-              }}
-              width="32"
-            />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </div>
+        {/* Navigation links */}
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
         <Card>
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium">Online Status</CardTitle>
-            <Button onClick={handleCheckStatus} size="sm">
+            <Button onClick={fetchStatus} size="sm">
               Check Now
             </Button>
             <StatusComponent status={onlineStatus} />
           </CardHeader>
           <CardContent className="flex items-center gap-4">
-            <div className="flex flex-col items-center gap-1">
-              <UserIcon className="w-10 h-10" />
-              <Button size="xs" variant="outline">
-                Last Seen: 10:30 AM
-              </Button>
-            </div>
-            <div className="flex flex-col items-start gap-1">
-              <div className="font-semibold">Alice Johnson</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
-                Online Status
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
-                Last Seen: 10:30 AM
-              </div>
-            </div>
+            {/* Display user information and status */}
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">
-              Online Status History
-            </CardTitle>
-            <Button size="xs">Export</Button>
+            <CardTitle className="text-sm font-medium">Online Status History</CardTitle>
+            {/* Export button */}
           </CardHeader>
           <CardContent className="p-0">
             <Table>
@@ -119,26 +69,12 @@ export default function Component() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell>Online</TableCell>
-                  <TableCell>10:30 AM</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Offline</TableCell>
-                  <TableCell>9:45 AM</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Online</TableCell>
-                  <TableCell>9:30 AM</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Offline</TableCell>
-                  <TableCell>9:00 AM</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Online</TableCell>
-                  <TableCell>8:45 AM</TableCell>
-                </TableRow>
+                {onlineStatusHistory.map((status, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{status.type}</TableCell>
+                    <TableCell>{status.timestamp}</TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </CardContent>
@@ -209,11 +145,3 @@ function UserIcon(props) {
   );
 }
 
-
-function StatusComponent({ status }) {
-  return (
-    <div>
-      {status === "Online" ? "Online" : status === "Offline" ? "Offline" : "Checking..."}
-    </div>
-  );
-}

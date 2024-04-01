@@ -28,6 +28,12 @@ function StatusComponent() {
       });
   };
 
+  const stopFetch = () => {
+    if (abortController.current) {
+      abortController.current.abort();
+    }
+  }
+
   const cancelFetch = () => {
     if (abortController.current) {
       abortController.current.abort();
@@ -49,6 +55,7 @@ function StatusComponent() {
       <Button onClick={cancelFetch} disabled={!isLoading}>
         Cancel Fetch
       </Button>
+      <button onClick={stopFetch} disabled={!isLoading}>DWDWW</button>
     </div>
   );
 }

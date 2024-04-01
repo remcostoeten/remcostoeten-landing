@@ -13,19 +13,14 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem
-} from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export    default function FilterDropdown({ labels, onSelect, clear }) {
+export default function FilterDropdown({ labels, onSelect, clear }) {
   const form = useForm({
     defaultValues: {
       labels: [],
@@ -101,7 +96,7 @@ export    default function FilterDropdown({ labels, onSelect, clear }) {
             </FormItem>
           )}
         />
-        </div>
+      </div>
     </Form>
   )
 }

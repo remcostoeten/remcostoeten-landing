@@ -70,10 +70,10 @@ export const GithubStatisticsSkeleton = () => {
             {index === 1
               ? "Total"
               : index === 2
-                ? "Average per day"
-                : index === 3
-                  ? "Best day"
-                  : "Different languages"}
+              ? "Average per day"
+              : index === 3
+              ? "Best day"
+              : "Different languages"}
           </span>
           <div>
             {index === 2 ? (

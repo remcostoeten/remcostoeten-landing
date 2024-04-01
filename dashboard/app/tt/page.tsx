@@ -5,18 +5,18 @@ import axios from "axios";
 const IndexPage = () => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/hello/route.ts", { text: inputText });
+      const response = await axios.post("/api/hello", { text: inputText });
       setOutputText(response.data);
     } catch (error) {
       console.error(error);
       setOutputText("An error occurred while processing the text.");
     }
   };
+
 
   return (
     <div>

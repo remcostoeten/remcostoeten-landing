@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/8M9soCCveg0
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+'use client'
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -15,9 +11,23 @@ import {
   TableBody,
   Table,
 } from "@/components/ui/table";
-import StatusComponent from "./Status";
+import { useState } from "react";
+const initialState = { onlineStatus: null };
 
 export default function Component() {
+  const [onlineStatus, setOnlineStatus] = useState(initialState.onlineStatus);
+
+  const handleCheckStatus = async () => {
+    try {
+      const response = await fetch("/api/status");
+      const data = await response.json();
+      setOnlineStatus(data.status);
+    } catch (error) {
+      console.error("Error fetching status:", error);
+      // Handle errors appropriately, e.g., display an error message
+    }
+  };
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
@@ -68,10 +78,12 @@ export default function Component() {
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium">Online Status</CardTitle>
-            <Button size="sm">Check Now</Button>
-            <StatusComponent />
+            <Button onClick={handleCheckStatus} size="sm">
+              Check Now
+            </Button>
+            <StatusComponent status={onlineStatus} />
           </CardHeader>
           <CardContent className="flex items-center gap-4">
             <div className="flex flex-col items-center gap-1">
@@ -194,5 +206,14 @@ function UserIcon(props) {
       <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
     </svg>
+  );
+}
+
+
+function StatusComponent({ status }) {
+  return (
+    <div>
+      {status === "Online" ? "Online" : status === "Offline" ? "Offline" : "Checking..."}
+    </div>
   );
 }

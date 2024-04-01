@@ -24,7 +24,6 @@ import { toast } from "sonner";
 import { useGithubSignIn, useGoogleSignIn } from "@/hooks/signin-providers";
 import { Badge } from "../ui/badge";
 import { Icons } from "../theme/icons";
-import { Tooltip, Label } from "recharts";
 import {
   Card,
   CardHeader,
@@ -36,6 +35,7 @@ import {
 import { Input } from "../ui/input";
 import { TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import Image from "next/image";
+import { Label } from "@c/ui/label";
 
 export function UserNav() {
   const [isOpen, setIsOpen] = useState(false);

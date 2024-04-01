@@ -11,5 +11,3 @@ const NoticeToFinishCursus = () => {
     </div>
   );
 };
-
-export default NoticeToFinishCursus;

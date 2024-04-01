@@ -57,8 +57,9 @@ function MainChat() {
               <div className="flex flex-col justify-center px-4 py-20 tracking-wide text-white max-md:pr-5 max-md:max-w-full">
                 <div className="flex gap-3 items-start mt-6 mb-80 max-md:flex-wrap max-md:mb-10">
                   <Image src="https://cdn.builder.io/api/v1/image/assets/TEMP/6bfc0c23759211747cf382e25841f88fb2a9402074148602cd916ba95b451ec0?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&" alt="Virtual Agent" className="shrink-0 w-10 aspect-square" />
-                  <Textarea className="flex w-full flex-col grow shrink-0 justify-center py-4 pr-11 pl-3.5 rounded-lg basis-0 bg-transparent bg-opacity-10 w-fit max-md:pr-5 max-md:max-w-full" />                  </Textarea>
-              </div>
+                  <Textarea className="flex w-full flex-col grow shrink-0 justify-center py-4 pr-11 pl-3.5 rounded-lg basis-0 bg-transparent bg-opacity-10 w-fit max-md:pr-5 max-md:max-w-full" />
+                  </div>
+                  </div>
               <div className="flex flex-col justify-center py-4 border-t border-solid border-zinc-800 max-md:max-w-full">
                 <div className="flex gap-0 px-4 max-md:flex-wrap">
                   <div className="flex gap-3 pr-20 max-md:flex-wrap">
@@ -181,7 +182,7 @@ function MainChat() {
           <Image src="https://cdn.builder.io/api/v1/image/assets/TEMP/411c01f8987918a21b3985589b1cd0d422db5e8ed8f6695b1a713b9452c3515b?apiKey=3cf1db2ab1694ce4be6d4ee2ec473197&" alt="Close" className="shrink-0 w-9 aspect-square" />
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 

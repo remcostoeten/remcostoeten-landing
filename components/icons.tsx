@@ -46,7 +46,7 @@ export const Icons = {
     </svg>
   ),
   magento: (props: LucideProps) => {
-    ;<svg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       height={40}
       preserveAspectRatio="xMidYMid"

@@ -18,7 +18,7 @@ export default function ShellLayout({ children, header }: ShellLayoutProps) {
     setSidebarVisible(!sidebarVisible)
   }
   return (
-    <div className="mx-auto sm:flex md:max-w-[1440px] mt-20 sm:mt-0 sm:p-8">
+    <div className="mx-auto sm:flex md:max-w-[1440px] pt-20 sm:p-8">
       <AnimatedElement
         as="aside"
         duration={0.8}

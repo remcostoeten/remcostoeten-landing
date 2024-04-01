@@ -1,17 +1,9 @@
-"use client"
-
-import Image from "next/image"
+import React from "react"
 import Link from "next/link"
 
 import { experiences } from "@/core/config/about"
+// Adjust path as needed
 import Pill from "@/components/Pill"
-
-const iconPaths = [
-  "/about/saas.svg",
-  "/about/saas.svg",
-  "/about/saas.svg",
-  "/about/education.svg",
-]
 
 const ListItem = ({ children }) => {
   return (
@@ -22,72 +14,111 @@ const ListItem = ({ children }) => {
 }
 
 export default function TimelineComponent() {
-  return (
-    <>
-      <ul className="flex flex-col space-y-6">
-        {experiences.map((experience, index) => {
-          const iconPath = iconPaths[index % iconPaths.length]
+  const iconComponents = [
+    CalendarIcon,
+    ClockIcon,
+    FlagIcon,
+    HeartIcon,
+    LightbulbIcon,
+    RocketIcon,
+    StarIcon,
+  ]
 
-          return (
-            <li className="flex items-start space-x-4" key={experience.year}>
-              <div className="year-circle flex-1 pl-6">
-                <Image
-                  src={iconPath}
-                  width="20"
-                  height="20"
-                  alt="icon"
-                  className="year-icon"
-                />
-                <time className="font-semibold">{experience.year}</time>
-                {experience.roles ? (
-                  <ul>
-                    {experience.roles.map((role, roleIndex) => (
-                      <li key={roleIndex}>
-                        {role.internships && (
-                          <ul className="flex flex-col gap-2 ">
-                            {role.internships.map(
-                              (internship, internshipIndex) => (
-                                <li key={internshipIndex}>
-                                  <Link
-                                    href={internship.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    <h5>{internship.role}</h5>
-                                  </Link>
-                                  {internship.details.map(
-                                    (detail, detailIndex) => (
-                                      <ListItem key={detailIndex}>
-                                        {detail}
-                                      </ListItem>
-                                    )
-                                  )}
-                                  <div className="mt-2 flex flex-wrap gap-1">
-                                    {internship.skills
-                                      .split(",")
-                                      .map((skill, skillIndex) => (
-                                        <Pill fontSize="12px" key={skillIndex}>
-                                          {skill.trim()}
-                                        </Pill>
-                                      ))}
-                                  </div>
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        )}
-                      </li>
+  return (
+    <ul className="flex flex-col space-y-6">
+      {experiences.map((experience, index) => {
+        const IconComponent = iconComponents[index % iconComponents.length]
+
+        return (
+          <li className="flex items-start space-x-4" key={experience.year}>
+            <div className="year-circle flex-1 pl-6">
+              <IconComponent className="year-icon" />
+              <time className="font-semibold">{experience.year}</time>
+              {experience.roles ? (
+                <ul>
+                  {/* Render roles */}
+                  {experience.roles.map((role, roleIndex) => (
+                    <li key={roleIndex}>
+                      {role.internships && (
+                        <ul className="flex flex-col gap-2 ">
+                          {role.internships.map(
+                            (internship, internshipIndex) => (
+                              <li key={internshipIndex}>
+                                <Link
+                                  href={internship.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <h5>{internship.role}</h5>
+                                </Link>
+                                {internship.details.map(
+                                  (detail, detailIndex) => (
+                                    <ListItem key={detailIndex}>
+                                      {detail}
+                                    </ListItem>
+                                  )
+                                )}
+                                <div className="mt-2 flex flex-wrap gap-1">
+                                  {internship.skills
+                                    .split(",")
+                                    .map((skill, skillIndex) => (
+                                      <Pill fontSize="12px" key={skillIndex}>
+                                        {skill.trim()}
+                                      </Pill>
+                                    ))}
+                                </div>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      )}
+                      {/* Render other role details if applicable */}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="flex flex-col gap-2">
+                  <li>
+                    <h4>{experience.role}</h4>
+                    {experience.location && (
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {experience.location}
+                      </p>
+                    )}
+                    {experience.details.map((detail, detailIndex) => (
+                      <p
+                        key={detailIndex}
+                        className="text-sm text-gray-500 dark:text-gray-400"
+                      >
+                        {detail}
+                      </p>
                     ))}
-                  </ul>
-                ) : (
-                  <>
-                    <ul className="flex flex-col gap-2">
-                      <li>
-                        <h4>{experience.role}</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          {experience.location}
-                        </p>
-                        {experience.details.map((detail, detailIndex) => (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {experience.skills.split(",").map((skill, skillIndex) => (
+                        <Pill fontSize="12px" key={skillIndex}>
+                          {skill.trim()}
+                        </Pill>
+                      ))}
+                    </div>
+                  </li>
+                  {experience.education &&
+                    experience.education.map((educationItem, eduIndex) => (
+                      <li key={eduIndex}>
+                        <h4>{educationItem.role}</h4>
+                        {educationItem.location && (
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {educationItem.location}
+                          </p>
+                        )}
+                        {educationItem.description && (
+                          <p
+                            key={eduIndex}
+                            className="text-sm text-gray-500 dark:text-gray-400"
+                          >
+                            {educationItem.description}
+                          </p>
+                        )}
+                        {educationItem.details.map((detail, detailIndex) => (
                           <p
                             key={detailIndex}
                             className="text-sm text-gray-500 dark:text-gray-400"
@@ -96,7 +127,7 @@ export default function TimelineComponent() {
                           </p>
                         ))}
                         <div className="mt-2 flex flex-wrap gap-1">
-                          {experience.skills
+                          {educationItem.skills
                             .split(",")
                             .map((skill, skillIndex) => (
                               <Pill fontSize="12px" key={skillIndex}>
@@ -105,49 +136,18 @@ export default function TimelineComponent() {
                             ))}
                         </div>
                       </li>
-                      {experience.education &&
-                        experience.education.map((educationItem, eduIndex) => (
-                          <li key={eduIndex}>
-                            <h4>{educationItem.role}</h4>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {educationItem.location}
-                            </p>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {educationItem.description}
-                            </p>
-                            {educationItem.details.map(
-                              (detail, detailIndex) => (
-                                <p
-                                  key={detailIndex}
-                                  className="text-sm text-gray-500 dark:text-gray-400"
-                                >
-                                  {detail}
-                                </p>
-                              )
-                            )}
-                            <div className="mt-2 flex flex-wrap gap-1">
-                              {educationItem.skills
-                                .split(",")
-                                .map((skill, skillIndex) => (
-                                  <Pill fontSize="12px" key={skillIndex}>
-                                    {skill.trim()}
-                                  </Pill>
-                                ))}
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
-                  </>
-                )}
-              </div>
-            </li>
-          )
-        })}
-      </ul>
-    </>
+                    ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
+// Icon components
 function CalendarIcon(props) {
   return (
     <svg

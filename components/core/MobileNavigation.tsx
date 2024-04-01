@@ -6,7 +6,7 @@ import Link from "next/link"
 
 import { navigationMenuItems } from "@/core/config/menu"
 import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
-
+import { usePathname } from "next/dist/client/components/navigation"
 import AnimatedElement from "../effects/AnimatedElement"
 
 const BTN_ACTIVE_CLASS = "btn-active"
@@ -25,7 +25,7 @@ export default function MobileNavigation() {
   const mainSectionsRef = useRef<NodeListOf<HTMLElement>>(null)
   const topsRef = useRef<number[]>([])
   const resizeTimeoutRef = useRef<number>(0)
-
+  const pathname = usePathname()
   const calcSwitcher: ICalcSwitcher = (activeBtn, targetBtn) => {
     const glow = document.querySelector(".switcher-glow") as HTMLDivElement
     const curr = document.querySelector(".switcher-curr") as HTMLDivElement
@@ -59,7 +59,9 @@ export default function MobileNavigation() {
     const closestBtn = target.closest(".switcher-btn") as HTMLButtonElement
 
     if (!closestBtn) return
-    if (closestBtn === activeBtn) returnN
+    if (closestBtn === activeBtn) return
+
+    // Call calcSwitcher function here
     calcSwitcher(activeBtn, closestBtn)
 
     const targetSection = document.querySelector(
@@ -168,11 +170,11 @@ export default function MobileNavigation() {
     href: any
   }
 
-  const MenuItem = ({ label, href }: MenuItemTypes) => (
-    <button className="switcher-btn" type="button">
-      {href ? <Link href={href}>{label}</Link> : <span>{label}</span>}
-    </button>
-  )
+  const MenuItem = ({ label, href, isActive }: MenuItemTypes & { isActive: boolean }) => (
+      <Link href={href}className={`switcher-btn ${isActive ? BTN_ACTIVE_CLASS : ''}`} data-scroll-to={href}>
+        <span>{label}</span>
+    </Link>
+  );
 
   return (
     <AnimatedElement
@@ -192,9 +194,15 @@ export default function MobileNavigation() {
             style={{ position: "absolute" }}
           ></div>
           <div className="switcher-root" ref={switcherRootRef}>
-            {navigationMenuItems.map((item, index) => (
-              <MenuItem key={index} label={item.label} href={item.href} />
-            ))}
+          {navigationMenuItems.map((item, index) => (
+ <MenuItem
+    key={index}
+    label={item.label}
+    href={item.href}
+    isActive={pathname === item.href}
+ />
+))}
+
             <div
               aria-hidden="true"
               className="switcher-glow"

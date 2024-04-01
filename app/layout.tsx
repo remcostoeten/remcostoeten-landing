@@ -3,10 +3,8 @@
 import MobileNavigation from "@c/core/MobileNavigation"
 
 import "@/styles/globals.css"
-import { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import ApolloWrapper from "@/core/database/ApolloWrapper"
 import ReduxProvider from "@/core/redux/ReduxProvider"
-import { ApolloProvider } from "@apollo/client"
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -16,14 +14,13 @@ import { siteConfig } from "@/core/config/site"
 import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import BackgroundGradientEffect from "@/components/core/BackgroundGradientEffect"
 import SiteHeader from "@/components/core/SiteHeader"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
-import { HeroPattern } from "@/components/layout/HeroPattern"
 import ShellLayout from "@/components/layout/MainLayoutShell"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-
+import TabBar from "@/components/menu/FooterAnimatedMenu"
+import InProgressToast from "@/components/effects/InProgressToast"
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -67,6 +64,8 @@ export default function RootLayout({ children }) {
                   )}
                 >
                   <MobileNavigation />
+                  <InProgressToast/>
+                  <TabBar/>
                   <NextTopLoader color="#2dd4bf" height={5} />
                   <ThemeProvider
                     attribute="class"

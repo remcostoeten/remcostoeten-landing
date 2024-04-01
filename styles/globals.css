@@ -12,6 +12,7 @@
 @import './misc.css';
 @import './mobile-navigation.css';
 @import './effects/animations.css';
+@import './effects/footer-menu.css';
 /* @import './effects/footer-gradient.scss'; */
 @import './effects/scroll-carousel.css';
 
@@ -385,6 +386,13 @@ pre {
   box-sizing: border-box;
 }
 
+[data-sonner-toast] [data-title] {
+  font-weight: 500;
+  /* font-size: 1.05rem; */
+  line-height: 1.5;
+  color: inherit;
+}
+
 html,
 body {
   padding: 0;
@@ -568,3 +576,4 @@ a {
 .next-steps-section {
   margin-top: var(--g-spacing-2x-large);
 }
+

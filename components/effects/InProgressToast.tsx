@@ -1,34 +1,28 @@
-// 'use client';
-// import React, { useEffect } from 'react';
-// import { toast } from 'sonner';
-
-// const WIPToast = () => {
-//     useEffect(() => {
-//         toast('This website is a work in progress.');
-//     }, []);
-
-//     return null;
-// };
-
-// export default WIPToast;
-
 "use client"
+// Import necessary hooks and components from React and Sonner
+import { useEffect } from 'react';
+import { toast, Toaster } from 'sonner';
+import useToastPreference from '@/core/hooks/useToastPreference'; // Adjust the path as necessary
+export default function InProgressToast() {
+const { isToastDismissed, dismissToast } = useToastPreference();
 
-import React, { useEffect } from "react"
-import { toast } from "sonner"
+useEffect(() => {
+  const isDismissed = localStorage.getItem('toastDismissed');
+  if (!isToastDismissed && !isDismissed) {
+    toast('🐞 Site is in progress and may contain bugs.🐛', {
+      duration: 7500,
+      closeButton: true,
+      onDismiss: () => {
+        dismissToast();
+        localStorage.setItem('toastDismissed', 'true');
+      },
+    });
+  }
+}, [isToastDismissed, dismissToast]);
 
-type ToastProps = {
-  text?: string
-}
-
-const WIPToast = ({
-  text = "This website is a work in progress.",
-}: ToastProps) => {
-  useEffect(() => {
-    toast(text)
-  }, [text])
-
-  return null
-}
-
-export default WIPToast
+return (
+  <>
+    <Toaster invert />
+  </>
+ );
+};

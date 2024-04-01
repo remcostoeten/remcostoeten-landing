@@ -69,7 +69,7 @@ export default function GithubContributionCards() {
     return (
       <>
         <SectionHeading
-title="Github activity"
+          title="Github activity"
           icon={<Code2Icon className="mr-1" />}
         />
         <SectionSubHeading>
@@ -91,11 +91,8 @@ title="Github activity"
       <SectionSubHeading>
         <p className="dark:text-neutral-400">
           You could say I have written a line or two of code. This is solely
-          hobby, code I write for work  is over at{" "}
-          <AnimatedLink
-            href="https://gitlab.com/remcostoeten"
-            target="_blank"
-          >
+          hobby, code I write for work is over at{" "}
+          <AnimatedLink href="https://gitlab.com/remcostoeten" target="_blank">
             GitLab
           </AnimatedLink>
         </p>

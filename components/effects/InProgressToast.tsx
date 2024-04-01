@@ -15,7 +15,6 @@ export default function InProgressToast() {
     if (!isToastDismissed && !isDismissed) {
       toast("🐞 Site is in progress and may contain bugs.🐛", {
         duration: 7500,
-        closeButton: true,
         onDismiss: () => {
           dismissToast()
           localStorage.setItem("toastDismissed", "true")

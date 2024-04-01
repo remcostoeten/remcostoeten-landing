@@ -3,9 +3,13 @@
 import { useMemo } from "react"
 import { GET_GITHUB_CONTRIBUTION_STATS } from "@/core/queries/GET_GITHUB_CONTRIBUTIONS"
 import { useQuery } from "@apollo/client"
+import { Code2Icon } from "lucide-react"
 
 import { GithubStatisticsSkeleton } from "@/components/effects/Skeleton"
+import SectionHeading from "@/components/layout/SectionHeading"
+import SectionSubHeading from "@/components/layout/SectionSubHeading"
 
+import { AnimatedLink } from "../../Link"
 import OverviewItem from "./OverviewItem"
 
 export default function GithubContributionCards() {
@@ -61,27 +65,61 @@ export default function GithubContributionCards() {
   }, [data])
 
   if (error) return <p>Error: {error.message}</p>
-  if (loading) return <GithubStatisticsSkeleton />
+  if (loading)
+    return (
+      <>
+        <SectionHeading
+title="Github activity"
+          icon={<Code2Icon className="mr-1" />}
+        />
+        <SectionSubHeading>
+          <p className="dark:text-neutral-400">
+            You could say I have written a line or two of code. This is solely
+            hobby, work activity is over at Gitlab.
+          </p>
+        </SectionSubHeading>
+        <GithubStatisticsSkeleton />
+      </>
+    )
 
   return (
-    <div className="grid grid-cols-2 gap-3 py-2 sm:grid-cols-4">
-      <OverviewItem
-        label="Total"
-        value={totalCommits !== null ? totalCommits : "Loading..."}
+    <>
+      <SectionHeading
+        title="Github activity"
+        icon={<Code2Icon className="mr-1" />}
       />
-      <OverviewItem
-        label="Average per day"
-        value={averageCommits !== null ? averageCommits : "Loading..."}
-        unit="/ day"
-      />
-      <OverviewItem
-        label="Best day"
-        value={highestDay !== null ? highestDay : "Loading..."}
-      />
-      <OverviewItem
-        label="Languages"
-        value={highestDay !== null ? amountOfLanguages : "Loading..."}
-      />
-    </div>
+      <SectionSubHeading>
+        <p className="dark:text-neutral-400">
+          You could say I have written a line or two of code. This is solely
+          hobby, code I write for work  is over at{" "}
+          <AnimatedLink
+            href="https://gitlab.com/remcostoeten"
+            target="_blank"
+          >
+            GitLab
+          </AnimatedLink>
+        </p>
+      </SectionSubHeading>
+
+      <div className="grid grid-cols-2 gap-3 py-2 sm:grid-cols-4">
+        <OverviewItem
+          label="Total"
+          value={totalCommits !== null ? totalCommits : "Loading..."}
+        />
+        <OverviewItem
+          label="Average per day"
+          value={averageCommits !== null ? averageCommits : "Loading..."}
+          unit="/ day"
+        />
+        <OverviewItem
+          label="Best day"
+          value={highestDay !== null ? highestDay : "Loading..."}
+        />
+        <OverviewItem
+          label="Languages"
+          value={highestDay !== null ? amountOfLanguages : "Loading..."}
+        />
+      </div>
+    </>
   )
 }

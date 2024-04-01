@@ -16,6 +16,7 @@ export default function IndexPage() {
         <Intro />
         <GithubContributionCards />
         <GitHubCalendar username="remcostoeten" />
+        <hr className="my-4" />
         <LatestArticle />
       </section>
     </>

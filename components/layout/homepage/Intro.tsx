@@ -59,7 +59,7 @@ export default function Intro() {
           Python, Shell & Lua, and want to learn Go, OCaml 🐪 and DevOps.
         </p>
       </div>
-      <hr className="my-8" />
+      <hr className="my-4" />
     </div>
   )
 }

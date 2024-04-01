@@ -17,8 +17,7 @@ import {
   Form,
   FormControl,
   FormField,
-  FormItem,
-  FormMessage,
+  FormItem
 } from "@/components/ui/form"
 import {
   Popover,
@@ -26,7 +25,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export default function FilterDropdown({ labels, onSelect, clear }) {
+export    default function FilterDropdown({ labels, onSelect, clear }) {
   const form = useForm({
     defaultValues: {
       labels: [],
@@ -35,7 +34,7 @@ export default function FilterDropdown({ labels, onSelect, clear }) {
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <div className="space-y-6">
         <FormField
           name="label"
           render={({ field }) => (
@@ -102,7 +101,7 @@ export default function FilterDropdown({ labels, onSelect, clear }) {
             </FormItem>
           )}
         />
-      </form>
+        </div>
     </Form>
   )
 }

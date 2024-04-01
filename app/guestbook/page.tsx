@@ -130,8 +130,6 @@ export default function GuestBookPage() {
 
   return (
     <>
-      <WIPToast text="This feature is not finished yet, but you can leave a message!" />
-
       <IntroShell
         title="Guestbook"
         description="It's your time to shine. Say whatever you want to say."

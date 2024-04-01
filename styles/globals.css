@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './theme.css';
-@import './generics.css';
-@import './error.css';
-@import './auth.css';
-@import './utillity-classes.css';
-@import './buttons.css';
-@import './card-skeleton.css';
-@import './misc.css';
-@import './mobile-navigation.css';
-@import './effects/animations.css';
-@import './effects/footer-menu.css';
+@import "./theme.css";
+@import "./generics.css";
+@import "./error.css";
+@import "./auth.css";
+@import "./utillity-classes.css";
+@import "./buttons.css";
+@import "./card-skeleton.css";
+@import "./misc.css";
+@import "./mobile-navigation.css";
+@import "./effects/animations.css";
+@import "./effects/footer-menu.css";
 /* @import './effects/footer-gradient.scss'; */
-@import './effects/scroll-carousel.css';
+@import "./effects/scroll-carousel.css";
 
 .sidebar-hidden {
   transition: 250ms ease-in-out;
@@ -41,7 +41,7 @@
 }
 
 .svg-background {
-  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%224933%22%20height%3D%223213%22%20viewBox%3D%220%200%204933%203213%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M85.5887%201392.79C85.5887%201392.79%20246.617%201839.17%20892.959%201914C1539.3%201988.83%201494.17%201179.36%202379.93%201198.2C3265.7%201217.03%204798.68%201953.28%204798.68%201953.28%22%20stroke%3D%22url(%23paint0_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M122.616%201291.51C122.616%201291.51%20283.644%201737.89%20929.986%201812.72C1576.33%201887.55%201531.19%201078.08%202416.96%201096.91C3302.72%201115.75%204835.71%201851.99%204835.71%201851.99%22%20stroke%3D%22url(%23paint1_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M164.277%201177.57C164.277%201177.57%20325.305%201623.95%20971.648%201698.78C1617.99%201773.61%201572.86%20964.142%202458.62%20982.975C3344.38%201001.81%204877.37%201738.05%204877.37%201738.05%22%20stroke%3D%22url(%23paint2_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M203.612%201069.96C203.612%201069.96%20364.64%201516.34%201010.98%201591.16C1657.32%201665.99%201612.19%20856.528%202497.95%20875.361C3383.72%20894.194%204916.7%201630.44%204916.7%201630.44%22%20stroke%3D%22url(%23paint3_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M85.5887%201392.79C85.5887%201392.79%20246.617%201839.17%20892.959%201914C1539.3%201988.83%201494.17%201179.36%202379.93%201198.2C3265.7%201217.03%204798.68%201953.28%204798.68%201953.28%22%20stroke%3D%22url(%23paint4_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M122.616%201291.51C122.616%201291.51%20283.644%201737.89%20929.986%201812.72C1576.33%201887.55%201531.19%201078.08%202416.96%201096.91C3302.72%201115.75%204835.71%201851.99%204835.71%201851.99%22%20stroke%3D%22url(%23paint5_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M164.277%201177.57C164.277%201177.57%20325.305%201623.95%20971.648%201698.78C1617.99%201773.61%201572.86%20964.142%202458.62%20982.975C3344.38%201001.81%204877.37%201738.05%204877.37%201738.05%22%20stroke%3D%22url(%23paint6_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M203.612%201069.96C203.612%201069.96%20364.641%201516.34%201010.98%201591.16C1657.32%201665.99%201612.19%20856.528%202497.96%20875.361C3383.72%20894.194%204916.7%201630.44%204916.7%201630.44%22%20stroke%3D%22url(%23paint7_linear_2_445)%22%2F%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22paint0_linear_2_445%22%20x1%3D%222169.1%22%20y1%3D%222419.89%22%20x2%3D%223743.87%22%20y2%3D%221940.92%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint1_linear_2_445%22%20x1%3D%222206.12%22%20y1%3D%222318.61%22%20x2%3D%222682.87%22%20y2%3D%221014.54%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint2_linear_2_445%22%20x1%3D%221280.55%22%20y1%3D%221743.42%22%20x2%3D%223997.91%22%20y2%3D%222208.88%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint3_linear_2_445%22%20x1%3D%222287.12%22%20y1%3D%222097.05%22%20x2%3D%222763.87%22%20y2%3D%22792.982%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint4_linear_2_445%22%20x1%3D%222169.1%22%20y1%3D%222419.89%22%20x2%3D%223743.87%22%20y2%3D%221940.92%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint5_linear_2_445%22%20x1%3D%222206.12%22%20y1%3D%222318.61%22%20x2%3D%222682.87%22%20y2%3D%221014.54%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint6_linear_2_445%22%20x1%3D%221280.55%22%20y1%3D%221743.42%22%20x2%3D%223997.91%22%20y2%3D%222208.88%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint7_linear_2_445%22%20x1%3D%222287.12%22%20y1%3D%222097.06%22%20x2%3D%222763.87%22%20y2%3D%22792.982%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A');
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%224933%22%20height%3D%223213%22%20viewBox%3D%220%200%204933%203213%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M85.5887%201392.79C85.5887%201392.79%20246.617%201839.17%20892.959%201914C1539.3%201988.83%201494.17%201179.36%202379.93%201198.2C3265.7%201217.03%204798.68%201953.28%204798.68%201953.28%22%20stroke%3D%22url(%23paint0_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M122.616%201291.51C122.616%201291.51%20283.644%201737.89%20929.986%201812.72C1576.33%201887.55%201531.19%201078.08%202416.96%201096.91C3302.72%201115.75%204835.71%201851.99%204835.71%201851.99%22%20stroke%3D%22url(%23paint1_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M164.277%201177.57C164.277%201177.57%20325.305%201623.95%20971.648%201698.78C1617.99%201773.61%201572.86%20964.142%202458.62%20982.975C3344.38%201001.81%204877.37%201738.05%204877.37%201738.05%22%20stroke%3D%22url(%23paint2_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M203.612%201069.96C203.612%201069.96%20364.64%201516.34%201010.98%201591.16C1657.32%201665.99%201612.19%20856.528%202497.95%20875.361C3383.72%20894.194%204916.7%201630.44%204916.7%201630.44%22%20stroke%3D%22url(%23paint3_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M85.5887%201392.79C85.5887%201392.79%20246.617%201839.17%20892.959%201914C1539.3%201988.83%201494.17%201179.36%202379.93%201198.2C3265.7%201217.03%204798.68%201953.28%204798.68%201953.28%22%20stroke%3D%22url(%23paint4_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M122.616%201291.51C122.616%201291.51%20283.644%201737.89%20929.986%201812.72C1576.33%201887.55%201531.19%201078.08%202416.96%201096.91C3302.72%201115.75%204835.71%201851.99%204835.71%201851.99%22%20stroke%3D%22url(%23paint5_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M164.277%201177.57C164.277%201177.57%20325.305%201623.95%20971.648%201698.78C1617.99%201773.61%201572.86%20964.142%202458.62%20982.975C3344.38%201001.81%204877.37%201738.05%204877.37%201738.05%22%20stroke%3D%22url(%23paint6_linear_2_445)%22%2F%3E%0A%3Cpath%20d%3D%22M203.612%201069.96C203.612%201069.96%20364.641%201516.34%201010.98%201591.16C1657.32%201665.99%201612.19%20856.528%202497.96%20875.361C3383.72%20894.194%204916.7%201630.44%204916.7%201630.44%22%20stroke%3D%22url(%23paint7_linear_2_445)%22%2F%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22paint0_linear_2_445%22%20x1%3D%222169.1%22%20y1%3D%222419.89%22%20x2%3D%223743.87%22%20y2%3D%221940.92%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint1_linear_2_445%22%20x1%3D%222206.12%22%20y1%3D%222318.61%22%20x2%3D%222682.87%22%20y2%3D%221014.54%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint2_linear_2_445%22%20x1%3D%221280.55%22%20y1%3D%221743.42%22%20x2%3D%223997.91%22%20y2%3D%222208.88%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint3_linear_2_445%22%20x1%3D%222287.12%22%20y1%3D%222097.05%22%20x2%3D%222763.87%22%20y2%3D%22792.982%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint4_linear_2_445%22%20x1%3D%222169.1%22%20y1%3D%222419.89%22%20x2%3D%223743.87%22%20y2%3D%221940.92%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint5_linear_2_445%22%20x1%3D%222206.12%22%20y1%3D%222318.61%22%20x2%3D%222682.87%22%20y2%3D%221014.54%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint6_linear_2_445%22%20x1%3D%221280.55%22%20y1%3D%221743.42%22%20x2%3D%223997.91%22%20y2%3D%222208.88%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3ClinearGradient%20id%3D%22paint7_linear_2_445%22%20x1%3D%222287.12%22%20y1%3D%222097.06%22%20x2%3D%222763.87%22%20y2%3D%22792.982%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%231DB954%22%20stop-opacity%3D%220.37%22%2F%3E%0A%3Cstop%20offset%3D%221%22%20stop-opacity%3D%220%22%2F%3E%0A%3C%2FlinearGradient%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A");
   /* Add any additional CSS properties here */
 }
 
@@ -106,7 +106,6 @@
   @apply rounded-[3px] border-2 border-neutral-300 bg-neutral-600 dark:bg-neutral-400;
 }
 
-
 .work-pulse {
   position: relative;
   -webkit-box-sizing: content-box;
@@ -119,7 +118,7 @@
 }
 
 .work-pulse::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0%;
   left: 0%;
@@ -129,8 +128,6 @@
   -webkit-box-shadow: 0 0 0 0 #4daa57;
   box-shadow: 0 0 0 0 #4daa57;
 }
-
-
 
 #global-header,
 main,
@@ -186,7 +183,7 @@ pre {
   content: "#";
 }
 
-.prose *:hover>.anchor {
+.prose *:hover > .anchor {
   visibility: visible;
   text-decoration: none;
 }
@@ -221,7 +218,7 @@ pre {
   margin: 0;
 }
 
-.prose> :first-child {
+.prose > :first-child {
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
@@ -287,7 +284,7 @@ pre {
 
 .rehype-code-title {
   padding: 0.75rem 1.25rem;
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
   font-size: 0.875rem;
   font-weight: bold;
   color: #1f2937;
@@ -296,7 +293,7 @@ pre {
   border-radius: 0.375rem 0.375rem 0 0;
 }
 
-.rehype-code-title+pre {
+.rehype-code-title + pre {
   margin-top: 0;
   border-radius: 0 0 0.375rem 0.375rem;
 }
@@ -309,19 +306,18 @@ pre {
   border-left: 4px solid #1e40af;
 }
 
-.metric-card>a {
+.metric-card > a {
   text-decoration: none;
 }
 
-.metric-card>p {
+.metric-card > p {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.step>h3 {
+.step > h3 {
   margin: 0;
 }
-
 
 /* kind */
 :root {
@@ -553,8 +549,6 @@ a {
   margin-bottom: var(--g-spacing-base);
 }
 
-
-
 .avatar {
   align-items: center;
   background-color: var(--g-color-grey-100);
@@ -576,4 +570,3 @@ a {
 .next-steps-section {
   margin-top: var(--g-spacing-2x-large);
 }
-

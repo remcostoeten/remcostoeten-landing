@@ -1,5 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
-const { parkwindPlugin } = require('@park-ui/tailwind-plugin');
+const { parkwindPlugin } = require("@park-ui/tailwind-plugin")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,8 +19,8 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         accent: "var(--accent)",
-        blacktheme: '#121212',
-        blackthemealternative: '#0c0a09w',
+        blacktheme: "#121212",
+        blackthemealternative: "#0c0a09w",
         ring: "hsl(var(--ring))",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",

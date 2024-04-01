@@ -1,44 +1,51 @@
 .body-gradient {
-    position: relative;
+  position: relative;
 }
 
 .body-gradient::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateX(-100vw);
-    pointer-events: none;
-    animation: morphBodyGradient 25s ease-in-out infinite alternate;
-    /* background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0)); */
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100vw);
+  pointer-events: none;
+  animation: morphBodyGradient 25s ease-in-out infinite alternate;
+  /* background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0)); */
 }
 
 @keyframes morphBodyGradient {
-    0% {
-        background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0));
+  0% {
+    background: radial-gradient(
+      ellipse 60% 50% at 50% -30%,
+      rgba(45, 212, 191, 0.15) 0,
+      rgba(8, 0, 0, 0)
+    );
+  }
 
-    }
+  25% {
+    scale: 1.2;
+    transform: rotate(-5deg);
+  }
 
-    25% {
-        scale: 1.2;
-        transform: rotate(-5deg);
-    }
+  50% {
+    scale: 1.2;
+    transform: rotate(5deg);
+  }
 
-    50% {
-        scale: 1.2;
-        transform: rotate(5deg);
-    }
+  75% {
+    scale: 1.2;
+    transform: rotate(-2deg);
+  }
 
-    75% {
-        scale: 1.2;
-        transform: rotate(-2deg);
-    }
-
-    100% {
-        background: radial-gradient(ellipse 60% 50% at 50% -30%, rgba(45, 212, 191, .15) 0, rgba(8, 0, 0, 0));
-    }
+  100% {
+    background: radial-gradient(
+      ellipse 60% 50% at 50% -30%,
+      rgba(45, 212, 191, 0.15) 0,
+      rgba(8, 0, 0, 0)
+    );
+  }
 }
 
 /* .error-page {
@@ -53,5 +60,9 @@
 
 html,
 body {
-    background: radial-gradient(ellipse 60% 50% at 50% -30%, #2dd4bf26 0, rgba(8, 0, 0, 0));
+  background: radial-gradient(
+    ellipse 60% 50% at 50% -30%,
+    #2dd4bf26 0,
+    rgba(8, 0, 0, 0)
+  );
 }

@@ -1,10 +1,10 @@
 .error-contained {
-    margin:  0 auto;
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
-    .error-contained {
-        max-width: 80vw !important;
-        margin: 0 !important;
-    }
+  .error-contained {
+    max-width: 80vw !important;
+    margin: 0 !important;
+  }
 }

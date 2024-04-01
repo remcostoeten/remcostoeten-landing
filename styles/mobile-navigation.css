@@ -1,5 +1,7 @@
 :root {
-  --sans: "Inter", sans-serif, -apple-system, ui-sans-serif, system-ui, blinkmacsystemfont, sego ui, roboto, helvetica neue, arial, noto sans, sans-serif, monospace;
+  --sans: "Inter", sans-serif, -apple-system, ui-sans-serif, system-ui,
+    blinkmacsystemfont, sego ui, roboto, helvetica neue, arial, noto sans,
+    sans-serif, monospace;
   --accents-8: #fafafa;
   --accents-7: #eaeaea;
   --accents-6: #999;
@@ -134,7 +136,15 @@
 }
 
 .mobile-navigation .switcher:after {
-  background: linear-gradient(to left, var(--accents-2) 20%, var(--accents-2) 44%, var(--accents-6) 50%, var(--accents-3) 60%, var(--accents-2) 63%, var(--accents-2) 100%);
+  background: linear-gradient(
+    to left,
+    var(--accents-2) 20%,
+    var(--accents-2) 44%,
+    var(--accents-6) 50%,
+    var(--accents-3) 60%,
+    var(--accents-2) 63%,
+    var(--accents-2) 100%
+  );
   background-color: red;
   background-position-x: var(--x);
   background-size: 200% auto;
@@ -183,11 +193,17 @@
 }
 
 .mobile-navigation .btn-active {
-  text-shadow: 1px 1px 12px rgba(255, 255, 255, .4);
+  text-shadow: 1px 1px 12px rgba(255, 255, 255, 0.4);
 }
 
 .mobile-navigation .switcher-stroke {
-  background: linear-gradient(90deg, transparent, var(--accents-4) 20%, var(--accents-2) 67.19%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accents-4) 20%,
+    var(--accents-2) 67.19%,
+    transparent
+  );
   height: 1px;
   left: 32px;
   position: absolute;
@@ -214,7 +230,7 @@
 }
 
 .mobile-navigation .switcher-curr {
-  background: rgba(255, 255, 255, .08);
+  background: rgba(255, 255, 255, 0.08);
   height: 36px;
   left: 4px;
   transition: var(--transition-left), var(--transition-width);
@@ -237,7 +253,13 @@
 }
 
 .mobile-navigation .main section:after {
-  background: linear-gradient(90deg, transparent, var(--accents-4) 10%, var(--accents-4) 80%, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accents-4) 10%,
+    var(--accents-4) 80%,
+    transparent
+  );
   content: "";
   height: 1px;
   left: 0;
@@ -248,7 +270,12 @@
 }
 
 .mobile-navigation .main section .section-title {
-  background: linear-gradient(120deg, var(--accents-8), var(--accents-4) 70%, var(--accents-8));
+  background: linear-gradient(
+    120deg,
+    var(--accents-8),
+    var(--accents-4) 70%,
+    var(--accents-8)
+  );
   background-clip: text;
   -webkit-background-clip: text;
   background-position-x: 100%;
@@ -293,7 +320,6 @@
   }
 }
 
-
 $menucolour: #333;
 $highlight: #eeeeaa;
 $lighttext: #eee;
@@ -303,7 +329,7 @@ There used to be a menu icon loaded as a (part of a wasteful) font here. It isn'
 */
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  //font-family: 'symbolset';
+  //font-family: "symbolset";
   font-style: normal;
   speak: none;
   font-weight: normal;
@@ -314,13 +340,12 @@ There used to be a menu icon loaded as a (part of a wasteful) font here. It isn'
   content: "🍔";
 }
 
-
 ////
 
 
 body {
   background: #ddc;
-  font-family: 'Quattrocento Sans', Helmet, Freesans, Tahoma, Geneva, sans-serif;
+  font-family: "Quattrocento Sans", Helmet, Freesans, Tahoma, Geneva, sans-serif;
 }
 
 a {
@@ -374,7 +399,6 @@ a {
   }
 }
 
-
 /* .menu is visually hidden by default */
 .menu {
   position: relative;
@@ -389,9 +413,11 @@ a {
   clip: rect(0 0 0 0);
   @include box-shadow(inset 0 0 3px 3px rgba(0, 0, 0, 0.2));
 
-  @include transition(max-height 600ms ease-out,
+  @include transition(
+    max-height 600ms ease-out,
     min-height 600ms ease-in,
-    padding 600ms ease-in);
+    padding 600ms ease-in
+  );
 
   li {
     a {
@@ -428,9 +454,11 @@ a {
 
 .no-js .menu,
 .expanded-mobile-menu {
-  @include transition(max-height 800ms ease-in,
+  @include transition(
+    max-height 800ms ease-in,
     min-height 500ms ease-out,
-    padding 400ms ease-in);
+    padding 400ms ease-in
+  );
 
   /*min/max heights allow me to css transition to height auto for WordPress menus with unknown number of items*/
   clip: auto;
@@ -438,7 +466,6 @@ a {
   max-height: 100em;
   padding: 0.5em 0;
 }
-
 
 @media only screen and (min-width: 30.1em) {
   /*481 ish px*/
@@ -449,12 +476,9 @@ a {
       width: 50%;
     }
   }
-
 }
 
-
 @media only screen and (min-width: 48em) {
-
   .nav {
     .menu-toggle {
       display: none;
@@ -508,10 +532,12 @@ a {
         left: 0;
         white-space: nowrap;
 
-        @include transition(max-height 400ms ease-out,
+        @include transition(
+          max-height 400ms ease-out,
           min-height 500ms ease-in,
           padding 500ms ease-out,
-          opacity 500ms ease-in);
+          opacity 500ms ease-in
+        );
 
         background: lighten($menucolour, 2%);
         text-align: left;
@@ -558,10 +584,12 @@ a {
       /* showing sub-menus */
       &:hover ul,
       &.focused ul {
-        @include transition(max-height 800ms ease-in,
+        @include transition(
+          max-height 800ms ease-in,
           min-height 500ms ease-out,
           padding 500ms ease-out,
-          opacity 800ms ease-out);
+          opacity 800ms ease-out
+        );
         /* again using min/max heights to deal with unknown length of lists */
 
         min-height: 8em;
@@ -575,17 +603,15 @@ a {
         }
       }
 
-      &:hover>a {
+      &:hover > a {
         background: lighten($menucolour, 2%);
       }
-
     }
 
     /* end .menu ul li */
   }
 
   /* end .menu */
-
 }
 
 /* end media query*/

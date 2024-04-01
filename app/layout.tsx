@@ -15,12 +15,13 @@ import { fontSora } from "@/core/lib/fonts"
 import { cn } from "@/core/lib/utils"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import SiteHeader from "@/components/core/SiteHeader"
+import InProgressToast from "@/components/effects/InProgressToast"
 import { AuthUserProvider } from "@/components/kanban/AuthUserProvider"
 import ShellLayout from "@/components/layout/MainLayoutShell"
+import TabBar from "@/components/menu/FooterAnimatedMenu"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import TabBar from "@/components/menu/FooterAnimatedMenu"
-import InProgressToast from "@/components/effects/InProgressToast"
+
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -64,8 +65,8 @@ export default function RootLayout({ children }) {
                   )}
                 >
                   <MobileNavigation />
-                  <InProgressToast/>
-                  <TabBar/>
+                  <InProgressToast />
+                  <TabBar />
                   <NextTopLoader color="#2dd4bf" height={5} />
                   <ThemeProvider
                     attribute="class"

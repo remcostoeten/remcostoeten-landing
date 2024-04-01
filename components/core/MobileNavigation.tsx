@@ -2,11 +2,12 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
+import { usePathname } from "next/dist/client/components/navigation"
 import Link from "next/link"
 
 import { navigationMenuItems } from "@/core/config/menu"
 import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
-import { usePathname } from "next/dist/client/components/navigation"
+
 import AnimatedElement from "../effects/AnimatedElement"
 
 const BTN_ACTIVE_CLASS = "btn-active"
@@ -170,11 +171,19 @@ export default function MobileNavigation() {
     href: any
   }
 
-  const MenuItem = ({ label, href, isActive }: MenuItemTypes & { isActive: boolean }) => (
-      <Link href={href}className={`switcher-btn ${isActive ? BTN_ACTIVE_CLASS : ''}`} data-scroll-to={href}>
-        <span>{label}</span>
+  const MenuItem = ({
+    label,
+    href,
+    isActive,
+  }: MenuItemTypes & { isActive: boolean }) => (
+    <Link
+      href={href}
+      className={`switcher-btn ${isActive ? BTN_ACTIVE_CLASS : ""}`}
+      data-scroll-to={href}
+    >
+      <span>{label}</span>
     </Link>
-  );
+  )
 
   return (
     <AnimatedElement
@@ -194,14 +203,14 @@ export default function MobileNavigation() {
             style={{ position: "absolute" }}
           ></div>
           <div className="switcher-root" ref={switcherRootRef}>
-          {navigationMenuItems.map((item, index) => (
- <MenuItem
-    key={index}
-    label={item.label}
-    href={item.href}
-    isActive={pathname === item.href}
- />
-))}
+            {navigationMenuItems.map((item, index) => (
+              <MenuItem
+                key={index}
+                label={item.label}
+                href={item.href}
+                isActive={pathname === item.href}
+              />
+            ))}
 
             <div
               aria-hidden="true"

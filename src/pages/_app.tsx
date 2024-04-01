@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
               fontSora.variable
             )}
           >
-            <NextTopLoader color="#2dd4bf" height='5' />
+            <NextTopLoader color="#2dd4bf" height="5" />
             <ThemeProvider>
               <ShellLayout header={<SiteHeader />}>
                 <div className="transition-all duration-300 sm:max-w-[854px]">

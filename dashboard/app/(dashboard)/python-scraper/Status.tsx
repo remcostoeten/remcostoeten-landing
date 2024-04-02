@@ -9,16 +9,6 @@ function StatusComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const abortController = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    // Initial fetch on component mount
-    fetchStatus();
-
-    // Clean up AbortController on unmount
-    return () => {
-      cancelFetch();
-    };
-  }, []);
-
   const fetchStatus = () => {
     setIsLoading(true);
     abortController.current = new AbortController();

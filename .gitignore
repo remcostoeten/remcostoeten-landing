@@ -44,3 +44,5 @@ postgress-auth-starter/
 .env*.local
 dashboard/~/
 *chrome*
+dashboard/combined.log
+dashboard/error.log

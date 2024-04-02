@@ -1,8 +1,27 @@
 import { Builder, By, until } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome';
 import path from 'path';
+import winston from 'winston';
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  defaultMeta: { service: 'user-service' },
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
+});
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+  }));
+}
+
 
 export default async (req, res) => {
+
   try {
     const name = req.query.name || process.env.WHATSAPP_NAME;
 
@@ -16,49 +35,44 @@ export default async (req, res) => {
       .build();
 
     try {
-      console.log('Navigating to WhatsApp');
+      logger.info('Navigating to WhatsApp');
       await driver.get('https://web.whatsapp.com/');
-
-      console.log('Waiting for QR code scan');
-      await new Promise(resolve => setTimeout(resolve, 20000));
+      logger.info('Successfully navigated to WhatsApp'); // Log successful navigation
 
       let status = "Unknown";
-
       while (true) {
         try {
-          console.log(`Finding and clicking element for ${name}`);
-          let element = await driver.wait(
-            until.elementLocated(By.xpath(`//span[contains(text(), '${name}')]`)),
-            5000
-          );
+          const timestamp = new Date().toLocaleString();
+
+            logger.info(`Finding and clicking element for ${name}`);
+            let element = await driver.wait(
+              until.elementLocated(By.xpath(`//span[contains(text(), '${name}')]`)),
+              2500
+            );
           await element.click();
 
-          console.log('Getting status');
+          logger.info('Getting status');
 
           try {
-            await driver.findElement(By.xpath("//span[contains(text(), 'online')]"));
+            await driver.findElement(By.xpath("//span[@title='Online']"));
             status = "Online";
           } catch {
             status = "Offline";
           }
+
+          logger.info(`Status for ${name}: ${status}`);
+          logger.info(JSON.stringify({ name, status, timestamp }));
+          await new Promise(resolve => setTimeout(resolve, 2500));
         } catch (error) {
-          console.error('An error occurred while checking status:', error);
-          status = "Unknown";
+          logger.error('An error occurred while checking status:', error);
         }
-
-        console.log(`Status for ${name}: ${status}`);
-        // Log status with timestamp
-        console.log(new Date().toLocaleString(), `- Status for ${name}: ${status}`);
-
-        await new Promise(resolve => setTimeout(resolve, 20000));
       }
-
-    } finally {
-      // No need to quit driver as it's running continuously
+    } catch (error) {
+      logger.error('An error occurred:', error);
     }
-
   } catch (error) {
-    console.error('An error occurred:', error);
+    logger.error('An error occurred:', error);
     res.status(500).json({ error: error.message });
+    logger.error(`Sent 500 response due to error: ${error.message}`); // Log the sent response
   }
 };

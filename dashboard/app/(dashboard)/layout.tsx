@@ -13,7 +13,6 @@ export default function DashboardLayout({
 }) {
   return (
     <TooltipProvider>
-
       <Header />
       <div className="ml-4 flex h-screen overflow-hidde sm:mt-[70px]">
         <NewProjectSidebar />

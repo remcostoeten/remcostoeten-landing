@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method === "POST") {
     const { text } = req.body;
     const processedText = text.replaceAll(/a/gi, ""); // Replace all 'a' (case-insensitive)

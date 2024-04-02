@@ -8,46 +8,83 @@ import { UserIcon } from "lucide-react";
 
 const menuItems = [
   {
-    label: 'Home',
+    label: "Home",
     icon: HomeIcon,
-    href: '/',
-    isActive: true
+    href: "/",
+    isActive: true,
   },
   {
-    label: 'Profile',
+    label: "Profile",
     icon: UserIcon,
     children: [
       {
-        label: 'Account',
-        href: '/account'
+        label: "Account",
+        href: "/account",
       },
       {
-        label: 'Settings',
-        href: '/settings'
-      }
-    ]
-  }
+        label: "Settings",
+        href: "/settings",
+      },
+    ],
+  },
 ];
 
 export default function Aside() {
   return (
     <div style={{ display: "flex", gap: "4", paddingLeft: "4" }}>
-    <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8", height: "100%" }}>
-        <Link href="#">
-          <HomeIcon style={{ color: "text-[#494e57]", fontSize: "3xl", cursor: "pointer" }} />
-        </Link>
-        <hr style={{ marginTop: "50px", borderTop: "1px solid #ccc", width: "75%", position: "absolute" }} />
-        <Menu items={menuItems} />
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "10", gap: "8", height: "100%" }}>
-        <hr style={{ borderTop: "1px solid #ccc", width: "75%", position: "absolute", bottom: "85px" }} />
-        <div style={{ paddingBottom: "10" }}>
-          <ThemeToggle />
+      <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8",
+            height: "100%",
+          }}
+        >
+          <Link href="#">
+            <HomeIcon
+              style={{
+                color: "text-[#494e57]",
+                fontSize: "3xl",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
+          <hr
+            style={{
+              marginTop: "50px",
+              borderTop: "1px solid #ccc",
+              width: "75%",
+              position: "absolute",
+            }}
+          />
+          <Menu items={menuItems} />
         </div>
-      </div>
-    </Wrapper>
-  </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            paddingTop: "10",
+            gap: "8",
+            height: "100%",
+          }}
+        >
+          <hr
+            style={{
+              borderTop: "1px solid #ccc",
+              width: "75%",
+              position: "absolute",
+              bottom: "85px",
+            }}
+          />
+          <div style={{ paddingBottom: "10" }}>
+            <ThemeToggle />
+          </div>
+        </div>
+      </Wrapper>
+    </div>
   );
 }
 

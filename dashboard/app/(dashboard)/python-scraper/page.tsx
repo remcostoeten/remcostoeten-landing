@@ -145,11 +145,13 @@
 //   );
 // }
 
-import React from 'react'
-import StatusComponent from './Status'
+import React from "react";
+import StatusComponent from "./Status";
 
 export default function page() {
   return (
-    <div><StatusComponent /></div>
-  )
+    <div>
+      <StatusComponent />
+    </div>
+  );
 }

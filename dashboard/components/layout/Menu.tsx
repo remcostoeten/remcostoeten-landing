@@ -40,40 +40,38 @@ const MenuItemComponent: React.FC<{ item: MenuItem }> = ({ item }) => {
   );
 };
 
-const Menu = ({items}: MenuProps) => {
+const Menu = ({ items }: MenuProps) => {
   return (
     <div className="flex flex-col items-center space-y-8 h-full">
       {items.map((item) => (
-        <Tooltip key={item.label} >
+        <Tooltip key={item.label}>
           <TooltipTrigger>
             <MenuItemComponent item={item} />
           </TooltipTrigger>
-          <TooltipContent side="right">
-              {item.label}
-          </TooltipContent>
+          <TooltipContent side="right">{item.label}</TooltipContent>
         </Tooltip>
       ))}
     </div>
   );
-
-}
+};
 
 const allRoutes = [
-    'home',
-    'profile',
-    'account',
-    'settings',
-    'Projectts',
-    'kanban',
-'python-scraper', 'snippets'
-]
+  "home",
+  "profile",
+  "account",
+  "settings",
+  "Projectts",
+  "kanban",
+  "python-scraper",
+  "snippets",
+];
 
 const NavItems: MenuItem[] = allRoutes.map((route) => {
   return {
-      label: route,
-      href: `/${route}`,
-      icon: () => <HomeIcon /> // wrap HomeIcon in a function
-  }
+    label: route,
+    href: `/${route}`,
+    icon: () => <HomeIcon />, // wrap HomeIcon in a function
+  };
 });
 
 export default function MenuContainer() {

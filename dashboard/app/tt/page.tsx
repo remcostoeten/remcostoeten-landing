@@ -17,7 +17,6 @@ const IndexPage = () => {
     }
   };
 
-
   return (
     <div>
       <h1>Remove A's</h1>

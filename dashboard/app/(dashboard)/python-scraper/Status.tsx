@@ -36,7 +36,7 @@ function StatusComponent() {
           console.error("Error fetching status", error);
           setIsLoading(false);
         }
-      })
+      });
   };
 
   const stopFetch = () => {
@@ -58,7 +58,9 @@ function StatusComponent() {
       <Button onClick={cancelFetch} disabled={!isLoading}>
         Cancel Fetch
       </Button>
-      <Button onClick={stopFetch} disabled={!isLoading}>DWDWW</Button>
+      <Button onClick={stopFetch} disabled={!isLoading}>
+        DWDWW
+      </Button>
       <div className="text-center">
         <table>
           <thead>
@@ -74,8 +76,8 @@ function StatusComponent() {
             </tr>
           </tbody>
         </table>
-        </div>
-        </div>
+      </div>
+    </div>
   );
 }
 

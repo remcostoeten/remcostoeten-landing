@@ -1,7 +1,7 @@
 // pages/index.js (or any other component)
 
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const IndexPage = () => {
   const [status, setStatus] = useState("Unknown");
@@ -9,10 +9,10 @@ const IndexPage = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const response = await axios.get('/api/status');
+        const response = await axios.get("/api/status");
         setStatus(response.data.status);
       } catch (error) {
-        console.error('An error occurred while fetching status:', error);
+        console.error("An error occurred while fetching status:", error);
       }
     };
 

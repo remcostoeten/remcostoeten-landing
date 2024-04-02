@@ -3,37 +3,51 @@ import Link from "next/link";
 import ThemeToggle from "../theme/theme-toggle";
 import Wrapper from "./Wrapper";
 import { JSX, SVGProps } from "react";
+import Menu from "./Menu";
+import { UserIcon } from "lucide-react";
+
+const menuItems = [
+  {
+    label: 'Home',
+    icon: HomeIcon,
+    href: '/',
+    isActive: true
+  },
+  {
+    label: 'Profile',
+    icon: UserIcon,
+    children: [
+      {
+        label: 'Account',
+        href: '/account'
+      },
+      {
+        label: 'Settings',
+        href: '/settings'
+      }
+    ]
+  }
+];
 
 export default function Aside() {
   return (
-    <div className="flex gap-4  pl-4">
-      <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
-        <div className="flex flex-col items-center space-y-8 h-full">
-          <Link href="#">
-            <HomeIcon className="dark:text-[white] text-[#494e57] text-3xl hover:text-primary cursor-pointer" />
-          </Link>
-          <hr className="!mt-[50px] border-t border-regular w-[75%] absolute" />
-          <Link href="#">
-            <CodeIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
-          </Link>
-          <Link href="#">
-            <StarIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
-          </Link>
-          <Link href="#">
-            <MenuIcon className=" text-[#494e57] text-2xl hover:text-primary cursor-pointer" />
-          </Link>
-          <Link href="dashboard/minesweeper">
-            <DatabaseIcon className=" text-2xl hover:text-primary cursor-pointer" />
-          </Link>
+    <div style={{ display: "flex", gap: "4", paddingLeft: "4" }}>
+    <Wrapper hasDottedBg as="aside" isFullHeight padding="small">
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8", height: "100%" }}>
+        <Link href="#">
+          <HomeIcon style={{ color: "text-[#494e57]", fontSize: "3xl", cursor: "pointer" }} />
+        </Link>
+        <hr style={{ marginTop: "50px", borderTop: "1px solid #ccc", width: "75%", position: "absolute" }} />
+        <Menu items={menuItems} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "10", gap: "8", height: "100%" }}>
+        <hr style={{ borderTop: "1px solid #ccc", width: "75%", position: "absolute", bottom: "85px" }} />
+        <div style={{ paddingBottom: "10" }}>
+          <ThemeToggle />
         </div>
-        <div className="flex flex-col items-center pt-10 space-y-8 h-full">
-          <hr className="border-t border-regular w-[75%]  absolute bottom-[85px]" />
-          <div className="pb-10">
-            <ThemeToggle />
-          </div>
-        </div>
-      </Wrapper>
-    </div>
+      </div>
+    </Wrapper>
+  </div>
   );
 }
 

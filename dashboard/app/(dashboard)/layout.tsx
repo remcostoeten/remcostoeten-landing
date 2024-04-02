@@ -4,6 +4,7 @@ import Aside from "@/components/layout/Aside";
 import Header from "@/components/layout/header";
 import UserGreeting from "@/components/auth/UserGreeting";
 import { Toaster } from "sonner";
+import { TooltipProvider } from "@c/ui/tooltip";
 
 export default function DashboardLayout({
   children,
@@ -11,7 +12,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <TooltipProvider>
+
       <Header />
       <div className="ml-4 flex h-screen overflow-hidde sm:mt-[70px]">
         <NewProjectSidebar />
@@ -22,6 +24,6 @@ export default function DashboardLayout({
           {children}
         </main>
       </div>
-    </>
+    </TooltipProvider>
   );
 }

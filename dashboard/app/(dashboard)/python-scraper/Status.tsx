@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Spinner from "@c/core/effects/spinner";
 import { Button } from "@c/ui/button";
@@ -7,6 +8,16 @@ function StatusComponent() {
   const [status, setStatus] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState(false);
   const abortController = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    // Initial fetch on component mount
+    fetchStatus();
+
+    // Clean up AbortController on unmount
+    return () => {
+      cancelFetch();
+    };
+  }, []);
 
   const fetchStatus = () => {
     setIsLoading(true);
@@ -25,26 +36,18 @@ function StatusComponent() {
           console.error("Error fetching status", error);
           setIsLoading(false);
         }
-      });
+      })
   };
 
   const stopFetch = () => {
     if (abortController.current) {
       abortController.current.abort();
     }
-  }
-
-  const cancelFetch = () => {
-    if (abortController.current) {
-      abortController.current.abort();
-    }
   };
 
-  useEffect(() => {
-    return () => {
-      cancelFetch();
-    };
-  }, []);
+  const cancelFetch = () => {
+    stopFetch(); // Directly call stopFetch for clarity
+  };
 
   return (
     <div>
@@ -55,8 +58,24 @@ function StatusComponent() {
       <Button onClick={cancelFetch} disabled={!isLoading}>
         Cancel Fetch
       </Button>
-      <button onClick={stopFetch} disabled={!isLoading}>DWDWW</button>
-    </div>
+      <Button onClick={stopFetch} disabled={!isLoading}>DWDWW</Button>
+      <div className="text-center">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>status</td>
+              <td>{status}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
   );
 }
 

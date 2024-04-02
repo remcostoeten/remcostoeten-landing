@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <HydrationOverlay>
       <html lang="en" suppressHydrationWarning>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={50}>
           <body className={`${inter.className} overflow-hidden`}>
             <NextTopLoader color="#2dd4bf" />
             <Providers>

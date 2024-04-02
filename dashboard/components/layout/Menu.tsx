@@ -1,13 +1,22 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from "@c/ui/tooltip";
-import { Home as HomeIcon } from "lucide-react";
+import {
+  CodeIcon,
+  Home as HomeIcon,
+  PiIcon,
+  SettingsIcon,
+  TextIcon,
+  User2Icon,
+  UserCheck2Icon,
+} from "lucide-react";
 import Link from "next/link";
+import { IconDropdown } from "react-day-picker";
 
 interface MenuItem {
   label: string;
   href?: string;
   icon: () => JSX.Element;
   children?: MenuItem[];
-  isActive?: boolean; // isActive is optional
+  isActive?: boolean;
 }
 
 interface MenuProps {
@@ -55,6 +64,17 @@ const Menu = ({ items }: MenuProps) => {
   );
 };
 
+const icons = {
+  home: <HomeIcon />,
+  profile: <User2Icon />,
+  account: <UserCheck2Icon />,
+  settings: <SettingsIcon />,
+  Projectts: <IconDropdown />,
+  kanban: <PiIcon />,
+  "python-scraper": <CodeIcon />,
+  snippets: <TextIcon />,
+};
+
 const allRoutes = [
   "home",
   "profile",
@@ -64,16 +84,12 @@ const allRoutes = [
   "kanban",
   "python-scraper",
   "snippets",
-];
-
-const NavItems: MenuItem[] = allRoutes.map((route) => {
-  return {
-    label: route,
-    href: `/${route}`,
-    icon: () => <HomeIcon />, // wrap HomeIcon in a function
-  };
-});
+].map((route) => ({
+  label: route.charAt(0).toUpperCase() + route.slice(1),
+  href: `/${route}`,
+  icon: () => icons[route],
+}));
 
 export default function MenuContainer() {
-  return <Menu items={NavItems} />;
+  return <Menu items={allRoutes} />;
 }

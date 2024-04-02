@@ -9,7 +9,6 @@ function StatusComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const abortController = useRef<AbortController | null>(null);
 
-
   const fetchStatus = () => {
     setIsLoading(true);
     abortController.current = new AbortController();

@@ -33,7 +33,7 @@ export default async (req, res) => {
       .build();
 
     try {
-      console.log('Navigating to WhatsApp');
+      logger.info('Navigating to WhatsApp');
       await driver.get('https://web.whatsapp.com/');
       logger.info('Successfully navigated to WhatsApp');
 
@@ -67,7 +67,7 @@ export default async (req, res) => {
           }
 
           try {
-            await driver.findElement(By.xpath("//span[contains(text(), 'online')]"));
+            await driver.findElement(By.xpath("//span[@title='Online']"));
             status = "Online";
           } catch {
             status = "Offline";

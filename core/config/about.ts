@@ -27,6 +27,7 @@ export type Experience = {
   role?: string
   location?: string
   details?: string[]
+  site?: string
   skills?: string
   roles?: Role[]
   education?: Education[]
@@ -52,7 +53,8 @@ export const introduction: Introduction[] = [
 
 export const experiences: Experience[] = [
   {
-    year: 2023,
+    year: '2023 - present',
+    site: "https://pleio.nl/",
     role: "Frontend Developer at Pleio - online samenwerken",
     location: "Fulltime, remote",
     description:
@@ -65,7 +67,8 @@ export const experiences: Experience[] = [
     skills: "TypeScript, Vue.js, React.js, JavaScript, SCSS",
   },
   {
-    year: 2022,
+    year: '2022 - 2023',
+    site: "https://distil.nl/",
     role: "Developer at Distil BV",
     location: "Fulltime, Heerenveen, Friesland, Netherlands",
     details: [
@@ -76,6 +79,7 @@ export const experiences: Experience[] = [
   },
   {
     year: "2017 - 2022",
+    site: "https://www.tickles.nl/",
     role: "Front-end Developer at Tickles Digital Agency B.V.",
     location: "Fulltime, Joure, Friesland, Netherlands",
     details: [

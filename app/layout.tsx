@@ -1,6 +1,6 @@
 "use client"
 
-import MobileNavigation from "@c/core/MobileNavigation"
+import SubHeader from "@c/core/MobileNavigation"
 
 import "@/styles/globals.css"
 import ApolloWrapper from "@/core/database/ApolloWrapper"
@@ -21,6 +21,7 @@ import ShellLayout from "@/components/layout/MainLayoutShell"
 import TabBar from "@/components/menu/FooterAnimatedMenu"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import Nav from "@/components/core/Nav"
 
 export const viewport = {
   themeColor: [
@@ -64,7 +65,8 @@ export default function RootLayout({ children }) {
                     fontSora.variable
                   )}
                 >
-                  <MobileNavigation />
+                  <SubHeader />
+                  <Nav />
                   <InProgressToast />
                   <TabBar />
                   <NextTopLoader color="#2dd4bf" height={5} />

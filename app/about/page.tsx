@@ -1,10 +1,7 @@
-import React from "react"
 import Link from "next/link"
 
 import { experiences } from "@/core/config/about"
-// Adjust path as needed
 import Pill from "@/components/Pill"
-import { Icons } from "@/components/icons"
 
 const ListItem = ({ children }) => {
   return (
@@ -293,8 +290,8 @@ function EducationIcon(props) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      width="24"
-      height="24"
+      width="16"
+      height="16"
     >
       <path
         strokeLinecap="round"
@@ -309,8 +306,8 @@ function MagentoIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height={20}
-      width={20}
+      height={16}
+      width={16}
       className="about-icon-positioning"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 303"
@@ -346,8 +343,8 @@ function ReactIcon() {
     <svg
       className="about-icon-positioning"
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="16"
+      height="16"
       viewBox="0 0 24 24"
     >
       <path
@@ -362,8 +359,8 @@ function GraphqlIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="17"
+      height="17"
       className="about-icon-positioning"
       viewBox="0 0 32 32"
     >

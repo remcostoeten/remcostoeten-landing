@@ -1,230 +1,73 @@
-//@ts-nocheck
-"use client"
+ 'use client';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
+import { navigationMenuItems } from "@/core/config/menu";
 
-import React, { useEffect, useRef } from "react"
-import { usePathname } from "next/dist/client/components/navigation"
-import Link from "next/link"
+const SubHeader = () => {
+  const router = useRouter();
+  const [activeNavItem, setActiveNavItem] = useState(null);
+  const [hoveredNavItem, setHoveredNavItem] = useState(null);
+    const pathname = usePathname();
+  const navItems = [
+    { id: "overview", label: "Overview" },
+    { id: "integration", label: "Integration" },
+    { id: "settings", label: "Settings" },
+    { id: "profile", label: "Profile" },
+    { id: "analytics", label: "Analytics" },
+    { id: "notifications", label: "Notifications" },
+    { id: "billing", label: "Billing" },
+    { id: "security", label: "Security" },
+  ];
 
-import { navigationMenuItems } from "@/core/config/menu"
-import { BEZIER_CURVES } from "@/core/lib/bezier-curves"
+  const handleNavItemHover = (navId: string) => {
+    setHoveredNavItem(navId);
+  };
 
-import AnimatedElement from "../effects/AnimatedElement"
-
-const BTN_ACTIVE_CLASS = "btn-active"
-const GLOW_LEFT_OFFSET = 19.75
-
-interface ICalcSwitcher {
-  (activeBtn: HTMLButtonElement | null, targetBtn: HTMLButtonElement): void
-}
-
-export default function MobileNavigation() {
-  const htmlRef = useRef<HTMLHtmlElement>(null)
-  const startRef = useRef<HTMLDivElement>(null)
-  const switcherRef = useRef<HTMLDivElement>(null)
-  const switcherRootRef = useRef<HTMLDivElement>(null)
-  const switcherBtnsRef = useRef<NodeListOf<HTMLButtonElement>>(null)
-  const mainSectionsRef = useRef<NodeListOf<HTMLElement>>(null)
-  const topsRef = useRef<number[]>([])
-  const resizeTimeoutRef = useRef<number>(0)
-  const pathname = usePathname()
-  const calcSwitcher: ICalcSwitcher = (activeBtn, targetBtn) => {
-    const glow = document.querySelector(".switcher-glow") as HTMLDivElement
-    const curr = document.querySelector(".switcher-curr") as HTMLDivElement
-
-    const currLeft: number = +targetBtn.offsetLeft
-    const width: number = +targetBtn.offsetWidth
-    const middle: number = Math.round(width / 2)
-
-    curr.setAttribute("style", `width: ${width}px; left: ${currLeft}px`)
-    glow.style.left = `${currLeft + middle - GLOW_LEFT_OFFSET}px`
-
-    const switcherOffsetWidth: number = switcherRef.current!.offsetWidth
-    const sumOffsetX: number = Math.round(currLeft + middle + 4)
-    const multOffsetX: number = Math.round(
-      (sumOffsetX / switcherOffsetWidth) * 100
-    )
-    switcherRef.current!.style.setProperty("--x", `${100 - multOffsetX}%`)
-    targetBtn.classList.add(BTN_ACTIVE_CLASS)
-
-    if (!activeBtn) return
-    activeBtn.classList.remove(BTN_ACTIVE_CLASS)
-  }
-
-  const handleSwitcher = (e: React.MouseEvent): void => {
-    const currentTarget = e.currentTarget as HTMLElement
-    const target = e.target as HTMLElement
-
-    const activeBtn = currentTarget.querySelector(
-      `.${BTN_ACTIVE_CLASS}`
-    ) as HTMLButtonElement | null
-    const closestBtn = target.closest(".switcher-btn") as HTMLButtonElement
-
-    if (!closestBtn) return
-    if (closestBtn === activeBtn) return
-
-    // Call calcSwitcher function here
-    calcSwitcher(activeBtn, closestBtn)
-
-    const targetSection = document.querySelector(
-      `#${closestBtn.dataset.scrollTo}`
-    ) as HTMLElement
-    window.scrollTo({
-      top: targetSection.id === "home" ? 0 : targetSection.offsetTop + 10,
-      behavior: "smooth",
-    })
-  }
-
-  const generateTops = (): number[] => {
-    const topsArray: number[] = [startRef.current!.offsetTop]
-    for (const section of mainSectionsRef.current!) {
-      topsArray.push(section.offsetTop + startRef.current!.offsetTop)
-    }
-    return topsArray
-  }
-
-  const switcherScroll = (): void => {
-    const startingTop: number = startRef.current!.offsetTop
-    const windowScrollY: number = Math.round(window.scrollY)
-    const switcherHeight: number = switcherRef.current!.offsetHeight
-
-    if (windowScrollY >= startingTop - 15) {
-      switcherRef.current!.classList.add("switcher-fixed")
-    } else {
-      switcherRef.current!.classList.remove("switcher-fixed")
-    }
-
-    const currDiff: number = windowScrollY - startingTop - switcherHeight
-    const activeBtn = document.querySelector(
-      `.${BTN_ACTIVE_CLASS}`
-    ) as HTMLButtonElement | null
-    let currSection: number = 0
-
-    for (let i = 0; i < topsRef.current!.length; i++) {
-      if (topsRef.current![i] > currDiff) {
-        currSection = i
-        break
-      }
-    }
-
-    const targetBtn = switcherBtnsRef.current![currSection] as HTMLButtonElement
-    if (activeBtn === targetBtn) return
-    calcSwitcher(activeBtn, targetBtn)
-  }
-
-  const handleResize = (): void => {
-    clearTimeout(resizeTimeoutRef.current!)
-    resizeTimeoutRef.current = setTimeout(() => {
-      htmlRef.current!.style.scrollBehavior = "auto"
-      topsRef.current = generateTops()
-      htmlRef.current!.style.scrollBehavior = "smooth"
-    }, 20)
-  }
-
-  const initElements = (): void => {
-    htmlRef.current = document.documentElement
-    startRef.current = document.querySelector(".start") as HTMLDivElement
-    switcherRef.current = document.querySelector(".switcher") as HTMLDivElement
-    switcherRootRef.current = document.querySelector(
-      ".switcher-root"
-    ) as HTMLDivElement
-    switcherBtnsRef.current = document.querySelectorAll(
-      ".switcher-btn"
-    ) as NodeListOf<HTMLButtonElement>
-    mainSectionsRef.current = document.querySelectorAll(
-      "section"
-    ) as NodeListOf<HTMLElement>
-    topsRef.current = generateTops()
-  }
-
-  const setUpLoad = (): void => {
-    calcSwitcher(null, switcherBtnsRef.current![0])
-    if (history.scrollRestoration) {
-      history.scrollRestoration = "manual"
-    }
-  }
-
-  const initListeners = (): void => {
-    htmlRef.current!.style.scrollBehavior = "smooth"
-    startRef.current!.style.height = `${switcherRef.current!.offsetHeight}px`
-    switcherRootRef.current!.addEventListener("click", handleSwitcher)
-    window.addEventListener("scroll", switcherScroll, true)
-    window.addEventListener("resize", handleResize)
-  }
-
-  const initApp = (): void => {
-    initElements()
-    setUpLoad()
-    initListeners()
-  }
+  const handleNavItemMouseLeave = () => {
+    setHoveredNavItem(null);
+  };
 
   useEffect(() => {
-    initApp()
-    window.addEventListener("load", initApp, { once: true })
-
-    return () => {
-      window.removeEventListener("load", initApp)
-    }
-  }, [])
-
-  type MenuItemTypes = {
-    label: string
-    href: any
-  }
-
-  const MenuItem = ({
-    label,
-    href,
-    isActive,
-  }: MenuItemTypes & { isActive: boolean }) => (
-    <Link
-      href={href}
-      className={`switcher-btn ${isActive ? BTN_ACTIVE_CLASS : ""}`}
-      data-scroll-to={href}
-    >
-      <span>{label}</span>
-    </Link>
-  )
+    // Update activeNavItem when location changes
+    setActiveNavItem(pathname.substring(1));
+  }, [pathname]);
 
   return (
-    <AnimatedElement
-      opacity={0}
-      duration={1}
-      delay={0.5}
-      ease={BEZIER_CURVES.BEZIERWTO}
-      as="header"
-      className="mobile-navigation block sm:hidden "
-    >
-      <div className="header sa" id="home">
-        <div className="start" style={{ height: "45px" }} ref={startRef}></div>
-        <div className="switcher" style={{ "--x": "100%" }} ref={switcherRef}>
-          <div
-            aria-hidden="true"
-            className="switcher-stroke"
-            style={{ position: "absolute" }}
-          ></div>
-          <div className="switcher-root" ref={switcherRootRef}>
-            {navigationMenuItems.map((item, index) => (
-              <MenuItem
-                key={index}
-                label={item.label}
-                href={item.href}
-                isActive={pathname === item.href}
-              />
-            ))}
+    <nav className="container mx-auto flex justify-between items-center  text-white border-b border-gray-500">
+      <ul className="flex">
+        {navigationMenuItems.map((nav) => (
+          <li
+            key={nav.label}
+            onMouseMove={() => handleNavItemHover(nav.label)}
+            onMouseLeave={handleNavItemMouseLeave}
+            className="relative px-4 py-2"
+          >
+            <Link href={`/${nav.label}`} className={`relative z-20  ${
+                activeNavItem === nav.label ? "text-gray-200" : "text-gray-500"
+              }`}>
+                {nav.label}
+            </Link>
+            {hoveredNavItem === nav.label && (
+              <motion.span
+                layoutId="hover"
+                transition={{ type: "spring", duration: 0.4 }}
+                className="absolute inset-0  bg-gray-600/50 rounded-lg"
+              ></motion.span>
+            )}
+            {activeNavItem === nav.label && (
+              <motion.span
+                layoutId="active"
+                transition={{ type: "spring", duration: 0.5 }}
+                className="z-10 absolute inset-0 border-b-2 "
+              ></motion.span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
 
-            <div
-              aria-hidden="true"
-              className="switcher-glow"
-              style={{ left: "23.75px" }}
-            ></div>
-            <div
-              aria-hidden="true"
-              className="switcher-curr"
-              style={{ left: "4px" }}
-            ></div>
-          </div>
-        </div>
-      </div>
-    </AnimatedElement>
-  )
-}
+export default SubHeader;

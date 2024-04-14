@@ -18,12 +18,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AuthUserProvider } from "@/components/AuthUserProvider";
 import SubHeader from "@/components/core/MobileNavigation";
 import TabBar from "@/components/layout/FooterAnimatedMenu";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+    themeColor: [
+        { media: "(prefers-color-scheme: light)", color: "white" },
+        { media: "(prefers-color-scheme: dark)", color: "black" },
+    ],
 };
 
 // export const metadata: Metadata = {
@@ -40,47 +41,50 @@ export const viewport = {
 // }
 
 export default function RootLayout({ children }) {
-  return (
-    <ApolloWrapper>
-      <HydrationOverlay>
-        <AuthUserProvider>
-          <html lang="en" suppressHydrationWarning>
-            <head />
-            <link rel="canonical" href={siteConfig.url} />
-            <TooltipProvider>
-              {/* <body
+    return (
+        <ApolloWrapper>
+            <HydrationOverlay>
+                <AuthUserProvider>
+                    <html lang="en" suppressHydrationWarning>
+                        <head />
+                        <link rel="canonical" href={siteConfig.url} />
+                        <TooltipProvider>
+                            {/* <body
                 className={cn(
                   " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               > */}
-              <body
-                className={cn(
-                  " min-h-screen overflow-x-hidden  font-sans antialiased pb-16 mb-8",
-                  fontSora.variable
-                )}
-              >
-                <SubHeader />
-                <InProgressToast />
-                <NextTopLoader color="#2dd4bf" height={5} />
-                <ThemeProvider
-                  attribute="class"
-                  defaultTheme="system"
-                  enableSystem
-                >
-                  <ShellLayout header={<SiteHeader />}>
-                    <div className="transition-all duration-300 sm:max-w-[854px] pb-16">
-                      {children}
-                    </div>
-                  </ShellLayout>
-                </ThemeProvider>
-                <SpeedInsights />
-                <Analytics />
-              </body>
-            </TooltipProvider>
-          </html>
-        </AuthUserProvider>
-      </HydrationOverlay>
-    </ApolloWrapper>
-  );
+                            <body
+                                className={cn(
+                                    " min-h-screen overflow-x-hidden  font-sans antialiased pb-16 mb-8",
+                                    fontSora.variable
+                                )}
+                            >
+                                <SubHeader />
+                                <InProgressToast />
+                                <NextTopLoader color="#2dd4bf" height={5} showSpinner={false} />
+                                <ThemeProvider
+                                    attribute="class"
+                                    defaultTheme="dark"
+                                    enableSystem
+                                >
+                                    <ShellLayout header={<SiteHeader />}>
+                                        <div className="transition-all duration-300 sm:max-w-[854px] pb-16">
+                                            {children}
+                                            <div className="sm:hidden mobile--wrapper fixed bottom-20 right-2">
+                                                <ThemeToggle />
+                                            </div>
+                                        </div>
+                                    </ShellLayout>
+                                </ThemeProvider>
+                                <SpeedInsights />
+                                <Analytics />
+                            </body>
+                        </TooltipProvider>
+                    </html>
+                </AuthUserProvider>
+            </HydrationOverlay>
+        </ApolloWrapper>
+    );
 }

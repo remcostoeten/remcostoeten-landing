@@ -8,24 +8,24 @@ import useToastPreference from "@/core/hooks/useToastPreference";
 
 // Adjust the path as necessary
 export default function InProgressToast() {
-    const { isToastDismissed, dismissToast } = useToastPreference();
+  const { isToastDismissed, dismissToast } = useToastPreference();
 
-    useEffect(() => {
-        const isDismissed = localStorage.getItem("toastDismissed");
-        if (!isToastDismissed && !isDismissed) {
-            toast("🐞 Site is in progress and may contain bugs.🐛", {
-                duration: 7500,
-                onDismiss: () => {
-                    dismissToast();
-                    localStorage.setItem("toastDismissed", "true");
-                },
-            });
-        }
-    }, [isToastDismissed, dismissToast]);
+  useEffect(() => {
+    const isDismissed = localStorage.getItem("toastDismissed");
+    if (!isToastDismissed && !isDismissed) {
+      toast("🐞 Site is in progress and may contain bugs.🐛", {
+        duration: 7500,
+        onDismiss: () => {
+          dismissToast();
+          localStorage.setItem("toastDismissed", "true");
+        },
+      });
+    }
+  }, [isToastDismissed, dismissToast]);
 
-    return (
-        <>
-            <Toaster closeButton invert />
-        </>
-    );
+  return (
+    <>
+      <Toaster closeButton invert />
+    </>
+  );
 }

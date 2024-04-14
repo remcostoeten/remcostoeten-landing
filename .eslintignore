@@ -4,7 +4,3 @@ public
 node_modules
 *.esm.js
 *
-*styles*
-*.contentlayer*
-*contentlayer*
-*next*

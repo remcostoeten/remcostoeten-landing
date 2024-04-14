@@ -1,0 +1,347 @@
+.anchor {
+  position: relative;
+}
+
+.anchor::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  bottom: 0;
+  background-color: #9e9d9d;
+  animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite;
+}
+
+.BackgroundGradientEffect {
+  opacity: 0;
+  animation: LowerGradientFadeIn 4s cubic-bezier(0.895, 0.03, 0.685, 0.22)
+    forwards;
+}
+
+@keyframes LowerGradientFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.anchor.dashed-border::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 1px;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to right,
+    #eee,
+    #eee 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  /* animation: anchorAnimation 4s cubic-bezier(0.895, 0.03, 0.685, 0.22) infinite; */
+  animation: anchorAnimation 4s linear infinite;
+}
+
+.anchor.not-bright::after {
+  opacity: 0.5;
+}
+
+.anchor.lowest-brightness::after {
+  opacity: 0.2;
+
+  .anchor.bright-brightness::before {
+    opacity: 1;
+  }
+
+  .anchor.dim-brightness::before {
+    opacity: 0.5;
+  }
+
+  .anchor.dimmest-brightness::before {
+    opacity: 0.2;
+  }
+}
+
+@keyframes anchorAnimation {
+  0%,
+  100% {
+    width: 0%;
+    left: 0%;
+  }
+
+  50% {
+    width: 100%;
+    left: 0%;
+  }
+
+  100% {
+    width: 0%;
+    left: 100%;
+  }
+}
+
+.infinite-link {
+  position: relative;
+}
+
+.infinite-link::after {
+  position: absolute;
+  content: "";
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid;
+  transform: scaleX(1);
+  transform-origin: 0 0;
+  animation: underlineAnimation 1.5s infinite alternate;
+}
+
+@keyframes underlineAnimation {
+  0% {
+    transform: scaleX(1);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: 100% 100%;
+  }
+}
+
+.pulser {
+  animation: pulser 2s cubic-bezier(0.565, 0.84, 0.44, 1) infinite;
+}
+
+.animation-wrapper {
+  opacity: 0;
+  animation: fadeIn 0.5s 0.25s ease-in-out forwards;
+}
+
+.animation-wrapper span:last-child {
+  opacity: 0;
+  animation: fadeIn 0.5s 0.75s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-25deg);
+    scale: 0.56;
+  }
+
+  100% {
+    transform: rotate(0deg);
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulser {
+  0% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(77, 170, 87, 0.9);
+    box-shadow: 0 0 0 0 rgba(77, 170, 87, 0.9);
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-box-shadow: 0 0 0 8px rgba(77, 170, 87, 0);
+    box-shadow: 0 0 0 8px rgba(77, 170, 87, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-box-shadow: 0 0 0 0 rgba(77, 170, 87, 0);
+    box-shadow: 0 0 0 0 rgba(77, 170, 87, 0);
+  }
+}
+
+.wave {
+  transform-origin: 70% 70%;
+  display: inline-block;
+  scale: 0;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation:
+    wave-animation 2.3s infinite,
+    scaleIn 1s 1750ms forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    scale: 0;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(14deg);
+  }
+
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* loading dots for Spinner.tsx */
+.dot-one {
+  animation: dot-one 2s infinite linear;
+}
+
+.dot-two {
+  animation: dot-two 2s infinite linear;
+}
+
+.dot-three {
+  animation: dot-three 2s infinite linear;
+}
+
+@keyframes dot-one {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-two {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-three {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* end loading dots */
+.spinner-cutout {
+  display: block;
+  z-index: 99;
+  margin-top: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 100px;
+  border: 3px solid white;
+  border-radius: 50%;
+  animation: spinn 7s ease-in-out;
+  animation-iteration-count: infinite;
+  transition-duration: 0.1s;
+}
+
+.spinner-cutout:hover {
+  scale: 0.95;
+}
+
+.spinner-cutout:active {
+  scale: 2.5;
+}
+
+@keyframes spinn {
+  0% {
+    transform: rotate(0deg);
+    border-bottom: solid 3px transparent;
+    border-top: solid 3px transparent;
+  }
+
+  50% {
+    transform: rotate(1800deg);
+    border: 3px solid white;
+    border-left: solid 3px transparent;
+    border-right: solid 3px transparent;
+  }
+
+  100% {
+    transform: rotate(0deg);
+    border-bottom: solid 3px transparent;
+    border-top: solid 3px transparent;
+  }
+}

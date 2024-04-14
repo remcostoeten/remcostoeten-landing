@@ -1,0 +1,65 @@
+.top-container {
+    @media (min-width: 768px) {
+        padding-top: 48px;
+    }
+}
+
+.text-[13px] {
+    font-size: 13px;
+}
+
+.text-[14px] {
+    font-size: 14px;
+}
+
+.accordion-transition {
+    transition: max-height 0.2s ease-out;
+  }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.items-baseline {
+    align-items: baseline;
+}
+
+.pb-24 {
+    padding-bottom: 6rem;
+}
+
+.pt-24 {
+    padding-top: 6rem;
+}
+
+.pt-10  {
+    padding-top: 2.5rem;
+}
+
+.pt-6 {
+    padding-top: 1.5rem;
+}
+
+.pt-4 {
+    padding-top: 1rem;
+}
+
+.pt-2 {
+    padding-top: 0.5rem;
+}
+
+.pt-1 {
+    padding-top: 0.25rem;
+}
+
+.sm-row {
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.smpl-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}

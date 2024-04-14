@@ -1,46 +1,46 @@
 :root {
-  --sans: "Inter", sans-serif, -apple-system, ui-sans-serif, system-ui,
-    blinkmacsystemfont, sego ui, roboto, helvetica neue, arial, noto sans,
-    sans-serif, monospace;
-  --accents-8: #fafafa;
-  --accents-7: #eaeaea;
-  --accents-6: #999;
-  --accents-5: #888;
-  --accents-4: #666;
-  --accents-3: #444;
-  --accents-2: #333;
-  --accents-1: #111;
-  --transition-left: left 0.2s ease-in-out;
-  --transition-width: width 0.2s ease-in-out;
+    --sans: "Inter", sans-serif, -apple-system, ui-sans-serif, system-ui,
+        blinkmacsystemfont, sego ui, roboto, helvetica neue, arial, noto sans,
+        sans-serif, monospace;
+    --accents-8: #fafafa;
+    --accents-7: #eaeaea;
+    --accents-6: #999;
+    --accents-5: #888;
+    --accents-4: #666;
+    --accents-3: #444;
+    --accents-2: #333;
+    --accents-1: #111;
+    --transition-left: left 0.2s ease-in-out;
+    --transition-width: width 0.2s ease-in-out;
 }
 
 .mobile-navigation {
-  max-width: fit-content;
-  max-width: fit-content;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 24px;
-  margin: 0 auto;
-  z-index: 10;
+    max-width: fit-content;
+    max-width: fit-content;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 24px;
+    margin: 0 auto;
+    z-index: 10;
 }
 
 .mobile-navigation *,
 .mobile-navigation :after,
 .mobile-navigation :before {
-  border: 0;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .mobile-navigation button {
-  background: none;
-  line-height: 1.15;
-  margin: 0;
-  outline: none;
-  padding: 0;
-  text-transform: none;
+    background: none;
+    line-height: 1.15;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-transform: none;
 }
 
 .mobile-navigation .app-title,
@@ -52,272 +52,264 @@
 .mobile-navigation .switcher-disabled,
 .mobile-navigation .switcher-glow,
 .mobile-navigation .switcher-stroke {
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .mobile-navigation .header-bg {
-  mix-blend-mode: screen;
-  opacity: 0.4;
-  top: 0;
-  z-index: 3;
+    mix-blend-mode: screen;
+    opacity: 0.4;
+    top: 0;
+    z-index: 3;
 }
 
 .mobile-navigation .header-bg svg {
-  height: 200%;
-  width: 200%;
-  transform: translate(-25%, -25%);
+    height: 200%;
+    width: 200%;
+    transform: translate(-25%, -25%);
 }
 
 .mobile-navigation .header-bg,
 .mobile-navigation .header-icon {
-  height: 100%;
-  left: 0;
-  margin: 0 auto;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  width: 100%;
+    height: 100%;
+    left: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    width: 100%;
 }
 
 .mobile-navigation .header-icon {
-  bottom: 0;
-  opacity: 0.2;
-  z-index: 1;
+    bottom: 0;
+    opacity: 0.2;
+    z-index: 1;
 }
 
 .mobile-navigation .app-title {
-  align-items: center;
-  bottom: 100px;
-  display: flex;
-  flex-direction: column;
-  /* font-size: 34.18px;
+    align-items: center;
+    bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    /* font-size: 34.18px;
     */
-  font-size: 33px;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  letter-spacing: -3px;
-  margin: 0 auto;
-  padding: 0 5px;
-  position: absolute;
-  right: 0;
-  width: 100%;
-  z-index: 2;
+    font-size: 33px;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    letter-spacing: -3px;
+    margin: 0 auto;
+    padding: 0 5px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 2;
 }
 
 .mobile-navigation .app-title h1 {
-  background: linear-gradient(to left, #fff, var(--accents-7));
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-position-x: 100%;
-  color: transparent;
-  font-weight: 500;
-  position: relative;
-  white-space: nowrap;
+    background: linear-gradient(to left, #fff, var(--accents-7));
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position-x: 100%;
+    color: transparent;
+    font-weight: 500;
+    position: relative;
+    white-space: nowrap;
 }
 
 .mobile-navigation .start {
-  height: 44px;
-  inset: 0;
-  margin: auto;
-  position: absolute;
-  width: 100%;
+    height: 44px;
+    inset: 0;
+    margin: auto;
+    position: absolute;
+    width: 100%;
 }
 
 .mobile-navigation .switcher {
-  border: 1px solid var(--accents-2);
-  border-radius: 9999px;
-  box-shadow: none;
-  position: relative;
-  z-index: 10;
+    border: 1px solid var(--accents-2);
+    border-radius: 9999px;
+    box-shadow: none;
+    position: relative;
+    z-index: 10;
 }
 
 .mobile-navigation .switcher:after {
-  background: linear-gradient(
-    to left,
-    var(--accents-2) 20%,
-    var(--accents-2) 44%,
-    var(--accents-6) 50%,
-    var(--accents-3) 60%,
-    var(--accents-2) 63%,
-    var(--accents-2) 100%
-  );
-  background-color: red;
-  background-position-x: var(--x);
-  background-size: 200% auto;
-  border-radius: inherit;
-  bottom: -1px;
-  content: "";
-  height: 100%;
-  left: 0;
-  position: absolute;
-  transition: background-position-x 0.6s ease;
-  width: 100%;
-  z-index: -1;
+    background: linear-gradient(to left,
+            var(--accents-2) 20%,
+            var(--accents-2) 44%,
+            var(--accents-6) 50%,
+            var(--accents-3) 60%,
+            var(--accents-2) 63%,
+            var(--accents-2) 100%);
+    background-color: red;
+    background-position-x: var(--x);
+    background-size: 200% auto;
+    border-radius: inherit;
+    bottom: -1px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transition: background-position-x 0.6s ease;
+    width: 100%;
+    z-index: -1;
 }
 
 .mobile-navigation .switcher-root {
-  background: var(--accents-1);
-  display: flex;
-  overflow: hidden;
-  padding: 4px;
+    background: var(--accents-1);
+    display: flex;
+    overflow: hidden;
+    padding: 4px;
 }
 
 .mobile-navigation .switcher-btn,
 .mobile-navigation .switcher-root {
-  border-radius: inherit;
-  position: relative;
+    border-radius: inherit;
+    position: relative;
 }
 
 .mobile-navigation .switcher-btn {
-  display: flex;
-  align-items: center;
-  background: transparent;
-  border: 0;
-  color: var(--accents-5);
-  cursor: pointer;
-  font-family: Inter, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  height: 36px;
-  padding: 0 20px;
-  transition: color 0.15s ease;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--accents-5);
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    padding: 0 20px;
+    transition: color 0.15s ease;
 }
 
 .mobile-navigation .btn-active,
 .mobile-navigation .switcher-btn:hover {
-  color: var(--accents-8);
+    color: var(--accents-8);
 }
 
 .mobile-navigation .btn-active {
-  text-shadow: 1px 1px 12px rgba(255, 255, 255, 0.4);
+    text-shadow: 1px 1px 12px rgba(255, 255, 255, 0.4);
 }
 
 .mobile-navigation .switcher-stroke {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accents-4) 20%,
-    var(--accents-2) 67.19%,
-    transparent
-  );
-  height: 1px;
-  left: 32px;
-  position: absolute;
-  top: -1px;
-  width: 90%;
-  z-index: -1;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--accents-4) 20%,
+            var(--accents-2) 67.19%,
+            transparent);
+    height: 1px;
+    left: 32px;
+    position: absolute;
+    top: -1px;
+    width: 90%;
+    z-index: -1;
 }
 
 .mobile-navigation .switcher-glow {
-  background: #fff;
-  bottom: -52px;
-  filter: blur(32px);
-  height: 50px;
-  transition: var(--transition-left);
-  width: 39.5px;
-  z-index: 0;
+    background: #fff;
+    bottom: -52px;
+    filter: blur(32px);
+    height: 50px;
+    transition: var(--transition-left);
+    width: 39.5px;
+    z-index: 0;
 }
 
 .mobile-navigation .switcher-curr,
 .mobile-navigation .switcher-glow {
-  border-radius: inherit;
-  position: absolute;
-  top: 4px;
+    border-radius: inherit;
+    position: absolute;
+    top: 4px;
 }
 
 .mobile-navigation .switcher-curr {
-  background: rgba(255, 255, 255, 0.08);
-  height: 36px;
-  left: 4px;
-  transition: var(--transition-left), var(--transition-width);
-  width: 79px;
+    background: rgba(255, 255, 255, 0.08);
+    height: 36px;
+    left: 4px;
+    transition: var(--transition-left), var(--transition-width);
+    width: 79px;
 }
 
 .mobile-navigation .main {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .mobile-navigation .main section {
-  background: #000;
-  height: 100%;
-  min-height: calc(100vh + 15px);
-  position: relative;
-  z-index: 4;
+    background: #000;
+    height: 100%;
+    min-height: calc(100vh + 15px);
+    position: relative;
+    z-index: 4;
 }
 
 .mobile-navigation .main section:after {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accents-4) 10%,
-    var(--accents-4) 80%,
-    transparent
-  );
-  content: "";
-  height: 1px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 2;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--accents-4) 10%,
+            var(--accents-4) 80%,
+            transparent);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 
 .mobile-navigation .main section .section-title {
-  background: linear-gradient(
-    120deg,
-    var(--accents-8),
-    var(--accents-4) 70%,
-    var(--accents-8)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-position-x: 100%;
-  color: transparent;
-  font-size: 34.18px;
-  font-weight: 500;
-  letter-spacing: -3px;
-  opacity: 0.9;
-  padding: 75px 0 0 25px;
-  text-transform: capitalize;
-  white-space: nowrap;
+    background: linear-gradient(120deg,
+            var(--accents-8),
+            var(--accents-4) 70%,
+            var(--accents-8));
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position-x: 100%;
+    color: transparent;
+    font-size: 34.18px;
+    font-weight: 500;
+    letter-spacing: -3px;
+    opacity: 0.9;
+    padding: 75px 0 0 25px;
+    text-transform: capitalize;
+    white-space: nowrap;
 }
 
 .mobile-navigation .main section:last-child {
-  min-height: 150vh;
+    min-height: 150vh;
 }
 
 @media (460px <=width <=640px) {
-  .mobile-navigation .app-title {
-    font-size: 27.34px;
-  }
+    .mobile-navigation .app-title {
+        font-size: 27.34px;
+    }
 }
 
 @media (390px <=width <=460px) {
-  .mobile-navigation .app-title {
-    font-size: 24.61px;
-    letter-spacing: -2px;
-  }
+    .mobile-navigation .app-title {
+        font-size: 24.61px;
+        letter-spacing: -2px;
+    }
 
-  .mobile-navigation .switcher {
-    transform: scale(0.9);
-  }
+    .mobile-navigation .switcher {
+        transform: scale(0.9);
+    }
 }
 
 @media (width <=390px) {
-  .mobile-navigation .app-title {
-    font-size: 21.88px;
-  }
+    .mobile-navigation .app-title {
+        font-size: 21.88px;
+    }
 
-  .mobile-navigation .switcher {
-    transform: scale(0.8);
-  }
+    .mobile-navigation .switcher {
+        transform: scale(0.8);
+    }
 }
 
 $menucolour: #333;
@@ -329,289 +321,270 @@ There used to be a menu icon loaded as a (part of a wasteful) font here. It isn'
 */
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  //font-family: "symbolset";
-  font-style: normal;
-  speak: none;
-  font-weight: normal;
-  vertical-align: top;
+    //font-family: "symbolset";
+    font-style: normal;
+    speak: none;
+    font-weight: normal;
+    vertical-align: top;
 }
 
 .icon-menu:before {
-  content: "🍔";
+    content: "🍔";
 }
 
-////
-
-
-body {
-  background: #ddc;
-  font-family: "Quattrocento Sans", Helmet, Freesans, Tahoma, Geneva, sans-serif;
-}
-
-a {
-  @include transition(color 800ms ease-in-out, background 800ms ease-in-out);
-}
 
 .nav {
-  padding: 2em 0;
+    padding: 2em 0;
 
-  font-size: 1em;
-  letter-spacing: 0.1em;
-  text-align: center;
-
-  .menu-toggle {
-    position: relative;
-    z-index: 2;
-    display: block;
-    margin: 0;
-    padding: 0.5em 0;
-
-    background-color: #ddc;
-
-    text-decoration: none;
+    font-size: 1em;
+    letter-spacing: 0.1em;
     text-align: center;
-    font-size: 1.4em;
-    color: $menucolour;
 
-    &:hover,
-    &:focus {
-      color: $lighttext;
-      background-color: darken($menucolour, 2%);
+    .menu-toggle {
+        position: relative;
+        z-index: 2;
+        display: block;
+        margin: 0;
+        padding: 0.5em 0;
+
+        background-color: #ddc;
+
+        text-decoration: none;
+        text-align: center;
+        font-size: 1.4em;
+        color: $menucolour;
+
+        &:hover,
+        &:focus {
+            color: $lighttext;
+            background-color: darken($menucolour, 2%);
+        }
     }
-  }
 
-  .menu-toggle-text {
-    font-size: 0.55em;
-    display: block;
-  }
+    .menu-toggle-text {
+        font-size: 0.55em;
+        display: block;
+    }
 
-  .no-js & .menu-toggle {
-    display: none;
-  }
+    .no-js & .menu-toggle {
+        display: none;
+    }
 
-  .expanded-menu-toggle {
-    color: $highlight;
-    background-color: darken($menucolour, 2%);
-  }
+    .expanded-menu-toggle {
+        color: $highlight;
+        background-color: darken($menucolour, 2%);
+    }
 
-  .no-fontface & .icon-menu:before {
-    display: none;
-  }
+    .no-fontface & .icon-menu:before {
+        display: none;
+    }
 }
 
 /* .menu is visually hidden by default */
 .menu {
-  position: relative;
-  z-index: 1;
-  background-color: $menucolour;
-  border: 0;
-  margin: -1px auto;
-  overflow: hidden;
-  padding: 0;
-  max-height: 1px;
-  min-height: 0;
-  clip: rect(0 0 0 0);
-  @include box-shadow(inset 0 0 3px 3px rgba(0, 0, 0, 0.2));
+    position: relative;
+    z-index: 1;
+    background-color: $menucolour;
+    border: 0;
+    margin: -1px auto;
+    overflow: hidden;
+    padding: 0;
+    max-height: 1px;
+    min-height: 0;
+    clip: rect(0 0 0 0);
+    @include box-shadow(inset 0 0 3px 3px rgba(0, 0, 0, 0.2));
 
-  @include transition(
-    max-height 600ms ease-out,
-    min-height 600ms ease-in,
-    padding 600ms ease-in
-  );
+    @include transition(max-height 600ms ease-out,
+        min-height 600ms ease-in,
+        padding 600ms ease-in);
 
-  li {
-    a {
-      display: block;
-      padding: 10px 0;
+    li {
+        a {
+            display: block;
+            padding: 10px 0;
 
-      background-color: transparent;
+            background-color: transparent;
 
-      text-decoration: none;
-      text-align: center;
-      font-size: 1.2em;
-      color: $lighttext;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.2em;
+            color: $lighttext;
 
-      @include border-radius(2px);
+            @include border-radius(2px);
 
-      &:hover,
-      &:focus {
-        color: $highlight;
-        background: lighten($menucolour, 10%);
-      }
+            &:hover,
+            &:focus {
+                color: $highlight;
+                background: lighten($menucolour, 10%);
+            }
+        }
+
+        /* no sub menus for mobile */
+        ul.sub-menu,
+        ul.children {
+            display: none;
+        }
     }
 
-    /* no sub menus for mobile */
-    ul.sub-menu,
-    ul.children {
-      display: none;
-    }
-  }
-
-  /* end .menu li */
+    /* end .menu li */
 }
 
 /* end .menu */
 
 .no-js .menu,
 .expanded-mobile-menu {
-  @include transition(
-    max-height 800ms ease-in,
-    min-height 500ms ease-out,
-    padding 400ms ease-in
-  );
+    @include transition(max-height 800ms ease-in,
+        min-height 500ms ease-out,
+        padding 400ms ease-in);
 
-  /*min/max heights allow me to css transition to height auto for WordPress menus with unknown number of items*/
-  clip: auto;
-  min-height: 8em;
-  max-height: 100em;
-  padding: 0.5em 0;
+    /*min/max heights allow me to css transition to height auto for WordPress menus with unknown number of items*/
+    clip: auto;
+    min-height: 8em;
+    max-height: 100em;
+    padding: 0.5em 0;
 }
 
 @media only screen and (min-width: 30.1em) {
-  /*481 ish px*/
+    /*481 ish px*/
 
-  .menu {
-    li {
-      float: left;
-      width: 50%;
+    .menu {
+        li {
+            float: left;
+            width: 50%;
+        }
     }
-  }
 }
 
 @media only screen and (min-width: 48em) {
-  .nav {
-    .menu-toggle {
-      display: none;
-    }
-  }
-
-  .menu,
-  .no-js .menu,
-  .expanded-mobile-menu {
-    /* no longer hidden by default! */
-    margin: 0;
-    min-height: 0;
-    max-height: 999em;
-    @include border-radius(0);
-    overflow: visible;
-    padding: 0.7em 0;
-    background: $menucolour;
-    @include box-shadow(inset 0 0 3px 3px rgba(0, 0, 0, 0.2));
-
-    li {
-      float: none;
-      width: auto;
-      display: inline-block;
-      position: relative;
-      vertical-align: middle;
-
-      .lt-ie8 & {
-        /* inline-block fix for old ie (relevant if they're served larger media queries in an IE stylesheet or something similar...*/
-        display: inline;
-        zoom: 1;
-      }
-
-      a {
-        padding: 0.3em 1em;
-        color: $lighttext;
-
-        &:hover,
-        &:focus {
-          color: $highlight;
-          background: lighten($menucolour, 2%);
+    .nav {
+        .menu-toggle {
+            display: none;
         }
-      }
+    }
 
-      /* DROP DOWNS */
-      ul.sub-menu,
-      ul.children {
-        display: block;
-        position: absolute;
-        z-index: 2;
-        top: 100%;
-        left: 0;
-        white-space: nowrap;
-
-        @include transition(
-          max-height 400ms ease-out,
-          min-height 500ms ease-in,
-          padding 500ms ease-out,
-          opacity 500ms ease-in
-        );
-
-        background: lighten($menucolour, 2%);
-        text-align: left;
-        @include border-radius(0 4px 4px 4px);
-
-        /* visually hidden */
-        opacity: 0;
-        border: 0;
-        margin: -1px 0;
-        overflow: hidden;
-        padding: 0;
-        max-height: 1px;
+    .menu,
+    .no-js .menu,
+    .expanded-mobile-menu {
+        /* no longer hidden by default! */
+        margin: 0;
         min-height: 0;
+        max-height: 999em;
+        @include border-radius(0);
+        overflow: visible;
+        padding: 0.7em 0;
+        background: $menucolour;
+        @include box-shadow(inset 0 0 3px 3px rgba(0, 0, 0, 0.2));
 
         li {
-          display: block;
-          padding: 0.2em 0.4em 0;
+            float: none;
+            width: auto;
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
 
-          a {
-            font-size: 1em;
-            padding: 0.2em 0.5em 0.2em 0.8em;
-            display: block;
-            line-height: 1.5;
-            margin: 0;
-            text-align: left;
-            background: transparent;
-
-            &:hover,
-            &:focus {
-              background: lighten($menucolour, 4%);
+            .lt-ie8 & {
+                /* inline-block fix for old ie (relevant if they're served larger media queries in an IE stylesheet or something similar...*/
+                display: inline;
+                zoom: 1;
             }
-          }
 
-          &:last-child {
             a {
-              border-bottom: 0;
+                padding: 0.3em 1em;
+                color: $lighttext;
+
+                &:hover,
+                &:focus {
+                    color: $highlight;
+                    background: lighten($menucolour, 2%);
+                }
             }
-          }
 
-          /* could go deeper here... */
+            /* DROP DOWNS */
+            ul.sub-menu,
+            ul.children {
+                display: block;
+                position: absolute;
+                z-index: 2;
+                top: 100%;
+                left: 0;
+                white-space: nowrap;
+
+                @include transition(max-height 400ms ease-out,
+                    min-height 500ms ease-in,
+                    padding 500ms ease-out,
+                    opacity 500ms ease-in);
+
+                background: lighten($menucolour, 2%);
+                text-align: left;
+                @include border-radius(0 4px 4px 4px);
+
+                /* visually hidden */
+                opacity: 0;
+                border: 0;
+                margin: -1px 0;
+                overflow: hidden;
+                padding: 0;
+                max-height: 1px;
+                min-height: 0;
+
+                li {
+                    display: block;
+                    padding: 0.2em 0.4em 0;
+
+                    a {
+                        font-size: 1em;
+                        padding: 0.2em 0.5em 0.2em 0.8em;
+                        display: block;
+                        line-height: 1.5;
+                        margin: 0;
+                        text-align: left;
+                        background: transparent;
+
+                        &:hover,
+                        &:focus {
+                            background: lighten($menucolour, 4%);
+                        }
+                    }
+
+                    &:last-child {
+                        a {
+                            border-bottom: 0;
+                        }
+                    }
+
+                    /* could go deeper here... */
+                }
+            }
+
+            /* showing sub-menus */
+            &:hover ul,
+            &.focused ul {
+                @include transition(max-height 800ms ease-in,
+                    min-height 500ms ease-out,
+                    padding 500ms ease-out,
+                    opacity 800ms ease-out);
+                /* again using min/max heights to deal with unknown length of lists */
+
+                min-height: 8em;
+                max-height: 100em;
+                padding: 0.4em 0;
+                opacity: 1;
+
+                ul {
+                    min-height: 0;
+                    padding: 0;
+                }
+            }
+
+            &:hover>a {
+                background: lighten($menucolour, 2%);
+            }
         }
-      }
 
-      /* showing sub-menus */
-      &:hover ul,
-      &.focused ul {
-        @include transition(
-          max-height 800ms ease-in,
-          min-height 500ms ease-out,
-          padding 500ms ease-out,
-          opacity 800ms ease-out
-        );
-        /* again using min/max heights to deal with unknown length of lists */
-
-        min-height: 8em;
-        max-height: 100em;
-        padding: 0.4em 0;
-        opacity: 1;
-
-        ul {
-          min-height: 0;
-          padding: 0;
-        }
-      }
-
-      &:hover > a {
-        background: lighten($menucolour, 2%);
-      }
+        /* end .menu ul li */
     }
 
-    /* end .menu ul li */
-  }
-
-  /* end .menu */
+    /* end .menu */
 }
 
 /* end media query*/

@@ -1,11 +1,9 @@
 const {
   withHydrationOverlay,
 } = require("@builder.io/react-hydration-overlay/next");
-const million = require("million/compiler");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
     domains: [
       "lh3.googleusercontent.com",
@@ -17,10 +15,6 @@ const nextConfig = {
   },
 };
 
-const millionConfig = {
-  auto: true, // if you're using RSC: auto: { rsc: true },
-};
-
 if (process.env.NODE_ENV === "development") {
   module.exports = withHydrationOverlay({
     /**
@@ -28,7 +22,7 @@ if (process.env.NODE_ENV === "development") {
      * for Next.js apps with pages directory. If you are using the app directory, you should change this to `main`.
      */
     appRootSelector: "main",
-  })(million.next(nextConfig, millionConfig));
+  })(nextConfig);
 } else {
-  module.exports = million.next(nextConfig, millionConfig);
+  module.exports = nextConfig;
 }

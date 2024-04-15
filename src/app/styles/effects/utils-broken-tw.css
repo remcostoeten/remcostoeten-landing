@@ -186,3 +186,41 @@
 .space-between {
     justify-content: space-between;
 }
+
+
+
+.pro-containers {
+    display: grid;
+    max-width: 72rem;
+    /* 6xl */
+    align-items: start;
+    justify-content: center;
+    gap: 2.5rem;
+    /* 10 */
+    padding: 3rem 1rem 12rem;
+    /* px-4 pb-12 */
+    margin: 0 auto;
+    /* mx-auto */
+}
+
+@media (min-width: 768px)
+/* md */
+    {
+    .pro-containers {
+        grid-template-columns: repeat(2, 1fr);
+        /* grid-cols-2 */
+        padding: 3rem 1.5rem;
+        /* px-6 */
+    }
+}
+
+@media (min-width: 1024px)
+/* lg */
+    {
+    .pro-containers {
+        gap: 4rem;
+        /* gap-16 */
+        padding-bottom: 6rem;
+        /* pb-24 */
+    }
+}

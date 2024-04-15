@@ -1,6 +1,6 @@
 // @ts-nocheck
 import Link from "next/link";
-import Pill from "../Pill";
+import Pill from "../../Pill";
 
 export default function Project() {
   return (

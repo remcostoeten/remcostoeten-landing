@@ -1,0 +1,12 @@
+:root {
+    --text-light: #6b7280;
+    --text-dark: #6b7280;
+}
+
+.dark {
+    color: var(--text-dark);
+}
+
+.light {
+    color: var(--text-light);
+}

@@ -2,3 +2,5 @@
 @import "./effects/footer-menu.css";
 @import "./misc.css";
 @import "./effects/utils-broken-tw.css";
+
+@import './theme/dark-light-mode.css';

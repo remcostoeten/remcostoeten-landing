@@ -173,6 +173,11 @@
 .smpl0 {
     @media (min-width: 768px) {
         padding-left: 0;
+    }
+}
+
+.smpr0 {
+    @media (min-width: 768px) {
         padding-right: 0;
     }
 }

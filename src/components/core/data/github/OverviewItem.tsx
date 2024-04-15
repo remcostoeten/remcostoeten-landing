@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
 import AnimateCounter from "@/components/effects/AnimationCounter";
+import { Card } from "@/components/ui/card";
 
 interface OverviewItemProps {
   label: string;

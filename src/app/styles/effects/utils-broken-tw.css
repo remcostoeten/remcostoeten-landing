@@ -229,3 +229,20 @@
         /* pb-24 */
     }
 }
+
+.text-slate-200 {
+    color: #e2e8f0;
+
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.bottom-2 {
+    bottom: 2rem;
+}
+
+.text-gray-100 {
+    color: #f5f5f5;
+}

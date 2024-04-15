@@ -1,7 +1,7 @@
-import { Suspense } from "react";
-import Link from "next/link";
-
-import { formatDate, lightenColor } from "@/core/lib/utils";
+import LabelPill from "./LabelPill";
+import { IssueRowProps } from "./types";
+import { SkeletonBar } from "@/components/effects/Skeleton";
+import { Icons } from "@/components/icons";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TableCell, TableRow } from "@/components/ui/table";
 import {
@@ -9,11 +9,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { SkeletonBar } from "@/components/effects/Skeleton";
-import { Icons } from "@/components/icons";
-
-import LabelPill from "./LabelPill";
-import { IssueRowProps } from "./types";
+import { formatDate, lightenColor } from "@/core/lib/utils";
+import Link from "next/link";
+import { Suspense } from "react";
 
 export default function IssueRow({
   taskId,

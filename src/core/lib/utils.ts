@@ -1,8 +1,7 @@
+import { ClassValue } from "../types/clsx";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
-
-import { ClassValue } from "../types/clsx";
 
 export function clsx(
   ...inputs: (

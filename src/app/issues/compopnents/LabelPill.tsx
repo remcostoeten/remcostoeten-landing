@@ -1,8 +1,6 @@
-import React from "react";
-
-import { hexToRGBA } from "@/core/lib/utils";
-
 import { LabelPillProps } from "./types";
+import { hexToRGBA } from "@/core/lib/utils";
+import React from "react";
 
 export default function LabelPill({
   label,

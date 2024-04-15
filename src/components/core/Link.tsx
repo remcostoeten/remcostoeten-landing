@@ -1,8 +1,5 @@
 "use client";
 
-import React from "react";
-import { Link as NextLink } from "@/core/NODE_MODULES_PATCHES/next-link";
-
 import {
   AlertDialog,
   AlertDialogContent,
@@ -10,6 +7,8 @@ import {
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Link as NextLink } from "@/core/NODE_MODULES_PATCHES/next-link";
+import React from "react";
 
 type LinkVariant =
   | "default"

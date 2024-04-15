@@ -1,15 +1,14 @@
-import Link from "next/link";
-import { auth } from "@/core/database/firebase";
-import { ContextMenuTrigger } from "@radix-ui/react-context-menu";
-import { useSignOut } from "react-firebase-hooks/auth";
-
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
 } from "@/components/ui/context-menu";
-import { Icons } from "@/components/icons";
+import { auth } from "@/core/database/firebase";
+import { ContextMenuTrigger } from "@radix-ui/react-context-menu";
+import Link from "next/link";
+import { useSignOut } from "react-firebase-hooks/auth";
 
 export default function AuthMenu() {
   const [signOut, loading, error] = useSignOut(auth);

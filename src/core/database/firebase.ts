@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import { initializeApp } from "firebase/app";
 import {
   GithubAuthProvider,
@@ -10,6 +9,7 @@ import {
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const firebaseConfig = {

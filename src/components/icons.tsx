@@ -45,6 +45,19 @@ export const Icons = {
       </g>
     </svg>
   ),
+  linkedin: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height=""
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="white"
+        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14 c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+      />
+    </svg>
+  ),
   magento: (props: LucideProps) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +183,45 @@ export const Icons = {
       </svg>
     ),
   },
-  gitHub: (props: LucideProps) => (
+  gitlab: (props: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      preserveAspectRatio="xMinYMin meet"
+      viewBox="0 0 256 236"
+    >
+      <path
+        fill="#E24329"
+        d="M128.075 236.075l47.104-144.97H80.97l47.104 144.97z"
+      ></path>
+      <path
+        fill="#FC6D26"
+        d="M128.075 236.074L80.97 91.104H14.956l113.119 144.97z"
+      ></path>
+      <path
+        fill="#FCA326"
+        d="M14.956 91.104L.642 135.16a9.752 9.752 0 003.542 10.903l123.891 90.012-113.12-144.97z"
+      ></path>
+      <path
+        fill="#E24329"
+        d="M14.956 91.105H80.97L52.601 3.79c-1.46-4.493-7.816-4.492-9.275 0l-28.37 87.315z"
+      ></path>
+      <path
+        fill="#FC6D26"
+        d="M128.075 236.074l47.104-144.97h66.015l-113.12 144.97z"
+      ></path>
+      <path
+        fill="#FCA326"
+        d="M241.194 91.104l14.314 44.056a9.752 9.752 0 01-3.543 10.903l-123.89 90.012 113.119-144.97z"
+      ></path>
+      <path
+        fill="#E24329"
+        d="M241.194 91.105h-66.015l28.37-87.315c1.46-4.493 7.816-4.492 9.275 0l28.37 87.315z"
+      ></path>
+    </svg>
+  ),
+  github: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
         fill="currentColor"

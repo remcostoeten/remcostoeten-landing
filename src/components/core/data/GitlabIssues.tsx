@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import fetchGitlabIssues from "@/core/queries/fetchGitLabIssues";
+import { useEffect, useState } from "react";
 
 export default function GitlabIssues() {
   const [assignedIssues, setAssignedIssues] = useState([]);

@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
-
-import { Input } from "@/components/ui/input";
-
 import LabelFilter from "./FilterDropdown";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 function TableToolbar({ onFilter, onSearch, labels }) {
   const [activeFilters, setActiveFilters] = useState([]);

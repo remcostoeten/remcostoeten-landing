@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { authContext, useFirebaseAuth } from "@/core/database/auth";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
 /**
  * context provider. use useAuth to retrieve the value

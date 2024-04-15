@@ -1,14 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "./firebase";
 import { User, UserInfo } from "firebase/auth";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export interface AuthState {
   readonly user: UserInfo | null;
   readonly loading: boolean;
 }
-
-import { auth } from "./firebase";
 
 export function useFirebaseAuth() {
   const [user, setUser] = useState<UserInfo | null>(null);

@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { clsx } from "@/core/lib/clsx";
+import { MenuItemProps } from "@/core/types/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { BsArrowRightShort as ExternalLinkIcon } from "react-icons/bs";
-
-import { MenuItemProps } from "@/core/types/menu";
-import { clsx } from "@/core/lib/clsx";
 
 const MenuItem = ({
   title,

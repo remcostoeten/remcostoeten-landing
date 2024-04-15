@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-
-import { Input } from "@/components/ui/input";
 import AnimatedElement from "@/components/effects/AnimatedElement";
 import { Icons } from "@/components/icons";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const NotFound = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    console.log("Searching for:", query);
-  };
-
   useEffect(() => {
     document.body.classList.add("error-page");
     return () => {
@@ -58,21 +51,11 @@ const NotFound = () => {
               className="mt-6 max-w-[480px] text-xl leading-8 text-neutral-400 max-md:max-w-full"
             >
               Sorry, the page you are looking for doesn&apos;t exist or has been
-              moved. Try searching our site or go back to{" "}
+              moved. Please go back to{" "}
               <Link href="/" className="underline">
                 home
               </Link>
             </AnimatedElement>{" "}
-            <div className="mt-12 flex items-stretch justify-between gap-4 max-md:mt-10 max-md:max-w-full max-md:flex-wrap">
-              <AnimatedElement opacity={0} duration={0.8} delay={0.65}>
-                <Input showSearchContent onSearch={handleSearch} />
-              </AnimatedElement>
-              <AnimatedElement opacity={0} duration={0.8} delay={0.7}>
-                <button className="items-stretch justify-center whitespace-nowrap rounded-lg border border-solid bg-violet-500 px-5 py-3 text-base font-semibold leading-6 text-white shadow-sm">
-                  Search
-                </button>
-              </AnimatedElement>
-            </div>
           </AnimatedElement>
         </AnimatedElement>
         <AnimatedElement

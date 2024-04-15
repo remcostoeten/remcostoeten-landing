@@ -11,7 +11,7 @@ type PillProps = {
 export default function Pill({
   children,
   color = "#F2F5F6",
-  backgroundColor = "#1E1F1E",
+  backgroundColor = "#fff",
   fontSize = "sm",
   borderRadius = "rounded-lg",
 }: PillProps) {
@@ -29,7 +29,7 @@ export default function Pill({
 
   return (
     <div
-      className={`bg-${backgroundColor} text- transition-all hover:bg-[#303330]${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1`}
+      className={`bg-${backgroundColor} text-${color} ${fontSizeClass} flex items-center justify-center border border-[#323205] ${borderRadius} px-3 py-1 transition-all hover:bg-[#303330]`}
     >
       {children}
     </div>

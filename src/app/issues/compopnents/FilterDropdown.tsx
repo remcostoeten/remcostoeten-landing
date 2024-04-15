@@ -1,4 +1,4 @@
-import { Check, ChevronsUpDown } from "lucide-react";
+import LabelPill from "./LabelPill";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/core/lib/utils";
-import LabelPill from "./LabelPill";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
 
 const ilabels = [

@@ -1,6 +1,5 @@
-import React from "react";
-
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import React from "react";
 
 interface CustomTooltipProps {
   trigger: React.ReactNode;

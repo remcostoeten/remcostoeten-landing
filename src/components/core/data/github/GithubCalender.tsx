@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { SkeletonBar } from "@/components/effects/Skeleton";
+import { clsx } from "@/core/lib/clsx";
 import { GET_CONTRIBUTIONS } from "@/core/queries/GET_GITHUB_CONTRIBUTIONS";
 import { gql, useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
-
-import { clsx } from "@/core/lib/clsx";
-import { SkeletonBar } from "@/components/effects/Skeleton";
+import { useState } from "react";
 
 interface Contribution {
   contributionCount: number;

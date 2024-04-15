@@ -1,8 +1,7 @@
 "use client";
 
-import { HTMLMotionProps, motion } from "framer-motion";
-
 import { BEZIER_CURVES, BezierCurve } from "@/core/lib/bezier-curves";
+import { HTMLMotionProps, motion } from "framer-motion";
 
 interface AnimatedElementProps extends HTMLMotionProps<"div"> {
   as?: keyof JSX.IntrinsicElements;

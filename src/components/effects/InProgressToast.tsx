@@ -1,10 +1,9 @@
 "use client";
 
 // Import necessary hooks and components from React and Sonner
+import useToastPreference from "@/core/hooks/useToastPreference";
 import { useEffect } from "react";
 import { Toaster, toast } from "sonner";
-
-import useToastPreference from "@/core/hooks/useToastPreference";
 
 // Adjust the path as necessary
 export default function InProgressToast() {

@@ -1,10 +1,8 @@
-import Reac, { useRef } from "react";
-import { HiOutlineNewspaper } from "react-icons/hi";
-
+import SectionHeading from "@/components/core/layout/SectionHeading";
+import SectionSubHeading from "@/components/core/layout/SectionSubHeading";
 import { LoadingArticle } from "@/components/effects/Skeleton";
-import SectionHeading from "../layout/SectionHeading";
-import SectionSubHeading from "../layout/SectionSubHeading";
-import Link from "../core/Link";
+import { useRef } from "react";
+import { HiOutlineNewspaper } from "react-icons/hi";
 
 export default function LatestArticle() {
   const scrollContainer = useRef(null);
@@ -13,7 +11,7 @@ export default function LatestArticle() {
   let startX;
   let scrollLeft;
 
-  function handleMouseDown(e) {
+  function handleMouseDown(e: { pageX: number }) {
     isDown = true;
     startX = e.pageX - scrollContainer.current.offsetLeft;
     scrollLeft = scrollContainer.current.scrollLeft;

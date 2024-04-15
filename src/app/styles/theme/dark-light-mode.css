@@ -1,6 +1,7 @@
 :root {
     --text-light: #6b7280;
     --text-dark: #6b7280;
+    --card-bg-light: #f3f4f6;
 }
 
 .dark {
@@ -8,5 +9,14 @@
 }
 
 .light {
-    color: var(--text-light);
+    .login-wrapper {
+        button {
+            background: unset;
+        }
+    }
+
+    .zoom-in-95 {
+        z-index: 999;
+        background-color: var(--card-bg-light);
+    }
 }

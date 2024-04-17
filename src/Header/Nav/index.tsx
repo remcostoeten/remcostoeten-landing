@@ -1,15 +1,22 @@
+'use client'
+
 import styles from './style.module.scss';
 import { motion, useCycle } from 'framer-motion';
 import { footerLinks } from './effectDataItems';
 import { perspective, slideIn } from "./effectAnimations";
 import { navigationMenuItems } from '@/core/config/menu';
 import Link from '@/components/core/Link';
+import useOnClickOutside from '@/core/hooks/useClickOutside';
+import { useRef } from 'react';
 
 export default function MobileEffectNav({ setIsActive }) {
     const [animation, cycleAnimation] = useCycle('enter', 'exit');
+    const ref = useRef();
+    useOnClickOutside(ref, () => setIsActive(false));
 
     return (
         <motion.div
+            ref={ref}
             variants={slideIn}
             initial="initial"
             animate={animation}

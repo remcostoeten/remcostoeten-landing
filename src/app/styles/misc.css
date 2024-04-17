@@ -54,3 +54,11 @@
   }
 }
 
+
+.unset-all {
+    all: unset;
+}
+
+* {
+    border-color: rgba(200, 200, 200, 0.1) !important;
+}

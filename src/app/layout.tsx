@@ -1,13 +1,11 @@
 "use client";
-
+import EffectMenu from '@/Header/EffectMenu'
 import "./styles/app.css";
 import { AuthUserProvider } from "@/components/AuthUserProvider";
 import ShellLayout from "@/components/core/layout/MainLayoutShell";
 import AnimatedElement from "@/components/effects/AnimatedElement";
-import { CircleEffectButton } from "@/components/effects/CircleButton";
 import InProgressToast from "@/components/effects/InProgressToast";
 import SiteHeader from "@/components/effects/SiteHeader";
-import HamburgerMenu from "@/components/menu/mobile";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -54,7 +52,6 @@ export default function RootLayout({ children }) {
                                     fontSora.variable
                                 )}
                             >
-                                <HamburgerMenu />
                                 <InProgressToast />
                                 <NextTopLoader color="#2dd4bf" height={5} showSpinner={false} />
                                 <ThemeProvider
@@ -62,6 +59,7 @@ export default function RootLayout({ children }) {
                                     defaultTheme="dark"
                                     enableSystem
                                 >
+                                    <EffectMenu />
                                     <ShellLayout header={<SiteHeader />}>
                                         <div className="transition-all duration-300 sm:max-w-[854px] pb-16">
                                             {children}

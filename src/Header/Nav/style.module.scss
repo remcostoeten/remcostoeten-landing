@@ -1,28 +1,33 @@
-.nav{
+.nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 100px 40px 50px 40px;
     height: 100%;
     box-sizing: border-box;
-    .body{
+
+    .body {
         display: flex;
         gap: 10px;
         flex-direction: column;
-        .linkContainer{
+
+        .linkContainer {
             perspective: 120px;
             perspective-origin: bottom;
         }
-        a{
+
+        a {
             text-decoration: none;
-            color: black;
+            color: #f5f6fb;
             font-size: 46px;
         }
     }
-    .footer{
+
+    .footer {
         display: flex;
         flex-wrap: wrap;
-        a{
+
+        a {
             width: 50%;
             margin-top: 5px;
         }

@@ -3,34 +3,29 @@
 import { GuestbookEntry } from "../issues/compopnents/types";
 import GuestBookComments from "./components/GuestBookComments";
 import IntroShell from "@/components/core/layout/IntroShell";
-import Dance from "@/components/effects/Dance";
-import WIPToast from "@/components/effects/InProgressToast";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationPrevious,
 } from "@/components/ui/pagination";
 import { auth, firestore } from "@/core/database/firebase";
 import {
-  useGithubSignIn,
-  useGoogleSignIn,
+    useGithubSignIn,
+    useGoogleSignIn,
 } from "@/core/hooks/signin-providers";
 import { useDeleteDoc } from "@/core/hooks/useDeleteDoc";
 import { convertToEmoji } from "@/core/lib/countryToFlag";
 import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
+    addDoc,
+    collection, onSnapshot,
+    orderBy,
+    query,
+    serverTimestamp
 } from "firebase/firestore";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";

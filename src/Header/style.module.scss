@@ -6,8 +6,10 @@
     .menu {
         width: 480px;
         height: 650px;
-        background-color: #100e0e;
+        background: rgb(19, 29, 27);
+        background: linear-gradient(63deg, rgba(19, 29, 27, 1) 0%, rgba(15, 19, 13, 1) 100%);
         border-radius: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         position: relative;
     }
 }

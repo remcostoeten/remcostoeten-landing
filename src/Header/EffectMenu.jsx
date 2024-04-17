@@ -1,40 +1,32 @@
 'use client';
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion';
-import Button from './Button/HamburgerNavButton';
+import Button from './Button/EffectMenuButton';
 import styles from './style.module.scss';
-import Nav from './Nav';
-import { MenuState } from '@/core/types/nav';
-import { CircleEffectButton } from '@/components/effects/CircleButton';
+import MobileEffectNav from './Nav';
 
-const menu: { open: MenuState; closed: MenuState } = {
+const menu = {
     open: {
         width: "480px",
         height: "650px",
         top: "-25px",
         right: "-25px",
-        transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1] }
+        transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
     },
     closed: {
         width: "100px",
         height: "40px",
         top: "0px",
         right: "0px",
-        transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1] }
+        transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
     }
 }
 
-interface ButtonProps {
-    isActive: boolean;
-    toggleMenu: () => void;
-}
-
-const HamburgerMenu: React.FC = () => {
+export default function EffectMenu() {
     const [isActive, setIsActive] = useState(false);
 
     return (
         <div className={styles.header}>
-
             <motion.div
                 className={styles.menu}
                 variants={menu}
@@ -42,13 +34,10 @@ const HamburgerMenu: React.FC = () => {
                 initial="closed"
             >
                 <AnimatePresence>
-                    {isActive && <Nav />}
+                    {isActive && <MobileEffectNav setIsActive={setIsActive} />}
                 </AnimatePresence>
             </motion.div>
-
-            <Button isActive={isActive} toggleMenu={() => { setIsActive(!isActive) }} />
+            <Button isActive={isActive} toggleMenu={() => {setIsActive(!isActive)}}/>
         </div>
     )
 }
-
-export default HamburgerMenu;

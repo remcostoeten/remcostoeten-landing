@@ -154,6 +154,10 @@ pre[class*="language-"] {
     color: #1f2937;
 }
 
+.anchor {
+    z-index: -1;
+}
+
 pre::-webkit-scrollbar {
     display: none;
 }

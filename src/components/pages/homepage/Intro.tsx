@@ -2,6 +2,7 @@
 
 import Link, { AnimatedLink } from "@/components/core/Link";
 import CustomTooltip from "@/components/effects/CustomTooltip";
+import { TypewriterEffectSmooth } from "@/components/effects/typewriter";
 import {
   Tooltip,
   TooltipContent,
@@ -21,7 +22,7 @@ export default function Intro() {
       </div>
       <div className="mt-2">
         <ul className="flex list-disc flex-col gap-1  text-neutral-700 lg:flex-row lg:gap-8 dark:text-neutral-400 !smpl0 pl-4 ">
-          <li>Front-end Engineer</li>
+          <li>Front-end Engineer a.k.a divvjesschuiver</li>
           <li>
             <Tooltip>
               <TooltipTrigger className="flex gap-2">
@@ -66,3 +67,5 @@ export default function Intro() {
     </div>
   );
 }
+
+

@@ -63,18 +63,16 @@ export default function Footer() {
     <>
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-2">
-          <SocialBadge>
+        <SocialBadge link={contactInfo.email} external>
             <Icons.mail width={16} className="mr-2" />
             {contactInfo.email}
           </SocialBadge>
-          <SocialBadge>
+          <SocialBadge link={contactInfo.github} external>
             <Icons.github width={16} className="mr-2" />
             {contactInfo.handle}
           </SocialBadge>
-          <SocialBadge>
-            <Icons.linkedin width={16} className="mr-4" />
-            <span className="ml-2">{contactInfo.linkedinhandle}</span>
-          </SocialBadge>
+          <SocialBadge link={contactInfo.linkedinhandle} external> <Icons.linkedin width={16} className="mr-4" />
+            <span className="ml-2">{contactInfo.linkedinhandle}</span></SocialBadge>
           <div className="flex justify-end">
             <div className="flex flex-col gap-2">
               <p className=" flex flex-col-reverse items-end md:flex-row md:items-center justify-end">

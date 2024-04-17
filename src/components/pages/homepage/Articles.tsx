@@ -1,9 +1,10 @@
 "use client";
 
+import { AnimatedLink } from "@/components/core/Link";
 import SectionHeading from "@/components/core/layout/SectionHeading";
 import SectionSubHeading from "@/components/core/layout/SectionSubHeading";
 import { LoadingArticle } from "@/components/effects/Skeleton";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { HiOutlineNewspaper } from "react-icons/hi";
 
 export default function LatestArticle() {
@@ -44,7 +45,8 @@ export default function LatestArticle() {
         />
         <SectionSubHeading>
           <p className="dark:text-neutral-400">
-            Some snippets, thoughts, rants
+            Some snippets, thoughts, rants over at {''}
+            <AnimatedLink border="dashed" href='https://snippets.remcostoeten.com' className='underline'>snippets.remcostoeten.com           wdwadaw</AnimatedLink>
           </p>
         </SectionSubHeading>
       </div>

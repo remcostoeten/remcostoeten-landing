@@ -2,7 +2,7 @@
 @import "./effects/footer-menu.css";
 @import "./misc.css";
 @import "./effects/utils-broken-tw.css";
-
+/* @import "./STATIC_ACC_BTN.css"; */
 @import './theme/dark-light-mode.css';
 
 @keyframes meteor {

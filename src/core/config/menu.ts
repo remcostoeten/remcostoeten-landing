@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+import { contactInfo } from "./personal-info";
 
 // export const navigationMenuItems = [
 //     { label: "Home", icon: Icons.home, href: "/", isMobile: false },
@@ -25,19 +26,28 @@ export const navigationMenuItems = [
 
 export const footerLinks = [
     {
-        title: "Facebook",
-        href: "/"
+        title: "Github",
+        href: contactInfo.github,
+        handle: contactInfo.handle
     },
     {
         title: "LinkedIn",
-        href: "/"
+        href: contactInfo.linkedin,
+        handle: contactInfo.linkedinhandle
     },
     {
-        title: "Instagram",
-        href: "/"
+        title: "GitLab",
+        href: contactInfo.gitlab,
+        handle: contactInfo.handle
     },
     {
-        title: "Twitter",
-        href: "/"
+        title: "Email",
+        href: `mailto:${contactInfo.email}`,
+        handle: contactInfo.handle
+    },
+    {
+        title: "Phone",
+        href: `tel:${contactInfo.phone}`,
+        handle: contactInfo.handle
     }
 ]

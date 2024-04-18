@@ -1,13 +1,15 @@
-'use client'
+'use client '
 
 import styles from './style.module.scss';
 import { motion, useCycle } from 'framer-motion';
-import { footerLinks } from './effectDataItems';
 import { perspective, slideIn } from "./effectAnimations";
-import { navigationMenuItems } from '@/core/config/menu';
+import { footerLinks, navigationMenuItems } from '@/core/config/menu';
 import Link from '@/components/core/Link';
 import useOnClickOutside from '@/core/hooks/useClickOutside';
 import { useRef } from 'react';
+import SocialBadge from '@/components/ui/social-badge';
+import { contactInfo } from '@/core/config/personal-info';
+import { Icons } from '@/components/icons';
 
 export default function MobileEffectNav({ setIsActive }) {
     const [animation, cycleAnimation] = useCycle('enter', 'exit');
@@ -35,38 +37,62 @@ export default function MobileEffectNav({ setIsActive }) {
                                         initial="initial"
                                         animate={animation}
                                         exit="exit"
-                                        onClick={() => {
+                                        onClick={(e) => {
+                                            e.preventDefault();
                                             cycleAnimation();
                                             setIsActive(false);
                                         }}
                                     >
-                                        <Link href="/">{label}</Link>
+                                        <Link href={href}>{label}</Link>
                                     </motion.div>
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>
                 <motion.div className={styles.footer}>
-                    {
-                        footerLinks.map((link, i) => {
-                            const { title, href } = link;
-                            return (
-                                <motion.a
-                                    variants={slideIn}
-                                    custom={i}
-                                    initial="initial"
-                                    animate="enter"
-                                    exit="exit"
-                                    key={`f_${i}`}
-                                >
-                                    {title}
-                                </motion.a>
-                            )
-                        })
-                    }
+                    <motion.a
+                        variants={slideIn}
+                        initial="initial"
+                        animate="enter"
+                        exit="exit"
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.1 }}
+                        >
+                            <SocialBadge
+                                link={contactInfo.email.includes('@') ? `mailto:${contactInfo.email}` : contactInfo.email}
+                                external
+                            >
+                                <Icons.mail width={16} className="mr-2" />
+                                {contactInfo.email}
+                            </SocialBadge>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                        >
+                            <SocialBadge link={contactInfo.github} external>
+                                <Icons.github width={16} className="mr-2" />
+                                {contactInfo.handle}
+                            </SocialBadge>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.3 }}
+                        >
+                            <SocialBadge link={contactInfo.linkedinhandle} external>
+                                <Icons.linkedin width={16} className="mr-4" />
+                                <span className="ml-2">{contactInfo.linkedinhandle}</span>
+                            </SocialBadge>
+                        </motion.div>
+                    </motion.a>
                 </motion.div>
-            </div>
-        </motion.div>
+            </div >
+        </motion.div >
     )
 }

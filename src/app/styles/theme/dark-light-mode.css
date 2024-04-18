@@ -8,15 +8,46 @@
     color: var(--text-dark);
 }
 
+/* Assuming .light, .login-wrapper, .zoom-in-95, .about-wrapper are all classes on the same element */
+.light.login-wrapper button {
+    background: unset;
+}
+
+.light .zoom-in-95 {
+    z-index: 999;
+    background-color: var(--card-bg-light);
+}
+
+.light .year-circle svg path {
+    fill: currentColor;
+}
+
 .light {
-    .login-wrapper {
+    .text-gray-100 {
+        color: rgba(18,18,18);
+    }
+
+    .text-slate-200 {
+        color: rgba(18,18,18);
+    }
+
+    aside {
         button {
             background: unset;
         }
+
+        svg {
+            path {
+                fill: currentColor
+            }
+        }
     }
 
-    .zoom-in-95 {
-        z-index: 999;
-        background-color: var(--card-bg-light);
+    .error-container {
+        *{
+
+        color: rgb(64, 64, 64) !important;
     }
 }
+}
+

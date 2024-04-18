@@ -143,7 +143,6 @@
             var(--accents-3) 60%,
             var(--accents-2) 63%,
             var(--accents-2) 100%);
-    background-color: red;
     background-position-x: var(--x);
     background-size: 200% auto;
     border-radius: inherit;

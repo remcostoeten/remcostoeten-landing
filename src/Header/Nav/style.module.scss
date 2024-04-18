@@ -1,0 +1,38 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 48px;
+    height: 100%;
+    box-sizing: border-box;
+
+    .body {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+
+        .linkContainer {
+            perspective: 120px;
+            perspective-origin: bottom;
+        }
+
+        a {
+            text-decoration: none;
+            color: #f5f6fb;
+            font-size: 46px;
+        }
+    }
+
+    .footer {
+        display: flex;
+        margin-top: 20px;
+
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 5px;
+        }
+    }
+}

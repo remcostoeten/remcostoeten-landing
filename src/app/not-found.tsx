@@ -2,9 +2,8 @@
 
 import AnimatedElement from "@/components/effects/AnimatedElement";
 import { Icons } from "@/components/icons";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const NotFound = () => {
   useEffect(() => {

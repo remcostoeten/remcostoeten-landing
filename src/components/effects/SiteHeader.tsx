@@ -57,7 +57,7 @@ export default function SiteHeader({
                             )}
                         </div>
                     </div>
-                    <div className="flex items-center justify-between  w-full text-blacktheme dark:text-white  leading-none font-normal">
+                    <div className="flex items-start justify-between  w-full text-blacktheme dark:text-white  leading-none font-normal">
                         {isAuthenticated && user?.displayName && (
                             <>
                                 {user.displayName.split(" ").map((part, index) => (
@@ -69,7 +69,7 @@ export default function SiteHeader({
                                 <AuthMenu />
                             </>
                         )}{" "}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-1 justify-center">
                             {!isAuthenticated && <>Remco Stoeten</>}
                             <div className="text-sm text-blacktheme dark:text-gray-400">
                                 {!isAuthenticated && <>@remcostoeten</>}

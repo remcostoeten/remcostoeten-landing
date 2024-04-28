@@ -1,7 +1,7 @@
 "use client";
-import EffectMenu from '@/Header/EffectMenu'
 import "./styles/app.css";
 import { AuthUserProvider } from "@/components/AuthUserProvider";
+import EffectMenu from "@/components/Header/EffectMenu";
 import ShellLayout from "@/components/core/layout/MainLayoutShell";
 import AnimatedElement from "@/components/effects/AnimatedElement";
 import InProgressToast from "@/components/effects/InProgressToast";

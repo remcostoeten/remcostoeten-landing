@@ -1,14 +1,16 @@
-$border: #34d39933;
-$color: #34d399;
-$border-hover: #6ee7b7;
-$background: rgba(52, 211, 153, 0.1);
-$shadow: rgb(255, 255, 255) 0px 0px 0px 0px inset;
-$timing: cubic-bezier(0.4, 0, 0.2, 1);
-$transproperty: cubic-bezier(0.4, 0, 0.2, 1);
-$duration: .15s;
-$padding: 5px 15px;
-$weight: 500;
-$fontsize: 17.5px;
+.light {
+    .button {
+        .slider {
+            .el {
+                background-color: rgba(52, 211, 153, 0.1);
+
+                p {
+                    color: white !important;
+                }
+            }
+        }
+    }
+}
 
 .button {
     position: absolute;
@@ -28,23 +30,22 @@ $fontsize: 17.5px;
         .el {
             width: 100%;
             height: 100%;
-            font-size: $fontsize;
-            transition: $duration $transproperty all;
+            background-color: rgba(52, 211, 153, 0.1);
 
             p {
                 margin: 0px;
             }
 
             &:nth-of-type(2) {
-                // close btn
+                background-color: black;
+
+                p {
+                    color: rgb(107, 114, 128);
+                }
             }
 
             &:hover {
-                border: 1px solid $border-hover;
-                background-color: darken($background, 5%);
-
                 .perspectiveText {
-                    transition: 250ms $timing $transproperty;
                     transform: rotateX(90deg);
 
                     p {
@@ -82,7 +83,7 @@ $fontsize: 17.5px;
         &:nth-of-type(2) {
             position: absolute;
             transform-origin: bottom center;
-            transform: rotateX(-90deg) translateY(13px);
+            transform: rotateX(-90deg) translateY(9px);
             opacity: 0;
         }
     }

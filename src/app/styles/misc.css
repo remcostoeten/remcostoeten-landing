@@ -1,57 +1,68 @@
 .year-circle {
-  position: relative;
+    position: relative;
 }
 
 .tooltip-border {
-  border-bottom: 2px dashed #26211d;
-  position: relative;
+    border-bottom: 1px dashed white !important;
+    position: relative;
 }
 
 .year-circle::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  border: 2px solid hsl(var(--border));
-  border-radius: 50%;
-  left: -16px;
-  top: 3px;
-  z-index: 2;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    left: -16px;
+    top: 3px;
+    z-index: 2;
 }
 
 .year-circle::after {
-  content: "";
-  position: absolute;
-  left: -1px;
-  top: 55%;
-  transform: translateY(-50%);
-  background-color: hsl(var(--border));
-  height: 80%;
-  width: 1px;
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 55%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 80%;
+    width: 1px;
 }
 
+.light {
+    .year-circle::after {
+        border: 1px solid #737983 !important;
+    }
+
+    .year-circle::before {
+        border: 1px solid #737983 !important;
+    }
+}
+
+
 .about-icon-positioning {
-  position: absolute;
-  z-index: 4;
-  left: -7px;
-  z-index: 4;
-  top: 11px;
+    position: absolute;
+    z-index: 4;
+    left: -7px;
+    z-index: 4;
+    top: 11px;
 }
 
 @media (max-width: 768px) {
-  .about-icon-positioning {
-   display: none;
-  }
+    .about-icon-positioning {
+        display: none;
+    }
 
-  .year-circle::before {
-      display: none;
-  }
+    .year-circle::before {
+        display: none;
+    }
 
-  .year-circle::after {
-      display: none;
-  }
+    .year-circle::after {
+        display: none;
+    }
 }
 
 

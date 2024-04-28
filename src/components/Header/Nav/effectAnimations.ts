@@ -14,7 +14,7 @@ export const perspective = {
       duration: 0.65,
       delay: 0.5 + i * 0.1,
       ease: [0.215, 0.61, 0.355, 1],
-      opacity: { duration: 0.35 },
+      opacity: { duration: 0.35, delay: 0.3 },
     },
   }),
   exit: {
@@ -35,6 +35,7 @@ export const slideIn = {
       duration: 0.5,
       delay: 0.75 + i * 0.1,
       ease: [0.215, 0.61, 0.355, 1],
+      opacity: { duration: 0.35, delay: 0.3 },
     },
   }),
   exit: {

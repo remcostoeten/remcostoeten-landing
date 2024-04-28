@@ -270,3 +270,11 @@
         width: 79vw;
     }
 }
+
+.top-2 {
+    top: .5rem;
+}
+
+.top-4 {
+    top: 1rem;
+}

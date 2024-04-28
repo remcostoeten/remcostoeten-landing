@@ -1,9 +1,15 @@
 .header {
     position: fixed;
     right: 50px;
+    z-index: 999999;
     top: 50px;
 
     .menu {
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        z-index: 999999;
+        justify-content: center;
         width: 480px;
         height: 650px;
         background: radial-gradient(ellipse 60% 50% at 50% -30%, #2dd4bf26, rgba(9, 9, 9, 250));

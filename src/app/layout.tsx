@@ -32,55 +32,55 @@ import NextTopLoader from "nextjs-toploader";
 // }
 
 export default function RootLayout({ children }) {
-    return (
-        <ApolloWrapper>
-            <HydrationOverlay>
-                <AuthUserProvider>
-                    <html lang="en" suppressHydrationWarning>
-                        <head />
-                        <link rel="canonical" href={siteConfig.url} />
-                        <TooltipProvider>
-                            {/* <body
+  return (
+    <ApolloWrapper>
+      <HydrationOverlay>
+        <AuthUserProvider>
+          <html lang="en" suppressHydrationWarning>
+            <head />
+            <link rel="canonical" href={siteConfig.url} />
+            <TooltipProvider>
+              {/* <body
                 className={cn(
                   " min-h-screen  overflow-x-hidden font-sans antialiased",
                   fontSora.variable
                 )}
               > */}
-                            <body
-                                className={cn(
-                                    " min-h-screen overflow-x-hidden  font-sans antialiased pb-16 mb-8",
-                                    fontSora.variable
-                                )}
-                            >
-                                <InProgressToast />
-                                <NextTopLoader color="#2dd4bf" height={5} showSpinner={false} />
-                                <ThemeProvider
-                                    attribute="class"
-                                    defaultTheme="dark"
-                                    enableSystem
-                                >
-                                    <EffectMenu />
-                                    <ShellLayout header={<SiteHeader />}>
-                                        <div className="transition-all duration-300 sm:max-w-[854px] pb-16">
-                                            {children}
-                                            <AnimatedElement
-                                                opacity={0}
-                                                duration={0.8}
-                                                delay={0.65}
-                                                className=" fixed bottom-20 right-2 flex flex-col-reverse items-end gap-2"
-                                            >
-                                                <ThemeToggle />
-                                            </AnimatedElement>
-                                        </div>
-                                    </ShellLayout>
-                                </ThemeProvider>
-                                <SpeedInsights />
-                                <Analytics />
-                            </body>
-                        </TooltipProvider>
-                    </html>
-                </AuthUserProvider>
-            </HydrationOverlay>
-        </ApolloWrapper>
-    );
+              <body
+                className={cn(
+                  " min-h-screen overflow-x-hidden  font-sans antialiased pb-16 mb-8",
+                  fontSora.variable
+                )}
+              >
+                <InProgressToast />
+                <NextTopLoader color="#2dd4bf" height={5} showSpinner={false} />
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="dark"
+                  enableSystem
+                >
+                  <EffectMenu />
+                  <ShellLayout header={<SiteHeader />}>
+                    <div className="transition-all duration-300 sm:max-w-[854px] pb-16">
+                      {children}
+                      <AnimatedElement
+                        opacity={0}
+                        duration={0.8}
+                        delay={0.65}
+                        className=" fixed bottom-20 right-2 flex flex-col-reverse items-end gap-2"
+                      >
+                        <ThemeToggle />
+                      </AnimatedElement>
+                    </div>
+                  </ShellLayout>
+                </ThemeProvider>
+                <SpeedInsights />
+                <Analytics />
+              </body>
+            </TooltipProvider>
+          </html>
+        </AuthUserProvider>
+      </HydrationOverlay>
+    </ApolloWrapper>
+  );
 }

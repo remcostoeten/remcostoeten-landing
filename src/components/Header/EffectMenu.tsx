@@ -1,21 +1,53 @@
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
 import { useState, useEffect } from "react";
-import Nav from "../effects/_Nav";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./style.module.scss";
+import Nav from "./Nav/EffectNavigation";
+
+type ButtonProps = {
+    isActive: boolean;
+    toggleMenu: () => void;
+};
+
+export const Button: React.FC<
+    ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ isActive, toggleMenu }) => {
+    return (
+        <button
+            className={`button ${isActive ? "active absolute top-4 right-4" : ""}`}
+            onClick={toggleMenu}
+        >
+            {isActive ? "Close" : "Menu"}
+        </button>
+    );
+};
+
+const getMenuStyles = () => {
+    if (typeof window !== 'undefined') {
+        return {
+            width: window.innerWidth <= 768 ? "100%" : "480px",
+            height: window.innerWidth <= 768 ? "100%" : "650px",
+            top: window.innerWidth <= 768 ? "0px" : "-25px",
+            right: window.innerWidth <= 768 ? "0px" : "-25px",
+        };
+    } else {
+        // Default styles for server-side rendering
+        return {
+            width: "100px",
+            height: "40px",
+            top: "0px",
+            right: "0px",
+        };
+    }
+};
 
 const menu = {
     open: {
-        width: (width) => (width <= 768 ? "100%" : "480px"),
-        height: (width) => (width <= 768 ? "100%" : "650px"),
-        top: (width) => (width <= 768 ? "0px" : "-25px"),
-        right: (width) => (width <= 768 ? "0px" : "-25px"),
+        ...getMenuStyles(),
         transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1] },
     },
     closed: {
-        width: "100px",
-        height: "40px",
-        top: "0px",
-        right: "0px",
+        ...getMenuStyles(),
         transition: {
             duration: 0.75,
             delay: 0.35,
@@ -25,56 +57,26 @@ const menu = {
     },
 };
 
-interface ButtonProps {
-    isActive: boolean;
-    toggleMenu: () => void;
-}
-export const Button: React.FC<ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
-    isActive,
-    toggleMenu,
-}) => {
-    return (
-        <button
-            className={`button ${isActive ? "active" : ""}`}
-            onClick={toggleMenu}
-        >
-            {isActive ? "Close" : "Open"}
-        </button>
-    );
-};
-
 export default function EffectMenu() {
     const [isActive, setIsActive] = useState(false);
-    const [menuWidth, setMenuWidth] = useState(480);
-    useEffect(() => {
-        const handleResize = () => {
-            setMenuWidth(window.innerWidth <= 768 ? "100%" : "480px");
-        };
 
-        window.addEventListener("resize", handleResize);
-
-        // Cleanup function to remove event listener on unmount
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    const finalMenu = { ...menu.open, width: menuWidth };
+    const toggleMenu = () => {
+        setIsActive(!isActive);
+    };
 
     return (
         <div className={styles.header}>
             <motion.div
                 className={styles.menu}
-                variants={finalMenu}
+                variants={menu}
                 animate={isActive ? "open" : "closed"}
                 initial="closed"
             >
-                <AnimatePresence>{isActive && <Nav setIsActive={isActive} />}</AnimatePresence>
+                <AnimatePresence>
+                    {isActive && <Nav setIsActive={setIsActive} />}
+                </AnimatePresence>{" "}
+                <Button isActive={isActive} toggleMenu={toggleMenu} />
             </motion.div>
-            <Button
-                isActive={isActive}
-                toggleMenu={() => {
-                    setIsActive(!isActive);
-                }}
-            />
         </div>
     );
 }

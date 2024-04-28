@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./style.module.scss";
-import Nav from "./Nav/EffectNavigation";
+import MobileEffectNav from "./Nav/EffectNavigation";
 
 type ButtonProps = {
     isActive: boolean;
@@ -21,16 +21,17 @@ export const Button: React.FC<
             className={`button ${isActive ? "active absolute top-4 right-4" : ""}`}
             onClick={toggleMenu}
         >
-            {isActive ? "Close" : "Open"}
+            {isActive ? "Close" : "Menu"}
         </button>
     );
 };
 
 export default function EffectMenu() {
     const [isActive, setIsActive] = useState(false);
+    const menuRef = useRef(null);
     const [windowSize, setWindowSize] = useState({
-        width: typeof window !== 'undefined' ? window.innerWidth : 0,
-        height: typeof window !== 'undefined' ? window.innerHeight : 0,
+        width: typeof window !== "undefined" ? window.innerWidth : 0,
+        height: typeof window !== "undefined" ? window.innerHeight : 0,
     });
 
     useEffect(() => {
@@ -40,11 +41,17 @@ export default function EffectMenu() {
                 height: window.innerHeight,
             });
         };
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
+
+    useEffect(() => {
+        if (isActive) {
+            menuRef.current.focus();
+        }
+    }, [isActive]);
 
     const menu = {
         open: {
@@ -73,18 +80,22 @@ export default function EffectMenu() {
     };
 
     return (
-        <div className={styles.header}>
-            <motion.div
-                className={styles.menu}
-                variants={menu}
-                animate={isActive ? "open" : "closed"}
-                initial="closed"
-            >
-                <AnimatePresence>
-                    {isActive && <Nav setIsActive={setIsActive} />}
-                </AnimatePresence>{" "}
-                <Button isActive={isActive} toggleMenu={toggleMenu} />
-            </motion.div>
+        <div className="sm:hidden">
+            <div className={styles.header}>
+                <motion.div
+                    className={styles.menu}
+                    variants={menu}
+                    animate={isActive ? "open" : "closed"}
+                    initial="closed"
+                    ref={menuRef}
+                    tabIndex={-1}
+                >
+                    <AnimatePresence>
+                        {isActive && <MobileEffectNav setIsActive={setIsActive} />}
+                    </AnimatePresence>{" "}
+                    <Button isActive={isActive} toggleMenu={toggleMenu} />
+                </motion.div>
+            </div>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import ShellLayout from "@/components/core/layout/MainLayoutShell";
 import AnimatedElement from "@/components/effects/AnimatedElement";
 import InProgressToast from "@/components/effects/InProgressToast";
 import SiteHeader from "@/components/effects/SiteHeader";
+import Nav from "@/components/effects/_Nav";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }) {
                   defaultTheme="dark"
                   enableSystem
                 >
+                  {/* <Nav /> */}
                   <EffectMenu />
                   <ShellLayout header={<SiteHeader />}>
                     <div className="transition-all duration-300 sm:max-w-[854px] pb-16">

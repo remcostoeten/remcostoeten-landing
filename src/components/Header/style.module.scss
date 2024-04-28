@@ -4,6 +4,11 @@
     z-index: 999999;
     top: 50px;
 
+    @media (max-width: 768px) {
+        top: 15px;
+        right: 35px;
+    }
+
     .menu {
         display: flex;
         overflow: hidden;

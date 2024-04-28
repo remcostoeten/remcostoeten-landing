@@ -90,7 +90,7 @@ export default function SiteHeader({
                                 return (
                                     <MenuItem
                                         key={index}
-                                        title={navItem.label || navItem.title}
+                                        title={navItem.label || navItem.label}
                                         href={navItem.href ? navItem.href : "#"}
                                         icon={navItem.icon ? <navItem.icon /> : null}
                                         isExternal={false}

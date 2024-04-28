@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/core/config/site";
-import ApolloWrapper from "@/core/database/ApolloWrapper";
+import ApolloWrapper from "@/core/database/(graphql)/ApolloWrapper";
 import { fontSora } from "@/core/lib/fonts";
 import { cn } from "@/core/lib/utils";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";

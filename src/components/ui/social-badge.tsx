@@ -1,9 +1,7 @@
-'use client'
-import { motion } from "framer-motion";
 import { Badge } from "./badge";
 
 export default function SocialBadge({ children, link, mail, external }: { children: React.ReactNode; link?: string; mail?: boolean; external?: boolean }) {
-    const Wrapper = link ? motion.a : motion.span;
+    const Wrapper = link ? 'a' : 'span';
 
     return (
         <Wrapper
@@ -11,7 +9,6 @@ export default function SocialBadge({ children, link, mail, external }: { childr
             target={external ? "_blank" : undefined}
             rel={external ? "noopener noreferrer" : undefined}
             className="flex-col-reverse items-start md:flex-row md:items-center"
-            whileHover={{ scale: 1.1 }}
         >
             <Badge
                 variant="secondary"
@@ -21,4 +18,4 @@ export default function SocialBadge({ children, link, mail, external }: { childr
             </Badge>
         </Wrapper>
     );
-}
+} 1

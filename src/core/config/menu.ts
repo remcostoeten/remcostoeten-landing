@@ -14,40 +14,38 @@ import { contactInfo } from "./personal-info";
 //     { title: "Contact", href: "/", isMobile: true },
 // ];
 
-
 export const navigationMenuItems = [
-    { label: "Home", icon: Icons.home, href: "/" },
-    { label: "Experience", href: "experience", icon: Icons.user },
-    { label: "Projects", icon: Icons.code, href: "projects" },
-    { label: "Issues", icon: Icons.todo, href: "issues" },
-    { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
+  { label: "Home", icon: Icons.home, href: "/" },
+  { label: "Experience", href: "experience", icon: Icons.user },
+  { label: "Projects", icon: Icons.code, href: "projects" },
+  { label: "Issues", icon: Icons.todo, href: "issues" },
+  { label: "Guestbook", icon: Icons.PencilIcon, href: "guestbook" },
 ];
 
-
 export const footerLinks = [
-    {
-        title: "Github",
-        href: contactInfo.github,
-        handle: contactInfo.handle
-    },
-    {
-        title: "LinkedIn",
-        href: contactInfo.linkedin,
-        handle: contactInfo.linkedinhandle
-    },
-    {
-        title: "GitLab",
-        href: contactInfo.gitlab,
-        handle: contactInfo.handle
-    },
-    {
-        title: "Email",
-        href: `mailto:${contactInfo.email}`,
-        handle: contactInfo.handle
-    },
-    {
-        title: "Phone",
-        href: `tel:${contactInfo.phone}`,
-        handle: contactInfo.handle
-    }
-]
+  {
+    title: "Github",
+    href: contactInfo.github,
+    handle: contactInfo.handle,
+  },
+  {
+    title: "LinkedIn",
+    href: contactInfo.linkedin,
+    handle: contactInfo.linkedinhandle,
+  },
+  {
+    title: "GitLab",
+    href: contactInfo.gitlab,
+    handle: contactInfo.handle,
+  },
+  {
+    title: "Email",
+    href: `mailto:${contactInfo.email}`,
+    handle: contactInfo.handle,
+  },
+  {
+    title: "Phone",
+    href: `tel:${contactInfo.phone}`,
+    handle: contactInfo.handle,
+  },
+];
